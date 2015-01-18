@@ -22,6 +22,7 @@
 - Arjan Sohal: Developer
 - Edwin Angkasa: Developer
 - Rui Li: Developer
+- Adam Price: Developer
 
 **License**
 
