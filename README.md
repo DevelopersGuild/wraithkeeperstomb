@@ -9,7 +9,7 @@
   
 **Resources**
 
-- [http://en.wikipedia.org/wiki/C%2B%2B](C++)
+- [C++](http://en.wikipedia.org/wiki/C%2B%2B)
 - [GitHub](https://github.com/)
 - [SFML](http://www.sfml-dev.org/) (Simple and Fast Multimedia Library): SFML is multi-platform and multi-language. It provides a simple interface to the various components of your PC, to ease the development of games and multimedia applications. It is composed of five modules: system, window, graphics, audio and network.
 
