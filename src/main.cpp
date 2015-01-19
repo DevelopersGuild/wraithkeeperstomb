@@ -3,9 +3,9 @@
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1280, 720), "Chamber's Labyrinth");
-	sf::CircleShape shape(360.f);
-	shape.setFillColor(sf::Color::Blue);
-	shape.setOrigin(360.f, 360.f);
+	sf::RectangleShape shape(sf::Vector2f(420.f, 420.f));
+	shape.setFillColor(sf::Color::Cyan);
+	shape.setOrigin(210.f, 210.f);
 	shape.setPosition(640.f, 400.f);
 
 	while (window.isOpen())
