@@ -23,6 +23,8 @@
 - Edwin Angkasa: Developer
 - Rui Li: Developer
 - Adam Price: Developer
+- Denny Hung: Developer
+- Kevin Wang: Developer
 
 **License**
 
