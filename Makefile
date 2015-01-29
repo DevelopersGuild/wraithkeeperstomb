@@ -1,7 +1,7 @@
 COMPILER=g++
 CFLAGS=-c -Wall -std=c++11
 LDFLAGS=
-SFML_PATH=binaryLibs/SFML-2.2
+SFML_PATH=../build/lib/
 
 
 SOURCES=src/main.cpp
@@ -17,7 +17,7 @@ EXECUTABLE=chamberslabyrinth
 all: $(SOURCES) $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
-	$(CC) $(LDFLAGS) -L$(SFML_PATH)/lib $(OBJECTS) $(SFML_OBJECTS) -o $@
+	$(COMPILER) $(LDFLAGS) -L$(SFML_PATH)/lib $(OBJECTS) -o $@ $(SFML_OBJECTS)
 
 .cpp.o:
-	$(CC) $(CFLAGS) $< -I$(SFML_PATH)/include -o $@
+	$(COMPILER) $(CFLAGS) $< -I$(SFML_PATH)/include -o $@
