@@ -1,9 +1,12 @@
 #include "Game.h"
 
+
+using namespace std;
+
 Game::Game()
 {
 	window.create(sf::VideoMode(1280, 720), "Chamber's Labyrinth");
-	window.setMouseCursorVisible(false);
+	window.setMouseCursorVisible(true);
 	window.setFramerateLimit(60);
 	window.setVerticalSyncEnabled(true);
 }
