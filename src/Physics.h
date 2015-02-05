@@ -5,11 +5,11 @@
 
 // Applies physics (gravity, collisions, motion) to an entity.
 
-void doPhysics(sf::Rect<double>& hitbox, double& velocityX, double& velocityY);
+void doPhysics(sf::FloatRect& hitbox, float& velocityX, float& velocityY);
 
 
 // Registers the hitbox as collidable.
 
-void registerEntity(sf::Rect<double>& hitbox);
+void registerEntity(sf::FloatRect& hitbox);
 
 #endif

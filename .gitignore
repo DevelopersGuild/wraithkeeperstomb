@@ -1,4 +1,4 @@
-/vs2013project/
+/vs2013project
 
 # Exclude *nix binaries
 *.o

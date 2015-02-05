@@ -3,9 +3,9 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-std::vector<sf::Rect<double> > activeWorldHitboxes;
+std::vector< sf::FloatRect > activeWorldHitboxes;
 
-void doPhysics(sf::Rect<double>& hitbox, double& velocityX, double& velocityY)
+void doPhysics(sf::FloatRect& hitbox, float& velocityX, float& velocityY)
 {
    
    for(int i=0; i<activeWorldHitboxes.size(); i++)
@@ -14,7 +14,7 @@ void doPhysics(sf::Rect<double>& hitbox, double& velocityX, double& velocityY)
    }
 }
 
-void registerEntity(sf::Rect<double>& hitbox)
+void registerEntity(sf::FloatRect& hitbox)
 {
    activeWorldHitboxes.insert(activeWorldHitboxes.end(), hitbox);
 }
