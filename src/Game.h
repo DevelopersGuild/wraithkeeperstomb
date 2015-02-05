@@ -10,8 +10,16 @@
 class Game
 {
 private:
+	enum{
+		titleScreen, inGame, pause
+	}GameState;
+
 	sf::RenderWindow window;
 	sf::Event event;
+
+	sf::Font century;
+	sf::Text title;
+	sf::Text pressEnter;
 
 	Levels levels;
 	Hero hero;
@@ -19,6 +27,11 @@ private:
 	void update();
 	void render();
 	void handleEvent(sf::Event);
+	void loadAssets();
+
+	void titleUpdate();
+	void gameUpdate();
+	void pauseUpdate();
 public:
 	Game();
 	void mainLoop();

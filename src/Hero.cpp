@@ -4,14 +4,13 @@
 Hero::Hero() 
 {
 	// Load hero texture, assign to sprite, set starting sprite dimensions
-	heroTexture.loadFromFile("../assets/hero.png"); 
+	heroTexture.loadFromFile("../assets/sprites/hero.png"); 
 	heroSprite.setTexture(heroTexture);
 	heroSprite.setOrigin(32, 128);
 	heroSprite.setPosition(640, 640);
 	
 	// Initialize basic hero stats
 	heroHP = HERO_BASE_HP;
-	heroMP = HERO_BASE_MP;
 	isAlive = true;
 	heroSpeedMultiplier = 1;
 	heroSpeed = HERO_BASE_SPEED * heroSpeedMultiplier;

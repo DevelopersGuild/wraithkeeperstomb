@@ -10,7 +10,6 @@ private:
 	sf::Sprite heroSprite;
 
 	int heroHP;
-	int heroMP;
 	bool isAlive;
 	float heroSpeed;
 	float heroSpeedMultiplier;
@@ -32,8 +31,6 @@ public:
 	{ return isAlive; }
 	const int getHP()
 	{ return heroHP; }
-	const int getMP()
-	{ return heroMP; }
 };
 
 #endif
