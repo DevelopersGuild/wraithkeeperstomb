@@ -27,6 +27,8 @@ public:
 	{ return heroSprite.getPosition().x; }
 	const float getY()
 	{ return heroSprite.getPosition().y; }
+	const sf::FloatRect getCollisionRect()
+	{ return heroSprite.getGlobalBounds(); }
 	const bool getAlive()
 	{ return isAlive; }
 	const int getHP()
