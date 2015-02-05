@@ -1,5 +1,6 @@
 #include "Hero.h"
 #include "Constants.h"
+#include "Physics.h"
 
 Hero::Hero() 
 {
@@ -14,6 +15,8 @@ Hero::Hero()
 	isAlive = true;
 	heroSpeedMultiplier = 1;
 	heroSpeed = HERO_BASE_SPEED * heroSpeedMultiplier;
+	
+	
 }
 
 void Hero::left()
