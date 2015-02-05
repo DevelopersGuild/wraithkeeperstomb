@@ -17,7 +17,7 @@ private:
 	sf::RenderWindow window;
 	sf::Event event;
 
-	sf::Font sysPixel;
+	sf::Font century;
 	sf::Text title;
 	sf::Text pressEnter;
 

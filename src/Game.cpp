@@ -61,15 +61,15 @@ void Game::handleEvent(sf::Event event)
 
 void Game::loadAssets()
 {
-	sysPixel.loadFromFile("../assets/fonts/century.ttf");
+	century.loadFromFile("../assets/fonts/century.ttf");
 
-	title.setFont(sysPixel);
+	title.setFont(century);
 	title.setString("Chamber's Labyrinth");
 	title.setCharacterSize(100);
 	title.setColor(sf::Color::White);
 	title.setPosition(150, 225);
 
-	pressEnter.setFont(sysPixel);
+	pressEnter.setFont(century);
 	pressEnter.setString("Press Enter");
 	pressEnter.setCharacterSize(48);
 	pressEnter.setColor(sf::Color::White);
