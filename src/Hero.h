@@ -1,11 +1,13 @@
 #ifndef HERO_H
 #define HERO_H
+#include "Entity.h"
 
 #include <SFML/Graphics.hpp>
 
-class Hero
+class Hero : public Entity
 {
 private:
+<<<<<<< HEAD
 	sf::Texture heroTexture;
 	sf::Sprite heroSprite;
 	sf::Vector2f velocity;
@@ -28,11 +30,15 @@ private:
 	void left();
 	void right();
 	void jump(float seconds);
+=======
+
+>>>>>>> 9f8d7c0... Entity
 public:
 	Hero();
 	void update(float seconds);
 	void render(sf::RenderWindow& window);
 
+<<<<<<< HEAD
 	// Accessors
 	const float getX()
 	{
@@ -62,6 +68,8 @@ public:
 	{
 		return heroHP;
 	}
+=======
+>>>>>>> 9f8d7c0... Entity
 };
 
 #endif

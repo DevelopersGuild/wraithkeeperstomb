@@ -1,9 +1,11 @@
+#include "Entity.h"
 #include "Hero.h"
 #include "Constants.h"
 
 Hero::Hero()
 {
 	// Load hero texture, assign to sprite, set starting sprite dimensions
+<<<<<<< HEAD
 	heroTexture.loadFromFile("../assets/sprites/hero.png");
 	heroSprite.setTexture(heroTexture);
 	heroSprite.setOrigin(32, 128);
@@ -80,10 +82,22 @@ void Hero::jump(float seconds)
 		jumpTimer = 0;
 		jumpCooldown = 0;
 	}
+=======
+	Texture.loadFromFile("../assets/sprites/hero.png"); 
+	Sprite.setTexture(Texture);
+	Sprite.setOrigin(32, 128);
+	Sprite.setPosition(640, 640);
+	
+	// Initialize basic hero stats
+	HP = HERO_BASE_HP;
+	SpeedMultiplier = 1;
+	Speed = HERO_BASE_SPEED * SpeedMultiplier;
+>>>>>>> 9f8d7c0... Entity
 }
 
 void Hero::update(float seconds)
 {
+<<<<<<< HEAD
 	if (jumpTimer != 0)
 		jump(seconds);
 	{
@@ -138,10 +152,29 @@ void Hero::update(float seconds)
 			heroSprite.setPosition(heroSprite.getPosition().x, 1360);
 		}
 	}
+=======
+	// Handle movement
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		left();
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+		right();
+
+	// Jump
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		jump();
+
+	// Check if alive
+	if (HP <= 0)
+		isAlive = false;
+>>>>>>> 9f8d7c0... Entity
 }
 
 void Hero::render(sf::RenderWindow &window)
 {
+<<<<<<< HEAD
 	heroSprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 128, 64, 128));
 	window.draw(heroSprite);
+=======
+	window.draw(Sprite);
+>>>>>>> 9f8d7c0... Entity
 }
