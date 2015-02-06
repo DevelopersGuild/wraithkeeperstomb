@@ -7,7 +7,7 @@ Hero::Hero()
 	heroTexture.loadFromFile("../assets/sprites/hero.png"); 
 	heroSprite.setTexture(heroTexture);
 	heroSprite.setOrigin(32, 128);
-	heroSprite.setPosition(640, 640);
+	heroSprite.setPosition(1280, 1360);
 	
 	// Initialize basic hero stats
 	heroHP = HERO_BASE_HP;

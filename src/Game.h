@@ -17,6 +17,9 @@ private:
 	sf::RenderWindow window;
 	sf::Event event;
 
+	//Camera
+	sf::View camera;
+
 	sf::Font century;
 	sf::Text title;
 	sf::Text pressEnter;

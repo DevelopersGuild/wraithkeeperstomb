@@ -85,6 +85,15 @@ void Game::titleUpdate()
 
 void Game::gameUpdate()
 {
+
+	// Camera
+	camera.setSize(sf::Vector2f(1280, 720));
+	if (hero.getX() > 710 && hero.getX() < 1900)
+	{
+		camera.setCenter(hero.getX(), hero.getY() - 350);
+		window.setView(camera);
+	}
+
 	levels.update();
 	hero.update();
 }
