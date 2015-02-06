@@ -28,7 +28,7 @@ private:
 	void render();
 	void handleEvent(sf::Event);
 	void loadAssets();
-
+	void collision(sf::RectangleShape, sf::RectangleShape);
 	void titleUpdate();
 	void gameUpdate();
 	void pauseUpdate();
