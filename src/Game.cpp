@@ -85,6 +85,8 @@ void Game::titleUpdate()
 
 void Game::gameUpdate()
 {
+	levels.update();
+	hero.update();
 
 	// Camera
 	camera.setSize(sf::Vector2f(1280, 720));
@@ -93,9 +95,6 @@ void Game::gameUpdate()
 		camera.setCenter(hero.getX(), hero.getY() - 350);
 		window.setView(camera);
 	}
-
-	levels.update();
-	hero.update();
 }
 
 void Game::pauseUpdate()
