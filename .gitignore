@@ -1,1 +1,4 @@
-/vs2013project
+/vs2013project/Debug/
+!/vs2013project/Debug/*.dll
+/vs2013project/vs2013project.sdf
+/vs2013project/vs2013project.v12.suo
