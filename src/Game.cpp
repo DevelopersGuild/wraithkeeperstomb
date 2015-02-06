@@ -12,7 +12,9 @@ Game::Game()
 	window.setFramerateLimit(60);
 	window.setVerticalSyncEnabled(true);
 
-	GameState = inGame;
+	loadAssets();
+
+	GameState = titleScreen;
 }
 
 void Game::mainLoop()
@@ -70,10 +72,10 @@ void Game::loadAssets()
 	title.setPosition(150, 225);
 
 	pressEnter.setFont(century);
-	pressEnter.setString("Press Enter");
+	pressEnter.setString("Press Enter to Begin");
 	pressEnter.setCharacterSize(48);
 	pressEnter.setColor(sf::Color::White);
-	pressEnter.setPosition(465, 425);
+	pressEnter.setPosition(420, 425);
 }
 
 void Game::titleUpdate()
