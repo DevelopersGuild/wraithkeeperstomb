@@ -2,4 +2,5 @@
 /vs2013project
 *.suo
 *.user
-*.sln.docstates
+*.sln
+*.sdf
