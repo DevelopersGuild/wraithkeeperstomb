@@ -1,1 +1,5 @@
+# User-specific files
 /vs2013project
+*.suo
+*.user
+*.sln.docstates
