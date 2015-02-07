@@ -35,6 +35,7 @@ private:
 >>>>>>> 9f8d7c0... Entity
 public:
 	Hero();
+<<<<<<< HEAD
 	void update(float seconds);
 	void render(sf::RenderWindow& window);
 
@@ -70,6 +71,10 @@ public:
 	}
 =======
 >>>>>>> 9f8d7c0... Entity
+=======
+	void update();
+	void onHit(int dmg);
+>>>>>>> 3354455... Added/Modified Entity, Hero, Enemies, Enemy1, and Enemy2
 };
 
 #endif

@@ -1,4 +1,3 @@
-#include "Entity.h"
 #include "Enemies.h"
 #include "Constants.h"
 
@@ -9,8 +8,6 @@ Enemies::Enemies()
 
 void Enemies::update(Hero* hero)
 {
-	// Handle movement
-
 	// Detection
 	if (heroDetection(hero))
 		onHeroDetected(hero);
@@ -19,12 +16,17 @@ void Enemies::update(Hero* hero)
 		isAlive = false;
 }
 
-void Enemies::render(sf::RenderWindow &window)
+bool Enemies::heroDetection(Hero* hero)
 {
-	window.draw(Sprite);
+	if ((getX() - hero->getX()) <= ENEMY_DETECTION_RADIUS && (hero->getX() - getX()) <= ENEMY_DETECTION_RADIUS)
+		return true;
+	else return false;
 }
 
-void onHeroDetected(Hero* hero)
+void Enemies::onHeroDetected(Hero* hero)
 {
-
+	if ((getX() - hero->getX()) > 0)
+		left();
+	else
+		right();
 }

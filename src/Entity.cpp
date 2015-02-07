@@ -3,8 +3,6 @@
 
 Entity::Entity()
 {
-	// Load Entity texture, assign to sprite, set starting sprite dimensions
-
 	// Initialize basic Entity stats
 	isAlive = true;
 }
@@ -26,22 +24,16 @@ void Entity::jump()
 
 void Entity::update()
 {
-	// Handle movement
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-		left();
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		right();
 
-	// Jump
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-		jump();
-
-	// Check if alive
-	if (HP <= 0)
-		isAlive = false;
 }
 
 void Entity::render(sf::RenderWindow &window)
 {
-	window.draw(Sprite);
+	if (isAlive)
+		window.draw(Sprite);
+}
+
+void Entity::onHit(int dmg)
+{
+	//for the armorless
 }

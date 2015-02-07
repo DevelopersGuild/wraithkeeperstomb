@@ -8,7 +8,7 @@ private:
 
 public:
 	Enemy1();
-	
+	//void onHeroDetected(Hero* hero); // if it responds differently
 };
 
 #endif

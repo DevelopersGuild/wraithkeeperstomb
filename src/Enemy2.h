@@ -8,9 +8,7 @@ private:
 
 public:
 	Enemy2();
-	void update();
-	void render(sf::RenderWindow& window);
-	bool heroDetection(Hero* hero);
+	//void onHeroDetected(Hero* hero); // if it responds differently
 };
 
 #endif

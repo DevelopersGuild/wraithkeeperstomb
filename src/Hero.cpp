@@ -92,7 +92,11 @@ void Hero::jump(float seconds)
 	HP = HERO_BASE_HP;
 	SpeedMultiplier = 1;
 	Speed = HERO_BASE_SPEED * SpeedMultiplier;
+<<<<<<< HEAD
 >>>>>>> 9f8d7c0... Entity
+=======
+	isAlive = true;
+>>>>>>> 3354455... Added/Modified Entity, Hero, Enemies, Enemy1, and Enemy2
 }
 
 void Hero::update(float seconds)
@@ -169,8 +173,9 @@ void Hero::update(float seconds)
 >>>>>>> 9f8d7c0... Entity
 }
 
-void Hero::render(sf::RenderWindow &window)
+void Hero::onHit(int dmg)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	heroSprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 128, 64, 128));
 	window.draw(heroSprite);
@@ -178,3 +183,7 @@ void Hero::render(sf::RenderWindow &window)
 	window.draw(Sprite);
 >>>>>>> 9f8d7c0... Entity
 }
+=======
+	//armor and stuff
+}
+>>>>>>> 3354455... Added/Modified Entity, Hero, Enemies, Enemy1, and Enemy2
