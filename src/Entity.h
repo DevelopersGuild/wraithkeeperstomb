@@ -17,9 +17,10 @@ protected:
 	void jump();
 	void left();
 	void right();
+	virtual void onHit(int dmg);
 public:
 	Entity();
-	void update();
+	virtual void update();
 	void render(sf::RenderWindow& window);
 
 	// Accessors

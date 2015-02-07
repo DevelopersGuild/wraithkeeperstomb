@@ -11,8 +11,7 @@ private:
 public:
 	Hero();
 	void update();
-	void render(sf::RenderWindow& window);
-
+	void onHit(int dmg);
 };
 
 #endif

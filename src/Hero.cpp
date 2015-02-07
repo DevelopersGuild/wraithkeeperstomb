@@ -14,6 +14,7 @@ Hero::Hero()
 	HP = HERO_BASE_HP;
 	SpeedMultiplier = 1;
 	Speed = HERO_BASE_SPEED * SpeedMultiplier;
+	isAlive = true;
 }
 
 void Hero::update()
@@ -33,7 +34,7 @@ void Hero::update()
 		isAlive = false;
 }
 
-void Hero::render(sf::RenderWindow &window)
+void Hero::onHit(int dmg)
 {
-	window.draw(Sprite);
+	//armor and stuff
 }

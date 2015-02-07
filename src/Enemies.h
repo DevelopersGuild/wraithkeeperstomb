@@ -9,10 +9,12 @@ protected:
 	int damage;
 public:
 	Enemies();
-	void update();
-	void render(sf::RenderWindow& window);
+	void update(Hero* hero); // may need to be made virtual
 	bool heroDetection(Hero* hero);
-	void onHeroDetected(Hero* hero);
+	virtual void onHeroDetected(Hero* hero);
+	// void onHit(); // only if the enemy has armor
+
+	// Accessor(s)
 	int getDamage() { return damage; }
 };
 
