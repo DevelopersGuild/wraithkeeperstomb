@@ -1,6 +1,5 @@
 #include "Platform.h"
 
-
 Platform::Platform()
 {
 	setColor();
@@ -31,19 +30,6 @@ void Platform::setColor(sf::Color nColor)
 {
 	rec.setFillColor(nColor);
 }
-
-
-sf::Vector2f Platform::getPosition()
-{
-	return pos;
-}
-
-
-sf::Vector2f Platform::getSize()
-{
-	return size;
-}
-
 
 void Platform::render(sf::RenderWindow &window)
 {

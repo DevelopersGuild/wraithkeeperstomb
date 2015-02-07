@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PLATFORM_H
+#define PLATFORM_H
 
 #include <SFML\Graphics.hpp>
 
@@ -20,9 +21,12 @@ public:
 	void setPosition(sf::Vector2f nPos);
 
 	// getters
-	sf::Vector2f getPosition();
-	sf::Vector2f getSize();
+	const sf::Vector2f getPosition()
+	{ return pos; }
+	const sf::Vector2f getSize()
+	{ return size; }
 
 	void render(sf::RenderWindow &window);
 };
 
+#endif
