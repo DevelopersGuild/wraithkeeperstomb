@@ -1,7 +1,5 @@
 #include "Game.h"
 
-using namespace std;
-
 Game::Game()
 {
 	// Create game render window
@@ -59,6 +57,46 @@ void Game::handleEvent(sf::Event event)
 			}
 		}
 	}
+}
+
+
+void Game::collision(sf::RectangleShape hero, sf::RectangleShape wall){
+sf::FloatRect area;
+		if(hero.getGlobalBounds().intersects(wall.getGlobalBounds(),area))
+		{
+			// Verifying if we need to apply collision to the vertical axis, else we apply to horizontal axis
+			if (area.width > area.height)
+			{
+				if (area.contains( area.left, hero.getPosition().y ))
+				{
+				// Up side crash
+				hero.setPosition( hero.getPosition().x, hero.getPosition().y - area.height );
+				
+				}
+				
+				else
+				{
+				// Down side crash
+				hero.setPosition( hero.getPosition().x, hero.getPosition().y + area.height );
+				}
+				
+			}
+			else if (area.width < area.height)
+			{
+				if (area.contains( hero.getPosition().x + hero.getGlobalBounds().width - 1.f, area.top + 1.f ))
+				{
+					//Right side crash
+					//shape.setOrigin(shape.getOrigin().x - area.width, shape.getOrigin().y);
+					hero.setPosition( hero.getPosition().x - area.width, hero.getPosition().y );
+				}
+				else
+				{
+					//Left side crash
+					hero.setPosition(hero.getPosition().x + area.width, hero.getPosition().y );
+				}
+			}
+			
+		}
 }
 
 void Game::loadAssets()

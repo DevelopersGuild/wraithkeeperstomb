@@ -2,8 +2,6 @@
 #define GAME_H
 
 #include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Window.hpp>
 #include "Levels.h"
 #include "Hero.h"
 
@@ -31,7 +29,7 @@ private:
 	void render();
 	void handleEvent(sf::Event);
 	void loadAssets();
-
+	void collision(sf::RectangleShape, sf::RectangleShape);
 	void titleUpdate();
 	void gameUpdate();
 	void pauseUpdate();
