@@ -2,6 +2,7 @@
 #define LEVELS_H
 
 #include <SFML/Graphics.hpp>
+#include "Platform.h"
 
 class Levels
 {
@@ -10,6 +11,8 @@ private:
 	sf::Texture groundTexture;
 	sf::RectangleShape bgRect;
 	sf::RectangleShape groundRect;
+	Platform platform;
+
 public:
 	Levels();
 	void update();

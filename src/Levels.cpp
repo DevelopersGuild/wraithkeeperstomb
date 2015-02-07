@@ -10,6 +10,10 @@ Levels::Levels()
 	groundRect.setSize(sf::Vector2f(2560, 32));
 	groundRect.setTexture(&groundTexture);
 	groundRect.setPosition(0, 1340);
+
+	// Create a platform
+	platform.setSize(sf::Vector2f(350.f, 50.f));
+	platform.setPosition(sf::Vector2f(700.f, 1000.f));
 }
 
 void Levels::update()
@@ -21,4 +25,6 @@ void Levels::render(sf::RenderWindow &window)
 {
 	window.draw(bgRect);
 	window.draw(groundRect);
+
+	platform.render(window);
 }
