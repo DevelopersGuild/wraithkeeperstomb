@@ -15,9 +15,13 @@ private:
 	sf::RenderWindow window;
 	sf::Event event;
 
+	sf::Clock clock;	//Starts the clock
+	sf::Time deltaTime;	//Difference in time
+
 	//Camera
 	sf::View camera;
 
+	sf::Font blackcastle;
 	sf::Font century;
 	sf::Text title;
 	sf::Text pressEnter;

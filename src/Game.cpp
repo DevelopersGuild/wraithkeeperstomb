@@ -102,12 +102,13 @@ sf::FloatRect area;
 void Game::loadAssets()
 {
 	century.loadFromFile("../assets/fonts/century.ttf");
+	blackcastle.loadFromFile("../assets/fonts/blackcastle.ttf");
 
-	title.setFont(century);
+	title.setFont(blackcastle);
 	title.setString("Chamber's Labyrinth");
 	title.setCharacterSize(100);
 	title.setColor(sf::Color::White);
-	title.setPosition(150, 225);
+	title.setPosition(280, 225);
 
 	pressEnter.setFont(century);
 	pressEnter.setString("Press Enter to Begin");
@@ -123,14 +124,23 @@ void Game::titleUpdate()
 
 void Game::gameUpdate()
 {
+	deltaTime = clock.restart();
+
 	levels.update();
-	hero.update();
+	hero.update(deltaTime.asSeconds());
 
 	// Camera
 	camera.setSize(sf::Vector2f(1280, 720));
 	if (hero.getX() > 710 && hero.getX() < 1900)
 	{
-		camera.setCenter(hero.getX(), hero.getY() - 350);
+		camera.setCenter(hero.getX(), hero.getY() - 100);
+		camera.zoom(.5);
+		window.setView(camera);
+	}
+	if (hero.getX() > 1900 || hero.getX() < 710)
+	{
+		camera.setCenter(camera.getCenter().x, hero.getY() - 100);
+		camera.zoom(.5);
 		window.setView(camera);
 	}
 }
