@@ -14,10 +14,13 @@ private:
 	enum Direction { faceRight, faceLeft };
 
 	int heroHP;
+	int jumpTimer;
+	int jumpCooldown;
 	bool isAlive;
+	bool inAir;
 	float heroSpeed;
 	float heroSpeedMultiplier;
-	float heroJumpSpeed = 40;
+	float heroJumpSpeed = 80;
 
 	void left();
 	void right();

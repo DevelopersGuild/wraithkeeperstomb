@@ -16,6 +16,8 @@ Hero::Hero()
 	isAlive = true;
 	heroSpeedMultiplier = 1;
 	heroSpeed = HERO_BASE_SPEED * heroSpeedMultiplier;
+	jumpTimer = 0; //Timer for jump function duration
+	jumpCooldown = 0;
 }
 
 void Hero::left()
@@ -32,45 +34,63 @@ void Hero::right()
 
 void Hero::jump(float seconds)
 {
-	velocity.y = -1400;
-	heroSprite.move(velocity*seconds);
-	velocity.y = 0;
+	if (jumpTimer < 20 && jumpCooldown > 2)
+	{
+		velocity.y = -350;
+		velocity.y += GRAVITY*seconds*jumpTimer*2;
+		heroSprite.move(velocity*seconds);
+		velocity.y = 0;
+		jumpTimer++;
+	}
+	if (heroSprite.getPosition().y + heroSprite.getScale().y >= 1359)
+	{
+		jumpTimer = 0;
+		jumpCooldown = 0;
+	}
 }
 
 void Hero::update(float seconds)
 {
-	// Handle movement
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-	{
-		direct.x = faceLeft;
-		left();
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-	{
-		direct.x = faceRight;
-		right();
-	}
-	else
-		velocity.x = 0;
-
-	// Jump
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	if (jumpTimer != 0)
 		jump(seconds);
-
-	// Check if alive
-	if (heroHP <= 0)
-		isAlive = false;
-
-	//Gravity implementation
-	if (heroSprite.getPosition().y + heroSprite.getScale().y < 1350) //This should later be changed to a collision with groud boolean
 	{
-		velocity.y += GRAVITY * seconds;
-		heroSprite.move(0.f, velocity.y);
-	}
-	else
-	{
-		velocity.y = 0;
-		heroSprite.setPosition(heroSprite.getPosition().x, 1360);
+		// Handle movement
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		{
+			direct.x = faceLeft;
+			left();
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		{
+			direct.x = faceRight;
+			right();
+		}
+		else
+			velocity.x = 0;
+
+		// Jump
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+			jump(seconds);
+
+		// Check if alive
+		if (heroHP <= 0)
+			isAlive = false;
+
+		//Gravity implementation
+		if (heroSprite.getPosition().y + heroSprite.getScale().y < 1350) //This should later be changed to a collision with groud boolean
+		{
+			velocity.y += GRAVITY * seconds * seconds*50;
+			heroSprite.move(0.f, velocity.y);
+		}
+		else
+		{
+			velocity.y = 0;
+			if (jumpCooldown > 2)
+				jumpCooldown = 3;
+			else
+				jumpCooldown++;
+			heroSprite.setPosition(heroSprite.getPosition().x, 1360);
+		}
 	}
 }
 
