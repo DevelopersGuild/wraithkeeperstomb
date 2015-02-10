@@ -67,7 +67,7 @@ void Hero::right()
 
 void Hero::jump(float seconds)
 {
-	if (jumpTimer < 22 && jumpCooldown > 2)
+	if (jumpTimer < 22 && jumpCooldown > 3)
 	{
 		velocity.y = -350;
 		velocity.y += GRAVITY*seconds*jumpTimer*2;
@@ -133,9 +133,7 @@ void Hero::update(float seconds)
 		else
 		{
 			velocity.y = 0;
-			if (jumpCooldown > 2)
-				jumpCooldown = 3;
-			else
+			if (jumpCooldown < 4)
 				jumpCooldown++;
 			heroSprite.setPosition(heroSprite.getPosition().x, 1360);
 		}
