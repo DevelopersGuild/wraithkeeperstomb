@@ -22,6 +22,10 @@ void Entity::jump()
 	// not yet written
 }
 
+void Entity::setPosition(float x, float y){
+	Sprite.setPosition(x,y);
+}
+
 void Entity::render(sf::RenderWindow &window)
 {
 	window.draw(Sprite);

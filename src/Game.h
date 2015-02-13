@@ -33,7 +33,7 @@ private:
 	void render();
 	void handleEvent(sf::Event);
 	void loadAssets();
-	void collision(sf::Sprite, sf::FloatRect);
+	void collision(Hero *, sf::FloatRect);
 	void titleUpdate();
 	void gameUpdate();
 	void pauseUpdate();
