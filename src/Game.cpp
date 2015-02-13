@@ -39,7 +39,7 @@ void Game::mainLoop()
 			titleUpdate();
 		else if (GameState == inGame){
 			gameUpdate();
-			collision(&(hero), levels.platform.getCollisionRect());
+			collision(theHero, levels.platform.getCollisionRect());
 		}
 		else if (GameState == pause)
 			pauseUpdate();
@@ -151,18 +151,20 @@ void Game::gameUpdate()
 
 	// Camera
 	camera.setSize(sf::Vector2f(1280, 720));
+	// If player is within the boundaries of the screen
 	if (theHero->getX() > 710 && theHero->getX() < 1900)
 	{
-		camera.setCenter(theHero->getX(), theHero->getY() - 100);
-		camera.zoom(.5);
-		window.setView(camera);
+		// Set x and y position
+		camera.setCenter(theHero->getX(), theHero->getY() - 100);	
 	}
-	if (theHero->getX() > 1900 || theHero->getX() < 710)
+	// If the player is near the edge
+	else
 	{
+		// Set only y position
 		camera.setCenter(camera.getCenter().x, theHero->getY() - 100);
-		camera.zoom(.5);
-		window.setView(camera);
 	}
+	camera.zoom(.5);
+	window.setView(camera);
 }
 
 void Game::pauseUpdate()
