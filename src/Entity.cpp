@@ -22,15 +22,9 @@ void Entity::jump()
 	// not yet written
 }
 
-void Entity::update()
-{
-
-}
-
 void Entity::render(sf::RenderWindow &window)
 {
-	if (isAlive)
-		window.draw(Sprite);
+	window.draw(Sprite);
 }
 
 void Entity::onHit(int dmg)

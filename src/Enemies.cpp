@@ -20,7 +20,8 @@ bool Enemies::heroDetection(Hero* hero)
 {
 	if ((getX() - hero->getX()) <= ENEMY_DETECTION_RADIUS && (hero->getX() - getX()) <= ENEMY_DETECTION_RADIUS)
 		return true;
-	else return false;
+	else 
+		return false;
 }
 
 void Enemies::onHeroDetected(Hero* hero)

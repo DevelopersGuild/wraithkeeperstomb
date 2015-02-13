@@ -20,7 +20,6 @@ protected:
 	virtual void onHit(int dmg);
 public:
 	Entity();
-	virtual void update();
 	void render(sf::RenderWindow& window);
 
 	// Accessors

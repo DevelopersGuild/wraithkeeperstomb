@@ -5,11 +5,10 @@
 Hero::Hero()
 {
 	// Load hero texture, assign to sprite, set starting sprite dimensions
-<<<<<<< HEAD
-	heroTexture.loadFromFile("../assets/sprites/hero.png");
-	heroSprite.setTexture(heroTexture);
-	heroSprite.setOrigin(32, 128);
-	heroSprite.setPosition(1280, 1360);
+	Texture.loadFromFile("../assets/sprites/hero.png");
+	Sprite.setTexture(Texture);
+	Sprite.setOrigin(32, 128);
+	Sprite.setPosition(1280, 1360);
 	sf::Vector2f velocity(sf::Vector2f(0, 0));
 	sf::Vector2i anim(sf::Vector2i(0, 1));
 
@@ -56,14 +55,14 @@ void Hero::walkAnim()
 void Hero::left()
 {
 	velocity.x = -heroSpeed;
-	heroSprite.move(velocity.x, 0.f);
+	Sprite.move(velocity.x, 0.f);
 	walkAnim();
 }
 
 void Hero::right()
 {
 	velocity.x = heroSpeed;
-	heroSprite.move(velocity.x, 0.f);
+	Sprite.move(velocity.x, 0.f);
 	walkAnim();
 }
 
@@ -73,35 +72,19 @@ void Hero::jump(float seconds)
 	{
 		velocity.y = -350;
 		velocity.y += GRAVITY*seconds*jumpTimer*2;
-		heroSprite.move(velocity*seconds);
+		Sprite.move(velocity*seconds);
 		velocity.y = 0;
 		jumpTimer++;
 	}
-	if (heroSprite.getPosition().y + heroSprite.getScale().y >= 1359)
+	if (Sprite.getPosition().y + Sprite.getScale().y >= 1359)
 	{
 		jumpTimer = 0;
 		jumpCooldown = 0;
 	}
-=======
-	Texture.loadFromFile("../assets/sprites/hero.png"); 
-	Sprite.setTexture(Texture);
-	Sprite.setOrigin(32, 128);
-	Sprite.setPosition(640, 640);
-	
-	// Initialize basic hero stats
-	HP = HERO_BASE_HP;
-	SpeedMultiplier = 1;
-	Speed = HERO_BASE_SPEED * SpeedMultiplier;
-<<<<<<< HEAD
->>>>>>> 9f8d7c0... Entity
-=======
-	isAlive = true;
->>>>>>> 3354455... Added/Modified Entity, Hero, Enemies, Enemy1, and Enemy2
 }
 
 void Hero::update(float seconds)
 {
-<<<<<<< HEAD
 	if (jumpTimer != 0)
 		jump(seconds);
 	{
@@ -143,47 +126,23 @@ void Hero::update(float seconds)
 			isAlive = false;
 
 		//Gravity implementation
-		if (heroSprite.getPosition().y + heroSprite.getScale().y < 1350) //This should later be changed to a collision with groud boolean
+		if (Sprite.getPosition().y + Sprite.getScale().y < 1350) //This should later be changed to a collision with groud boolean
 		{
 			velocity.y += GRAVITY * seconds * seconds*50;
-			heroSprite.move(0.f, velocity.y);
+			Sprite.move(0.f, velocity.y);
 		}
 		else
 		{
 			velocity.y = 0;
 			if (jumpCooldown < 4)
 				jumpCooldown++;
-			heroSprite.setPosition(heroSprite.getPosition().x, 1360);
+			Sprite.setPosition(Sprite.getPosition().x, 1360);
 		}
 	}
-=======
-	// Handle movement
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-		left();
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		right();
-
-	// Jump
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-		jump();
-
-	// Check if alive
-	if (HP <= 0)
-		isAlive = false;
->>>>>>> 9f8d7c0... Entity
 }
 
-void Hero::onHit(int dmg)
+void Hero::render(sf::RenderWindow &window)
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-	heroSprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 128, 64, 128));
-	window.draw(heroSprite);
-=======
+	Sprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 128, 64, 128));
 	window.draw(Sprite);
->>>>>>> 9f8d7c0... Entity
 }
-=======
-	//armor and stuff
-}
->>>>>>> 3354455... Added/Modified Entity, Hero, Enemies, Enemy1, and Enemy2

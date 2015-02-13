@@ -7,9 +7,6 @@
 class Hero : public Entity
 {
 private:
-<<<<<<< HEAD
-	sf::Texture heroTexture;
-	sf::Sprite heroSprite;
 	sf::Vector2f velocity;
 	sf::Vector2i anim;		//Tracker for hero sprite frames
 
@@ -24,31 +21,17 @@ private:
 	bool inAir;
 	float heroSpeed;
 	float heroSpeedMultiplier;
-	float heroJumpSpeed;// = 80;
+	float heroJumpSpeed;
 
 	void walkAnim();			//Animation sequence for walking
 	void left();
 	void right();
 	void jump(float seconds);
-=======
-
->>>>>>> 9f8d7c0... Entity
 public:
 	Hero();
-<<<<<<< HEAD
 	void update(float seconds);
-	void render(sf::RenderWindow& window);
-
-<<<<<<< HEAD
+	void render(sf::RenderWindow &window);
 	// Accessors
-	const float getX()
-	{
-		return heroSprite.getPosition().x;
-	}
-	const float getY()
-	{
-		return heroSprite.getPosition().y;
-	}
 	const float getSpeedX()
 	{
 		return velocity.x;
@@ -57,24 +40,7 @@ public:
 	{
 		return velocity.y;
 	}
-	const sf::FloatRect getCollisionRect()
-	{
-		return heroSprite.getGlobalBounds();
-	}
-	const bool getAlive()
-	{
-		return isAlive;
-	}
-	const int getHP()
-	{
-		return heroHP;
-	}
-=======
->>>>>>> 9f8d7c0... Entity
-=======
 	void update();
-	void onHit(int dmg);
->>>>>>> 3354455... Added/Modified Entity, Hero, Enemies, Enemy1, and Enemy2
 };
 
 #endif
