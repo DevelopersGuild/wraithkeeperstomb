@@ -20,8 +20,8 @@ protected:
 	virtual void onHit(int dmg);
 public:
 	Entity();
-	void render(sf::RenderWindow& window);
-
+	virtual void render(sf::RenderWindow& window);
+	virtual void update(float time);
 	// Accessors
 	const float getX()
 	{

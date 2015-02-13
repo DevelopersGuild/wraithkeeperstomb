@@ -5,10 +5,10 @@
 Enemy1::Enemy1()
 {
 	// Load Enemies texture, assign to sprite, set starting sprite dimensions
-	Texture.loadFromFile("../assets/sprites/enemy1.png");
+	Texture.loadFromFile("../assets/sprites/magebaddie.png");
 	Sprite.setTexture(Texture);
-	Sprite.setOrigin(32, 128); // waiting for spritesheet
-	Sprite.setPosition(640, 640); // edit
+	Sprite.setOrigin(32, 128);
+	Sprite.setPosition(1280, 1360);
 
 	// Initialize basic Enemies stats
 	HP = ENEMY1_BASE_HP;
@@ -16,4 +16,9 @@ Enemy1::Enemy1()
 	Speed = ENEMY1_BASE_SPEED * SpeedMultiplier;
 	damage = ENEMY1_DAMAGE;
 	isAlive = true;
+}
+
+void Enemy1::update(float time)
+{
+	Enemies::chaseHero();
 }

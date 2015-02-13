@@ -1,4 +1,6 @@
 #include "Game.h"
+#include "Enemy1.h"
+#include "Hero.h"
 
 Game::Game()
 {
@@ -13,6 +15,14 @@ Game::Game()
 	loadAssets();
 
 	GameState = titleScreen;
+
+	theHero = new Hero;
+
+	entityRegistry.push_back(theHero);
+
+	Enemy1 * enemy=new Enemy1;
+
+	entityRegistry.push_back(enemy);
 }
 
 void Game::mainLoop()
@@ -127,19 +137,25 @@ void Game::gameUpdate()
 	deltaTime = clock.restart();
 
 	levels.update();
-	hero.update(deltaTime.asSeconds());
+
+	float time = deltaTime.asSeconds();
+
+	for (int i = 0; i < entityRegistry.size(); i++)
+	{
+		entityRegistry[i]->update(time);
+	}
 
 	// Camera
 	camera.setSize(sf::Vector2f(1280, 720));
-	if (hero.getX() > 710 && hero.getX() < 1900)
+	if (theHero->getX() > 710 && theHero->getX() < 1900)
 	{
-		camera.setCenter(hero.getX(), hero.getY() - 100);
+		camera.setCenter(theHero->getX(), theHero->getY() - 100);
 		camera.zoom(.5);
 		window.setView(camera);
 	}
-	if (hero.getX() > 1900 || hero.getX() < 710)
+	if (theHero->getX() > 1900 || theHero->getX() < 710)
 	{
-		camera.setCenter(camera.getCenter().x, hero.getY() - 100);
+		camera.setCenter(camera.getCenter().x, theHero->getY() - 100);
 		camera.zoom(.5);
 		window.setView(camera);
 	}
@@ -164,7 +180,10 @@ void Game::render()
 	else if (GameState == inGame)
 	{
 		levels.render(window);
-		hero.render(window);
+		for (int i = 0; i < entityRegistry.size(); i++)
+		{
+			entityRegistry[i]->render(window);
+		}
 	}
 	else if (GameState == pause)
 	{
@@ -173,4 +192,10 @@ void Game::render()
 
 	// Display window
 	window.display();
+}
+
+Hero * Game::theHero;
+
+Hero * Game::getHero(){
+	return theHero;
 }

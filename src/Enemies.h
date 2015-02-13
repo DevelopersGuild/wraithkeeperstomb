@@ -9,8 +9,8 @@ protected:
 	int damage;
 public:
 	Enemies();
-	void update(Hero* hero); // may need to be made virtual
 	bool heroDetection(Hero* hero);
+	void chaseHero();
 	virtual void onHeroDetected(Hero* hero);
 	// void onHit(); // only if the enemy has armor
 

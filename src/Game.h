@@ -27,7 +27,8 @@ private:
 	sf::Text pressEnter;
 
 	Levels levels;
-	Hero hero;
+
+	std::vector<Entity * > entityRegistry;
 
 	void update();
 	void render();
@@ -37,9 +38,14 @@ private:
 	void titleUpdate();
 	void gameUpdate();
 	void pauseUpdate();
+
+	static Hero * theHero;
 public:
 	Game();
 	void mainLoop();
+
+	static Hero * getHero();
 };
+
 
 #endif

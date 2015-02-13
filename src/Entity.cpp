@@ -31,3 +31,7 @@ void Entity::onHit(int dmg)
 {
 	//for the armorless
 }
+
+void Entity::update(float time){
+
+}

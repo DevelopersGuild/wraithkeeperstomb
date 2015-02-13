@@ -8,6 +8,8 @@ private:
 
 public:
 	Enemy1();
+
+	virtual void update(float time);
 	//void onHeroDetected(Hero* hero); // if it responds differently
 };
 

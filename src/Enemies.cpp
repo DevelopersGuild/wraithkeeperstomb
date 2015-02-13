@@ -1,16 +1,18 @@
 #include "Enemies.h"
 #include "Constants.h"
+#include "Game.h"
+
 
 Enemies::Enemies()
 {
 
 }
 
-void Enemies::update(Hero* hero)
+void Enemies::chaseHero()
 {
 	// Detection
-	if (heroDetection(hero))
-		onHeroDetected(hero);
+	if (heroDetection(Game::getHero()))
+		onHeroDetected(Game::getHero());
 	// Check if alive
 	if (HP <= 0)
 		isAlive = false;
