@@ -25,6 +25,8 @@ public:
 	{ return pos; }
 	const sf::Vector2f getSize()
 	{ return size; }
+	const sf::FloatRect getCollisionRect()
+	{ return rec.getGlobalBounds(); }
 
 	void render(sf::RenderWindow &window);
 };
