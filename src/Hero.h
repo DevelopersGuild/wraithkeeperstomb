@@ -22,7 +22,7 @@ private:
 	bool inAir;
 	float heroSpeed;
 	float heroSpeedMultiplier;
-	float heroJumpSpeed = 80;
+	float heroJumpSpeed;// = 80;
 
 	void walkAnim();			//Animation sequence for walking
 	void left();

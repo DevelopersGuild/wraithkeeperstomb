@@ -27,6 +27,10 @@ public:
 	{ return size; }
 	const sf::FloatRect getCollisionRect()
 	{ return rec.getGlobalBounds(); }
+	const sf::FloatRect getCollisionRect()
+	{
+		return rec.getGlobalBounds();
+	}
 
 	void render(sf::RenderWindow &window);
 };

@@ -60,9 +60,9 @@ void Game::handleEvent(sf::Event event)
 }
 
 
-void Game::collision(sf::RectangleShape hero, sf::RectangleShape wall){
+void Game::collision(sf::Sprite hero, sf::FloatRect wallBounds){
 sf::FloatRect area;
-		if(hero.getGlobalBounds().intersects(wall.getGlobalBounds(),area))
+		if(hero.getGlobalBounds().intersects(wallBounds,area))
 		{
 			// Verifying if we need to apply collision to the vertical axis, else we apply to horizontal axis
 			if (area.width > area.height)
