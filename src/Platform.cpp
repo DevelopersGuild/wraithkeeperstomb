@@ -2,12 +2,12 @@
 
 Platform::Platform()
 {
-	setColor();
+	setTexture();
 }
 
 Platform::Platform(sf::Vector2f nPos, sf::Vector2f nSize) : pos(nPos), size(nPos)
 {
-	setColor();
+	setTexture();
 	rec.setSize(size);
 	rec.setPosition(pos);
 }
@@ -26,9 +26,11 @@ void Platform::setPosition(sf::Vector2f nPos)
 }
 
 
-void Platform::setColor(sf::Color nColor)
-{
-	rec.setFillColor(nColor);
+void Platform::setTexture(){
+	ground.loadFromFile("../assets/sprites/GroundTexture.png");
+	ground.setRepeated(true);
+	rec.setTexture(&ground);
+	rec.setTextureRect({ 0, 0, 200, 32 });
 }
 
 void Platform::render(sf::RenderWindow &window)

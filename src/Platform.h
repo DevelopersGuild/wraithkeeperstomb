@@ -9,6 +9,7 @@ private:
 	sf::Vector2f pos;
 	sf::Vector2f size;
 	sf::RectangleShape rec;
+	sf::Texture ground;
 
 public:
 	Platform();
@@ -16,7 +17,7 @@ public:
 	~Platform();
 
 	// setters
-	void setColor(sf::Color nColor = sf::Color::White);
+	void setTexture();
 	void setSize(sf::Vector2f nSize);
 	void setPosition(sf::Vector2f nPos);
 
