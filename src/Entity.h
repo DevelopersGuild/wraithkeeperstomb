@@ -22,7 +22,10 @@ public:
 	Entity();
 	virtual void render(sf::RenderWindow& window);
 	virtual void update(float time);
+
+	void setPosition(float, float);
 	// Accessors
+
 	const float getX()
 	{
 		return Sprite.getPosition().x;
@@ -31,6 +34,7 @@ public:
 	{
 		return Sprite.getPosition().y;
 	}
+
 	const sf::FloatRect getCollisionRect()
 	{
 		return Sprite.getGlobalBounds();

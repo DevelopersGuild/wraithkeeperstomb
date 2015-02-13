@@ -40,6 +40,12 @@ public:
 	{
 		return velocity.y;
 	}
+
+	sf::Sprite getHeroSprite()
+	{
+		return Sprite;
+	}
+
 	void update();
 };
 

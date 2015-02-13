@@ -11,12 +11,15 @@ private:
 	sf::Texture groundTexture;
 	sf::RectangleShape bgRect;
 	sf::RectangleShape groundRect;
+
+public:
 	Platform platform;
 
 public:
 	Levels();
 	void update();
 	void render(sf::RenderWindow &);
+
 
 	const sf::FloatRect getGroundRect()
 	{ return groundRect.getGlobalBounds(); }

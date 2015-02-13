@@ -30,13 +30,17 @@ void Game::mainLoop()
 	// Main loop
 	while (window.isOpen())
 	{
+
+		
 		// Event loop
 		while (window.pollEvent(event))
 			handleEvent(event);
 		if (GameState == titleScreen)
 			titleUpdate();
-		else if (GameState == inGame)
+		else if (GameState == inGame){
 			gameUpdate();
+			collision(&(hero), levels.platform.getCollisionRect());
+		}
 		else if (GameState == pause)
 			pauseUpdate();
 		render();
@@ -70,45 +74,45 @@ void Game::handleEvent(sf::Event event)
 }
 
 
-void Game::collision(sf::Sprite hero, sf::FloatRect wallBounds){
-sf::FloatRect area;
-		if(hero.getGlobalBounds().intersects(wallBounds,area))
-		{
-			// Verifying if we need to apply collision to the vertical axis, else we apply to horizontal axis
-			if (area.width > area.height)
-			{
-				if (area.contains( area.left, hero.getPosition().y ))
-				{
-				// Up side crash
-				hero.setPosition( hero.getPosition().x, hero.getPosition().y - area.height );
-				
-				}
-				
-				else
-				{
-				// Down side crash
-				hero.setPosition( hero.getPosition().x, hero.getPosition().y + area.height );
-				}
-				
-			}
-			else if (area.width < area.height)
-			{
-				if (area.contains( hero.getPosition().x + hero.getGlobalBounds().width - 1.f, area.top + 1.f ))
-				{
-					//Right side crash
-					//shape.setOrigin(shape.getOrigin().x - area.width, shape.getOrigin().y);
-					hero.setPosition( hero.getPosition().x - area.width, hero.getPosition().y );
-				}
-				else
-				{
-					//Left side crash
-					hero.setPosition(hero.getPosition().x + area.width, hero.getPosition().y );
-				}
-			}
-			
-		}
-}
+void Game::collision(Hero *hero, sf::FloatRect wallBounds){
+	//Affected area
+	sf::FloatRect area;
 
+	if (hero->getCollisionRect().intersects(wallBounds, area))
+	{
+		// Verifying if we need to apply collision to the vertical axis, else we apply to horizontal axis
+		if (area.width > area.height)
+		{
+			if (area.contains({ area.left, hero->getY() }))
+			{
+				// Up side crash
+				hero->setPosition( hero->getX(), hero->getY() + area.height );
+			}
+			else
+			{
+				// Down side crash
+				hero->setPosition( hero->getX(), hero->getY() - area.height );
+
+			}
+		}
+		else if (area.width < area.height)
+		{
+			if (area.contains( hero->getX() + (hero->getCollisionRect()).width, area.left ))
+			{
+				//Right side crash
+				//GameState = titleScreen;
+				hero->setPosition( hero->getX() - area.width, hero->getY() );
+			}
+			else
+			{
+				//Left side crash
+
+				hero->setPosition( hero->getX() + area.width, hero->getY());
+
+			}
+		}
+	}
+}
 void Game::loadAssets()
 {
 	century.loadFromFile("../assets/fonts/century.ttf");
