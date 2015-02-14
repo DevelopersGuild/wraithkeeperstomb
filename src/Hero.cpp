@@ -1,6 +1,7 @@
 #include "Entity.h"
 #include "Hero.h"
 #include "Constants.h"
+#include <ctime>
 
 Hero::Hero()
 {
@@ -13,6 +14,8 @@ Hero::Hero()
 	sf::Vector2i anim(sf::Vector2i(0, 1));
 
 	// Initialize basic hero stats
+	level = HERO_BASE_LEVEL;
+	armor = HERO_BASE_ARMOR;
 	heroHP = HERO_BASE_HP;
 	isAlive = true;
 	heroSpeedMultiplier = 1;
@@ -23,6 +26,8 @@ Hero::Hero()
 	yFrame = 0;
 	frameTimer = 0;
 	faceRight = true;
+
+	srand(time(0));
 }
 
 void Hero::walkAnim()
@@ -144,5 +149,14 @@ void Hero::update(float seconds)
 void Hero::render(sf::RenderWindow &window)
 {
 	Sprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 128, 64, 128));
-	window.draw(Sprite);
+	if (isAlive)
+		window.draw(Sprite);
+}
+
+void Hero::onHit(int dmg)
+{
+	if (dmg > armor)
+		heroHP = heroHP - (dmg - armor / 4 + rand() % 3);
+	else
+		heroHP = heroHP - rand() % 5;
 }

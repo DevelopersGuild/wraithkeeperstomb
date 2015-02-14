@@ -22,6 +22,7 @@ private:
 	float heroSpeed;
 	float heroSpeedMultiplier;
 	float heroJumpSpeed;
+	int level;
 
 	void walkAnim();			//Animation sequence for walking
 	void left();
@@ -31,6 +32,7 @@ public:
 	Hero();
 	void update(float seconds);
 	void render(sf::RenderWindow &window);
+	void onHit(int dmg);
 	// Accessors
 	const float getSpeedX()
 	{
@@ -44,6 +46,10 @@ public:
 	sf::Sprite getHeroSprite()
 	{
 		return Sprite;
+	}
+	int getDamage()
+	{
+		return 0;
 	}
 
 	void update();

@@ -33,3 +33,11 @@ void Enemies::onHeroDetected(Hero* hero)
 	else
 		right();
 }
+
+void Enemies::onHit(int dmg)
+{
+	if (dmg > armor)
+		HP = HP - (dmg - armor / 4);
+	else
+		HP = HP - rand() % 10;
+}

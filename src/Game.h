@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Levels.h"
 #include "Hero.h"
+#include "Entity.h"
 
 class Game
 {
@@ -41,8 +42,10 @@ private:
 	void gameUpdate();
 	void pauseUpdate();
 	void deathUpdate();
+	void hitCollision(Entity *hero, Entity *enemy);
 
 	static Hero * theHero;
+	Entity * enemy;
 public:
 	Game();
 	void mainLoop();

@@ -20,7 +20,7 @@ Game::Game()
 
 	entityRegistry.push_back(theHero);
 
-	Enemy1 * enemy=new Enemy1;
+	enemy = new Enemy1;
 
 	entityRegistry.push_back(enemy);
 }
@@ -40,6 +40,7 @@ void Game::mainLoop()
 		else if (GameState == inGame){
 			gameUpdate();
 			collision(theHero, levels.platform.getCollisionRect());
+			hitCollision(theHero, enemy);
 		}
 		else if (GameState == pause)
 			pauseUpdate();
@@ -154,6 +155,13 @@ void Game::collision(Hero *hero, sf::FloatRect wallBounds){
 		}
 	}
 }
+
+void Game::hitCollision(Entity *hero, Entity *enemy)
+{
+	if (hero->getCollisionRect().intersects(enemy->getCollisionRect()))
+		hero->onHit(enemy->getDamage());
+}
+
 void Game::loadAssets()
 {
 	century.loadFromFile("../assets/fonts/century.ttf");

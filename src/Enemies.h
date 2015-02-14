@@ -16,6 +16,8 @@ public:
 
 	// Accessor(s)
 	int getDamage() { return damage; }
+
+	void onHit(int dmg);
 };
 
 #endif

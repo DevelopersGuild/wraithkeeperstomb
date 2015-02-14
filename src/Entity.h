@@ -13,15 +13,16 @@ protected:
 	bool isAlive;
 	float Speed;
 	float SpeedMultiplier;
+	int armor;
 
 	void jump();
 	void left();
 	void right();
-	virtual void onHit(int dmg);
 public:
 	Entity();
 	virtual void render(sf::RenderWindow& window);
 	virtual void update(float time);
+	virtual void onHit(int dmg) = 0;
 
 	void setPosition(float, float);
 	// Accessors
@@ -46,6 +47,10 @@ public:
 	const int getHP()
 	{
 		return HP;
+	}
+	virtual int getDamage()
+	{
+		return 0;
 	}
 };
 

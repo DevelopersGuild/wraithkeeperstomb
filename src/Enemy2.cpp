@@ -1,6 +1,7 @@
 #include "Enemies.h"
 #include "Enemy2.h"
 #include "Constants.h"
+#include <ctime>
 
 Enemy2::Enemy2()
 {
@@ -16,4 +17,7 @@ Enemy2::Enemy2()
 	Speed = ENEMY2_BASE_SPEED * SpeedMultiplier;
 	damage = ENEMY2_DAMAGE;
 	isAlive = true;
+	armor = ENEMY2_ARMOR;
+
+	srand(time(0));
 }
