@@ -9,7 +9,7 @@ class Game
 {
 private:
 	enum{
-		titleScreen, inGame, pause
+		titleScreen, inGame, pause, dead
 	}GameState;
 
 	sf::RenderWindow window;
@@ -25,6 +25,8 @@ private:
 	sf::Font century;
 	sf::Text title;
 	sf::Text pressEnter;
+	sf::Text pauseText;
+	sf::Text pressResume;
 
 	Levels levels;
 
@@ -38,6 +40,7 @@ private:
 	void titleUpdate();
 	void gameUpdate();
 	void pauseUpdate();
+	void deathUpdate();
 
 	static Hero * theHero;
 public:

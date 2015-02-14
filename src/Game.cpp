@@ -43,6 +43,8 @@ void Game::mainLoop()
 		}
 		else if (GameState == pause)
 			pauseUpdate();
+		else if (GameState == dead)
+			deathUpdate();
 		render();
 	}
 }
@@ -68,6 +70,45 @@ void Game::handleEvent(sf::Event event)
 			{
 				// Move to inGame (start playing)
 				GameState = inGame;
+			}
+		}
+	}
+	if (GameState == inGame)
+	{
+		// Keys being pressed during gameplay
+		if (sf::Event::KeyPressed)
+		{
+			// Specifically if P is pressed
+			if (event.key.code == sf::Keyboard::P)
+			{
+				// Move to pause
+				GameState = pause;
+			}
+		}
+	}
+	if (GameState == pause)
+	{
+		// Keys being pressed during pause screen
+		if (sf::Event::KeyPressed)
+		{
+			// Specifically if R is pressed
+			if (event.key.code == sf::Keyboard::R)
+			{
+				// Move to inGame (resume playing)
+				GameState = inGame;
+			}
+		}
+	}
+	if (GameState == dead)
+	{
+		// Keys being pressed during dead screen
+		if (sf::Event::KeyPressed)
+		{
+			// Specifically if Enter is pressed
+			if (event.key.code == sf::Keyboard::Return)
+			{
+				// Move to inGame (resume playing)
+				GameState = titleScreen;
 			}
 		}
 	}
@@ -129,6 +170,18 @@ void Game::loadAssets()
 	pressEnter.setCharacterSize(48);
 	pressEnter.setColor(sf::Color::White);
 	pressEnter.setPosition(420, 425);
+
+	pauseText.setFont(century);
+	pauseText.setString("Game Paused");
+	pauseText.setCharacterSize(100);
+	pauseText.setColor(sf::Color::White);
+	pauseText.setPosition(280, 225);
+
+	pressResume.setFont(century);
+	pressResume.setString("Press R to Resume");
+	pressResume.setCharacterSize(48);
+	pressResume.setColor(sf::Color::White);
+	pressResume.setPosition(420, 425);
 }
 
 void Game::titleUpdate()
@@ -169,7 +222,12 @@ void Game::gameUpdate()
 
 void Game::pauseUpdate()
 {
-	
+	window.setView(window.getDefaultView());
+}
+
+void Game::deathUpdate()
+{
+	window.setView(window.getDefaultView());
 }
 
 void Game::render()
@@ -193,7 +251,8 @@ void Game::render()
 	}
 	else if (GameState == pause)
 	{
-		// Load pause stuff
+		window.draw(pauseText);
+		window.draw(pressResume);
 	}
 
 	// Display window
