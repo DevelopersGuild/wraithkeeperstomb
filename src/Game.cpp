@@ -119,38 +119,48 @@ void Game::handleEvent(sf::Event event)
 void Game::collision(Hero *hero, sf::FloatRect wallBounds){
 	//Affected area
 	sf::FloatRect area;
-
+	hero->setCollisionShit(1);
 	if (hero->getCollisionRect().intersects(wallBounds, area))
 	{
 		// Verifying if we need to apply collision to the vertical axis, else we apply to horizontal axis
 		if (area.width > area.height)
 		{
-			if (area.contains({ area.left, hero->getY() }))
+			if (area.contains({ area.left, wallBounds.top }))
+				//if (hero->getY()>area.top)
 			{
-				// Up side crash
-				hero->setPosition( hero->getX(), hero->getY() + area.height );
+				hero->setPosition(hero->getX(), hero->getY() - area.height);
+
+				// Up side crash 
+				//hero->setPosition( hero->getX(), hero->getY() + area.height );
+				hero->setCollisionShit(0);
 			}
 			else
 			{
+
+				hero->setPosition(hero->getX(), hero->getY() + area.height);
 				// Down side crash
-				hero->setPosition( hero->getX(), hero->getY() - area.height );
+				//hero->setPosition( hero->getX(), hero->getY() - area.height );
+				//hero->setCollisionShit(0);
 
 			}
+			//hero->setCollisionShit(false);
 		}
 		else if (area.width < area.height)
 		{
-			if (area.contains( hero->getX() + (hero->getCollisionRect()).width, area.left ))
+			//if (area.contains(hero->getX() + (hero->getCollisionRect()).width, wallBounds.top-100.f))
+			if (hero->getX()<wallBounds.left)
 			{
 				//Right side crash
 				//GameState = titleScreen;
-				hero->setPosition( hero->getX() - area.width, hero->getY() );
+				hero->setPosition(hero->getX() - area.width, hero->getY());
+				//hero->setCollisionShit(0);
 			}
 			else
 			{
 				//Left side crash
 
-				hero->setPosition( hero->getX() + area.width, hero->getY());
-
+				hero->setPosition(hero->getX() + area.width, hero->getY());
+				//hero->setCollisionShit(0);
 			}
 		}
 	}

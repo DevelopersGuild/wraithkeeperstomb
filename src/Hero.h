@@ -10,6 +10,7 @@ private:
 	sf::Vector2f velocity;
 	sf::Vector2i anim;		//Tracker for hero sprite frames
 
+	int collisionShit;
 	int heroHP;
 	int xFrame;					//Current frame in the x grid
 	int yFrame;					//Current frame in the y grid
@@ -33,6 +34,9 @@ public:
 	void update(float seconds);
 	void render(sf::RenderWindow &window);
 	void onHit(int dmg);
+
+	void setCollisionShit(int);
+
 	// Accessors
 	const float getSpeedX()
 	{

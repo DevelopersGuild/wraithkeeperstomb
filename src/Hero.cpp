@@ -30,6 +30,10 @@ Hero::Hero()
 	srand(time(0));
 }
 
+void Hero::setCollisionShit(int somethingUnderneath){
+	collisionShit = somethingUnderneath;
+}
+
 void Hero::walkAnim()
 {
 	//Determine row in sprite sheet
@@ -75,7 +79,7 @@ void Hero::jump(float seconds)
 {
 	if (jumpTimer < 22 && jumpCooldown > 3)
 	{
-		velocity.y = -350;
+		velocity.y = -1050;
 		velocity.y += GRAVITY*seconds*jumpTimer*2;
 		Sprite.move(velocity*seconds);
 		velocity.y = 0;
@@ -131,13 +135,16 @@ void Hero::update(float seconds)
 			isAlive = false;
 
 		//Gravity implementation
-		if (Sprite.getPosition().y + Sprite.getScale().y < 1350) //This should later be changed to a collision with groud boolean
+		if (Sprite.getPosition().y + Sprite.getScale().y < 1350 || collisionShit == 0) //This should later be changed to a collision with groud boolean
+			//if (collisionShit==0)
+			//if (collisionShit!=0)
 		{
-			velocity.y += GRAVITY * seconds * seconds*50;
+			velocity.y += GRAVITY * seconds * seconds * 50 * collisionShit;
 			Sprite.move(0.f, velocity.y);
 		}
 		else
 		{
+			//collisionShit = 0;
 			velocity.y = 0;
 			if (jumpCooldown < 4)
 				jumpCooldown++;

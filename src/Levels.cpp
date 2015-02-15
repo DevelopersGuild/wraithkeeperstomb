@@ -20,7 +20,7 @@ Levels::Levels()
 
 	// Create a platform
 	platform.setSize(sf::Vector2f(350.f, 50.f));
-	platform.setPosition(sf::Vector2f(700.f, 1250.f));
+	platform.setPosition(sf::Vector2f(700.f, 1100.f));
 }
 
 void Levels::update()
