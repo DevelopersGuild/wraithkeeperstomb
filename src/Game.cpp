@@ -44,8 +44,8 @@ void Game::mainLoop()
 		}
 		else if (GameState == pause)
 			pauseUpdate();
-		else if (GameState == dead)
-			deathUpdate();
+		else if (GameState == gameOver)
+			gameOverUpdate();
 		render();
 	}
 }
@@ -100,7 +100,7 @@ void Game::handleEvent(sf::Event event)
 			}
 		}
 	}
-	if (GameState == dead)
+	if (GameState == gameOver)
 	{
 		// Keys being pressed during dead screen
 		if (sf::Event::KeyPressed)
@@ -110,6 +110,7 @@ void Game::handleEvent(sf::Event event)
 			{
 				// Move to inGame (resume playing)
 				GameState = titleScreen;
+                
 			}
 		}
 	}
@@ -119,7 +120,7 @@ void Game::handleEvent(sf::Event event)
 void Game::collision(Hero *hero, sf::FloatRect wallBounds){
 	//Affected area
 	sf::FloatRect area;
-	hero->setCollisionShit(1);
+	hero->setCollisionNum(1);
 	if (hero->getCollisionRect().intersects(wallBounds, area))
 	{
 		// Verifying if we need to apply collision to the vertical axis, else we apply to horizontal axis
@@ -132,7 +133,7 @@ void Game::collision(Hero *hero, sf::FloatRect wallBounds){
 
 				// Up side crash 
 				//hero->setPosition( hero->getX(), hero->getY() + area.height );
-				hero->setCollisionShit(0);
+				hero->setCollisionNum(0);
 			}
 			else
 			{
@@ -200,6 +201,18 @@ void Game::loadAssets()
 	pressResume.setCharacterSize(48);
 	pressResume.setColor(sf::Color::White);
 	pressResume.setPosition(420, 425);
+    
+    youDied.setFont(century);
+    youDied.setString("YOU DIED");
+    youDied.setCharacterSize((200));
+    youDied.setColor(sf::Color::White);
+    youDied.setPosition(130, 190);
+    
+    returnToTitle.setFont(blackcastle);
+    returnToTitle.setString("Press Enter to return to the main menu");
+    returnToTitle.setCharacterSize(48);
+    returnToTitle.setColor(sf::Color::White);
+    returnToTitle.setPosition(325, 470);
 }
 
 void Game::titleUpdate()
@@ -210,6 +223,11 @@ void Game::titleUpdate()
 void Game::gameUpdate()
 {
 	deltaTime = clock.restart();
+    
+    if (!theHero->getAlive())
+    {
+        GameState = gameOver;
+    }
 
 	levels.update();
 
@@ -243,7 +261,7 @@ void Game::pauseUpdate()
 	window.setView(window.getDefaultView());
 }
 
-void Game::deathUpdate()
+void Game::gameOverUpdate()
 {
 	window.setView(window.getDefaultView());
 }
@@ -272,6 +290,11 @@ void Game::render()
 		window.draw(pauseText);
 		window.draw(pressResume);
 	}
+    else if (GameState == gameOver)
+    {
+        window.draw(youDied);
+        window.draw(returnToTitle);
+    }
 
 	// Display window
 	window.display();

@@ -25,7 +25,6 @@ public:
 	virtual void onHit(int dmg) = 0;
 
 	void setPosition(float, float);
-	// Accessors
 
 	const float getX()
 	{

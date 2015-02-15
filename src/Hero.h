@@ -10,7 +10,7 @@ private:
 	sf::Vector2f velocity;
 	sf::Vector2i anim;		//Tracker for hero sprite frames
 
-	int collisionShit;
+	int collisionNum;
 	int heroHP;
 	int xFrame;					//Current frame in the x grid
 	int yFrame;					//Current frame in the y grid
@@ -18,7 +18,6 @@ private:
 	int jumpCooldown;			//Cooldown counter for jump
 	int jumpTimer;				//Counter for jump duration
 	bool faceRight;				//Boolean for determining direction hero is facing at rest
-	bool isAlive;
 	bool inAir;
 	float heroSpeed;
 	float heroSpeedMultiplier;
@@ -35,7 +34,7 @@ public:
 	void render(sf::RenderWindow &window);
 	void onHit(int dmg);
 
-	void setCollisionShit(int);
+	void setCollisionNum(int);
 
 	// Accessors
 	const float getSpeedX()

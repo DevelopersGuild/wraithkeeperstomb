@@ -10,7 +10,7 @@ class Game
 {
 private:
 	enum{
-		titleScreen, inGame, pause, dead
+		titleScreen, inGame, pause, gameOver
 	}GameState;
 
 	sf::RenderWindow window;
@@ -28,6 +28,8 @@ private:
 	sf::Text pressEnter;
 	sf::Text pauseText;
 	sf::Text pressResume;
+    sf::Text youDied;
+    sf::Text returnToTitle;
 
 	Levels levels;
 
@@ -41,11 +43,11 @@ private:
 	void titleUpdate();
 	void gameUpdate();
 	void pauseUpdate();
-	void deathUpdate();
+	void gameOverUpdate();
 	void hitCollision(Entity *hero, Entity *enemy);
 
-	static Hero * theHero;
-	Entity * enemy;
+	static Hero *theHero;
+	Entity *enemy;
 public:
 	Game();
 	void mainLoop();
