@@ -11,7 +11,7 @@ private:
 	sf::Vector2i anim;		//Tracker for hero sprite frames
 
 	int collisionNum;
-	int heroHP;
+
 	int xFrame;					//Current frame in the x grid
 	int yFrame;					//Current frame in the y grid
 	int frameTimer;				//Counter for sprite frame duration
@@ -19,8 +19,8 @@ private:
 	int jumpTimer;				//Counter for jump duration
 	bool faceRight;				//Boolean for determining direction hero is facing at rest
 	bool inAir;
-	float heroSpeed;
-	float heroSpeedMultiplier;
+
+
 	float heroJumpSpeed;
 	int level;
 

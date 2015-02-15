@@ -4,22 +4,21 @@
 #include <SFML/Graphics.hpp>
 #include "Platform.h"
 
-class BackgroundGenerator;
-
 using LevelNum = int;
 
 class Levels
 {
 private:
-	sf::Texture bgTexture;
-	sf::Texture groundTexture;
-	sf::RectangleShape bgRect;
-	sf::RectangleShape groundRect;
-	struct Background
+	struct {
+		sf::Texture texture;
+		sf::RectangleShape rectangle;
+	} ground_;
+
+	struct
 	{
 		sf::Texture texture;
 		sf::RectangleShape rectangle;
-	} Background;
+	} background_;
 
 public:
 	Platform platform;
@@ -31,7 +30,7 @@ public:
 
 
 	const sf::FloatRect getGroundRect()
-	{ return groundRect.getGlobalBounds(); }
+	{ return ground_.rectangle.getGlobalBounds(); }
 };
 
 /*************************************************

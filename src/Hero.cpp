@@ -16,10 +16,10 @@ Hero::Hero()
 	// Initialize basic hero stats
 	level = HERO_BASE_LEVEL;
 	armor = HERO_BASE_ARMOR;
-	heroHP = HERO_BASE_HP;
+	HP = HERO_BASE_HP;
 	isAlive = true;
-	heroSpeedMultiplier = 1;
-	heroSpeed = HERO_BASE_SPEED * heroSpeedMultiplier;
+	SpeedMultiplier = 1;
+	Speed = HERO_BASE_SPEED * SpeedMultiplier;
 	jumpTimer = 0; //Timer for jump function duration
 	jumpCooldown = 0;
 	xFrame = 0;
@@ -63,14 +63,14 @@ void Hero::walkAnim()
 
 void Hero::left()
 {
-	velocity.x = -heroSpeed;
+	velocity.x = -Speed;
 	Sprite.move(velocity.x, 0.f);
 	walkAnim();
 }
 
 void Hero::right()
 {
-	velocity.x = heroSpeed;
+	velocity.x = Speed;
 	Sprite.move(velocity.x, 0.f);
 	walkAnim();
 }
@@ -131,7 +131,7 @@ void Hero::update(float seconds)
 			jump(seconds);
 
 		// Check if alive
-		if (heroHP <= 0)
+		if (HP <= 0)
 			isAlive = false;
 
 		//Gravity implementation
@@ -163,7 +163,7 @@ void Hero::render(sf::RenderWindow &window)
 void Hero::onHit(int dmg)
 {
 	if (dmg > armor)
-		heroHP = heroHP - (dmg - armor / 4 + rand() % 3);
+		HP = HP - (dmg - armor / 4 + rand() % 3);
 	else
-		heroHP = heroHP - rand() % 5;
+		HP = HP - rand() % 5;
 }
