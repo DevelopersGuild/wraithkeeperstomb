@@ -21,6 +21,7 @@
 - Victor La: Lead Animator, Developer
 - Arjan Sohal: Developer
 - Edwin Angkasa: Developer
+- Jaison Tiu: Developer
 - Rui Li: Developer
 - Adam Price: Developer
 - Denny Hung: Developer
