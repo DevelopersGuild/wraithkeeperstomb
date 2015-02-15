@@ -1,5 +1,25 @@
+# Visual Studio
 /vs2013project/
 !/vs2013project/*.sln
 !/vs2013project/*.vcxproj
 !/vs2013project/*.filters
 !/vs2013project/Debug/*.dll
+
+# XCode
+.DS_Store
+.Trashes
+*.swp
+*.lock
+*~.nib
+DerivedData/
+build/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+!default.pbxuser
+!default.mode1v3
+!default.mode2v3
+!default.perspectivev3
+xcuserdata
+*.moved-aside
