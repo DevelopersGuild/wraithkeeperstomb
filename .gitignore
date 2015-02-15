@@ -5,7 +5,7 @@
 !/vs2013project/*.filters
 !/vs2013project/Debug/*.dll
 
-# XCode
+# Xcode
 .DS_Store
 .Trashes
 *.swp
