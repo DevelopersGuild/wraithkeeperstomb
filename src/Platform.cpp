@@ -12,7 +12,6 @@ Platform::Platform(sf::Vector2f nPos, sf::Vector2f nSize) : pos(nPos), size(nPos
 	rec.setPosition(pos);
 }
 
-
 void Platform::setSize(sf::Vector2f nSize)
 {
 	size = nSize;
@@ -24,7 +23,6 @@ void Platform::setPosition(sf::Vector2f nPos)
 	pos = nPos;
 	rec.setPosition(pos);
 }
-
 
 void Platform::setTexture(){
 	ground.loadFromFile("../assets/sprites/GroundTexture.png");

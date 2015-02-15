@@ -2,7 +2,6 @@
 #include "Constants.h"
 #include "Game.h"
 
-
 Enemies::Enemies()
 {
 

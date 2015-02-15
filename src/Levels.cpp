@@ -11,7 +11,6 @@ Levels::Levels()
 	Background.rectangle.setTexture(&Background.texture);
 	Background.rectangle.setTextureRect({ 0, 0, 5500, 3000 });
 
-
 	groundTexture.loadFromFile("../assets/sprites/GroundTexture.png");
 	groundTexture.setRepeated(true);
 	groundRect.setSize(sf::Vector2f(2560, 64));
@@ -34,7 +33,6 @@ void Levels::render(sf::RenderWindow &window)
 	window.draw(Background.rectangle);
 	//window.draw(bgRect);
 	window.draw(groundRect);
-
 	platform.render(window);
 }
 
@@ -54,7 +52,6 @@ std::string BackgroundGenerator::GetFileName(LevelNum level_num)
 void BackgroundGenerator::LoadTextureForLevelOrDie(LevelNum level)
 {
 	std::string filetoload = this->GetFileName(level);
-
 	if (filetoload != "") {
 		background_texture_.loadFromFile(filetoload);
 	}
