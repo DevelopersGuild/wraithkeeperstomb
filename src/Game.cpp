@@ -1,11 +1,11 @@
 #include "Game.h"
 #include "Enemy1.h"
-#include "Hero.h"
+#include "Constants.h"
 
 Game::Game()
 {
 	// Create game render window
-	window.create(sf::VideoMode(1280, 720), "Chamber's Labyrinth");
+	window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Chamber's Labyrinth");
 	window.setMouseCursorVisible(true);
 
 	// Limit framerate to 60 and enable Vsync
@@ -16,6 +16,12 @@ Game::Game()
 
 	GameState = titleScreen;
 
+	CreateEntities();
+
+}
+
+void Game::CreateEntities()
+{
 	theHero = new Hero;
 
 	entityRegistry.push_back(theHero);
@@ -108,9 +114,19 @@ void Game::handleEvent(sf::Event event)
 			// Specifically if Enter is pressed
 			if (event.key.code == sf::Keyboard::Return)
 			{
-				// Move to inGame (resume playing)
+				
+				for (auto &it : entityRegistry) {
+					delete it;
+				}
+
+				entityRegistry.clear();
+
+				CreateEntities();
+
+                // Move to inGame (resume playing)
 				GameState = titleScreen;
-                
+				camera.setCenter(500, 500);
+				//camera.setCenter(theHero->getX(), theHero->getY());
 			}
 		}
 	}
@@ -227,6 +243,7 @@ void Game::gameUpdate()
     if (!theHero->getAlive())
     {
         GameState = gameOver;
+		return;
     }
 
 	levels.update();

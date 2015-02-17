@@ -48,6 +48,8 @@ private:
 
 	static Hero *theHero;
 	Entity *enemy;
+
+	void CreateEntities();
 public:
 	Game();
 	void mainLoop();

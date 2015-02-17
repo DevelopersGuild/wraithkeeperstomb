@@ -1,6 +1,10 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+static const int WINDOW_WIDTH = 1280;
+static const int WINDOW_HEIGHT = 720;
+
+
 //Hero
 const int HERO_BASE_HP = 100;
 const int HERO_BASE_SPEED = 7;
