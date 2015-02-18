@@ -20,6 +20,7 @@ protected:
 	void right();
 public:
 	Entity();
+	virtual ~Entity() { }
 	virtual void render(sf::RenderWindow& window);
 	virtual void update(float time);
 	virtual void onHit(int dmg) = 0;

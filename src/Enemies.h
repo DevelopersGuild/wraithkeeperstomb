@@ -9,6 +9,7 @@ protected:
 	int damage;
 public:
 	Enemies();
+	virtual ~Enemies() { }
 	bool heroDetection(Hero* hero);
 	void chaseHero();
 	virtual void onHeroDetected(Hero* hero);
