@@ -3,13 +3,13 @@
 Levels::Levels()
 {
 	// Load background texture and assign to rectangle shape
-	BackgroundGenerator::instance().LoadTextureForLevelOrDie(1); // current level 1; just testing
+	BackgroundGenerator::instance().LoadTextureForLevelOrDie(2); // current level 1; just testing
 
 	background_.texture = BackgroundGenerator::instance().background_texture(); // assign the texture
 	background_.texture.setRepeated(true);
 	background_.rectangle.setSize(sf::Vector2f(2560, 1440));
 	background_.rectangle.setTexture(&background_.texture);
-	background_.rectangle.setTextureRect({ 0, 0, 5500, 3000 });
+	background_.rectangle.setTextureRect({ 0, 0, 1200, 600 });
 
 	ground_.texture.loadFromFile("../assets/sprites/GroundTexture.png");
 	ground_.texture.setRepeated(true);
