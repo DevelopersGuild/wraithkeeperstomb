@@ -2,29 +2,28 @@
 #define WEAPONS_H
 
 #include <SFML/Graphics.hpp>
+#include "Entity.h"
 
-class Weapons
+class Weapons : public Entity
 {
 protected:
 	sf::Texture WeaponTexture;
 	sf::Sprite WeaponSprite;
 
-	int damage;
-	int range;
-	float cooldown;
+	float damage;
+	float range;
 	float crit_chance;
 	float crit_multiplier;
-	int damage_fluctuation;
+	float damage_fluctuation;
 public:
 	Weapons();
 	virtual ~Weapons();
 	virtual void render(sf::RenderWindow& window);
 	virtual void update(float time);
-	int dmgRandomizer(int fluctuation);
+	float dmgRandomizer(float fluctuation);
 	float critical(float multiplier);
 	//Accessors
-	int getDamage() { return damage; }
-	float getCooldown() { return cooldown; }
+	const float getDamage() { return damage; }
 };
 
 

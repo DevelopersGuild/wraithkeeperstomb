@@ -1,4 +1,3 @@
-#include "Enemies.h"
 #include "Enemy1.h"
 #include "Constants.h"
 #include <ctime>
@@ -13,8 +12,8 @@ Enemy1::Enemy1()
 
 	// Initialize basic Enemies stats
 	HP = ENEMY1_BASE_HP;
-	SpeedMultiplier = 1;
-	Speed = ENEMY1_BASE_SPEED * SpeedMultiplier;
+	speedMultiplier = 1;
+	speed = ENEMY1_BASE_SPEED * speedMultiplier;
 	damage = ENEMY1_DAMAGE;
 	isAlive = true;
 	armor = ENEMY1_ARMOR;
@@ -24,5 +23,5 @@ Enemy1::Enemy1()
 
 void Enemy1::update(float time)
 {
-	Enemies::chaseHero();
+	chaseHero();
 }

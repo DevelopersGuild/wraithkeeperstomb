@@ -1,6 +1,5 @@
 #include "Weapons.h"
 #include "Constants.h"
-#include "Game.h"
 #include <ctime>
 
 Weapons::Weapons()
@@ -13,9 +12,9 @@ Weapons::~Weapons()
 
 }
 
-int Weapons::dmgRandomizer(int fluctuation)
+float Weapons::dmgRandomizer(float fluctuation)
 {//returns damage +- fluctuation
-	return damage - fluctuation + rand() % (2 * fluctuation + 1);
+	return damage - fluctuation + rand() % (2 * (int)fluctuation + 1);
 }
 
 float Weapons::critical(float multiplier)

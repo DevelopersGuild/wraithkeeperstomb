@@ -1,7 +1,7 @@
 #ifndef HERO_H
 #define HERO_H
-#include "Entity.h"
 
+#include "Entity.h"
 #include <SFML/Graphics.hpp>
 
 class Hero : public Entity
@@ -10,8 +10,11 @@ private:
 	sf::Vector2f velocity;
 	sf::Vector2i anim;		//Tracker for hero sprite frames
 
+	float speed;
+	float speedMultiplier;
+	int armor;
 	int collisionNum;
-
+	int HP;
 	int xFrame;					//Current frame in the x grid
 	int yFrame;					//Current frame in the y grid
 	int frameTimer;				//Counter for sprite frame duration
@@ -19,22 +22,21 @@ private:
 	int jumpTimer;				//Counter for jump duration
 	bool faceRight;				//Boolean for determining direction hero is facing at rest
 	bool inAir;
-
+	bool isAlive;
 
 	float heroJumpSpeed;
 	int level;
 
 	void walkAnim();			//Animation sequence for walking
-	void left();
-	void right();
 	void jump(float seconds);
 public:
 	Hero();
-	virtual ~Hero() { }
 	void update(float seconds);
 	void render(sf::RenderWindow &window);
-	void onHit(int dmg);
-
+	void onHit(float dmg);
+	void jump();
+	void left();
+	void right();
 	void setCollisionNum(int);
 
 	// Accessors
@@ -46,16 +48,18 @@ public:
 	{
 		return velocity.y;
 	}
-
+	const bool getAlive()
+	{
+		return isAlive;
+	}
+	const int getHP()
+	{
+		return HP;
+	}
 	sf::Sprite getHeroSprite()
 	{
 		return Sprite;
 	}
-	int getDamage()
-	{
-		return 0;
-	}
-
 	void update();
 };
 

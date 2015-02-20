@@ -13,8 +13,8 @@ Enemy2::Enemy2()
 
 	// Initialize basic Enemies stats
 	HP = ENEMY2_BASE_HP;
-	SpeedMultiplier = 1;
-	Speed = ENEMY2_BASE_SPEED * SpeedMultiplier;
+	speedMultiplier = 1;
+	speed = ENEMY2_BASE_SPEED * speedMultiplier;
 	damage = ENEMY2_DAMAGE;
 	isAlive = true;
 	armor = ENEMY2_ARMOR;

@@ -6,7 +6,8 @@
 #include <ctime>
 #include "Levels.h"
 #include "Hero.h"
-#include "Entity.h"
+#include "Spear.h"
+#include "Enemy1.h"
 
 class Game
 {

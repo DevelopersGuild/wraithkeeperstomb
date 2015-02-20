@@ -1,7 +1,5 @@
-#include "Entity.h"
 #include "Hero.h"
 #include "Constants.h"
-#include "Weapons.h"
 #include <ctime>
 
 Hero::Hero()
@@ -19,8 +17,8 @@ Hero::Hero()
 	armor = HERO_BASE_ARMOR;
 	HP = HERO_BASE_HP;
 	isAlive = true;
-	SpeedMultiplier = 1;
-	Speed = HERO_BASE_SPEED * SpeedMultiplier;
+	speedMultiplier = 1;
+	speed = HERO_BASE_SPEED * speedMultiplier;
 	jumpTimer = 0; //Timer for jump function duration
 	jumpCooldown = 0;
 	xFrame = 0;
@@ -64,14 +62,14 @@ void Hero::walkAnim()
 
 void Hero::left()
 {
-	velocity.x = -Speed;
+	velocity.x = -speed;
 	Sprite.move(velocity.x, 0.f);
 	walkAnim();
 }
 
 void Hero::right()
 {
-	velocity.x = Speed;
+	velocity.x = speed;
 	Sprite.move(velocity.x, 0.f);
 	walkAnim();
 }
@@ -159,9 +157,10 @@ void Hero::render(sf::RenderWindow &window)
 	Sprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 128, 64, 128));
 	if (isAlive)
 		window.draw(Sprite);
+
 }
 
-void Hero::onHit(int dmg)
+void Hero::onHit(float dmg)
 {
 	if (dmg > armor)
 		HP = HP - (dmg - armor / 4 + rand() % 3);

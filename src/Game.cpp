@@ -183,10 +183,10 @@ void Game::collision(Hero *hero, sf::FloatRect wallBounds){
 	}
 }
 
-void Game::hitCollision(Entity *hero, Entity *enemy)
+void Game::hitCollision(Entity *getsHit, Entity *hitter)
 {
-	if (hero->getCollisionRect().intersects(enemy->getCollisionRect()))
-		hero->onHit(enemy->getDamage());
+	if (getsHit->getCollisionRect().intersects(hitter->getCollisionRect()))
+		getsHit->onHit(hitter->getDamage());
 }
 
 void Game::loadAssets()

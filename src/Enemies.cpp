@@ -17,6 +17,16 @@ void Enemies::chaseHero()
 		isAlive = false;
 }
 
+void Enemies::left()
+{
+	Sprite.move(-speed, 0.f);
+}
+
+void Enemies::right()
+{
+	Sprite.move(speed, 0.f);
+}
+
 bool Enemies::heroDetection(Hero* hero)
 {
 	if ((getX() - hero->getX()) <= ENEMY_DETECTION_RADIUS && (hero->getX() - getX()) <= ENEMY_DETECTION_RADIUS)
@@ -33,7 +43,7 @@ void Enemies::onHeroDetected(Hero* hero)
 		right();
 }
 
-void Enemies::onHit(int dmg)
+void Enemies::onHit(float dmg)
 {
 	if (dmg > armor)
 		HP = HP - (dmg - armor / 4);

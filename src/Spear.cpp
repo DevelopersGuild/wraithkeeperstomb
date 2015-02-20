@@ -1,15 +1,15 @@
 #include "Spear.h"
 #include "Constants.h"
-#include "Weapons.h"
 
-Spear::Spear()
+Spear::Spear(Hero *hero)
 {
-	WeaponTexture.loadFromFile("../assets/sprites/spear.png");
+	WeaponTexture.loadFromFile("../assets/sprites/spear1.png");
 	WeaponSprite.setTexture(WeaponTexture);
 	WeaponSprite.setOrigin(32, 128); // change this
+	WeaponSprite.setPosition(hero->getX(), hero->getY());
 
+	cooldown.restart().asSeconds();
 	range = SPEAR_RANGE;
-	cooldown = SPEAR_COOLDOWN;
 	crit_chance = SPEAR_CRIT_CHANCE;
 	crit_multiplier = SPEAR_CRIT_MULTIPLIER;
 	damage_fluctuation = SPEAR_DMG_FLUCTUATION_RATE * SPEAR_DAMAGE;

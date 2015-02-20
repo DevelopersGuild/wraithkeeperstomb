@@ -8,22 +8,13 @@ class Entity
 protected:
 	sf::Texture Texture;
 	sf::Sprite Sprite;
-
-	int HP;
-	bool isAlive;
-	float Speed;
-	float SpeedMultiplier;
-	int armor;
-
-	void jump();
-	void left();
-	void right();
 public:
 	Entity();
 	virtual ~Entity() { }
 	virtual void render(sf::RenderWindow& window);
 	virtual void update(float time);
-	virtual void onHit(int dmg) = 0;
+	virtual void onHit(float dmg)
+	{ return; }
 
 	void setPosition(float, float);
 
@@ -35,22 +26,13 @@ public:
 	{
 		return Sprite.getPosition().y;
 	}
-
+	virtual const float getDamage()
+	{
+		return 0;
+	}
 	const sf::FloatRect getCollisionRect()
 	{
 		return Sprite.getGlobalBounds();
-	}
-	const bool getAlive()
-	{
-		return isAlive;
-	}
-	const int getHP()
-	{
-		return HP;
-	}
-	virtual int getDamage()
-	{
-		return 0;
 	}
 };
 
