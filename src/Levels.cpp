@@ -6,7 +6,7 @@ Levels::Levels()
 	BackgroundGenerator::instance().LoadTextureForLevelOrDie(1); // current level 1; just testing
 
 	background_.texture = BackgroundGenerator::instance().background_texture(); // assign the texture
-	background_.texture.setRepeated(true);
+	//background_.texture.setRepeated(true);
 	background_.rectangle.setSize(sf::Vector2f(2560, 1440));
 	background_.rectangle.setTexture(&background_.texture);
 	background_.rectangle.setTextureRect({ 0, 0, 5500, 3000 });
@@ -16,7 +16,7 @@ Levels::Levels()
 	ground_.rectangle.setSize(sf::Vector2f(2560, 64));
 	ground_.rectangle.setTexture(&ground_.texture);
 	ground_.rectangle.setTextureRect({ 0, 0, 1000, 32 });
-	ground_.rectangle.setPosition(0, 1340);
+	ground_.rectangle.setPosition(0, 1378); // was 1340
 
 	// Create a platform
 	platform.setSize(sf::Vector2f(350.f, 50.f));

@@ -51,8 +51,8 @@ private:
 public:
 	static BackgroundGenerator& instance()
 	{
-		static BackgroundGenerator *instance_ = new BackgroundGenerator(); // initializes only once
-		return *instance_;
+		static BackgroundGenerator instance_; // initializes only once
+		return instance_;
 	}
 
 	~BackgroundGenerator() {}
