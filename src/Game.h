@@ -50,6 +50,7 @@ private:
 	void hitCollision(Entity *hero, Entity *enemy);
 
 	static Hero *theHero;
+	Entity *spear;
 	Entity *enemy;
 
 	void CreateEntities();

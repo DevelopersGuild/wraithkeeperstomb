@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "Enemy1.h"
+#include "Spear.h"
 #include "Constants.h"
 
 Game::Game()
@@ -29,6 +30,10 @@ void Game::CreateEntities()
 	enemy = new Enemy1;
 
 	entityRegistry.push_back(enemy);
+
+	spear = new Spear(theHero); 
+
+	entityRegistry.push_back(spear);
 }
 
 void Game::mainLoop()
