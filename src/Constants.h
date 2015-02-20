@@ -29,4 +29,12 @@ const int ENEMY2_BASE_SPEED = 2;
 const int ENEMY2_DAMAGE = 35;
 const int ENEMY2_ARMOR = 15;
 
+//Weapons
+const int SPEAR_RANGE = 100;
+const float SPEAR_COOLDOWN = 1.;
+const int SPEAR_DAMAGE = 15;
+const float SPEAR_CRIT_CHANCE = 15;
+const float SPEAR_CRIT_MULTIPLIER = 1.5;
+const float SPEAR_DMG_FLUCTUATION_RATE = 0.1;
+
 #endif

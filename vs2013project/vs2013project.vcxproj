@@ -89,6 +89,7 @@
     <ClInclude Include="..\src\Levels.h" />
     <ClInclude Include="..\src\Physics.h" />
     <ClInclude Include="..\src\Platform.h" />
+    <ClInclude Include="..\src\Spear.h" />
     <ClInclude Include="..\src\Weapons.h" />
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +103,7 @@
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Physics.cpp" />
     <ClCompile Include="..\src\Platform.cpp" />
+    <ClCompile Include="..\src\Spear.cpp" />
     <ClCompile Include="..\src\Weapons.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,6 +1,7 @@
 #include "Entity.h"
 #include "Hero.h"
 #include "Constants.h"
+#include "Weapons.h"
 #include <ctime>
 
 Hero::Hero()

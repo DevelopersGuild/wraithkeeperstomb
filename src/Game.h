@@ -2,6 +2,8 @@
 #define GAME_H
 
 #include <SFML/Graphics.hpp>
+#include <cstdlib>
+#include <ctime>
 #include "Levels.h"
 #include "Hero.h"
 #include "Entity.h"
