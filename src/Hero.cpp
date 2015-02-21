@@ -13,7 +13,7 @@ Hero::Hero()
 	sf::Vector2i anim(sf::Vector2i(0, 1));
 
 	// Initialize basic hero stats
-	level = HERO_BASE_LEVEL;
+	level_ = HERO_BASE_LEVEL;
 	armor = HERO_BASE_ARMOR;
 	HP = HERO_BASE_HP;
 	isAlive = true;
@@ -166,4 +166,16 @@ void Hero::onHit(float dmg)
 		HP = HP - (dmg - armor / 4 + rand() % 3);
 	else
 		HP = HP - rand() % 5;
+}
+
+
+
+void Hero::setExperience(int add_exp)
+{
+	experience_ += add_exp;
+	while (experience_ >= 100 * level_)
+	{
+		++level_;
+		experience_ -= 100 * level_;
+	}
 }

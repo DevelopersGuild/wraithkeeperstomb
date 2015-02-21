@@ -25,7 +25,8 @@ private:
 	bool isAlive;
 
 	float heroJumpSpeed;
-	int level;
+	int level_;
+	int experience_;
 
 	void walkAnim();			//Animation sequence for walking
 	void jump(float seconds);
@@ -38,28 +39,39 @@ public:
 	void left();
 	void right();
 	void setCollisionNum(int);
+	void setExperience(int add_exp);
 
 	// Accessors
 	const float getSpeedX()
 	{
 		return velocity.x;
 	}
+
 	const float getSpeedY()
 	{
 		return velocity.y;
 	}
+
 	const bool getAlive()
 	{
 		return isAlive;
 	}
+
 	const int getHP()
 	{
 		return HP;
 	}
+
+	const int getExperience()
+	{ return experience_; }
+
+
+
 	sf::Sprite getHeroSprite()
 	{
 		return Sprite;
 	}
+
 	void update();
 };
 
