@@ -135,15 +135,16 @@ void Hero::update(float seconds)
 
 		//Gravity implementation
 		if (Sprite.getPosition().y + Sprite.getScale().y < 1350 || collisionNum == 0) //This should later be changed to a collision with groud boolean
-			//if (collisionNum==0)
-			//if (collisionNum!=0)
 		{
 			velocity.y += GRAVITY * seconds * seconds * 50 * collisionNum;
 			Sprite.move(0.f, velocity.y);
+			if (collisionNum == 0){
+				jumpTimer = 0;
+			}
 		}
 		else
 		{
-			//collisionNum = 0;
+			
 			velocity.y = 0;
 			if (jumpCooldown < 4)
 				jumpCooldown++;
