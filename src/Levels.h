@@ -20,6 +20,7 @@ private:
 		sf::RectangleShape rectangle;
 	} background_;
 
+	sf::RectangleShape back;
 public:
 	Platform platform;
 
@@ -27,7 +28,7 @@ public:
 	Levels();
 	void update();
 	void render(sf::RenderWindow &);
-
+	void renderPlats(sf::RenderWindow &);
 
 	const sf::FloatRect getGroundRect()
 	{ return ground_.rectangle.getGlobalBounds(); }

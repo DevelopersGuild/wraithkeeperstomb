@@ -19,6 +19,9 @@ Game::Game()
 
 	CreateEntities();
 
+	minimap.setSize(1280, 720);
+	minimap.setCenter(1280, 720);
+
 }
 
 void Game::CreateEntities()
@@ -301,10 +304,20 @@ void Game::render()
 	}
 	else if (GameState == inGame)
 	{
+		camera.setViewport(sf::FloatRect(0, 0, 1, 1));
+		minimap.setViewport(sf::FloatRect(0.75f, 0, 0.25f, 0.25f));
+		minimap.setCenter(1180, 1020);
 		levels.render(window);
+		window.setView(minimap);
+		levels.renderPlats(window);
+		window.setView(camera);
+
 		for (int i = 0; i < entityRegistry.size(); i++)
 		{
 			entityRegistry[i]->render(window);
+			window.setView(minimap);
+			entityRegistry[i]->render(window);
+			window.setView(camera);
 		}
 	}
 	else if (GameState == pause)

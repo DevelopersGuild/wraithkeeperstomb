@@ -24,6 +24,8 @@ private:
 
 	//Camera
 	sf::View camera;
+	sf::View minimap;
+
 
 	sf::Font blackcastle;
 	sf::Font century;

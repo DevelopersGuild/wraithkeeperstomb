@@ -18,6 +18,10 @@ Levels::Levels()
 	ground_.rectangle.setTextureRect({ 0, 0, 1000, 32 });
 	ground_.rectangle.setPosition(0, 1340);
 
+	//Minimap Background
+	back.setSize(sf::Vector2f(2560, 1440));
+	back.setFillColor(sf::Color::Color(0, 0, 0, 150));
+
 	// Create a platform
 	platform.setSize(sf::Vector2f(350.f, 50.f));
 	platform.setPosition(sf::Vector2f(700.f, 1100.f));
@@ -31,6 +35,13 @@ void Levels::update()
 void Levels::render(sf::RenderWindow &window)
 {
 	window.draw(background_.rectangle);
+	window.draw(ground_.rectangle);
+	platform.render(window);
+}
+
+//renders minimap
+void Levels::renderPlats(sf::RenderWindow &window){
+	window.draw(back);
 	window.draw(ground_.rectangle);
 	platform.render(window);
 }
