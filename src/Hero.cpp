@@ -14,6 +14,7 @@ Hero::Hero()
 
 	// Initialize basic hero stats
 	level_ = HERO_BASE_LEVEL;
+	experience_ = 0;
 	armor = HERO_BASE_ARMOR;
 	HP = HERO_BASE_HP;
 	isAlive = true;

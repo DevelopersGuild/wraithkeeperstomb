@@ -1,3 +1,5 @@
+#include <fstream>
+
 #include "Game.h"
 #include "Enemy1.h"
 #include "Spear.h"
@@ -18,6 +20,7 @@ Game::Game()
 	GameState = titleScreen;
 
 	CreateEntities();
+	LoadStats();
 
 	minimap.setSize(1280, 720);
 	minimap.setCenter(1280, 720);
@@ -71,8 +74,10 @@ void Game::handleEvent(sf::Event event)
 
 	// Binds escape to close the window
 	if (sf::Event::KeyPressed)
-		if (event.key.code == sf::Keyboard::Escape)
+		if (event.key.code == sf::Keyboard::Escape) {
+			SaveStatsToFile();
 			window.close();
+		}
 
 	// GameState handling
 	if (GameState == titleScreen)
@@ -329,6 +334,50 @@ void Game::render()
 
 	// Display window
 	window.display();
+}
+
+void Game::SaveStatsToFile()
+{
+	std::fstream out("../data/stats.bin", std::ios::binary | std::fstream::out);
+
+	if (out.fail()) {
+		// TODO(Dmitry): Log error
+		return;
+	}
+
+	out << "Hero\n"
+		<< theHero->getLevel() << std::endl
+		<< theHero->getExperience() << std::endl
+		<< theHero->getHP() << std::endl;
+
+	out.close();
+	// TODO(Dmitry): Log successful saving
+}
+
+void Game::LoadStats()
+{
+	std::ifstream inFile("../data/stats.bin", std::ios::binary);
+
+	if (inFile.fail()) {
+		// TODO(Dmitry): Log error
+		return;
+	}
+
+	std::string dummy;
+	int value;
+	std::getline(inFile, dummy); // dummy call
+
+	inFile >> value;
+	theHero->setLevel(value);
+
+	inFile >> value;
+	theHero->setExperience(value);
+
+	inFile >> value;
+	theHero->setHP(value);
+
+	inFile.close();
+
 }
 
 Hero * Game::theHero;

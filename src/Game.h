@@ -56,6 +56,9 @@ private:
 	Entity *enemy;
 
 	void CreateEntities();
+
+	void LoadStats();
+	void SaveStatsToFile();
 public:
 	Game();
 	void mainLoop();

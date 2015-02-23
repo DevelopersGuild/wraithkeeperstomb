@@ -41,6 +41,9 @@ public:
 	void setCollisionNum(int);
 	void setExperience(int add_exp);
 
+	void setLevel(int level) { level_ = level; }
+	void setHP(int hp) { HP = hp; }
+
 	// Accessors
 	const float getSpeedX()
 	{
@@ -60,6 +63,10 @@ public:
 	const int getHP()
 	{
 		return HP;
+	}
+
+	const int getLevel() {
+		return level_;
 	}
 
 	const int getExperience()
