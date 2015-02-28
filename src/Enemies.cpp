@@ -38,9 +38,9 @@ bool Enemies::heroDetection(Hero* hero)
 
 void Enemies::onHeroDetected(Hero* hero)
 {
-	if ((getX() - hero->getX()) > 0.2)
+	if ((getX() - hero->getX()) > 0)
 		left();
-	else if ((getX() - hero->getX()) < -0.2)
+	else
 		right();
 }
 

@@ -63,22 +63,16 @@ void Hero::walkAnim()
 
 void Hero::left()
 {
-	if (getX() >= 200)
-	{
-		velocity.x = -speed;
-		Sprite.move(velocity.x, 0.f);
-		walkAnim();
-	}
+	velocity.x = -speed;
+	Sprite.move(velocity.x, 0.f);
+	walkAnim();
 }
 
 void Hero::right()
 {
-	if (getX() <= 2190)
-	{
-		velocity.x = speed;
-		Sprite.move(velocity.x, 0.f);
-		walkAnim();
-	}
+	velocity.x = speed;
+	Sprite.move(velocity.x, 0.f);
+	walkAnim();
 }
 
 void Hero::jump(float seconds)
