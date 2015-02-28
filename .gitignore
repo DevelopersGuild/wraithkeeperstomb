@@ -23,3 +23,6 @@ build/
 !default.perspectivev3
 xcuserdata/
 *.moved-aside
+
+# Game files
+data/stats.bin
