@@ -22,7 +22,6 @@ private:
 	float jumpTimer;				//Counter for jump duration
 	bool faceRight;				//Boolean for determining direction hero is facing at rest
 	bool inAir;
-	bool isAlive;
 
 	float heroJumpSpeed;
 	int level_;
@@ -53,11 +52,6 @@ public:
 	const float getSpeedY()
 	{
 		return velocity.y;
-	}
-
-	const bool getAlive()
-	{
-		return isAlive;
 	}
 
 	const int getHP()

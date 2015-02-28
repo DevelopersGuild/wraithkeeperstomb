@@ -39,7 +39,7 @@ private:
 
 	Levels levels;
 
-	std::vector<Entity * > entityRegistry;
+	std::vector<Entity *> entityRegistry;
 
 	void update();
 	void render();

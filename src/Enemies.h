@@ -8,7 +8,6 @@ class Enemies: public Entity
 {
 protected:
 	float damage;
-	bool isAlive;
 	float HP;
 	float armor;
 	float speed;
@@ -26,10 +25,10 @@ public:
 	// Accessor(s)
 	const float getDamage()
 	{ return damage; }
-	const bool getAlive()
-	{ return isAlive; }
+
 	const float getHP()
 	{ return HP; }
+
 	void onHit(int dmg);
 };
 

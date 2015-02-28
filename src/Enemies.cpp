@@ -15,7 +15,7 @@ void Enemies::chaseHero()
 		onHeroDetected(Game::getHero());
 	// Check if alive
 	if (HP <= 0)
-		isAlive = false;
+		is_alive_ = false;
 }
 
 void Enemies::left()

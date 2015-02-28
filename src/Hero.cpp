@@ -17,7 +17,7 @@ Hero::Hero()
 	experience_ = 0;
 	armor = HERO_BASE_ARMOR;
 	HP = HERO_BASE_HP;
-	isAlive = true;
+	is_alive_ = true;
 	speedMultiplier = 1;
 	speed = HERO_BASE_SPEED * speedMultiplier;
 	jumpTimer = 0; //Timer for jump function duration
@@ -132,7 +132,7 @@ void Hero::update(float seconds)
 
 		// Check if alive
 		if (HP <= 0)
-			isAlive = false;
+			is_alive_ = false;
 
 		//Gravity implementation
 		if (Sprite.getPosition().y + Sprite.getScale().y < 1350 || collisionNum == 0) //This should later be changed to a collision with groud boolean
@@ -157,7 +157,7 @@ void Hero::update(float seconds)
 void Hero::render(sf::RenderWindow &window)
 {
 	Sprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 128, 64, 128));
-	if (isAlive)
+	if (is_alive_)
 		window.draw(Sprite);
 
 }

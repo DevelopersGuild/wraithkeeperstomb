@@ -1,5 +1,7 @@
 #include <fstream>
 #include <iostream>
+
+
 #include "Game.h"
 #include "Enemy1.h"
 #include "Spear.h"
@@ -32,6 +34,7 @@ void Game::CreateEntities()
 {
 	theHero = new Hero;
 	entityRegistry.push_back(theHero);
+
 	enemy = new Enemy1;
 	entityRegistry.push_back(enemy);
 	spear = new Spear(theHero);
@@ -247,7 +250,7 @@ void Game::gameUpdate()
 {
 	deltaTime = clock.restart();
     
-    if (!theHero->getAlive())
+    if (!theHero->IsAlive())
     {
         GameState = gameOver;
 		return;
@@ -312,6 +315,20 @@ void Game::render()
 		window.setView(minimap);
 		levels.renderPlats(window);
 		window.setView(camera);
+
+		//@ Iterate through the vector, delete a "dead" entity and erase it from the vector;
+		//@ Skip the first entity Hero
+		for (auto &entity = entityRegistry.begin() + 1; entity != entityRegistry.end();) {
+			if (!(*entity)->IsAlive()) {
+				delete *entity;
+				entity = entityRegistry.erase(entity);
+			}
+			else {
+				++entity;
+			}
+		}
+
+
 		for (int i = 0; i < entityRegistry.size(); i++)
 		{
 			entityRegistry[i]->render(window);

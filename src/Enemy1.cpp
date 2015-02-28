@@ -15,7 +15,7 @@ Enemy1::Enemy1()
 	speedMultiplier = 1;
 	speed = ENEMY1_BASE_SPEED * speedMultiplier;
 	damage = ENEMY1_DAMAGE;
-	isAlive = true;
+	is_alive_ = true;
 	armor = ENEMY1_ARMOR;
 
 	srand((unsigned int)time(NULL));
