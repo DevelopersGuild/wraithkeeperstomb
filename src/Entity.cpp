@@ -6,7 +6,8 @@ Entity::Entity()
 	// Initialize basic Entity stats
 }
 
-void Entity::setPosition(float x, float y){
+void Entity::setPosition(float x, float y)
+{
 	Sprite.setPosition(x,y);
 }
 

@@ -6,7 +6,8 @@
 #include <ctime>
 #include "Levels.h"
 #include "Hero.h"
-#include "Spear.h"
+#include "Entity.h"
+#include "Weapons.h"
 #include "Enemy1.h"
 
 class Game
@@ -52,7 +53,7 @@ private:
 	void hitCollision(Entity *hero, Entity *enemy);
 
 	static Hero *theHero;
-	Entity *spear;
+	Weapons *spear;
 	Entity *enemy;
 
 	void CreateEntities();

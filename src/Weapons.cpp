@@ -12,8 +12,14 @@ Weapons::~Weapons()
 
 }
 
+void Weapons::setPosition(float xPos, float yPos)
+{
+	Sprite.setPosition(sf::Vector2f(xPos, yPos));
+}
+
 float Weapons::dmgRandomizer(float fluctuation)
-{//returns damage +- fluctuation
+{
+	//returns damage +- fluctuation
 	return damage - fluctuation + rand() % (2 * (int)fluctuation + 1);
 }
 
@@ -25,12 +31,12 @@ float Weapons::critical(float multiplier)
 		return 1.0;
 }
 
-void Weapons::update(float seconds)
+void Weapons::update(Hero *hero, Entity *&enemy)
 {
 	
 }
 
 void Weapons::render(sf::RenderWindow &window)
 {
-	window.draw(WeaponSprite);
+	window.draw(Sprite);
 }

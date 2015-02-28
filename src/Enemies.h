@@ -7,13 +7,12 @@
 class Enemies: public Entity
 {
 protected:
-	int damage;
+	float damage;
 	bool isAlive;
-	int HP;
+	float HP;
 	float armor;
 	float speed;
 	float speedMultiplier;
-	void onHit(float dmg);
 public:
 	Enemies();
 	virtual ~Enemies() { }
@@ -22,14 +21,14 @@ public:
 	void left();
 	void right();
 	virtual void onHeroDetected(Hero* hero);
-	// void onHit(); // only if the enemy has armor
+	void onHit(float dmg);
 
 	// Accessor(s)
 	const float getDamage()
 	{ return damage; }
 	const bool getAlive()
 	{ return isAlive; }
-	const int getHP()
+	const float getHP()
 	{ return HP; }
 	void onHit(int dmg);
 };

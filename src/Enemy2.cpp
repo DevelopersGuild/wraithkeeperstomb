@@ -19,5 +19,5 @@ Enemy2::Enemy2()
 	isAlive = true;
 	armor = ENEMY2_ARMOR;
 
-	srand(time(0));
+	srand((unsigned int)time(NULL));
 }

@@ -1,5 +1,5 @@
 #include <fstream>
-
+#include <iostream>
 #include "Game.h"
 #include "Enemy1.h"
 #include "Spear.h"
@@ -10,6 +10,7 @@ Game::Game()
 	// Create game render window
 	window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Chamber's Labyrinth");
 	window.setMouseCursorVisible(true);
+	window.setKeyRepeatEnabled(false);
 
 	// Limit framerate to 60 and enable Vsync
 	window.setFramerateLimit(60);
@@ -30,16 +31,10 @@ Game::Game()
 void Game::CreateEntities()
 {
 	theHero = new Hero;
-
 	entityRegistry.push_back(theHero);
-
 	enemy = new Enemy1;
-
 	entityRegistry.push_back(enemy);
-
-	spear = new Spear(theHero); 
-
-	entityRegistry.push_back(spear);
+	spear = new Spear(theHero);
 }
 
 void Game::mainLoop()
@@ -195,7 +190,10 @@ void Game::collision(Hero *hero, sf::FloatRect wallBounds){
 void Game::hitCollision(Entity *getsHit, Entity *hitter)
 {
 	if (getsHit->getCollisionRect().intersects(hitter->getCollisionRect()))
+	{
 		getsHit->onHit(hitter->getDamage());
+		std::cout << "hit!" << std::endl;
+	}
 }
 
 void Game::loadAssets()
@@ -259,10 +257,12 @@ void Game::gameUpdate()
 
 	float time = deltaTime.asSeconds();
 
-	for (int i = 0; i < entityRegistry.size(); i++)
+	for (size_t i = 0; i < entityRegistry.size(); i++)
 	{
 		entityRegistry[i]->update(time);
 	}
+	spear->update(theHero, enemy);
+	spear->setPosition(theHero->getX(), theHero->getY());
 
 	// Camera
 	camera.setSize(sf::Vector2f(1280, 720));
@@ -312,7 +312,6 @@ void Game::render()
 		window.setView(minimap);
 		levels.renderPlats(window);
 		window.setView(camera);
-
 		for (int i = 0; i < entityRegistry.size(); i++)
 		{
 			entityRegistry[i]->render(window);
@@ -320,6 +319,7 @@ void Game::render()
 			entityRegistry[i]->render(window);
 			window.setView(camera);
 		}
+		spear->render(window);
 	}
 	else if (GameState == pause)
 	{

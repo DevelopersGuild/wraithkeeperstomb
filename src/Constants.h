@@ -6,35 +6,35 @@ static const int WINDOW_HEIGHT = 720;
 
 
 //Hero
-const int HERO_BASE_HP = 100;
-const int HERO_BASE_SPEED = 7;
+const float HERO_BASE_HP = 100.f;
+const float HERO_BASE_SPEED = 7.f;
 const int HERO_BASE_LEVEL = 1;
-const int HERO_BASE_ARMOR = 30;
-const int HERO_BASE_DAMAGE = 20;
-const int HERO_ARMOR_PER_LEVEL = 9;
-const int HERO_DAMAGE_PER_LEVEL = 8;
+const float HERO_BASE_ARMOR = 30.f;
+const float HERO_BASE_DAMAGE = 20.f;
+const float HERO_ARMOR_PER_LEVEL = 9.f;
+const float HERO_DAMAGE_PER_LEVEL = 8.f;
 
-const float GRAVITY = 80;
+const float GRAVITY = 80.f;
 
 //Enemies
-const int ENEMY_DETECTION_RADIUS = 200;
+const float ENEMY_DETECTION_RADIUS = 200.f;
 
-const int ENEMY1_BASE_HP = 100;
-const int ENEMY1_BASE_SPEED = 3;
-const int ENEMY1_DAMAGE = 20;
-const int ENEMY1_ARMOR = 10;
+const float ENEMY1_BASE_HP = 100.f;
+const float ENEMY1_BASE_SPEED = 3.f;
+const float ENEMY1_DAMAGE = 20.f;
+const float ENEMY1_ARMOR = 10.f;
 
-const int ENEMY2_BASE_HP = 100;
-const int ENEMY2_BASE_SPEED = 2;
-const int ENEMY2_DAMAGE = 35;
-const int ENEMY2_ARMOR = 15;
+const float ENEMY2_BASE_HP = 100.f;
+const float ENEMY2_BASE_SPEED = 2.f;
+const float ENEMY2_DAMAGE = 35.f;
+const float ENEMY2_ARMOR = 15.f;
 
 //Weapons
-const float SPEAR_RANGE = 150;
-const float SPEAR_COOLDOWN = 1.;
-const float SPEAR_DAMAGE = 15;
-const float SPEAR_CRIT_CHANCE = 15;
-const float SPEAR_CRIT_MULTIPLIER = 1.5;
-const float SPEAR_DMG_FLUCTUATION_RATE = 0.1;
+const float SPEAR_RANGE = 1000.f;
+const float SPEAR_COOLDOWN = 1.f;
+const float SPEAR_DAMAGE = 15.f;
+const float SPEAR_CRIT_CHANCE = 15.f;
+const float SPEAR_CRIT_MULTIPLIER = 1.5f;
+const float SPEAR_DMG_FLUCTUATION_RATE = 0.1f;
 
 #endif

@@ -27,7 +27,7 @@ Hero::Hero()
 	frameTimer = 0;
 	faceRight = true;
 
-	srand(time(0));
+	srand((unsigned int)time(NULL));
 }
 
 void Hero::setCollisionNum(int somethingUnderneath){

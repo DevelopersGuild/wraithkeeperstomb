@@ -2,7 +2,9 @@
 #define SPEAR_H
 
 #include "Weapons.h"
+#include "Hero.h"
 #include "Game.h"
+#include "Enemies.h"
 
 class Spear : public Weapons
 {
@@ -13,11 +15,12 @@ public:
 	virtual ~Spear();
 	const sf::Clock getCooldown()
 	{ return cooldown; }
-	const sf::FloatRect getCollisionRect()
-	{ return Sprite.getGlobalBounds(); }
 	const sf::Sprite getSprite()
-	{ return WeaponSprite; }
-};
+	{ return Sprite; }
+	const sf::FloatRect getCollisionRect(Hero *);
+	void update(Hero *, Entity *&);
+	void attack(Hero *, Entity *&);
 
+};
 
 #endif

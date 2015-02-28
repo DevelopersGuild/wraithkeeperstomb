@@ -12,14 +12,14 @@ private:
 
 	float speed;
 	float speedMultiplier;
-	int armor;
+	float armor;
 	int collisionNum;
-	int HP;
+	float HP;
 	int xFrame;					//Current frame in the x grid
 	int yFrame;					//Current frame in the y grid
 	int frameTimer;				//Counter for sprite frame duration
-	int jumpCooldown;			//Cooldown counter for jump
-	int jumpTimer;				//Counter for jump duration
+	float jumpCooldown;			//Cooldown counter for jump
+	float jumpTimer;				//Counter for jump duration
 	bool faceRight;				//Boolean for determining direction hero is facing at rest
 	bool inAir;
 	bool isAlive;

@@ -18,7 +18,7 @@ Enemy1::Enemy1()
 	isAlive = true;
 	armor = ENEMY1_ARMOR;
 
-	srand(time(0));
+	srand((unsigned int)time(NULL));
 }
 
 void Enemy1::update(float time)
