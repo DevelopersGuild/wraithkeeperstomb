@@ -55,7 +55,8 @@ void Game::mainLoop()
 		else if (GameState == inGame){
 			gameUpdate();
 			collision(theHero, levels.platform.getCollisionRect());
-			hitCollision(theHero, enemy);
+			if (enemy)
+				hitCollision(theHero, enemy);
 		}
 		else if (GameState == pause)
 			pauseUpdate();
@@ -319,7 +320,10 @@ void Game::render()
 		//@ Iterate through the vector, delete a "dead" entity and erase it from the vector;
 		//@ Skip the first entity Hero
 		for (auto &entity = entityRegistry.begin() + 1; entity != entityRegistry.end();) {
-			if (!(*entity)->IsAlive()) {
+			if (!(*entity)->IsAlive())
+			{
+				if (enemy == *entity)
+					enemy = nullptr;
 				delete *entity;
 				entity = entityRegistry.erase(entity);
 			}

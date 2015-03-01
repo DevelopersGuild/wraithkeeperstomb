@@ -46,6 +46,7 @@ void Enemies::onHeroDetected(Hero* hero)
 
 void Enemies::onHit(float dmg)
 {
+	std::cout << "Attacked!";
 	if (dmg > armor)
 		HP = HP - (dmg - armor / 4);
 	else
