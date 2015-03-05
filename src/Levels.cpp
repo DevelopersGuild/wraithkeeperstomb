@@ -23,8 +23,19 @@ Levels::Levels()
 	back.setFillColor(sf::Color::Color(0, 0, 0, 150));
 
 	// Create a platform
+	Platform platform;
+
+	platform.setSize(sf::Vector2f(350.f, 50.f));
+	platform.setPosition(sf::Vector2f(500.f, 900.f));
+
+	platforms.emplace_back(platform);
+
 	platform.setSize(sf::Vector2f(350.f, 50.f));
 	platform.setPosition(sf::Vector2f(700.f, 1100.f));
+
+	platforms.emplace_back(platform);
+
+
 }
 
 void Levels::update()
@@ -36,14 +47,20 @@ void Levels::render(sf::RenderWindow &window)
 {
 	window.draw(background_.rectangle);
 	window.draw(ground_.rectangle);
-	platform.render(window);
+	for (int i = 0; i < platforms.size(); i++)
+	{
+		platforms[i].render(window);
+	}
 }
 
 //renders minimap
 void Levels::renderPlats(sf::RenderWindow &window){
 	window.draw(back);
 	window.draw(ground_.rectangle);
-	platform.render(window);
+	for (int i = 0; i < platforms.size(); i++)
+	{
+		platforms[i].render(window);
+	}
 }
 
 

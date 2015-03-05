@@ -54,7 +54,10 @@ void Game::mainLoop()
 			titleUpdate();
 		else if (GameState == inGame){
 			gameUpdate();
-			collision(theHero, levels.platform.getCollisionRect());
+			for (int i = 0; i < levels.platforms.size(); i++)
+			{
+				collision(theHero, levels.platforms[i].getCollisionRect());
+			}
 			if (enemy)
 				hitCollision(theHero, enemy);
 		}

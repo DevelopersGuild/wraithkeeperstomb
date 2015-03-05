@@ -22,7 +22,7 @@ private:
 
 	sf::RectangleShape back;
 public:
-	Platform platform;
+	std::vector<Platform> platforms;
 
 public:
 	Levels();
