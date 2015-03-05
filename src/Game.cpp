@@ -6,6 +6,7 @@
 #include "Enemy1.h"
 #include "Spear.h"
 #include "Constants.h"
+#include "Powerup.h"
 
 Game::Game()
 {
@@ -37,6 +38,9 @@ void Game::CreateEntities()
 
 	enemy = new Enemy1;
 	entityRegistry.push_back(enemy);
+
+	Entity * cookie = new PowerupCookie(500.f, 800.f);
+	entityRegistry.push_back(cookie);
 
 	spear = new Spear(theHero);
 }
