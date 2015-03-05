@@ -37,6 +37,7 @@ void Game::CreateEntities()
 
 	enemy = new Enemy1;
 	entityRegistry.push_back(enemy);
+
 	spear = new Spear(theHero);
 }
 
