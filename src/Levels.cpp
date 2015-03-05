@@ -21,21 +21,20 @@ Levels::Levels()
 	//Minimap Background
 	back.setSize(sf::Vector2f(2560, 1440));
 	back.setFillColor(sf::Color::Color(0, 0, 0, 150));
+	
 
-	// Create a platform
-	Platform platform;
+	createPlatform(500.f, 900.f,350.f, 50.f);
 
-	platform.setSize(sf::Vector2f(350.f, 50.f));
-	platform.setPosition(sf::Vector2f(500.f, 900.f));
+	createPlatform(700.f, 1100.f, 350.f, 50.f);
+}
 
-	platforms.emplace_back(platform);
-
-	platform.setSize(sf::Vector2f(350.f, 50.f));
-	platform.setPosition(sf::Vector2f(700.f, 1100.f));
-
-	platforms.emplace_back(platform);
-
-
+void Levels::createPlatform(float posX, float posY, float sizeX, float sizeY)
+{
+	Platform pl;
+	pl.setSize(sf::Vector2f(sizeX, sizeY));
+	pl.setPosition(sf::Vector2f(posX, posY));
+	pl.setTexture();
+	platforms.emplace_back(pl);
 }
 
 void Levels::update()
