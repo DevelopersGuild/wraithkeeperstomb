@@ -1,5 +1,6 @@
 #include "Entity.h"
 #include "Constants.h"
+#include "Hero.h"
 
 //powerup
 class Powerup : public Entity
