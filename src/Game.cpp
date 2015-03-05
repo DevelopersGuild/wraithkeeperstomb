@@ -39,7 +39,8 @@ void Game::CreateEntities()
 	enemy = new Enemy1;
 	entityRegistry.push_back(enemy);
 
-	Entity * cookie = new PowerupCookie(500.f, 800.f);
+	Entity * cookie = new PowerupCookie;
+	cookie->setPosition(500.f, 800.f);
 	entityRegistry.push_back(cookie);
 
 	spear = new Spear(theHero);

@@ -6,7 +6,7 @@
 class Powerup : public Entity
 {
 public:
-	Powerup(float posX, float posY, float sizeX, float sizeY);
+	Powerup();
 
 	void update(float time);
 
@@ -19,9 +19,12 @@ public:
 class PowerupCookie : public Powerup
 {
 public:
-	PowerupCookie(float posX, float posY) :Powerup(posX, posY, 64, 64)
+	PowerupCookie()
 	{
 		Texture.loadFromFile("../assets/sprites/cookie.png");
+		Sprite.setTexture(Texture);
+		Sprite.setOrigin(32, 128);
+		Sprite.setPosition(500.f, 800.f);
 	}
 
 	void apply(Hero * hero)

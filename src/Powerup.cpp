@@ -1,11 +1,11 @@
 #include "Powerup.h"
 #include "Game.h"
 #include "Constants.h"
+#include <iostream>
 
-Powerup::Powerup(float posX, float posY, float sizeX, float sizeY)
+Powerup::Powerup()
 {
-	Sprite.setOrigin(posX, posY);
-	Sprite.setPosition(sizeX, sizeY);
+
 }
 
 void Powerup::update(float time)
@@ -21,6 +21,7 @@ void Powerup::update(float time)
 
 void Powerup::render(sf::RenderWindow &window)
 {
-	if (is_alive_)
+	if (is_alive_){
 		window.draw(Sprite);
+	}
 }
