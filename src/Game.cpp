@@ -54,6 +54,7 @@ void Game::mainLoop()
 			titleUpdate();
 		else if (GameState == inGame){
 			gameUpdate();
+			theHero->setCollisionNum(1);
 			for (int i = 0; i < levels.platforms.size(); i++)
 			{
 				collision(theHero, levels.platforms[i].getCollisionRect());
@@ -151,7 +152,6 @@ void Game::handleEvent(sf::Event event)
 void Game::collision(Hero *hero, sf::FloatRect wallBounds){
 	//Affected area
 	sf::FloatRect area;
-	hero->setCollisionNum(1);
 	if (hero->getCollisionRect().intersects(wallBounds, area))
 	{
 		// Verifying if we need to apply collision to the vertical axis, else we apply to horizontal axis
