@@ -1,7 +1,6 @@
 #include "Hero.h"
-#include "Spear.h"
-
 #include "Constants.h"
+#include "Spear.h"
 #include <ctime>
 
 Hero::Hero()
@@ -15,13 +14,13 @@ Hero::Hero()
 	sf::Vector2i anim(sf::Vector2i(0, 1));
 
 	// Initialize basic hero stats
-	level_ = HERO_BASE_LEVEL;
-	experience_ = 0;
-	armor = HERO_BASE_ARMOR;
-	HP = HERO_BASE_HP;
+	stats_.level_ = HERO_BASE_LEVEL;
+	stats_.experience_ = 0;
+	stats_.armor = HERO_BASE_ARMOR;
+	stats_.HP = HERO_BASE_HP;
 	is_alive_ = true;
-	speedMultiplier = 1;
-	speed = HERO_BASE_SPEED * speedMultiplier;
+	stats_.speedMultiplier = 1;
+	stats_.speed = HERO_BASE_SPEED * stats_.speedMultiplier;
 	jumpTimer = 0; //Timer for jump function duration
 	jumpCooldown = 0;
 	xFrame = 0;
@@ -29,8 +28,9 @@ Hero::Hero()
 	frameTimer = 0;
 	faceRight = true;
 
+	effects_.push_back(new Buff(10, 7.0F));
+
 	srand((unsigned int)time(NULL));
-	
 	giveWeapon(new Spear(this));
 }
 
@@ -67,14 +67,14 @@ void Hero::walkAnim()
 
 void Hero::left()
 {
-	velocity.x = -speed;
+	velocity.x = -stats_.speed;
 	Sprite.move(velocity.x, 0.f);
 	walkAnim();
 }
 
 void Hero::right()
 {
-	velocity.x = speed;
+	velocity.x = stats_.speed;
 	Sprite.move(velocity.x, 0.f);
 	walkAnim();
 }
@@ -100,6 +100,22 @@ void Hero::update(float seconds)
 {
 	if (jumpTimer != 0)
 		jump(seconds);
+
+
+	for (auto &iter = effects_.begin(); iter != effects_.end();) {
+		if ((*iter)->HasTimedOut())
+		{
+			delete *iter;
+			iter = effects_.erase(iter);
+			stats_.speed = HERO_BASE_SPEED * stats_.speedMultiplier;
+		}
+		else {
+			(*iter)->UpdateAndApply(seconds, &stats_.speed);
+			++iter;
+		}
+	}
+
+
 	{
 		// Handle movement
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
@@ -108,12 +124,14 @@ void Hero::update(float seconds)
 			anim.x = 1;
 			left();
 		}
+
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
 			faceRight = true;
 			anim.x = 0;
 			right();
 		}
+
 		else
 		{
 			velocity.x = 0;
@@ -135,7 +153,7 @@ void Hero::update(float seconds)
 			jump(seconds);
 
 		// Check if alive
-		if (HP <= 0)
+		if (stats_.HP <= 0)
 			is_alive_ = false;
 
 		//Gravity implementation
@@ -143,6 +161,7 @@ void Hero::update(float seconds)
 		{
 			velocity.y += GRAVITY * seconds * seconds * 50 * collisionNum;
 			Sprite.move(0.f, velocity.y);
+			
 			if (collisionNum == 0){
 				jumpTimer = 0;
 			}
@@ -161,6 +180,7 @@ void Hero::update(float seconds)
 		//weapon->update(this, static_cast<Entity *>(NULL));
 		weapon->setPosition(getX(), getY());
 	}
+
 }
 
 void Hero::render(sf::RenderWindow &window)
@@ -176,21 +196,21 @@ void Hero::render(sf::RenderWindow &window)
 
 void Hero::onHit(float dmg)
 {
-	if (dmg > armor)
-		HP = HP - (dmg - armor / 4 + rand() % 3);
+	if (dmg > stats_.armor)
+		stats_.HP = stats_.HP - (dmg - stats_.armor / 4 + rand() % 3);
 	else
-		HP = HP - rand() % 5;
+		stats_.HP = stats_.HP - rand() % 5;
 }
 
 
 
 void Hero::setExperience(int add_exp)
 {
-	experience_ += add_exp;
-	while (experience_ >= 100 * level_)
+	stats_.experience_ += add_exp;
+	while (stats_.experience_ >= 100 * stats_.level_)
 	{
-		++level_;
-		experience_ -= 100 * level_;
+		++stats_.level_;
+		stats_.experience_ -= 100 * stats_.level_;
 	}
 }
 
