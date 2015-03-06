@@ -3,13 +3,19 @@
 
 
 #include "Game.h"
-#include "Enemy1.h"
-#include "Spear.h"
 #include "Constants.h"
-#include "Powerup.h"
+
+std::vector<Entity *> Game::entityRegistry;
 
 Game::Game()
 {
+	entityRegistry.clear();
+
+	theHero = new Hero;
+	entityRegistry.push_back(theHero);
+
+	levels.createEntities();
+
 	// Create game render window
 	window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Chamber's Labyrinth");
 	window.setMouseCursorVisible(true);
@@ -29,19 +35,11 @@ Game::Game()
 	minimap.setSize(1280, 720);
 	minimap.setCenter(1280, 720);
 
+	camera.setCenter(710, theHero->getY() - 100);
 }
 
 void Game::CreateEntities()
 {
-	theHero = new Hero;
-	entityRegistry.push_back(theHero);
-
-	Entity * enemy = new Enemy1;
-	entityRegistry.push_back(enemy);
-
-	Entity * cookie = new PowerupCookie;
-	cookie->setPosition(500.f, 800.f);
-	entityRegistry.push_back(cookie);
 
 }
 
@@ -59,15 +57,7 @@ void Game::mainLoop()
 			titleUpdate();
 		else if (GameState == inGame){
 			gameUpdate();
-			theHero->setCollisionNum(1);
-			for (int i = 0; i < levels.platforms.size(); i++)
-			{
-				collision(theHero, levels.platforms[i].getCollisionRect());
 			}
-			//Exclude hero
-			for (int i = 1; i < entityRegistry.size(); i++)
-				hitCollision(theHero, entityRegistry[i]);
-		}
 		else if (GameState == pause)
 			pauseUpdate();
 		else if (GameState == gameOver)
@@ -163,10 +153,10 @@ void Game::collision(Hero *hero, sf::FloatRect wallBounds){
 		// Verifying if we need to apply collision to the vertical axis, else we apply to horizontal axis
 		if (area.width > area.height)
 		{
-			if (area.contains({ area.left, wallBounds.top }))
+			if (area.contains({ area.left, wallBounds.top}))
 				
 			{
-				hero->setPosition(hero->getX(), hero->getY() - area.height);
+				hero->setPosition(hero->getX(), hero->getY() - area.height + 12);
 
 				// Down side crash 
 				hero->setCollisionNum(0);
@@ -273,6 +263,14 @@ void Game::gameUpdate()
 	{
 		entityRegistry[i]->update(time);
 	}
+	theHero->setCollisionNum(1);
+	for (int i = 0; i < levels.platforms.size(); i++)
+	{
+		collision(theHero, levels.platforms[i].getCollisionRect());
+	}
+	//Exclude hero
+	for (int i = 1; i < entityRegistry.size(); i++)
+		hitCollision(theHero, entityRegistry[i]);
 
 	// Camera
 	camera.setSize(sf::Vector2f(1280, 720));
