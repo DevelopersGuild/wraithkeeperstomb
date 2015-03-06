@@ -9,13 +9,6 @@ std::vector<Entity *> Game::entityRegistry;
 
 Game::Game()
 {
-	entityRegistry.clear();
-
-	theHero = new Hero;
-	entityRegistry.push_back(theHero);
-
-	levels.createEntities();
-
 	// Create game render window
 	window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Chamber's Labyrinth");
 	window.setMouseCursorVisible(true);
@@ -29,6 +22,7 @@ Game::Game()
 
 	GameState = titleScreen;
 
+
 	CreateEntities();
 	LoadStats();
 
@@ -40,7 +34,12 @@ Game::Game()
 
 void Game::CreateEntities()
 {
+	entityRegistry.clear();
 
+	theHero = new Hero;
+	entityRegistry.push_back(theHero);
+
+	levels.createEntities();
 }
 
 void Game::mainLoop()
@@ -130,8 +129,6 @@ void Game::handleEvent(sf::Event event)
 				for (auto &it : entityRegistry) {
 					delete it;
 				}
-
-				entityRegistry.clear();
 
 				CreateEntities();
 
