@@ -1,4 +1,6 @@
 #include "Hero.h"
+#include "Spear.h"
+
 #include "Constants.h"
 #include <ctime>
 
@@ -28,6 +30,7 @@ Hero::Hero()
 	faceRight = true;
 
 	srand((unsigned int)time(NULL));
+	giveWeapon(new Spear(this));
 }
 
 void Hero::setCollisionNum(int somethingUnderneath){
@@ -152,14 +155,22 @@ void Hero::update(float seconds)
 			Sprite.setPosition(Sprite.getPosition().x, 1360);
 		}
 	}
+	if (weapon != 0)
+	{
+		//weapon->update(this, static_cast<Entity *>(NULL));
+		weapon->setPosition(getX(), getY());
+	}
 }
 
 void Hero::render(sf::RenderWindow &window)
 {
-	Sprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 128, 64, 128));
-	if (is_alive_)
+	if (is_alive_){
+		Sprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 128, 64, 128));
 		window.draw(Sprite);
-
+		if (weapon != 0){
+			weapon->render(window);
+		}
+	}
 }
 
 void Hero::onHit(float dmg)
@@ -180,4 +191,13 @@ void Hero::setExperience(int add_exp)
 		++level_;
 		experience_ -= 100 * level_;
 	}
+}
+
+void Hero::giveWeapon(Weapons * newWeapon)
+{
+	if (weapon != 0)
+	{
+		delete weapon;
+	}
+	weapon = newWeapon;
 }

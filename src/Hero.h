@@ -2,7 +2,10 @@
 #define HERO_H
 
 #include "Entity.h"
+#include "Weapons.h"
 #include <SFML/Graphics.hpp>
+
+class Weapons;
 
 class Hero : public Entity
 {
@@ -27,6 +30,8 @@ private:
 	int level_;
 	int experience_;
 
+	Weapons * weapon = 0;
+
 	void walkAnim();			//Animation sequence for walking
 	void jump(float seconds);
 public:
@@ -42,6 +47,8 @@ public:
 
 	void setLevel(int level) { level_ = level; }
 	void setHP(int hp) { HP = hp; }
+
+	void giveWeapon(Weapons * weapon);
 
 	// Accessors
 	const float getSpeedX()

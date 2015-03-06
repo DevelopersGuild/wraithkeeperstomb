@@ -36,14 +36,13 @@ void Game::CreateEntities()
 	theHero = new Hero;
 	entityRegistry.push_back(theHero);
 
-	enemy = new Enemy1;
+	Entity * enemy = new Enemy1;
 	entityRegistry.push_back(enemy);
 
 	Entity * cookie = new PowerupCookie;
 	cookie->setPosition(500.f, 800.f);
 	entityRegistry.push_back(cookie);
 
-	spear = new Spear(theHero);
 }
 
 void Game::mainLoop()
@@ -65,8 +64,9 @@ void Game::mainLoop()
 			{
 				collision(theHero, levels.platforms[i].getCollisionRect());
 			}
-			if (enemy)
-				hitCollision(theHero, enemy);
+			//Exclude hero
+			for (int i = 1; i < entityRegistry.size(); i++)
+				hitCollision(theHero, entityRegistry[i]);
 		}
 		else if (GameState == pause)
 			pauseUpdate();
@@ -205,7 +205,6 @@ void Game::hitCollision(Entity *getsHit, Entity *hitter)
 	if (getsHit->getCollisionRect().intersects(hitter->getCollisionRect()))
 	{
 		getsHit->onHit(hitter->getDamage());
-		std::cout << "hit!" << std::endl;
 	}
 }
 
@@ -274,8 +273,6 @@ void Game::gameUpdate()
 	{
 		entityRegistry[i]->update(time);
 	}
-	spear->update(theHero, enemy);
-	spear->setPosition(theHero->getX(), theHero->getY());
 
 	// Camera
 	camera.setSize(sf::Vector2f(1280, 720));
@@ -331,8 +328,6 @@ void Game::render()
 		for (auto &entity = entityRegistry.begin() + 1; entity != entityRegistry.end();) {
 			if (!(*entity)->IsAlive())
 			{
-				if (enemy == *entity)
-					enemy = nullptr;
 				delete *entity;
 				entity = entityRegistry.erase(entity);
 			}
@@ -349,7 +344,6 @@ void Game::render()
 			entityRegistry[i]->render(window);
 			window.setView(camera);
 		}
-		spear->render(window);
 	}
 	else if (GameState == pause)
 	{

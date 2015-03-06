@@ -4,6 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include "Hero.h"
 
+class Hero;
+
 class Weapons
 {
 protected:
