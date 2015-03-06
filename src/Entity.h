@@ -16,6 +16,10 @@ public:
 	virtual void render(sf::RenderWindow& window);
 	virtual void update(float time);
 
+	void doPhysics();
+
+	void setCollisionNum(int);
+
 	virtual void onHit(float dmg)
 	{ return; }
 

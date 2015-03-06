@@ -9,8 +9,6 @@ private:
 	sf::Vector2f pos;
 	sf::Vector2f size;
 	sf::RectangleShape rec;
-	sf::Texture ground;
-
 public:
 	Platform();
 	Platform(sf::Vector2f nPos, sf::Vector2f nSize);

@@ -21,11 +21,15 @@ private:
 	} background_;
 
 	sf::RectangleShape back;
+
+	void createPlatform(float, float, float, float);
+
 public:
-	Platform platform;
+	std::vector<Platform> platforms;
 
 public:
 	Levels();
+	void createEntities();
 	void update();
 	void render(sf::RenderWindow &);
 	void renderPlats(sf::RenderWindow &);

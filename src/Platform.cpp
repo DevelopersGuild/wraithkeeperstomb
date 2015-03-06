@@ -1,5 +1,7 @@
 #include "Platform.h"
 
+sf::Texture * platform_ground_texture = 0;
+
 Platform::Platform()
 {
 	setTexture();
@@ -25,9 +27,13 @@ void Platform::setPosition(sf::Vector2f nPos)
 }
 
 void Platform::setTexture(){
-	ground.loadFromFile("../assets/sprites/GroundTexture.png");
-	ground.setRepeated(true);
-	rec.setTexture(&ground);
+	if (platform_ground_texture == 0)
+	{
+		platform_ground_texture = new sf::Texture;
+		platform_ground_texture->loadFromFile("../assets/sprites/GroundTexture.png");
+		platform_ground_texture->setRepeated(true);
+	}
+	rec.setTexture(platform_ground_texture);
 	rec.setTextureRect({ 0, 0, 200, 32 });
 }
 

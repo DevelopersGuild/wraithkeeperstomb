@@ -2,7 +2,10 @@
 #define WEAPONS_H
 
 #include <SFML/Graphics.hpp>
-#include "Hero.h"
+//#include "Hero.h"
+
+class Hero;
+class Entity;
 
 class Weapons
 {

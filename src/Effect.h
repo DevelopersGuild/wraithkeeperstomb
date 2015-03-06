@@ -31,10 +31,10 @@ public:
 class Buff : public Effect
 {
 private:
-	int modifier_;
+	float modifier_;
 
 public:
-	Buff(int duration, int modifier): Effect(duration, duration), modifier_(modifier) {
+	Buff(int duration, float modifier): Effect(duration, (float)duration), modifier_(modifier) {
 		type_ = Type::Multiplier;
 	}
 	virtual ~Buff() {}

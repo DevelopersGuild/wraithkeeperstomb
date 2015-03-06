@@ -6,6 +6,7 @@
 #include "Enemy1.h"
 #include "Spear.h"
 #include "Constants.h"
+#include "Powerup.h"
 
 Game::Game()
 {
@@ -35,9 +36,13 @@ void Game::CreateEntities()
 	theHero = new Hero;
 	entityRegistry.push_back(theHero);
 
-	enemy = new Enemy1;
+	Entity * enemy = new Enemy1;
 	entityRegistry.push_back(enemy);
-	spear = new Spear(theHero);
+
+	Entity * cookie = new PowerupCookie;
+	cookie->setPosition(500.f, 800.f);
+	entityRegistry.push_back(cookie);
+
 }
 
 void Game::mainLoop()
@@ -54,8 +59,14 @@ void Game::mainLoop()
 			titleUpdate();
 		else if (GameState == inGame){
 			gameUpdate();
-			collision(theHero, levels.platform.getCollisionRect());
-			hitCollision(theHero, enemy);
+			theHero->setCollisionNum(1);
+			for (int i = 0; i < levels.platforms.size(); i++)
+			{
+				collision(theHero, levels.platforms[i].getCollisionRect());
+			}
+			//Exclude hero
+			for (int i = 1; i < entityRegistry.size(); i++)
+				hitCollision(theHero, entityRegistry[i]);
 		}
 		else if (GameState == pause)
 			pauseUpdate();
@@ -147,7 +158,6 @@ void Game::handleEvent(sf::Event event)
 void Game::collision(Hero *hero, sf::FloatRect wallBounds){
 	//Affected area
 	sf::FloatRect area;
-	hero->setCollisionNum(1);
 	if (hero->getCollisionRect().intersects(wallBounds, area))
 	{
 		// Verifying if we need to apply collision to the vertical axis, else we apply to horizontal axis
@@ -195,7 +205,6 @@ void Game::hitCollision(Entity *getsHit, Entity *hitter)
 	if (getsHit->getCollisionRect().intersects(hitter->getCollisionRect()))
 	{
 		getsHit->onHit(hitter->getDamage());
-		std::cout << "hit!" << std::endl;
 	}
 }
 
@@ -264,8 +273,6 @@ void Game::gameUpdate()
 	{
 		entityRegistry[i]->update(time);
 	}
-	spear->update(theHero, enemy);
-	spear->setPosition(theHero->getX(), theHero->getY());
 
 	// Camera
 	camera.setSize(sf::Vector2f(1280, 720));
@@ -319,7 +326,8 @@ void Game::render()
 		//@ Iterate through the vector, delete a "dead" entity and erase it from the vector;
 		//@ Skip the first entity Hero
 		for (auto &entity = entityRegistry.begin() + 1; entity != entityRegistry.end();) {
-			if (!(*entity)->IsAlive()) {
+			if (!(*entity)->IsAlive())
+			{
 				delete *entity;
 				entity = entityRegistry.erase(entity);
 			}
@@ -336,7 +344,6 @@ void Game::render()
 			entityRegistry[i]->render(window);
 			window.setView(camera);
 		}
-		spear->render(window);
 	}
 	else if (GameState == pause)
 	{

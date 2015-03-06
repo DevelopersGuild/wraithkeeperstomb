@@ -3,6 +3,8 @@
 
 #include "Entity.h"
 #include "Effect.h"
+#include "Weapons.h"
+
 
 #include <SFML/Graphics.hpp>
 
@@ -18,7 +20,7 @@ private:
 		float speedMultiplier;
 
 		float armor;
-		float HP;
+		int HP;
 
 		float heroJumpSpeed;
 		int level_;
@@ -26,6 +28,7 @@ private:
 		int experience_;
 	} stats_;
 
+	Weapons *weapon = NULL;
 
 	int collisionNum;
 
@@ -60,6 +63,9 @@ public:
 
 	void setLevel(int level) { stats_.level_ = level; }
 	void setHP(int hp) { stats_.HP = hp; }
+
+
+	void giveWeapon(Weapons * weapon);
 
 	// Accessors
 	const float getSpeedX()

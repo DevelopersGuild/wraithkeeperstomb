@@ -1,5 +1,6 @@
 #include "Hero.h"
 #include "Constants.h"
+#include "Spear.h"
 #include <ctime>
 
 Hero::Hero()
@@ -30,6 +31,7 @@ Hero::Hero()
 	effects_.push_back(new Buff(10, 7.0F));
 
 	srand((unsigned int)time(NULL));
+	giveWeapon(new Spear(this));
 }
 
 void Hero::setCollisionNum(int somethingUnderneath){
@@ -114,8 +116,6 @@ void Hero::update(float seconds)
 	}
 
 
-
-
 	{
 		// Handle movement
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
@@ -124,12 +124,14 @@ void Hero::update(float seconds)
 			anim.x = 1;
 			left();
 		}
+
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
 			faceRight = true;
 			anim.x = 0;
 			right();
 		}
+
 		else
 		{
 			velocity.x = 0;
@@ -159,6 +161,7 @@ void Hero::update(float seconds)
 		{
 			velocity.y += GRAVITY * seconds * seconds * 50 * collisionNum;
 			Sprite.move(0.f, velocity.y);
+			
 			if (collisionNum == 0){
 				jumpTimer = 0;
 			}
@@ -172,14 +175,23 @@ void Hero::update(float seconds)
 			Sprite.setPosition(Sprite.getPosition().x, 1360);
 		}
 	}
+	if (weapon != 0)
+	{
+		//weapon->update(this, static_cast<Entity *>(NULL));
+		weapon->setPosition(getX(), getY());
+	}
+
 }
 
 void Hero::render(sf::RenderWindow &window)
 {
-	Sprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 128, 64, 128));
-	if (is_alive_)
+	if (is_alive_){
+		Sprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 128, 64, 128));
 		window.draw(Sprite);
-
+		if (weapon != 0){
+			weapon->render(window);
+		}
+	}
 }
 
 void Hero::onHit(float dmg)
@@ -200,4 +212,13 @@ void Hero::setExperience(int add_exp)
 		++stats_.level_;
 		stats_.experience_ -= 100 * stats_.level_;
 	}
+}
+
+void Hero::giveWeapon(Weapons * newWeapon)
+{
+	if (weapon != 0)
+	{
+		delete weapon;
+	}
+	weapon = newWeapon;
 }

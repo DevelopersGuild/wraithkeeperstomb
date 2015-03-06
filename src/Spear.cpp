@@ -10,6 +10,7 @@ Spear::Spear(Hero *hero)
 	Sprite.setPosition(hero->getX(), hero->getY());
 
 	cooldown.restart().asSeconds();
+	damage = SPEAR_DAMAGE;
 	range = SPEAR_RANGE;
 	crit_chance = SPEAR_CRIT_CHANCE;
 	crit_multiplier = SPEAR_CRIT_MULTIPLIER;
@@ -19,9 +20,9 @@ Spear::Spear(Hero *hero)
 	srand((unsigned int)time(NULL));
 }
 
-const sf::FloatRect getCollisionRect(Hero *hero)
+const sf::FloatRect Spear::getCollisionRect(Hero *hero)
 {
-	sf::FloatRect collisionRect(hero->getX(), hero->getY(), SPEAR_RANGE, 32.f);
+	sf::FloatRect collisionRect(hero->getX(), hero->getY(), range, 32.f);
 	return collisionRect;
 }
 
@@ -29,8 +30,7 @@ void Spear::attack(Hero* hero, Entity* &enemy)
 {
 	if (cooldown.getElapsedTime().asSeconds() > SPEAR_COOLDOWN)
 	{
-		sf::FloatRect collisionRect(hero->getX(), hero->getY(), SPEAR_RANGE, 32.f);
-		std::cout << "attacked" << std::endl;
+		sf::FloatRect collisionRect(hero->getX(), hero->getY() - 137, range, 32.f); //137 = y-origin of spear
 		//Show animation here
 		if (collisionRect.intersects(enemy->getCollisionRect()))
 		{
