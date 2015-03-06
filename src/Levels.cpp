@@ -25,6 +25,12 @@ Levels::Levels()
 
 	createPlatform(500.f, 900.f,350.f, 50.f);
 
+	createPlatform(1000.f, 900.f, 50.f, 50.f);
+
+	createPlatform(1200.f, 900.f, 50.f, 50.f);
+
+	createPlatform(1400.f, 900.f, 50.f, 50.f);
+
 	createPlatform(700.f, 1100.f, 350.f, 50.f);
 }
 
