@@ -1,4 +1,9 @@
 #include "Levels.h"
+#include "Powerup.h"
+#include "Entity.h"
+#include "Enemy1.h"
+#include "Spear.h"
+#include <vector>
 
 Levels::Levels()
 {
@@ -25,13 +30,27 @@ Levels::Levels()
 
 	createPlatform(500.f, 900.f,350.f, 50.f);
 
-	createPlatform(1000.f, 900.f, 50.f, 50.f);
+	createPlatform(1000.f, 910.f, 50.f, 50.f);
 
-	createPlatform(1200.f, 900.f, 50.f, 50.f);
+	createPlatform(1230.f, 890.f, 50.f, 50.f);
 
-	createPlatform(1400.f, 900.f, 50.f, 50.f);
+	createPlatform(1450.f, 920.f, 50.f, 50.f);
 
 	createPlatform(700.f, 1100.f, 350.f, 50.f);
+}
+
+void Levels::createEntities()
+{
+	Entity * enemy = new Enemy1;
+	Game::entityRegistry.push_back(enemy);
+
+	Entity * cookie = new PowerupCookie;
+	cookie->setPosition(500.f, 800.f);
+	Game::entityRegistry.push_back(cookie);
+
+	cookie = new PowerupSpear;
+	cookie->setPosition(800.f, 800.f);
+	Game::entityRegistry.push_back(cookie);
 }
 
 void Levels::createPlatform(float posX, float posY, float sizeX, float sizeY)

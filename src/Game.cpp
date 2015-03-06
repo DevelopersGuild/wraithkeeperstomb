@@ -3,13 +3,19 @@
 
 
 #include "Game.h"
-#include "Enemy1.h"
-#include "Spear.h"
 #include "Constants.h"
-#include "Powerup.h"
+
+std::vector<Entity *> Game::entityRegistry;
 
 Game::Game()
 {
+	entityRegistry.clear();
+
+	theHero = new Hero;
+	entityRegistry.push_back(theHero);
+
+	levels.createEntities();
+
 	// Create game render window
 	window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Chamber's Labyrinth");
 	window.setMouseCursorVisible(true);
@@ -33,15 +39,6 @@ Game::Game()
 
 void Game::CreateEntities()
 {
-	theHero = new Hero;
-	entityRegistry.push_back(theHero);
-
-	Entity * enemy = new Enemy1;
-	entityRegistry.push_back(enemy);
-
-	Entity * cookie = new PowerupCookie;
-	cookie->setPosition(500.f, 800.f);
-	entityRegistry.push_back(cookie);
 
 }
 

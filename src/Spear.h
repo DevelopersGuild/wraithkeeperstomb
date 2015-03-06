@@ -23,4 +23,16 @@ public:
 
 };
 
+class Spear2 : public Spear
+{
+public:
+	Spear2(Hero *hero) :Spear(hero)
+	{
+		Texture.loadFromFile("../assets/sprites/spear2.png");
+		Sprite.setTexture(Texture);
+		Sprite.setOrigin(32, 128);
+		Sprite.setPosition(280, 1360);
+	}
+};
+
 #endif

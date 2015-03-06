@@ -30,6 +30,7 @@ Hero::Hero()
 	faceRight = true;
 
 	srand((unsigned int)time(NULL));
+	
 	giveWeapon(new Spear(this));
 }
 

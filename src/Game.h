@@ -38,8 +38,6 @@ private:
 
 	Levels levels;
 
-	std::vector<Entity *> entityRegistry;
-
 	void update();
 	void render();
 	void handleEvent(sf::Event);
@@ -62,6 +60,8 @@ public:
 	void mainLoop();
 
 	static Hero * getHero();
+
+	static std::vector<Entity *> entityRegistry;
 };
 
 

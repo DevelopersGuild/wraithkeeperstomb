@@ -40,7 +40,7 @@ class PowerupSpear : public Powerup
 public:
 	PowerupSpear()
 	{
-		Texture.loadFromFile("../assets/sprites/spear1.png");
+		Texture.loadFromFile("../assets/sprites/spear2.png");
 		Sprite.setTexture(Texture);
 		Sprite.setOrigin(0, 0);
 		Sprite.setPosition(500.f, 800.f);
@@ -48,7 +48,7 @@ public:
 
 	void apply(Hero * hero)
 	{
-		Game::getHero()->giveWeapon(new Spear(Game::getHero()));
+		Game::getHero()->giveWeapon(new Spear2(Game::getHero()));
 	}
 
 };

@@ -34,7 +34,7 @@ void Platform::setTexture(){
 		platform_ground_texture->setRepeated(true);
 	}
 	rec.setTexture(platform_ground_texture);
-	rec.setTextureRect({ 0, 0, 200, 32 });
+	rec.setTextureRect({ 0, 0, (int)(size.x/2), (int)(size.y/2) });
 }
 
 void Platform::render(sf::RenderWindow &window)
