@@ -9,7 +9,7 @@ Hero::Hero()
 	Texture.loadFromFile("../assets/sprites/hero.png");
 	Sprite.setTexture(Texture);
 	Sprite.setOrigin(32, 128);
-	Sprite.setPosition(280, 1360);
+	Sprite.setPosition(720, 1360);
 	sf::Vector2f velocity(sf::Vector2f(0, 0));
 	sf::Vector2i anim(sf::Vector2i(0, 1));
 
