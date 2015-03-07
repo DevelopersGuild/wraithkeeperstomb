@@ -15,6 +15,8 @@ public:
 	virtual ~Entity() { }
 	virtual void render(sf::RenderWindow& window);
 	virtual void update(float time);
+	virtual void freeze() = 0;
+	virtual void knockBack(Entity *hitter) = 0;
 
 	void doPhysics();
 

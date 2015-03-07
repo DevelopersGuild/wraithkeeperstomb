@@ -21,7 +21,7 @@ const float ENEMY_DETECTION_RADIUS = 200.f;
 
 const float ENEMY1_BASE_HP = 100.f;
 const float ENEMY1_BASE_SPEED = 3.f;
-const float ENEMY1_DAMAGE = 20.f;
+const float ENEMY1_DAMAGE = 35.f;
 const float ENEMY1_ARMOR = 10.f;
 
 const float ENEMY2_BASE_HP = 100.f;

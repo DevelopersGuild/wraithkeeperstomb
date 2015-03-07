@@ -12,6 +12,7 @@ Hero::Hero()
 	Sprite.setPosition(720, 1360);
 	sf::Vector2f velocity(sf::Vector2f(0, 0));
 	sf::Vector2i anim(sf::Vector2i(0, 1));
+	invincibilityCD.restart();
 
 	// Initialize basic hero stats
 	stats_.level_ = HERO_BASE_LEVEL;
@@ -196,10 +197,14 @@ void Hero::render(sf::RenderWindow &window)
 
 void Hero::onHit(float dmg)
 {
-	if (dmg > stats_.armor)
-		stats_.HP = stats_.HP - (dmg - stats_.armor / 4 + rand() % 3);
-	else
-		stats_.HP = stats_.HP - rand() % 5;
+	if (invincibilityCD.getElapsedTime().asSeconds() > 1)
+	{
+		invincibilityCD.restart();
+		if (dmg > stats_.armor)
+			stats_.HP = stats_.HP - (dmg - stats_.armor / 3 + rand() % 3);
+		else
+			stats_.HP = stats_.HP - rand() % 5;
+	}
 }
 
 
@@ -221,4 +226,18 @@ void Hero::giveWeapon(Weapons * newWeapon)
 		delete weapon;
 	}
 	weapon = newWeapon;
+}
+
+void Hero::knockBack(Entity *hitter)
+{
+	if ((getX() - hitter->getX()) <= 1)
+	{
+		velocity.x = -stats_.speed;
+		Sprite.move((3 * velocity.x), 0.f);
+	}
+	else
+	{
+		velocity.x = stats_.speed;
+		Sprite.move((3 * velocity.x), 0.f);
+	}
 }

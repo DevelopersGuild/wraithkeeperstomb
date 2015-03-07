@@ -52,3 +52,21 @@ void Enemies::onHit(float dmg)
 	else
 		HP = HP - rand() % 10;
 }
+
+void Enemies::freeze()
+{
+	if (isChase)
+		isChase = false;
+}
+
+void Enemies::knockBack(Entity *hitter)
+{
+	if ((getX() - hitter->getX()) <= 1)
+	{
+		Sprite.move((3 * -speed), 0.f);
+	}
+	else
+	{
+		Sprite.move((3 * speed), 0.f);
+	}
+}

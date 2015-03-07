@@ -13,7 +13,7 @@ class Hero : public Entity
 private:
 	sf::Vector2f velocity;
 	sf::Vector2i anim;		//Tracker for hero sprite frames
-
+	sf::Clock invincibilityCD;
 
 	struct {
 		float speed;
@@ -66,6 +66,9 @@ public:
 
 
 	void giveWeapon(Weapons * weapon);
+
+	void freeze() {}
+	void knockBack(Entity *hitter);
 
 	// Accessors
 	const float getSpeedX()

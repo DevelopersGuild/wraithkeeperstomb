@@ -16,6 +16,8 @@ public:
 
 	virtual void apply(Hero * hero) = 0;
 
+	void freeze(){};
+	void knockBack(Entity *hitter){};
 };
 
 class PowerupCookie : public Powerup

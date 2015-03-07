@@ -21,6 +21,7 @@ private:
 
 	sf::Clock clock;	//Starts the clock
 	sf::Time deltaTime;	//Difference in time
+	sf::Clock knockBackTime;
 
 	//Camera
 	sf::View camera;

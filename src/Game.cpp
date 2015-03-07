@@ -30,6 +30,8 @@ Game::Game()
 	minimap.setCenter(1280, 720);
 
 	camera.setCenter(710, theHero->getY() - 100);
+
+	knockBackTime.restart();
 }
 
 void Game::CreateEntities()
@@ -192,7 +194,15 @@ void Game::hitCollision(Entity *getsHit, Entity *hitter)
 	if (getsHit->getCollisionRect().intersects(hitter->getCollisionRect()))
 	{
 		getsHit->onHit(hitter->getDamage());
+		if (knockBackTime.getElapsedTime().asMilliseconds() > 300)
+		{
+			getsHit->knockBack(hitter);
+			
+			knockBackTime.restart();
+		}
+		hitter->freeze();
 	}
+
 }
 
 void Game::loadAssets()
