@@ -87,7 +87,7 @@ bool Hero::attack()
 			return true;
 	return false;
 }
-
+/*
 void Hero::jump(float seconds)
 {
 	if (jumpTimer < 22 && jumpCooldown > 3)
@@ -104,13 +104,25 @@ void Hero::jump(float seconds)
 		jumpCooldown = 0;
 	}
 }
+*/
 
+void Hero::jump(float seconds){
+	
+	collisionNum = 1;
+		velocity.y = -32;
+
+		if (collisionNum == 2){
+			velocity.y = 0;
+		}
+		if (velocity.y < 0){
+			Sprite.move(velocity);
+			velocity.y += GRAVITY;
+		}
+	
+	
+}
 void Hero::update(float seconds)
 {
-	if (jumpTimer != 0)
-		jump(seconds);
-
-
 	for (auto &iter = effects_.begin(); iter != effects_.end();) {
 		if ((*iter)->HasTimedOut())
 		{
@@ -158,29 +170,30 @@ void Hero::update(float seconds)
 		}
 
 		// Jump
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && (Sprite.getPosition().y == 1360 || collisionNum == 0))
 			jump(seconds);
+			//jump(seconds);
 
 		// Check if alive
 		if (stats_.HP <= 0)
 			is_alive_ = false;
 
 		//Gravity implementation
-		if (Sprite.getPosition().y + Sprite.getScale().y < 1350 || collisionNum == 0) //This should later be changed to a collision with groud boolean
+		if (Sprite.getPosition().y + Sprite.getScale().y < 1350)// || collisionNum == 0) //This should later be changed to a collision with groud boolean
 		{
-			velocity.y += GRAVITY * seconds * seconds * 50 * collisionNum;
+			velocity.y += GRAVITY * seconds * seconds * 265 * collisionNum;
 			Sprite.move(0.f, velocity.y);
 			
 			if (collisionNum == 0){
-				jumpTimer = 0;
+				velocity.y = 0;
+
 			}
 		}
 		else
 		{
-			
 			velocity.y = 0;
-			if (jumpCooldown < 4)
-				jumpCooldown++;
+			//if (jumpCooldown < 4)
+				//jumpCooldown++;
 			Sprite.setPosition(Sprite.getPosition().x, 1360);
 		}
 	}

@@ -30,6 +30,8 @@ private:
 
 	Weapons *weapon = NULL;
 
+	sf::Clock jumpClock;
+
 	int collisionNum;
 
 	int xFrame;					//Current frame in the x grid
@@ -49,14 +51,14 @@ private:
 
 
 	void walkAnim();			//Animation sequence for walking
-	void jump(float seconds);
+	//void jump(float seconds);
 public:
 	Hero();
 	void update(float seconds);
 	void render(sf::RenderWindow &window);
 	void onHit(float dmg);
 	bool attack();
-	void jump();
+	void jump(float seconds);
 	void left();
 	void right();
 	void setCollisionNum(int);

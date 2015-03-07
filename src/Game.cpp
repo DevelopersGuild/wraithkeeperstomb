@@ -164,7 +164,7 @@ void Game::collision(Hero *hero, sf::FloatRect wallBounds){
 			{
 				//Up side crash
 				hero->setPosition(hero->getX(), hero->getY() + area.height);
-
+				hero->setCollisionNum(2);
 			}
 			
 		}

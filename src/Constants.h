@@ -14,7 +14,7 @@ const float HERO_BASE_DAMAGE = 20.f;
 const float HERO_ARMOR_PER_LEVEL = 9.f;
 const float HERO_DAMAGE_PER_LEVEL = 8.f;
 
-const float GRAVITY = 40.f;
+const float GRAVITY = 11.f;
 
 //Enemies
 const float ENEMY_DETECTION_RADIUS = 200.f;
