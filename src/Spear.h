@@ -8,8 +8,6 @@
 
 class Spear : public Weapons
 {
-private:
-	sf::Clock cooldown;
 public:
 	Spear(Hero *);
 	virtual ~Spear();
@@ -18,8 +16,8 @@ public:
 	const sf::Sprite getSprite()
 	{ return Sprite; }
 	const sf::FloatRect getCollisionRect(Hero *);
-	void update(Hero *, Entity *&);
-	void attack(Hero *, Entity *&);
+	void update();
+	bool attack();
 
 };
 

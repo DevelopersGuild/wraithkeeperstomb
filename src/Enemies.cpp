@@ -46,7 +46,7 @@ void Enemies::onHeroDetected(Hero* hero)
 
 void Enemies::onHit(float dmg)
 {
-	std::cout << "hit";
+	std::cout << "attacked";
 	if (dmg > armor)
 		HP = HP - (dmg - armor / 4);
 	else
@@ -63,10 +63,10 @@ void Enemies::knockBack(Entity *hitter)
 {
 	if ((getX() - hitter->getX()) <= 1)
 	{
-		Sprite.move((3 * -speed), 0.f);
+		Sprite.move((15 * -speed), 0.f);
 	}
 	else
 	{
-		Sprite.move((3 * speed), 0.f);
+		Sprite.move((15 * speed), 0.f);
 	}
 }

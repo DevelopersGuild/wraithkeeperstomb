@@ -48,7 +48,7 @@ private:
 	void gameUpdate();
 	void pauseUpdate();
 	void gameOverUpdate();
-	void hitCollision(Entity *hero, Entity *enemy);
+	void hitCollision(Entity *, Entity *);
 
 	static Hero *theHero;
 

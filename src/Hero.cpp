@@ -80,6 +80,14 @@ void Hero::right()
 	walkAnim();
 }
 
+bool Hero::attack()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+		if(weapon->attack())
+			return true;
+	return false;
+}
+
 void Hero::jump(float seconds)
 {
 	if (jumpTimer < 22 && jumpCooldown > 3)
@@ -180,6 +188,7 @@ void Hero::update(float seconds)
 	{
 		//weapon->update(this, static_cast<Entity *>(NULL));
 		weapon->setPosition(getX(), getY());
+		weapon->update();
 	}
 
 }

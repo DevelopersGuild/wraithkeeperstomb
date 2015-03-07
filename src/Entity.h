@@ -39,6 +39,9 @@ public:
 	const sf::FloatRect getCollisionRect()
 	{ return Sprite.getGlobalBounds(); }
 
+	virtual const sf::FloatRect getDamagingRect()
+	{ return Sprite.getGlobalBounds(); }
+
 	virtual bool IsAlive() const
 	{ return is_alive_; }
 };

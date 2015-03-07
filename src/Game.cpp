@@ -191,7 +191,7 @@ void Game::collision(Hero *hero, sf::FloatRect wallBounds){
 
 void Game::hitCollision(Entity *getsHit, Entity *hitter)
 {
-	if (getsHit->getCollisionRect().intersects(hitter->getCollisionRect()))
+	if (getsHit->getCollisionRect().intersects(hitter->getDamagingRect()))
 	{
 		getsHit->onHit(hitter->getDamage());
 		if (knockBackTime.getElapsedTime().asMilliseconds() > 300)
@@ -279,6 +279,10 @@ void Game::gameUpdate()
 	for (int i = 1; i < entityRegistry.size(); i++)
 		hitCollision(theHero, entityRegistry[i]);
 
+	//weapon collision against enemy(ies)
+	if (theHero->attack())
+		for (int i = 1; i < entityRegistry.size(); i++)
+			hitCollision(entityRegistry[i], theHero);
 	// Camera
 	camera.setSize(sf::Vector2f(1280, 720));
 	// If player is within the boundaries of the screen

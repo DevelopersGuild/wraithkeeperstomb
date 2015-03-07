@@ -55,6 +55,7 @@ public:
 	void update(float seconds);
 	void render(sf::RenderWindow &window);
 	void onHit(float dmg);
+	bool attack();
 	void jump();
 	void left();
 	void right();
@@ -98,6 +99,16 @@ public:
 	sf::Sprite getHeroSprite()
 	{
 		return Sprite;
+	}
+
+	const sf::FloatRect getDamagingRect()
+	{
+		return weapon->getAttackRect(faceRight);
+	}
+
+	const float getDamage()
+	{
+		return weapon->getDamage();
 	}
 
 	void update();

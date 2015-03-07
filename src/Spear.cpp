@@ -26,27 +26,21 @@ const sf::FloatRect Spear::getCollisionRect(Hero *hero)
 	return collisionRect;
 }
 
-void Spear::attack(Hero* hero, Entity* &enemy)
+bool Spear::attack()
 {
 	if (cooldown.getElapsedTime().asSeconds() > SPEAR_COOLDOWN)
 	{
-		sf::FloatRect collisionRect(hero->getX(), hero->getY() - 137, range, 32.f); //137 = y-origin of spear
 		//Show animation here
-		if (collisionRect.intersects(enemy->getCollisionRect()))
-		{
-			enemy->onHit(damage);
-		}
 		cooldown.restart().asSeconds();
+		return true;
 	}
+	else
+		return false;
 }
 
-void Spear::update(Hero* hero, Entity* &enemy)
+void Spear::update()
 {
-	// attack
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-	{
-		attack(hero, enemy);
-	}
+	
 }
 
 Spear::~Spear()
