@@ -54,6 +54,7 @@ private:
 	//void jump(float seconds);
 public:
 	Hero();
+	virtual ~Hero();
 	void update(float seconds);
 	void render(sf::RenderWindow &window);
 	void onHit(float dmg);

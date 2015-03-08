@@ -35,6 +35,7 @@ Hero::Hero()
 	giveWeapon(new Spear(this));
 }
 
+
 void Hero::setCollisionNum(int somethingUnderneath){
 	collisionNum = somethingUnderneath;
 }
@@ -131,6 +132,7 @@ void Hero::update(float seconds)
 			stats_.speed = HERO_BASE_SPEED * stats_.speedMultiplier;
 		}
 		else {
+			stats_.speed = HERO_BASE_SPEED * stats_.speedMultiplier;
 			(*iter)->UpdateAndApply(seconds, &stats_.speed);
 			++iter;
 		}
@@ -262,4 +264,13 @@ void Hero::knockBack(Entity *hitter)
 		velocity.x = stats_.speed;
 		Sprite.move((3 * velocity.x), 0.f);
 	}
+}
+
+Hero::~Hero()
+{
+	for (auto &effect : effects_) {
+		delete effect;
+	}
+
+	effects_.clear();
 }

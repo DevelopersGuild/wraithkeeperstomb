@@ -13,7 +13,7 @@ class Game
 {
 private:
 	enum{
-		titleScreen, inGame, pause, gameOver
+		titleScreen, inGame, pause, victory, gameOver
 	}GameState;
 
 	sf::RenderWindow window;
@@ -31,6 +31,7 @@ private:
 	sf::Font blackcastle;
 	sf::Font century;
 	sf::Text title;
+	sf::Text victoryText;
 	sf::Text pressEnter;
 	sf::Text pauseText;
 	sf::Text pressResume;
@@ -47,6 +48,7 @@ private:
 	void titleUpdate();
 	void gameUpdate();
 	void pauseUpdate();
+	void victoryUpdate();
 	void gameOverUpdate();
 	void hitCollision(Entity *, Entity *);
 

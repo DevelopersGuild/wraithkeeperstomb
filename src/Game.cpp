@@ -61,6 +61,8 @@ void Game::mainLoop()
 			}
 		else if (GameState == pause)
 			pauseUpdate();
+		else if (GameState == victory)
+			victoryUpdate();
 		else if (GameState == gameOver)
 			gameOverUpdate();
 		render();
@@ -222,6 +224,12 @@ void Game::loadAssets()
 	pressEnter.setColor(sf::Color::White);
 	pressEnter.setPosition(420, 425);
 
+	victoryText.setFont(century);
+	victoryText.setString("Victory!");
+	victoryText.setCharacterSize(100);
+	victoryText.setColor(sf::Color::White);
+	victoryText.setPosition(480, 225);
+
 	pauseText.setFont(century);
 	pauseText.setString("Game Paused");
 	pauseText.setCharacterSize(100);
@@ -301,6 +309,12 @@ void Game::gameUpdate()
 	window.setView(camera);
 }
 
+
+void Game::victoryUpdate()
+{
+	window.setView(window.getDefaultView());
+}
+
 void Game::pauseUpdate()
 {
 	window.setView(window.getDefaultView());
@@ -334,7 +348,11 @@ void Game::render()
 
 		//@ Iterate through the vector, delete a "dead" entity and erase it from the vector;
 		//@ Skip the first entity Hero
+		int countEnemies(0);
 		for (auto &entity = entityRegistry.begin() + 1; entity != entityRegistry.end();) {
+			if (dynamic_cast<Enemies*>(*entity)) // check if it is an enemy
+				++countEnemies;
+
 			if (!(*entity)->IsAlive())
 			{
 				delete *entity;
@@ -344,6 +362,10 @@ void Game::render()
 				++entity;
 			}
 		}
+
+
+		if (countEnemies == 0)
+			GameState = victory;
 
 
 		for (int i = 0; i < entityRegistry.size(); i++)
@@ -364,6 +386,10 @@ void Game::render()
         window.draw(youDied);
         window.draw(returnToTitle);
     }
+	else if (GameState == victory)
+	{
+		window.draw(victoryText);
+	}
 
 	// Display window
 	window.display();
