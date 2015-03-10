@@ -32,11 +32,14 @@ private:
 
 	sf::Clock jumpClock;
 
+	enum {stands, walks, jumps, attacks};
+	int action;
 	int collisionNum;
 
 	int xFrame;					//Current frame in the x grid
 	int yFrame;					//Current frame in the y grid
 	int frameTimer;				//Counter for sprite frame duration
+	int atkTime;
 	float jumpCooldown;			//Cooldown counter for jump
 	float jumpTimer;				//Counter for jump duration
 	bool faceRight;				//Boolean for determining direction hero is facing at rest
@@ -49,8 +52,10 @@ private:
 
 	std::vector<Effect*> effects_;
 
-
-	void walkAnim();			//Animation sequence for walking
+	void animate(int);		//Function for handling animations
+	void walkAnim();		//Animation sequence for walking
+	void jumpAnim();		//Animation sequence for jumping
+	void attackAnim();		//Animation sequence for attacking
 	//void jump(float seconds);
 public:
 	Hero();

@@ -30,7 +30,7 @@ Hero::Hero()
 	frameTimer = 0;
 	faceRight = true;
 
-	effects_.push_back(new Buff(10, 7.0F)); //gives 10 sec boost at the beginning of game
+	effects_.push_back(new Buff(10, 7.0F));
 
 	srand((unsigned int)time(NULL));
 	giveWeapon(new Spear(this));
@@ -41,6 +41,38 @@ void Hero::setCollisionNum(int somethingUnderneath){
 	collisionNum = somethingUnderneath;
 }
 
+void Hero::animate(int action)
+{
+	if (velocity.y != 0)
+		action = jumps;
+	switch (action)
+	{
+	case stands:
+		velocity.x = 0;
+		xFrame = 0;
+		anim.y = 0;
+		if (frameTimer != 0 && action!= attacks)
+			frameTimer = 0;
+		if (faceRight)
+			anim.x = 0;
+		else
+			anim.x = 1;
+		break;
+	case walks:
+		if (velocity.y == 0)
+			walkAnim();
+		break;
+	case jumps:
+		jumpAnim();
+		break;
+	case attacks:
+		attackAnim();
+		break;
+	default:
+		break;
+	}
+}
+
 void Hero::walkAnim()
 {
 	//Determine row in sprite sheet
@@ -49,14 +81,14 @@ void Hero::walkAnim()
 	else
 		anim.y = 2;
 	//Move frame forward
-	if (frameTimer > 4)
+	if (frameTimer > 5)
 	{
 		if (xFrame != 4 && xFrame != 9)
 		{
 			frameTimer = 0;
 			xFrame++;
 		}
-		else if (frameTimer > 6)
+		else if (frameTimer > 7)
 		{
 			frameTimer = 0;
 			xFrame++;
@@ -68,25 +100,89 @@ void Hero::walkAnim()
 	frameTimer++;
 }
 
+void Hero::jumpAnim()
+{
+	if (faceRight)
+		anim.y = 3;
+	else
+		anim.y = 4;
+	//Move frame forward
+	if (frameTimer < 3)
+		xFrame = 0;
+	else if (frameTimer < 7)
+		xFrame = 1;
+	else
+		xFrame = 2;
+
+	anim.x = xFrame;
+	frameTimer++;
+}
+
+void Hero::attackAnim()
+{
+	if (faceRight)
+	{
+		anim.y = 5;
+		velocity.x = 4;
+	}
+	else
+	{
+		anim.y = 6;
+		velocity.x = -4;
+	}
+	//Move frame forward
+	if (frameTimer < 7)
+		xFrame = 0;
+	else if (frameTimer < 11)
+	{
+		xFrame = 1;
+		Sprite.move(velocity.x * .6, 0.f);
+	}
+	else if (frameTimer < 17)
+	{
+		xFrame = 2;
+		Sprite.move(velocity.x * .9, 0.f);
+	}
+	else if (frameTimer < 31)
+		xFrame = 3;
+	else
+	{
+		xFrame = 0;
+		Sprite.move(velocity.x * .1, 0.f);
+	}
+	anim.x = xFrame;
+	frameTimer++;
+	atkTime--;
+}
+
 void Hero::left()
 {
 	velocity.x = -stats_.speed;
+	if (velocity.y == 0)
+		action = walks;
+	else
+		anim.x = xFrame = 0;
 	Sprite.move(velocity.x, 0.f);
-	walkAnim();
 }
 
 void Hero::right()
 {
 	velocity.x = stats_.speed;
+	if (velocity.y == 0)
+		action = walks;
+	else
+		anim.x = xFrame = 0;
 	Sprite.move(velocity.x, 0.f);
-	walkAnim();
 }
 
 bool Hero::attack()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-		if(weapon->attack())
+		if (weapon->attack())
+		{
+			atkTime = 40;
 			return true;
+		}
 	return false;
 }
 /*
@@ -108,20 +204,18 @@ void Hero::jump(float seconds)
 }
 */
 
-void Hero::jump(float seconds){
-	
+void Hero::jump(float seconds)
+{
 	collisionNum = 1;
-		velocity.y = -32;
+	velocity.y = -32;
 
-		if (collisionNum == 2){
-			velocity.y = 0;
-		}
-		if (velocity.y < 0){
-			Sprite.move(velocity);
-			velocity.y += GRAVITY;
-		}
-	
-	
+	if (collisionNum == 2){
+		velocity.y = 0;
+	}
+	if (velocity.y < 0){
+		Sprite.move(velocity);
+		velocity.y += GRAVITY;
+	}
 }
 void Hero::update(float seconds)
 {
@@ -155,41 +249,25 @@ void Hero::update(float seconds)
 		}
 	}
 
-
 	{
 		// Handle movement
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		{
 			faceRight = false;
-			anim.x = 1;
 			left();
 		}
-
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
 			faceRight = true;
-			anim.x = 0;
 			right();
 		}
-
 		else
 		{
-			velocity.x = 0;
-			xFrame = 0;
-			if (faceRight)
-			{
-				anim.x = 0; 
-				anim.y = 0;
-			}
-			else
-			{
-				anim.x = 1;
-				anim.y = 0;
-			}
+			action = stands;
 		}
 
 		// Jump
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && (Sprite.getPosition().y == 1360 || collisionNum == 0))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)&& (Sprite.getPosition().y == 1360 || collisionNum == 0))
 			jump(seconds);
 			//jump(seconds);
 
@@ -202,10 +280,9 @@ void Hero::update(float seconds)
 		{
 			velocity.y += GRAVITY * seconds * seconds * 265 * collisionNum;
 			Sprite.move(0.f, velocity.y);
-			
+
 			if (collisionNum == 0){
 				velocity.y = 0;
-
 			}
 		}
 		else
@@ -214,6 +291,10 @@ void Hero::update(float seconds)
 			//if (jumpCooldown < 4)
 				//jumpCooldown++;
 			Sprite.setPosition(Sprite.getPosition().x, 1360);
+		}
+		if (velocity.y != 0)
+		{
+			action = jumps;
 		}
 	}
 	if (weapon != 0)
@@ -228,6 +309,10 @@ void Hero::update(float seconds)
 void Hero::render(sf::RenderWindow &window)
 {
 	if (is_alive_){
+		if (atkTime > 0)
+			animate(attacks);
+		else
+			animate(action);
 		Sprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 128, 64, 128));
 		window.draw(Sprite);
 		if (weapon != 0){
