@@ -38,6 +38,8 @@ private:
     sf::Text youDied;
     sf::Text returnToTitle;
 
+	sf::RectangleShape HPbar;
+
 	Levels levels;
 
 	void update();

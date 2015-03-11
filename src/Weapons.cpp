@@ -50,7 +50,7 @@ bool Weapons::attack()
 	return false;
 }
 
-void Weapons::update()
+void Weapons::update(bool)
 {
 	
 }

@@ -6,7 +6,7 @@ Spear::Spear(Hero *hero)
 {
 	Texture.loadFromFile("../assets/sprites/spear1.png");
 	Sprite.setTexture(Texture);
-	Sprite.setOrigin(30, 137); // change this
+	Sprite.setOrigin(32, 64); // change this
 	Sprite.setPosition(hero->getX(), hero->getY());
 
 	cooldown.restart().asSeconds();
@@ -17,7 +17,20 @@ Spear::Spear(Hero *hero)
 	damage_fluctuation = SPEAR_DMG_FLUCTUATION_RATE * SPEAR_DAMAGE;
 	damage = dmgRandomizer(damage_fluctuation) * critical(crit_multiplier);
 
+	sf::Vector2i anim(sf::Vector2i(0, 0));
+
 	srand((unsigned int)time(NULL));
+}
+
+void Spear::stabAnim()
+{
+	if (atkTime > 34)
+		anim.y = 1;
+	else if (atkTime > 13)
+		anim.y = 2;
+	else
+		anim.y = 1;
+	atkTime--;
 }
 
 const sf::FloatRect Spear::getCollisionRect(Hero *hero)
@@ -30,7 +43,7 @@ bool Spear::attack()
 {
 	if (cooldown.getElapsedTime().asSeconds() > SPEAR_COOLDOWN)
 	{
-		//Show animation here
+		atkTime = 50;
 		cooldown.restart().asSeconds();
 		return true;
 	}
@@ -38,9 +51,17 @@ bool Spear::attack()
 		return false;
 }
 
-void Spear::update()
+void Spear::update(bool faceRight)
 {
-	
+	if (atkTime > -7)
+		stabAnim();
+	else
+		anim.y = 0;
+	if (faceRight)
+		Sprite.setScale(1, 1);
+	else
+		Sprite.setScale(-1, 1);
+	Sprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 64, 64, 64));
 }
 
 Spear::~Spear()

@@ -30,7 +30,7 @@ const float ENEMY2_DAMAGE = 35.f;
 const float ENEMY2_ARMOR = 15.f;
 
 //Weapons
-const float SPEAR_RANGE = 250.f;
+const float SPEAR_RANGE = 125.f;
 const float SPEAR_COOLDOWN = 1.f;
 const float SPEAR_DAMAGE = 25.f;
 const float SPEAR_CRIT_CHANCE = 15.f;

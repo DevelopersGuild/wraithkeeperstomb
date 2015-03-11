@@ -23,6 +23,7 @@ Hero::Hero()
 	is_alive_ = true;
 	stats_.speedMultiplier = 1;
 	stats_.speed = HERO_BASE_SPEED * stats_.speedMultiplier;
+	atkTime = 0;
 	jumpTimer = 0; //Timer for jump function duration
 	jumpCooldown = 0;
 	xFrame = 0;
@@ -30,7 +31,7 @@ Hero::Hero()
 	frameTimer = 0;
 	faceRight = true;
 
-	effects_.push_back(new Buff(10, 7.0F));
+	effects_.push_back(new Buff(10, 7.0F)); //gives 10 sec boost at the beginning of game
 
 	srand((unsigned int)time(NULL));
 	giveWeapon(new Spear(this));
@@ -124,35 +125,49 @@ void Hero::attackAnim()
 	{
 		anim.y = 5;
 		velocity.x = 4;
+		yFrame = 1;
 	}
 	else
 	{
 		anim.y = 6;
 		velocity.x = -4;
+		yFrame = -1;
 	}
 	//Move frame forward
 	if (frameTimer < 7)
+	{
 		xFrame = 0;
+		weapon->setPosition(getX() + 17 * yFrame, getY() - 14);
+	}
 	else if (frameTimer < 11)
 	{
 		xFrame = 1;
 		Sprite.move(velocity.x * .6, 0.f);
+		weapon->setPosition(getX() + 23 * yFrame, getY() - 10);
 	}
 	else if (frameTimer < 17)
 	{
 		xFrame = 2;
 		Sprite.move(velocity.x * .9, 0.f);
+		weapon->setPosition(getX() + 28 * yFrame, getY() - 8);
 	}
-	else if (frameTimer < 31)
+	else if (frameTimer < 38)
+	{
 		xFrame = 3;
+		weapon->setPosition(getX() + 38 * yFrame, getY() - 8);
+	}
 	else
 	{
 		xFrame = 0;
 		Sprite.move(velocity.x * .1, 0.f);
+		weapon->setPosition(getX(), getY() - 14);
 	}
 	anim.x = xFrame;
 	frameTimer++;
+	if (weapon != 0)
+		weapon->update(faceRight);
 	atkTime--;
+
 }
 
 void Hero::left()
@@ -177,10 +192,10 @@ void Hero::right()
 
 bool Hero::attack()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && velocity.y == 0)
 		if (weapon->attack())
 		{
-			atkTime = 40;
+			atkTime = 50;
 			return true;
 		}
 	return false;
@@ -300,10 +315,10 @@ void Hero::update(float seconds)
 	if (weapon != 0)
 	{
 		//weapon->update(this, static_cast<Entity *>(NULL));
-		weapon->setPosition(getX(), getY());
-		weapon->update();
+		if (atkTime == 0)
+			weapon->setPosition(getX(), getY() - 26);
+		weapon->update(faceRight);
 	}
-
 }
 
 void Hero::render(sf::RenderWindow &window)

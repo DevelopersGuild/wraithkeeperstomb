@@ -212,6 +212,13 @@ void Game::loadAssets()
 	century.loadFromFile("../assets/fonts/century.ttf");
 	blackcastle.loadFromFile("../assets/fonts/blackcastle.ttf");
 
+	HPbar.setSize(sf::Vector2f(150, 6));
+	HPbar.setOutlineColor(sf::Color::White);
+	HPbar.setFillColor(sf::Color::Green);
+	HPbar.setOutlineThickness(1.5);
+	HPbar.setOrigin(0, 6);
+	HPbar.setPosition(camera.getCenter().x - 300, camera.getCenter().y- 580);
+
 	title.setFont(blackcastle);
 	title.setString("Chamber's Labyrinth");
 	title.setCharacterSize(100);
@@ -307,6 +314,12 @@ void Game::gameUpdate()
 	}
 	camera.zoom(.5);
 	window.setView(camera);
+	if (float(theHero->getHP()) / HERO_BASE_HP > 0)
+		HPbar.setSize(sf::Vector2f(150 * (float(theHero->getHP()) / HERO_BASE_HP), 6));
+	else
+		HPbar.setSize(sf::Vector2f(0, 6));
+
+	HPbar.setPosition(camera.getCenter().x-300, camera.getCenter().y-150);
 }
 
 
@@ -375,6 +388,8 @@ void Game::render()
 			entityRegistry[i]->render(window);
 			window.setView(camera);
 		}
+		
+		window.draw(HPbar);
 	}
 	else if (GameState == pause)
 	{

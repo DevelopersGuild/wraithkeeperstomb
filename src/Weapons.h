@@ -22,7 +22,7 @@ public:
 	Weapons();
 	virtual ~Weapons();
 	virtual void render(sf::RenderWindow& window);
-	virtual void update();
+	virtual void update(bool);
 	float dmgRandomizer(float fluctuation);
 	float critical(float multiplier);
 	void setPosition(float, float);

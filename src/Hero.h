@@ -80,6 +80,10 @@ public:
 	void knockBack(Entity *hitter);
 
 	// Accessors
+	const bool getFaceRight()
+	{
+		return faceRight;
+	}
 	const float getSpeedX()
 	{
 		return velocity.x;
