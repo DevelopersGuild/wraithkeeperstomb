@@ -31,7 +31,8 @@ Hero::Hero()
 	frameTimer = 0;
 	faceRight = true;
 
-	effects_.push_back(new Buff(10, 7.0F)); //gives 10 sec boost at the beginning of game
+	effects_.push_back(new Buff(10, 7.0F, "Speed Buff")); //gives 10 sec boost at the beginning of game
+	effects_.push_back(new Debuff(10, 10.0F, "Poison"));
 
 	srand((unsigned int)time(NULL));
 	giveWeapon(new Spear(this));
@@ -232,37 +233,28 @@ void Hero::jump(float seconds)
 		velocity.y += GRAVITY;
 	}
 }
+
 void Hero::update(float seconds)
 {
-	/*for (auto &iter = effects_.begin(); iter != effects_.end();) {
-		if ((*iter)->HasTimedOut())
-		{
-			delete *iter;
-			iter = effects_.erase(iter);
-			stats_.speed = HERO_BASE_SPEED * stats_.speedMultiplier;
-		}
-		else {
-			stats_.speed = HERO_BASE_SPEED * stats_.speedMultiplier;
-			(*iter)->UpdateAndApply(seconds, &stats_.speed);
-			++iter;
-		}
-	}*/
-
 	//prevent bonuses from increasing over time
 	stats_.speed = HERO_BASE_SPEED * stats_.speedMultiplier;
 
-	for (int i = 0; i < effects_.size(); i++) //iterate through all buffs/debuffs
-	{
-		if (effects_[i]->HasTimedOut())
-		{//when duration of a buff/debuff expires
-			delete effects_[i];
-			effects_.erase(effects_.begin() + i);
+	for (auto &iter = effects_.begin(); iter != effects_.end();) { //iterate through all buffs/debuffs 
+		if ((*iter)->HasTimedOut())
+		{ //when duration of a buff/debuff expires
+			delete *iter;
+			iter = effects_.erase(iter); // returns the next iterator
 		}
-		else
-		{//apply & keeps track on how long a buff/debuff has lasted
-			effects_[i]->UpdateAndApply(seconds, &stats_.speed);
+		else { //apply & keeps track on how long a buff/debuff has lasted
+			if (dynamic_cast<Debuff*>(*iter)) {
+				(*iter)->UpdateAndApply(seconds, &stats_.HP);
+			}
+			else
+				(*iter)->UpdateAndApply(seconds, &stats_.speed);
+			++iter;
 		}
 	}
+
 
 	{
 		// Handle movement

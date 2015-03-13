@@ -1,6 +1,8 @@
 #ifndef HERO_H
 #define HERO_H
 
+#include <list>
+
 #include "Entity.h"
 #include "Effect.h"
 #include "Weapons.h"
@@ -20,7 +22,7 @@ private:
 		float speedMultiplier;
 
 		float armor;
-		int HP;
+		float HP;
 
 		float heroJumpSpeed;
 		int level_;
@@ -45,12 +47,8 @@ private:
 	bool faceRight;				//Boolean for determining direction hero is facing at rest
 	bool inAir;
 
-	//struct {
-	//	std::vector<Buff*> buffs;
-	//	std::vector<Debuff*> debuffs;
-	//} effects_;
 
-	std::vector<Effect*> effects_;
+	std::list<Effect*> effects_;
 
 	void animate(int);		//Function for handling animations
 	void walkAnim();		//Animation sequence for walking
