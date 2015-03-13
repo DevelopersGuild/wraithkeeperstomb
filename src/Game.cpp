@@ -194,7 +194,7 @@ void Game::collision(Hero *hero, sf::FloatRect wallBounds){
 void Game::hitCollision(Entity *getsHit, Entity *hitter)
 {
 
-	if (dynamic_cast<Enemies*>(hitter) && getsHit->getCollisionRect().intersects(hitter->getDamagingRect()))
+	if ((dynamic_cast<Enemies*>(hitter) || dynamic_cast<Hero*>(hitter)) && getsHit->getCollisionRect().intersects(hitter->getDamagingRect()))
 	{
 		getsHit->onHit(hitter->getDamage());
 		if (knockBackTime.getElapsedTime().asMilliseconds() > 300)

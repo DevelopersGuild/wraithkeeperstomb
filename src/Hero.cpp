@@ -223,7 +223,7 @@ void Hero::jump(float seconds)
 void Hero::jump(float seconds)
 {
 	collisionNum = 1;
-	velocity.y = -32;
+	velocity.y = -HERO_JUMP_VELOCITY;
 
 	if (collisionNum == 2){
 		velocity.y = 0;
