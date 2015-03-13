@@ -30,7 +30,7 @@ void Enemies::right()
 
 bool Enemies::heroDetection(Hero* hero)
 {
-	if ((getX() - hero->getX()) <= ENEMY_DETECTION_RADIUS && (hero->getX() - getX()) <= ENEMY_DETECTION_RADIUS)
+	if ((getX() - hero->getX()) <= ENEMY_DETECTION_RADIUS && (hero->getX() - getX()) <= ENEMY_DETECTION_RADIUS && (getY() - hero->getY()) <= ENEMY_DETECTION_RADIUS)
 		return true;
 	else 
 		return false;
