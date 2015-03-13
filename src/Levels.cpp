@@ -20,7 +20,7 @@ Levels::Levels()
 	ground_.texture.setRepeated(true);
 	ground_.rectangle.setSize(sf::Vector2f(2560, 64));
 	ground_.rectangle.setTexture(&ground_.texture);
-	ground_.rectangle.setTextureRect({ 0, 0, 1000, 32 });
+	ground_.rectangle.setTextureRect({ 0, 0, 1000, 32 });													   
 	ground_.rectangle.setPosition(0, 1340);
 
 	//Minimap Background

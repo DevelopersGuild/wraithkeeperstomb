@@ -23,7 +23,6 @@ Game::Game()
 
 	GameState = titleScreen;
 
-
 	CreateEntities();
 	LoadStats();
 
@@ -107,6 +106,7 @@ void Game::handleEvent(sf::Event event)
 				// Move to pause
 				GameState = pause;
 			}
+
 		}
 	}
 	if (GameState == pause)
@@ -122,7 +122,7 @@ void Game::handleEvent(sf::Event event)
 			}
 		}
 	}
-	if (GameState == gameOver)
+	if (GameState == gameOver || GameState == victory)
 	{
 		// Keys being pressed during dead screen
 		if (sf::Event::KeyPressed)
@@ -138,7 +138,7 @@ void Game::handleEvent(sf::Event event)
 				CreateEntities();
 
                 // Move to inGame (resume playing)
-				GameState = titleScreen;
+				GameState = inGame;
 				camera.setCenter(500, 500);
 				//camera.setCenter(theHero->getX(), theHero->getY());
 			}
@@ -296,7 +296,9 @@ void Game::gameUpdate()
 		{
 			collision(e, levels.platforms[i]);
 		}
+		entityRegistry[i]->update(time);
 	}
+
 	//Exclude hero
 	for (size_t i = 1; i < entityRegistry.size(); i++)
 		hitCollision(theHero, entityRegistry[i]);
@@ -305,6 +307,28 @@ void Game::gameUpdate()
 	if (theHero->attack())
 		for (size_t i = 1; i < entityRegistry.size(); i++)
 			hitCollision(entityRegistry[i], theHero);
+
+	//@ Iterate through the vector, delete a "dead" entity and erase it from the vector;
+	//@ Skip the first entity Hero
+	int countEnemies(0);
+	for (auto &entity = entityRegistry.begin() + 1; entity != entityRegistry.end();) {
+
+		if (dynamic_cast<Enemies*>(*entity)) // check if it is an enemy
+			++countEnemies;
+
+		if (!(*entity)->IsAlive())
+		{
+			delete *entity;
+			entity = entityRegistry.erase(entity);
+		}
+		else {
+			++entity;
+		}
+	}
+
+	if (countEnemies == 0)
+		GameState = victory;
+
 	// Camera
 	camera.setSize(sf::Vector2f(1280, 720));
 	// If player is within the boundaries of the screen
@@ -365,28 +389,6 @@ void Game::render()
 		window.setView(minimap);
 		levels.renderPlats(window);
 		window.setView(camera);
-
-		//@ Iterate through the vector, delete a "dead" entity and erase it from the vector;
-		//@ Skip the first entity Hero
-		int countEnemies(0);
-		for (auto &entity = entityRegistry.begin() + 1; entity != entityRegistry.end();) {
-			if (dynamic_cast<Enemies*>(*entity)) // check if it is an enemy
-				++countEnemies;
-
-			if (!(*entity)->IsAlive())
-			{
-				delete *entity;
-				entity = entityRegistry.erase(entity);
-			}
-			else {
-				++entity;
-			}
-		}
-
-
-		if (countEnemies == 0)
-			GameState = victory;
-
 
 		for (size_t i = 0; i < entityRegistry.size(); i++)
 		{
