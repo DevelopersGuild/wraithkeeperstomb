@@ -52,3 +52,15 @@ public:
 	}
 
 };
+
+class PowerupCoffee : public Powerup
+{
+public:
+	PowerupCoffee()
+	{
+		Texture.loadFromFile("../assets/sprites/speedBoost.png");
+		Sprite.setTexture(Texture);
+		Sprite.setOrigin(0, 0);
+		Sprite.setPosition(500.f, 800.f);
+	}
+};

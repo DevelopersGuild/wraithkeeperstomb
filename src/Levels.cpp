@@ -30,13 +30,15 @@ Levels::Levels()
 
 	createPlatform(500.f, 900.f,350.f, 50.f);
 
-	createPlatform(1000.f, 910.f, 50.f, 50.f);
+	createPlatform(1000.f, 910.f, 40.f, 60.f);
 
-	createPlatform(1230.f, 890.f, 50.f, 50.f);
+	createPlatform(1230.f, 890.f, 56.f, 52.f);
 
-	createPlatform(1450.f, 920.f, 50.f, 50.f);
+	createPlatform(1450.f, 920.f, 49.f, 53.f);
 
 	createPlatform(700.f, 1100.f, 350.f, 50.f);
+
+
 }
 
 void Levels::createEntities()
