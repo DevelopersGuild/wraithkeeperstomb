@@ -30,6 +30,8 @@ Game::Game()
 	minimap.setCenter(1280, 720);
 
 	camera.setCenter(710, theHero->getY() - 100);
+
+	knockBackTime.restart();
 }
 
 void Game::CreateEntities()
@@ -59,6 +61,8 @@ void Game::mainLoop()
 			}
 		else if (GameState == pause)
 			pauseUpdate();
+		else if (GameState == victory)
+			victoryUpdate();
 		else if (GameState == gameOver)
 			gameOverUpdate();
 		render();
@@ -162,7 +166,7 @@ void Game::collision(Hero *hero, sf::FloatRect wallBounds){
 			{
 				//Up side crash
 				hero->setPosition(hero->getX(), hero->getY() + area.height);
-
+				hero->setCollisionNum(2);
 			}
 			
 		}
@@ -189,16 +193,32 @@ void Game::collision(Hero *hero, sf::FloatRect wallBounds){
 
 void Game::hitCollision(Entity *getsHit, Entity *hitter)
 {
-	if (getsHit->getCollisionRect().intersects(hitter->getCollisionRect()))
+
+	if ((dynamic_cast<Enemies*>(hitter) || dynamic_cast<Hero*>(hitter)) && getsHit->getCollisionRect().intersects(hitter->getDamagingRect()))
 	{
 		getsHit->onHit(hitter->getDamage());
+		if (knockBackTime.getElapsedTime().asMilliseconds() > 300)
+		{
+			getsHit->knockBack(hitter);
+			
+			knockBackTime.restart();
+		}
+		hitter->freeze();
 	}
+
 }
 
 void Game::loadAssets()
 {
 	century.loadFromFile("../assets/fonts/century.ttf");
 	blackcastle.loadFromFile("../assets/fonts/blackcastle.ttf");
+
+	HPbar.setSize(sf::Vector2f(150, 6));
+	HPbar.setOutlineColor(sf::Color::White);
+	HPbar.setFillColor(sf::Color::Green);
+	HPbar.setOutlineThickness(1.5);
+	HPbar.setOrigin(0, 6);
+	HPbar.setPosition(camera.getCenter().x - 300, camera.getCenter().y- 580);
 
 	title.setFont(blackcastle);
 	title.setString("Chamber's Labyrinth");
@@ -211,6 +231,12 @@ void Game::loadAssets()
 	pressEnter.setCharacterSize(48);
 	pressEnter.setColor(sf::Color::White);
 	pressEnter.setPosition(420, 425);
+
+	victoryText.setFont(century);
+	victoryText.setString("Victory!");
+	victoryText.setCharacterSize(100);
+	victoryText.setColor(sf::Color::White);
+	victoryText.setPosition(480, 225);
 
 	pauseText.setFont(century);
 	pauseText.setString("Game Paused");
@@ -261,14 +287,18 @@ void Game::gameUpdate()
 		entityRegistry[i]->update(time);
 	}
 	theHero->setCollisionNum(1);
-	for (int i = 0; i < levels.platforms.size(); i++)
+	for (size_t i = 0; i < levels.platforms.size(); i++)
 	{
 		collision(theHero, levels.platforms[i].getCollisionRect());
 	}
 	//Exclude hero
-	for (int i = 1; i < entityRegistry.size(); i++)
+	for (size_t i = 1; i < entityRegistry.size(); i++)
 		hitCollision(theHero, entityRegistry[i]);
 
+	//weapon collision against enemy(ies)
+	if (theHero->attack())
+		for (size_t i = 1; i < entityRegistry.size(); i++)
+			hitCollision(entityRegistry[i], theHero);
 	// Camera
 	camera.setSize(sf::Vector2f(1280, 720));
 	// If player is within the boundaries of the screen
@@ -285,6 +315,18 @@ void Game::gameUpdate()
 	}
 	camera.zoom(.5);
 	window.setView(camera);
+	if (float(theHero->getHP()) / HERO_BASE_HP > 0)
+		HPbar.setSize(sf::Vector2f(150 * (float(theHero->getHP()) / HERO_BASE_HP), 6));
+	else
+		HPbar.setSize(sf::Vector2f(0, 6));
+
+	HPbar.setPosition(camera.getCenter().x-300, camera.getCenter().y-150);
+}
+
+
+void Game::victoryUpdate()
+{
+	window.setView(window.getDefaultView());
 }
 
 void Game::pauseUpdate()
@@ -320,7 +362,11 @@ void Game::render()
 
 		//@ Iterate through the vector, delete a "dead" entity and erase it from the vector;
 		//@ Skip the first entity Hero
+		int countEnemies(0);
 		for (auto &entity = entityRegistry.begin() + 1; entity != entityRegistry.end();) {
+			if (dynamic_cast<Enemies*>(*entity)) // check if it is an enemy
+				++countEnemies;
+
 			if (!(*entity)->IsAlive())
 			{
 				delete *entity;
@@ -332,13 +378,19 @@ void Game::render()
 		}
 
 
-		for (int i = 0; i < entityRegistry.size(); i++)
+		if (countEnemies == 0)
+			GameState = victory;
+
+
+		for (size_t i = 0; i < entityRegistry.size(); i++)
 		{
 			entityRegistry[i]->render(window);
 			window.setView(minimap);
 			entityRegistry[i]->render(window);
 			window.setView(camera);
 		}
+		
+		window.draw(HPbar);
 	}
 	else if (GameState == pause)
 	{
@@ -350,6 +402,10 @@ void Game::render()
         window.draw(youDied);
         window.draw(returnToTitle);
     }
+	else if (GameState == victory)
+	{
+		window.draw(victoryText);
+	}
 
 	// Display window
 	window.display();
@@ -383,17 +439,18 @@ void Game::LoadStats()
 	}
 
 	std::string dummy;
-	int value;
+	float floatValue;
+	int intValue;
 	std::getline(inFile, dummy); // dummy call
 
-	inFile >> value;
-	theHero->setLevel(value);
+	inFile >> intValue;
+	theHero->setLevel(intValue);
 
-	inFile >> value;
-	theHero->setExperience(value);
+	inFile >> intValue;
+	theHero->setExperience(intValue);
 
-	inFile >> value;
-	theHero->setHP(value);
+	inFile >> floatValue;
+	theHero->setHP(floatValue);
 
 	inFile.close();
 

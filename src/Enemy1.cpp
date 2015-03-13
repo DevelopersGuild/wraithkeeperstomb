@@ -10,6 +10,8 @@ Enemy1::Enemy1()
 	Sprite.setOrigin(32, 128);
 	Sprite.setPosition(1280, 1360);
 
+	Freeze.restart().asSeconds();
+
 	// Initialize basic Enemies stats
 	HP = ENEMY1_BASE_HP;
 	speedMultiplier = 1;
@@ -17,11 +19,18 @@ Enemy1::Enemy1()
 	damage = ENEMY1_DAMAGE;
 	is_alive_ = true;
 	armor = ENEMY1_ARMOR;
+	isChase = true;
 
 	srand((unsigned int)time(NULL));
 }
 
 void Enemy1::update(float time)
 {
-	chaseHero();
+	if (Freeze.getElapsedTime().asSeconds() > 1)
+	{
+		Freeze.restart().asSeconds();
+		isChase = true;
+	}
+	if (isChase)
+		Enemies::chaseHero();
 }

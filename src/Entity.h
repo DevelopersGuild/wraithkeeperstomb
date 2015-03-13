@@ -15,6 +15,8 @@ public:
 	virtual ~Entity() { }
 	virtual void render(sf::RenderWindow& window);
 	virtual void update(float time);
+	virtual void freeze() = 0;
+	virtual void knockBack(Entity *hitter) = 0;
 
 	void doPhysics();
 
@@ -23,7 +25,7 @@ public:
 	virtual void onHit(float dmg)
 	{ return; }
 
-	void setPosition(float, float);
+	virtual void setPosition(float, float);
 
 	const float getX()
 	{ return Sprite.getPosition().x; }
@@ -35,6 +37,9 @@ public:
 	{ return 0; }
 
 	const sf::FloatRect getCollisionRect()
+	{ return Sprite.getGlobalBounds(); }
+
+	virtual const sf::FloatRect getDamagingRect()
 	{ return Sprite.getGlobalBounds(); }
 
 	virtual bool IsAlive() const

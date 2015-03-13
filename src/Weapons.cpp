@@ -31,7 +31,26 @@ float Weapons::critical(float multiplier)
 		return 1.0;
 }
 
-void Weapons::update(Hero *hero, Entity *&enemy)
+const sf::FloatRect Weapons::getAttackRect(bool hero_faceRight)
+{
+	if (hero_faceRight)
+	{
+		sf::FloatRect collisionRect(getX(), getY() - 68, range, 32.f);//137 = weapon y-origin
+		return collisionRect;
+	}
+	else
+	{
+		sf::FloatRect collisionRect(getX(), getY() - 68, -range, 32.f);
+		return collisionRect;
+	}
+}
+
+bool Weapons::attack()
+{
+	return false;
+}
+
+void Weapons::update(bool)
 {
 	
 }

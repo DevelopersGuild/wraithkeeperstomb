@@ -9,7 +9,12 @@
 class Spear : public Weapons
 {
 private:
-	sf::Clock cooldown;
+	sf::Vector2i anim;
+	void stabAnim();
+	int atkTime;
+	int frameTimer;
+	int xFrame;
+	int yFrame;
 public:
 	Spear(Hero *);
 	virtual ~Spear();
@@ -18,8 +23,8 @@ public:
 	const sf::Sprite getSprite()
 	{ return Sprite; }
 	const sf::FloatRect getCollisionRect(Hero *);
-	void update(Hero *, Entity *&);
-	void attack(Hero *, Entity *&);
+	void update(bool);
+	bool attack();
 
 };
 
@@ -28,10 +33,13 @@ class Spear2 : public Spear
 public:
 	Spear2(Hero *hero) :Spear(hero)
 	{
+		sf::Vector2i anim(sf::Vector2i(0, 0));
 		Texture.loadFromFile("../assets/sprites/spear2.png");
 		Sprite.setTexture(Texture);
-		Sprite.setOrigin(32, 128);
+		Sprite.setOrigin(32, 64);
 		Sprite.setPosition(280, 1360);
+		Sprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 64, 64, 64));
+
 	}
 };
 

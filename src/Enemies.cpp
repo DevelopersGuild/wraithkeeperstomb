@@ -30,7 +30,7 @@ void Enemies::right()
 
 bool Enemies::heroDetection(Hero* hero)
 {
-	if ((getX() - hero->getX()) <= ENEMY_DETECTION_RADIUS && (hero->getX() - getX()) <= ENEMY_DETECTION_RADIUS)
+	if ((getX() - hero->getX()) <= ENEMY_DETECTION_RADIUS && (hero->getX() - getX()) <= ENEMY_DETECTION_RADIUS && (getY() - hero->getY()) <= ENEMY_DETECTION_RADIUS)
 		return true;
 	else 
 		return false;
@@ -46,9 +46,27 @@ void Enemies::onHeroDetected(Hero* hero)
 
 void Enemies::onHit(float dmg)
 {
-	std::cout << "hit";
+	std::cout << "attacked";
 	if (dmg > armor)
 		HP = HP - (dmg - armor / 4);
 	else
 		HP = HP - rand() % 10;
+}
+
+void Enemies::freeze()
+{
+	if (isChase)
+		isChase = false;
+}
+
+void Enemies::knockBack(Entity *hitter)
+{
+	if ((getX() - hitter->getX()) <= 1)
+	{
+		Sprite.move((15 * -speed), 0.f);
+	}
+	else
+	{
+		Sprite.move((15 * speed), 0.f);
+	}
 }

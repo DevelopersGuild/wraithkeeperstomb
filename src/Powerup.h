@@ -16,6 +16,8 @@ public:
 
 	virtual void apply(Hero * hero) = 0;
 
+	void freeze(){};
+	void knockBack(Entity *hitter){};
 };
 
 class PowerupCookie : public Powerup
@@ -44,6 +46,9 @@ public:
 		Sprite.setTexture(Texture);
 		Sprite.setOrigin(0, 0);
 		Sprite.setPosition(500.f, 800.f);
+		Sprite.setTextureRect(sf::IntRect(0, 0, 64, 64));
+
+
 	}
 
 	void apply(Hero * hero)

@@ -13,7 +13,7 @@ class Game
 {
 private:
 	enum{
-		titleScreen, inGame, pause, gameOver
+		titleScreen, inGame, pause, victory, gameOver
 	}GameState;
 
 	sf::RenderWindow window;
@@ -21,6 +21,7 @@ private:
 
 	sf::Clock clock;	//Starts the clock
 	sf::Time deltaTime;	//Difference in time
+	sf::Clock knockBackTime;
 
 	//Camera
 	sf::View camera;
@@ -30,11 +31,14 @@ private:
 	sf::Font blackcastle;
 	sf::Font century;
 	sf::Text title;
+	sf::Text victoryText;
 	sf::Text pressEnter;
 	sf::Text pauseText;
 	sf::Text pressResume;
     sf::Text youDied;
     sf::Text returnToTitle;
+
+	sf::RectangleShape HPbar;
 
 	Levels levels;
 
@@ -46,8 +50,9 @@ private:
 	void titleUpdate();
 	void gameUpdate();
 	void pauseUpdate();
+	void victoryUpdate();
 	void gameOverUpdate();
-	void hitCollision(Entity *hero, Entity *enemy);
+	void hitCollision(Entity *, Entity *);
 
 	static Hero *theHero;
 

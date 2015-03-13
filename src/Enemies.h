@@ -12,6 +12,8 @@ protected:
 	float armor;
 	float speed;
 	float speedMultiplier;
+	bool isChase;
+	sf::Clock Freeze;
 public:
 	Enemies();
 	virtual ~Enemies() { }
@@ -21,6 +23,8 @@ public:
 	void right();
 	virtual void onHeroDetected(Hero* hero);
 	void onHit(float dmg);
+	void freeze();
+	void knockBack(Entity *hitter);
 
 	// Accessor(s)
 	const float getDamage()

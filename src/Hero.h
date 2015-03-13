@@ -1,6 +1,8 @@
 #ifndef HERO_H
 #define HERO_H
 
+#include <list>
+
 #include "Entity.h"
 #include "Effect.h"
 #include "Weapons.h"
@@ -13,14 +15,14 @@ class Hero : public Entity
 private:
 	sf::Vector2f velocity;
 	sf::Vector2i anim;		//Tracker for hero sprite frames
-
+	sf::Clock invincibilityCD;
 
 	struct {
 		float speed;
 		float speedMultiplier;
 
 		float armor;
-		int HP;
+		float HP;
 
 		float heroJumpSpeed;
 		int level_;
@@ -30,72 +32,82 @@ private:
 
 	Weapons *weapon = NULL;
 
+	sf::Clock jumpClock;
+
+	enum {stands, walks, jumps, attacks};
+	int action;
 	int collisionNum;
 
 	int xFrame;					//Current frame in the x grid
 	int yFrame;					//Current frame in the y grid
 	int frameTimer;				//Counter for sprite frame duration
+	int atkTime;
 	float jumpCooldown;			//Cooldown counter for jump
 	float jumpTimer;				//Counter for jump duration
 	bool faceRight;				//Boolean for determining direction hero is facing at rest
 	bool inAir;
 
-	//struct {
-	//	std::vector<Buff*> buffs;
-	//	std::vector<Debuff*> debuffs;
-	//} effects_;
 
-	std::vector<Effect*> effects_;
+	std::list<Effect*> effects_;
 
-
-	void walkAnim();			//Animation sequence for walking
-	void jump(float seconds);
+	void animate(int);		//Function for handling animations
+	void walkAnim();		//Animation sequence for walking
+	void jumpAnim();		//Animation sequence for jumping
+	void attackAnim();		//Animation sequence for attacking
+	//void jump(float seconds);
 public:
 	Hero();
+	virtual ~Hero();
 	void update(float seconds);
 	void render(sf::RenderWindow &window);
 	void onHit(float dmg);
-	void jump();
+	bool attack();
+	void jump(float seconds);
 	void left();
 	void right();
 	void setCollisionNum(int);
 	void setExperience(int add_exp);
 
 	void setLevel(int level) { stats_.level_ = level; }
-	void setHP(int hp) { stats_.HP = hp; }
+	void setHP(float hp) { stats_.HP = hp; }
 
 
 	void giveWeapon(Weapons * weapon);
+	Weapons* getWeapon() const { return weapon; }
+
+	void freeze() {}
+	void knockBack(Entity *hitter);
+
+	virtual void setPosition(float x, float y);
 
 	// Accessors
-	const float getSpeedX()
-	{
-		return velocity.x;
-	}
+	bool getFaceRight() const
+	{ return faceRight; }
 
-	const float getSpeedY()
-	{
-		return velocity.y;
-	}
+	float getSpeedX() const
+	{ return velocity.x; }
 
-	const int getHP()
-	{
-		return stats_.HP;
-	}
+	float getSpeedY() const
+	{ return velocity.y; }
 
-	const int getLevel() {
-		return stats_.level_;
-	}
+	float getHP() const
+	{ return stats_.HP; }
 
-	const int getExperience()
+	int getLevel() const 
+	{ return stats_.level_; }
+
+	int getExperience() const
 	{ return stats_.experience_; }
 
 
-
 	sf::Sprite getHeroSprite()
-	{
-		return Sprite;
-	}
+	{ return Sprite; }
+
+	const sf::FloatRect getDamagingRect()
+	{ return weapon->getAttackRect(faceRight); }
+
+	const float getDamage()
+	{ return weapon->getDamage(); }
 
 	void update();
 };

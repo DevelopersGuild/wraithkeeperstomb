@@ -43,16 +43,16 @@ Levels::Levels()
 
 void Levels::createEntities()
 {
-	Entity * enemy = new Enemy1;
-	Game::entityRegistry.push_back(enemy);
+	Entity * e = new Enemy1;
+	Game::entityRegistry.push_back(e);
 
-	Entity * cookie = new PowerupCookie;
-	cookie->setPosition(500.f, 800.f);
-	Game::entityRegistry.push_back(cookie);
+	e = new PowerupCookie;
+	e->setPosition(500.f, 800.f);
+	Game::entityRegistry.push_back(e);
 
-	cookie = new PowerupSpear;
-	cookie->setPosition(800.f, 800.f);
-	Game::entityRegistry.push_back(cookie);
+	e = new PowerupSpear;
+	e->setPosition(800.f, 800.f);
+	Game::entityRegistry.push_back(e);
 }
 
 void Levels::createPlatform(float posX, float posY, float sizeX, float sizeY)
@@ -73,7 +73,7 @@ void Levels::render(sf::RenderWindow &window)
 {
 	window.draw(background_.rectangle);
 	window.draw(ground_.rectangle);
-	for (int i = 0; i < platforms.size(); i++)
+	for (size_t i = 0; i < platforms.size(); i++)
 	{
 		platforms[i].render(window);
 	}
@@ -83,7 +83,7 @@ void Levels::render(sf::RenderWindow &window)
 void Levels::renderPlats(sf::RenderWindow &window){
 	window.draw(back);
 	window.draw(ground_.rectangle);
-	for (int i = 0; i < platforms.size(); i++)
+	for (size_t i = 0; i < platforms.size(); i++)
 	{
 		platforms[i].render(window);
 	}

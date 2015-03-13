@@ -19,7 +19,7 @@ protected:
 
 
 public:
-	Effect(int duration, float timeleft): duration_(duration), timeleft_(timeleft), type_(Type::Multiplier) {}
+	Effect(int duration, float timeleft, std::string name): duration_(duration), timeleft_(timeleft), type_(Type::Multiplier), name_(name) {}
 	virtual ~Effect();
 	virtual void UpdateAndApply(float dt, float* stat) = 0;
 	virtual bool HasTimedOut() { return timeleft_ <= 0.0f; }
@@ -34,8 +34,8 @@ private:
 	float modifier_;
 
 public:
-	Buff(int duration, float modifier): Effect(duration, (float)duration), modifier_(modifier) {
-		type_ = Type::Multiplier;
+	Buff(int duration, float modifier, std::string name): Effect(duration, (float)duration, name), modifier_(modifier) {
+		type_ = Type::BonusPenalty;
 	}
 	virtual ~Buff() {}
 	virtual void UpdateAndApply(float dt, float* stat);
@@ -48,10 +48,10 @@ public:
 class Debuff : public Effect
 {
 private:
-	int modifier_;
+	float modifier_;
 
 public:
-	Debuff(): Effect(0, 0.0f), modifier_(15) {
+	Debuff(int duration, float modifier, std::string name): Effect(duration, (float)duration, name), modifier_(modifier) {
 		type_ = Type::BonusPenalty;
 	}
 	virtual ~Debuff() {}
