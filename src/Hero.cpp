@@ -39,10 +39,6 @@ Hero::Hero()
 }
 
 
-void Hero::setCollisionNum(int somethingUnderneath){
-	collisionNum = somethingUnderneath;
-}
-
 void Hero::animate(int action)
 {
 	if (velocity.y != 0)
@@ -228,6 +224,7 @@ void Hero::jump(float seconds)
 	if (collisionNum == 2){
 		velocity.y = 0;
 	}
+
 	if (velocity.y < 0){
 		Sprite.move(velocity);
 		velocity.y += GRAVITY;

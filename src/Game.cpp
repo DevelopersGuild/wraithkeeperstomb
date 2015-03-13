@@ -4,6 +4,7 @@
 
 #include "Game.h"
 #include "Constants.h"
+#include "EntityPhysics.h"
 
 std::vector<Entity *> Game::entityRegistry;
 
@@ -146,8 +147,9 @@ void Game::handleEvent(sf::Event event)
 }
 
 
-void Game::collision(Hero *hero, sf::FloatRect wallBounds){
+void Game::collision(Entity *hero, Platform plat){
 	//Affected area
+	sf::FloatRect wallBounds = plat.getCollisionRect();
 	sf::FloatRect area;
 	if (hero->getCollisionRect().intersects(wallBounds, area))
 	{
@@ -160,13 +162,14 @@ void Game::collision(Hero *hero, sf::FloatRect wallBounds){
 				hero->setPosition(hero->getX(), hero->getY() - area.height + 12);
 
 				// Down side crash 
-				hero->setCollisionNum(0);
+				hero->setCollisionState(0);
+				hero->setGround(&plat);
 			}
 			else
 			{
 				//Up side crash
 				hero->setPosition(hero->getX(), hero->getY() + area.height);
-				hero->setCollisionNum(2);
+				hero->setCollisionState(2);
 			}
 			
 		}
@@ -284,12 +287,15 @@ void Game::gameUpdate()
 
 	for (size_t i = 0; i < entityRegistry.size(); i++)
 	{
-		entityRegistry[i]->update(time);
-	}
-	theHero->setCollisionNum(1);
-	for (size_t i = 0; i < levels.platforms.size(); i++)
-	{
-		collision(theHero, levels.platforms[i].getCollisionRect());
+		Entity * e = entityRegistry[i];
+		e->update(time);
+		e->setCollisionState(1);
+		e->setGround(0);
+
+		for (size_t i = 0; i < levels.platforms.size(); i++)
+		{
+			collision(e, levels.platforms[i]);
+		}
 	}
 	//Exclude hero
 	for (size_t i = 1; i < entityRegistry.size(); i++)
@@ -384,10 +390,12 @@ void Game::render()
 
 		for (size_t i = 0; i < entityRegistry.size(); i++)
 		{
-			entityRegistry[i]->render(window);
+			
 			window.setView(minimap);
 			entityRegistry[i]->render(window);
+			
 			window.setView(camera);
+			entityRegistry[i]->render(window);
 		}
 		
 		window.draw(HPbar);

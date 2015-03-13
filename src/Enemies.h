@@ -21,6 +21,9 @@ public:
 	void chaseHero();
 	void left();
 	void right();
+	virtual void jump(){
+		
+	}
 	virtual void onHeroDetected(Hero* hero);
 	void onHit(float dmg);
 	void freeze();

@@ -8,6 +8,7 @@
 #include "Hero.h"
 #include "Entity.h"
 #include "Enemy1.h"
+#include "EntityPhysics.h"
 
 class Game
 {
@@ -46,7 +47,7 @@ private:
 	void render();
 	void handleEvent(sf::Event);
 	void loadAssets();
-	void collision(Hero *, sf::FloatRect);
+	void collision(Entity *, Platform);
 	void titleUpdate();
 	void gameUpdate();
 	void pauseUpdate();
