@@ -4,7 +4,6 @@
 
 #include "Game.h"
 #include "Constants.h"
-#include "EntityPhysics.h"
 
 std::vector<Entity *> Game::entityRegistry;
 

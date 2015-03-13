@@ -8,7 +8,6 @@
 #include "Hero.h"
 #include "Entity.h"
 #include "Enemy1.h"
-#include "EntityPhysics.h"
 
 class Game
 {
