@@ -121,7 +121,7 @@ void Game::handleEvent(sf::Event event)
 			}
 		}
 	}
-	if (GameState == gameOver)
+	if (GameState == gameOver || GameState == victory)
 	{
 		// Keys being pressed during dead screen
 		if (sf::Event::KeyPressed)
@@ -137,7 +137,7 @@ void Game::handleEvent(sf::Event event)
 				CreateEntities();
 
                 // Move to inGame (resume playing)
-				GameState = titleScreen;
+				GameState = inGame;
 				camera.setCenter(500, 500);
 				//camera.setCenter(theHero->getX(), theHero->getY());
 			}
