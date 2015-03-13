@@ -71,7 +71,7 @@ void Levels::render(sf::RenderWindow &window)
 {
 	window.draw(background_.rectangle);
 	window.draw(ground_.rectangle);
-	for (int i = 0; i < platforms.size(); i++)
+	for (size_t i = 0; i < platforms.size(); i++)
 	{
 		platforms[i].render(window);
 	}
@@ -81,7 +81,7 @@ void Levels::render(sf::RenderWindow &window)
 void Levels::renderPlats(sf::RenderWindow &window){
 	window.draw(back);
 	window.draw(ground_.rectangle);
-	for (int i = 0; i < platforms.size(); i++)
+	for (size_t i = 0; i < platforms.size(); i++)
 	{
 		platforms[i].render(window);
 	}

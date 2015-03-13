@@ -69,7 +69,7 @@ public:
 	void setExperience(int add_exp);
 
 	void setLevel(int level) { stats_.level_ = level; }
-	void setHP(int hp) { stats_.HP = hp; }
+	void setHP(float hp) { stats_.HP = hp; }
 
 
 	void giveWeapon(Weapons * weapon);

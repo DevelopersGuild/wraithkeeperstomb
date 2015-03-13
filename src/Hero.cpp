@@ -32,7 +32,7 @@ Hero::Hero()
 	faceRight = true;
 
 	effects_.push_back(new Buff(10, 7.0F, "Speed Buff")); //gives 10 sec boost at the beginning of game
-	effects_.push_back(new Debuff(10, 10.0F, "Poison"));
+	// effects_.push_back(new Debuff(10, 10.0F, "Poison"));
 
 	srand((unsigned int)time(NULL));
 	giveWeapon(new Spear(this));
@@ -143,13 +143,13 @@ void Hero::attackAnim()
 	else if (frameTimer < 11)
 	{
 		xFrame = 1;
-		Sprite.move(velocity.x * .6, 0.f);
+		Sprite.move(velocity.x * .6f, 0.f);
 		weapon->setPosition(getX() + 23 * yFrame, getY() - 10);
 	}
 	else if (frameTimer < 17)
 	{
 		xFrame = 2;
-		Sprite.move(velocity.x * .9, 0.f);
+		Sprite.move(velocity.x * .9f, 0.f);
 		weapon->setPosition(getX() + 28 * yFrame, getY() - 8);
 	}
 	else if (frameTimer < 38)
@@ -160,7 +160,7 @@ void Hero::attackAnim()
 	else
 	{
 		xFrame = 0;
-		Sprite.move(velocity.x * .1, 0.f);
+		Sprite.move(velocity.x * .1f, 0.f);
 		weapon->setPosition(getX(), getY() - 14);
 	}
 	anim.x = xFrame;

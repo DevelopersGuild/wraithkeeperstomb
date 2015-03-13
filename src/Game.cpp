@@ -287,17 +287,17 @@ void Game::gameUpdate()
 		entityRegistry[i]->update(time);
 	}
 	theHero->setCollisionNum(1);
-	for (int i = 0; i < levels.platforms.size(); i++)
+	for (size_t i = 0; i < levels.platforms.size(); i++)
 	{
 		collision(theHero, levels.platforms[i].getCollisionRect());
 	}
 	//Exclude hero
-	for (int i = 1; i < entityRegistry.size(); i++)
+	for (size_t i = 1; i < entityRegistry.size(); i++)
 		hitCollision(theHero, entityRegistry[i]);
 
 	//weapon collision against enemy(ies)
 	if (theHero->attack())
-		for (int i = 1; i < entityRegistry.size(); i++)
+		for (size_t i = 1; i < entityRegistry.size(); i++)
 			hitCollision(entityRegistry[i], theHero);
 	// Camera
 	camera.setSize(sf::Vector2f(1280, 720));
@@ -382,7 +382,7 @@ void Game::render()
 			GameState = victory;
 
 
-		for (int i = 0; i < entityRegistry.size(); i++)
+		for (size_t i = 0; i < entityRegistry.size(); i++)
 		{
 			entityRegistry[i]->render(window);
 			window.setView(minimap);
@@ -439,17 +439,18 @@ void Game::LoadStats()
 	}
 
 	std::string dummy;
-	int value;
+	float floatValue;
+	int intValue;
 	std::getline(inFile, dummy); // dummy call
 
-	inFile >> value;
-	theHero->setLevel(value);
+	inFile >> intValue;
+	theHero->setLevel(intValue);
 
-	inFile >> value;
-	theHero->setExperience(value);
+	inFile >> intValue;
+	theHero->setExperience(intValue);
 
-	inFile >> value;
-	theHero->setHP(value);
+	inFile >> floatValue;
+	theHero->setHP(floatValue);
 
 	inFile.close();
 

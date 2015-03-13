@@ -48,7 +48,7 @@ public:
 class Debuff : public Effect
 {
 private:
-	int modifier_;
+	float modifier_;
 
 public:
 	Debuff(int duration, float modifier, std::string name): Effect(duration, (float)duration, name), modifier_(modifier) {
