@@ -178,7 +178,7 @@ void Hero::left()
 		action = walks;
 	else
 		anim.x = xFrame = 0;
-	Sprite.move(velocity.x, 0.f);
+	Sprite.move(velocity.x, 0.f); 
 }
 
 void Hero::right()
@@ -258,12 +258,12 @@ void Hero::update(float seconds)
 
 	{
 		// Handle movement
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))&& getX() >= 405)
 		{
 			faceRight = false;
 			left();
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		else if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D)) && getX() <= 2190)
 		{
 			faceRight = true;
 			right();
