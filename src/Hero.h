@@ -73,53 +73,41 @@ public:
 
 
 	void giveWeapon(Weapons * weapon);
+	Weapons* getWeapon() const { return weapon; }
 
 	void freeze() {}
 	void knockBack(Entity *hitter);
 
+	virtual void setPosition(float x, float y);
+
 	// Accessors
-	const bool getFaceRight()
-	{
-		return faceRight;
-	}
-	const float getSpeedX()
-	{
-		return velocity.x;
-	}
+	bool getFaceRight() const
+	{ return faceRight; }
 
-	const float getSpeedY()
-	{
-		return velocity.y;
-	}
+	float getSpeedX() const
+	{ return velocity.x; }
 
-	const int getHP()
-	{
-		return stats_.HP;
-	}
+	float getSpeedY() const
+	{ return velocity.y; }
 
-	const int getLevel() {
-		return stats_.level_;
-	}
+	float getHP() const
+	{ return stats_.HP; }
 
-	const int getExperience()
+	int getLevel() const 
+	{ return stats_.level_; }
+
+	int getExperience() const
 	{ return stats_.experience_; }
 
 
-
 	sf::Sprite getHeroSprite()
-	{
-		return Sprite;
-	}
+	{ return Sprite; }
 
 	const sf::FloatRect getDamagingRect()
-	{
-		return weapon->getAttackRect(faceRight);
-	}
+	{ return weapon->getAttackRect(faceRight); }
 
 	const float getDamage()
-	{
-		return weapon->getDamage();
-	}
+	{ return weapon->getDamage(); }
 
 	void update();
 };

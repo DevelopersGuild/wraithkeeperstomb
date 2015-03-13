@@ -25,7 +25,7 @@ public:
 	virtual void onHit(float dmg)
 	{ return; }
 
-	void setPosition(float, float);
+	virtual void setPosition(float, float);
 
 	const float getX()
 	{ return Sprite.getPosition().x; }

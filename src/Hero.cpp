@@ -375,6 +375,14 @@ void Hero::knockBack(Entity *hitter)
 	}
 }
 
+void Hero::setPosition(float x, float y)
+{
+	Sprite.setPosition(x, y);
+
+	if (weapon)
+		weapon->setPosition(x, y - 26);
+}
+
 Hero::~Hero()
 {
 	for (auto &effect : effects_) {
