@@ -210,7 +210,7 @@ void Game::hitCollision(Entity *getsHit, Entity *hitter)
 
 void Game::loadAssets()
 {
-	century.loadFromFile("../assets/fonts/century.ttf");
+	gothicbold.loadFromFile("../assets/fonts/gothicb.ttf");
 	blackcastle.loadFromFile("../assets/fonts/blackcastle.ttf");
 
 	HPbar.setSize(sf::Vector2f(150, 6));
@@ -222,35 +222,59 @@ void Game::loadAssets()
 
 	title.setFont(blackcastle);
 	title.setString("Chamber's Labyrinth");
-	title.setCharacterSize(100);
+	title.setCharacterSize(150);
 	title.setColor(sf::Color::White);
-	title.setPosition(280, 225);
+	title.setPosition(75, 25);
 
-	pressEnter.setFont(century);
-	pressEnter.setString("Press Enter to Begin");
-	pressEnter.setCharacterSize(48);
-	pressEnter.setColor(sf::Color::White);
-	pressEnter.setPosition(420, 425);
+	continueButton.setFont(gothicbold);
+	continueButton.setString("CONTINUE");
+	continueButton.setCharacterSize(48);
+	continueButton.setColor(sf::Color::White);
+	continueButton.setPosition(510, 310);
 
-	victoryText.setFont(century);
+	newGameButton.setFont(gothicbold);
+	newGameButton.setString("NEW GAME");
+	newGameButton.setCharacterSize(48);
+	newGameButton.setColor(sf::Color::White);
+	newGameButton.setPosition(510, 360);
+
+	loadGameButton.setFont(gothicbold);
+	loadGameButton.setString("LOAD GAME");
+	loadGameButton.setCharacterSize(48);
+	loadGameButton.setColor(sf::Color::White);
+	loadGameButton.setPosition(510, 410);
+
+	optionsButton.setFont(gothicbold);
+	optionsButton.setString("OPTIONS");
+	optionsButton.setCharacterSize(48);
+	optionsButton.setColor(sf::Color::White);
+	optionsButton.setPosition(510, 460);
+
+	exitGameButton.setFont(gothicbold);
+	exitGameButton.setString("EXIT GAME");
+	exitGameButton.setCharacterSize(48);
+	exitGameButton.setColor(sf::Color::White);
+	exitGameButton.setPosition(510, 510);
+
+	victoryText.setFont(gothicbold);
 	victoryText.setString("Victory!");
 	victoryText.setCharacterSize(100);
 	victoryText.setColor(sf::Color::White);
 	victoryText.setPosition(480, 225);
 
-	pauseText.setFont(century);
+	pauseText.setFont(gothicbold);
 	pauseText.setString("Game Paused");
 	pauseText.setCharacterSize(100);
 	pauseText.setColor(sf::Color::White);
 	pauseText.setPosition(280, 225);
 
-	pressResume.setFont(century);
+	pressResume.setFont(gothicbold);
 	pressResume.setString("Press R to Resume");
 	pressResume.setCharacterSize(48);
 	pressResume.setColor(sf::Color::White);
 	pressResume.setPosition(420, 425);
     
-    youDied.setFont(century);
+    youDied.setFont(gothicbold);
     youDied.setString("YOU DIED");
     youDied.setCharacterSize((200));
     youDied.setColor(sf::Color::White);
@@ -372,7 +396,11 @@ void Game::render()
 	if (GameState == titleScreen)
 	{
 		window.draw(title);
-		window.draw(pressEnter);
+		window.draw(continueButton);
+		window.draw(newGameButton);
+		window.draw(loadGameButton);
+		window.draw(optionsButton);
+		window.draw(exitGameButton);
 	}
 	else if (GameState == inGame)
 	{

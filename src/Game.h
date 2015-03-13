@@ -27,12 +27,15 @@ private:
 	sf::View camera;
 	sf::View minimap;
 
-
 	sf::Font blackcastle;
-	sf::Font century;
+	sf::Font gothicbold;
 	sf::Text title;
 	sf::Text victoryText;
-	sf::Text pressEnter;
+	sf::Text continueButton;
+	sf::Text newGameButton;
+	sf::Text loadGameButton;
+	sf::Text optionsButton;
+	sf::Text exitGameButton;
 	sf::Text pauseText;
 	sf::Text pressResume;
     sf::Text youDied;
