@@ -317,12 +317,15 @@ void Hero::render(sf::RenderWindow &window)
 			animate(attacks);
 		else
 			animate(action);
+
 		Sprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 128, 64, 128));
 		window.draw(Sprite);
+
 		if (weapon != 0){
 			weapon->render(window);
 		}
 	}
+
 }
 
 void Hero::onHit(float dmg)
@@ -330,6 +333,7 @@ void Hero::onHit(float dmg)
 	if (invincibilityCD.getElapsedTime().asSeconds() > 1)
 	{
 		invincibilityCD.restart();
+
 		if (dmg > stats_.armor)
 			stats_.HP = stats_.HP - (dmg - stats_.armor / 3 + rand() % 3);
 		else
@@ -342,6 +346,7 @@ void Hero::onHit(float dmg)
 void Hero::setExperience(int add_exp)
 {
 	stats_.experience_ += add_exp;
+
 	while (stats_.experience_ >= 100 * stats_.level_)
 	{
 		++stats_.level_;
@@ -351,10 +356,7 @@ void Hero::setExperience(int add_exp)
 
 void Hero::giveWeapon(Weapons * newWeapon)
 {
-	if (weapon != 0)
-	{
-		delete weapon;
-	}
+	if (weapon != 0) delete weapon;
 	weapon = newWeapon;
 }
 
@@ -376,15 +378,13 @@ void Hero::setPosition(float x, float y)
 {
 	Sprite.setPosition(x, y);
 
-	if (weapon)
-		weapon->setPosition(x, y - 26);
+	if (weapon) weapon->setPosition(x, y - 26);
 }
 
 Hero::~Hero()
 {
-	for (auto &effect : effects_) {
+	for (auto &effect : effects_)
 		delete effect;
-	}
 
 	effects_.clear();
 }

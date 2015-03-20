@@ -71,7 +71,6 @@ public:
 
 
 	void giveWeapon(Weapons * weapon);
-	Weapons* getWeapon() const { return weapon; }
 
 	void freeze() {}
 	void knockBack(Entity *hitter);

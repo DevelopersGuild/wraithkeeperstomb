@@ -14,6 +14,8 @@ protected:
 	float speedMultiplier;
 	bool isChase;
 	sf::Clock Freeze;
+	sf::RectangleShape hpbar_;
+
 public:
 	Enemies();
 	virtual ~Enemies() { }
