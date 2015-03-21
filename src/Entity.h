@@ -2,6 +2,7 @@
 #define ENTITY_H
 
 #include <SFML/Graphics.hpp>
+#include "Platform.h"
 
 class Entity
 {
@@ -9,6 +10,12 @@ protected:
 	sf::Texture Texture;
 	sf::Sprite Sprite;
 	bool is_alive_;
+
+	sf::Vector2f velocity;
+
+	Platform * ground = 0;
+
+	int collisionNum;
 
 public:
 	Entity();
@@ -18,9 +25,11 @@ public:
 	virtual void freeze() = 0;
 	virtual void knockBack(Entity *hitter) = 0;
 
-	void doPhysics();
+	void doPhysics(float seconds);
 
-	void setCollisionNum(int);
+	void setCollisionState(int state);
+
+	void setGround(Platform*);
 
 	virtual void onHit(float dmg)
 	{ return; }
@@ -44,6 +53,7 @@ public:
 
 	virtual bool IsAlive() const
 	{ return is_alive_; }
+
 };
 
 #endif

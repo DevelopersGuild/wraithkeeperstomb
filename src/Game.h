@@ -12,12 +12,11 @@
 class Game
 {
 private:
-	enum{
+	enum class GameState {
 		titleScreen, inGame, pause, victory, gameOver
-	}GameState;
+	} gameState_;
 
 	sf::RenderWindow window;
-	sf::Event event;
 
 	sf::Clock clock;	//Starts the clock
 	sf::Time deltaTime;	//Difference in time
@@ -47,9 +46,9 @@ private:
 
 	void update();
 	void render();
-	void handleEvent(sf::Event);
+	void handleEvent(sf::Event &event);
 	void loadAssets();
-	void collision(Hero *, sf::FloatRect);
+	void collision(Entity *, Platform);
 	void titleUpdate();
 	void gameUpdate();
 	void pauseUpdate();

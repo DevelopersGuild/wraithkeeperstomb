@@ -20,7 +20,7 @@ Game::Game()
 
 	loadAssets();
 
-	GameState = titleScreen;
+	gameState_ = GameState::titleScreen;
 
 	CreateEntities();
 	LoadStats();
@@ -45,30 +45,31 @@ void Game::CreateEntities()
 
 void Game::mainLoop()
 {
+	sf::Event event;
 	// Main loop
 	while (window.isOpen())
 	{
-
-		
 		// Event loop
 		while (window.pollEvent(event))
 			handleEvent(event);
-		if (GameState == titleScreen)
-			titleUpdate();
-		else if (GameState == inGame){
-			gameUpdate();
-			}
-		else if (GameState == pause)
-			pauseUpdate();
-		else if (GameState == victory)
-			victoryUpdate();
-		else if (GameState == gameOver)
-			gameOverUpdate();
+
+		switch (gameState_)
+		{
+		case GameState::titleScreen: titleUpdate(); break;
+		case GameState::inGame: gameUpdate(); break;
+		case GameState::pause: pauseUpdate(); break;
+		case GameState::victory: victoryUpdate(); break;
+		case GameState::gameOver: gameOverUpdate(); break;
+
+		default:
+			break;
+		}
+
 		render();
 	}
 }
 
-void Game::handleEvent(sf::Event event)
+void Game::handleEvent(sf::Event &event)
 {
 	if (event.type == sf::Event::Closed)
 		window.close();
@@ -80,8 +81,8 @@ void Game::handleEvent(sf::Event event)
 			window.close();
 		}
 
-	// GameState handling
-	if (GameState == titleScreen)
+	// gameState_ handling
+	if (gameState_ == GameState::titleScreen)
 	{
 		// Keys being pressed in menu
 		if (sf::Event::KeyPressed)
@@ -90,11 +91,13 @@ void Game::handleEvent(sf::Event event)
 			if (event.key.code == sf::Keyboard::Return)
 			{
 				// Move to inGame (start playing)
-				GameState = inGame;
+				gameState_ = GameState::inGame;
 			}
 		}
 	}
-	if (GameState == inGame)
+
+
+	if (gameState_ == GameState::inGame)
 	{
 		// Keys being pressed during gameplay
 		if (sf::Event::KeyPressed)
@@ -103,12 +106,14 @@ void Game::handleEvent(sf::Event event)
 			if (event.key.code == sf::Keyboard::P)
 			{
 				// Move to pause
-				GameState = pause;
+				gameState_ = GameState::pause;
 			}
 
 		}
 	}
-	if (GameState == pause)
+
+
+	if (gameState_ == GameState::pause)
 	{
 		// Keys being pressed during pause screen
 		if (sf::Event::KeyPressed)
@@ -117,11 +122,13 @@ void Game::handleEvent(sf::Event event)
 			if (event.key.code == sf::Keyboard::R)
 			{
 				// Move to inGame (resume playing)
-				GameState = inGame;
+				gameState_ = GameState::inGame;
 			}
 		}
 	}
-	if (GameState == gameOver)
+
+
+	if (gameState_ == GameState::gameOver || gameState_ == GameState::victory)
 	{
 		// Keys being pressed during dead screen
 		if (sf::Event::KeyPressed)
@@ -137,18 +144,22 @@ void Game::handleEvent(sf::Event event)
 				CreateEntities();
 
                 // Move to inGame (resume playing)
-				GameState = titleScreen;
+				gameState_ = GameState::inGame;
 				camera.setCenter(500, 500);
 				//camera.setCenter(theHero->getX(), theHero->getY());
 			}
 		}
 	}
+
+
 }
 
 
-void Game::collision(Hero *hero, sf::FloatRect wallBounds){
+void Game::collision(Entity *hero, Platform plat){
 	//Affected area
+	sf::FloatRect wallBounds = plat.getCollisionRect();
 	sf::FloatRect area;
+	
 	if (hero->getCollisionRect().intersects(wallBounds, area))
 	{
 		// Verifying if we need to apply collision to the vertical axis, else we apply to horizontal axis
@@ -160,16 +171,18 @@ void Game::collision(Hero *hero, sf::FloatRect wallBounds){
 				hero->setPosition(hero->getX(), hero->getY() - area.height + 12);
 
 				// Down side crash 
-				hero->setCollisionNum(0);
+				hero->setCollisionState(0);
+				hero->setGround(&plat);
 			}
 			else
 			{
 				//Up side crash
 				hero->setPosition(hero->getX(), hero->getY() + area.height);
-				hero->setCollisionNum(2);
+				hero->setCollisionState(2);
 			}
 			
 		}
+
 		else if (area.width < area.height)
 		{
 			
@@ -189,6 +202,8 @@ void Game::collision(Hero *hero, sf::FloatRect wallBounds){
 			}
 		}
 	}
+
+
 }
 
 void Game::hitCollision(Entity *getsHit, Entity *hitter)
@@ -298,7 +313,7 @@ void Game::gameUpdate()
     
     if (!theHero->IsAlive())
     {
-        GameState = gameOver;
+		gameState_ = GameState::gameOver;
 		return;
     }
 
@@ -308,13 +323,16 @@ void Game::gameUpdate()
 
 	for (size_t i = 0; i < entityRegistry.size(); i++)
 	{
-		entityRegistry[i]->update(time);
-	}
+		Entity * e = entityRegistry[i];
+		e->update(time);
+		e->setCollisionState(1);
+		e->setGround(0);
 
-	theHero->setCollisionNum(1);
-	for (size_t i = 0; i < levels.platforms.size(); i++)
-	{
-		collision(theHero, levels.platforms[i].getCollisionRect());
+		for (size_t i = 0; i < levels.platforms.size(); i++)
+		{
+			collision(e, levels.platforms[i]);
+		}
+		entityRegistry[i]->update(time);
 	}
 
 	//Exclude hero
@@ -345,7 +363,7 @@ void Game::gameUpdate()
 	}
 
 	if (countEnemies == 0)
-		GameState = victory;
+		gameState_ = GameState::victory;
 
 	// Camera
 	camera.setSize(sf::Vector2f(1280, 720));
@@ -361,14 +379,18 @@ void Game::gameUpdate()
 		// Set only y position
 		camera.setCenter(camera.getCenter().x, theHero->getY() - 100);
 	}
+
 	camera.zoom(.5);
 	window.setView(camera);
-	if (float(theHero->getHP()) / HERO_BASE_HP > 0)
-		HPbar.setSize(sf::Vector2f(150 * (float(theHero->getHP()) / HERO_BASE_HP), 6));
+
+
+	if (theHero->getHP() / HERO_BASE_HP > 0)
+		HPbar.setSize(sf::Vector2f(150 * (theHero->getHP() / HERO_BASE_HP), 6));
 	else
 		HPbar.setSize(sf::Vector2f(0, 6));
 
 	HPbar.setPosition(camera.getCenter().x-300, camera.getCenter().y-150);
+
 }
 
 
@@ -393,7 +415,7 @@ void Game::render()
 	window.clear();
 
 	// Render objects
-	if (GameState == titleScreen)
+	if (gameState_ == GameState::titleScreen)
 	{
 		window.draw(title);
 		window.draw(continueButton);
@@ -402,7 +424,7 @@ void Game::render()
 		window.draw(optionsButton);
 		window.draw(exitGameButton);
 	}
-	else if (GameState == inGame)
+	else if (gameState_ == GameState::inGame)
 	{
 		camera.setViewport(sf::FloatRect(0, 0, 1, 1));
 		minimap.setViewport(sf::FloatRect(0.75f, 0, 0.25f, 0.25f));
@@ -414,25 +436,27 @@ void Game::render()
 
 		for (size_t i = 0; i < entityRegistry.size(); i++)
 		{
-			entityRegistry[i]->render(window);
+			
 			window.setView(minimap);
 			entityRegistry[i]->render(window);
+			
 			window.setView(camera);
+			entityRegistry[i]->render(window);
 		}
 		
 		window.draw(HPbar);
 	}
-	else if (GameState == pause)
+	else if (gameState_ == GameState::pause)
 	{
 		window.draw(pauseText);
 		window.draw(pressResume);
 	}
-    else if (GameState == gameOver)
+	else if (gameState_ == GameState::gameOver)
     {
         window.draw(youDied);
         window.draw(returnToTitle);
     }
-	else if (GameState == victory)
+	else if (gameState_ == GameState::victory)
 	{
 		window.draw(victoryText);
 	}
@@ -487,6 +511,7 @@ void Game::LoadStats()
 }
 
 Hero * Game::theHero;
+
 
 Hero * Game::getHero(){
 	return theHero;

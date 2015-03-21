@@ -20,12 +20,12 @@ void Enemies::chaseHero()
 
 void Enemies::left()
 {
-	Sprite.move(-speed, 0.f);
+	velocity.x = (velocity.x + 3* -speed) / 4;
 }
 
 void Enemies::right()
 {
-	Sprite.move(speed, 0.f);
+	velocity.x = (velocity.y + 3*speed) / 4;
 }
 
 bool Enemies::heroDetection(Hero* hero)
@@ -38,7 +38,9 @@ bool Enemies::heroDetection(Hero* hero)
 
 void Enemies::onHeroDetected(Hero* hero)
 {
-	if ((getX() - hero->getX()) > 0)
+	if (getY() < hero->getY())
+		jump();
+	else if ((getX() - hero->getX()) > 0)
 		left();
 	else
 		right();

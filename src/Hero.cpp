@@ -39,10 +39,6 @@ Hero::Hero()
 }
 
 
-void Hero::setCollisionNum(int somethingUnderneath){
-	collisionNum = somethingUnderneath;
-}
-
 void Hero::animate(int action)
 {
 	if (velocity.y != 0)
@@ -178,7 +174,7 @@ void Hero::left()
 		action = walks;
 	else
 		anim.x = xFrame = 0;
-	Sprite.move(velocity.x, 0.f);
+	Sprite.move(velocity.x, 0.f); 
 }
 
 void Hero::right()
@@ -228,6 +224,7 @@ void Hero::jump(float seconds)
 	if (collisionNum == 2){
 		velocity.y = 0;
 	}
+
 	if (velocity.y < 0){
 		Sprite.move(velocity);
 		velocity.y += GRAVITY;
@@ -258,12 +255,12 @@ void Hero::update(float seconds)
 
 	{
 		// Handle movement
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))&& getX() >= 405)
 		{
 			faceRight = false;
 			left();
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		else if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D)) && getX() <= 2190)
 		{
 			faceRight = true;
 			right();
@@ -320,12 +317,15 @@ void Hero::render(sf::RenderWindow &window)
 			animate(attacks);
 		else
 			animate(action);
+
 		Sprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 128, 64, 128));
 		window.draw(Sprite);
+
 		if (weapon != 0){
 			weapon->render(window);
 		}
 	}
+
 }
 
 void Hero::onHit(float dmg)
@@ -333,6 +333,7 @@ void Hero::onHit(float dmg)
 	if (invincibilityCD.getElapsedTime().asSeconds() > 1)
 	{
 		invincibilityCD.restart();
+
 		if (dmg > stats_.armor)
 			stats_.HP = stats_.HP - (dmg - stats_.armor / 3 + rand() % 3);
 		else
@@ -345,6 +346,7 @@ void Hero::onHit(float dmg)
 void Hero::setExperience(int add_exp)
 {
 	stats_.experience_ += add_exp;
+
 	while (stats_.experience_ >= 100 * stats_.level_)
 	{
 		++stats_.level_;
@@ -354,10 +356,7 @@ void Hero::setExperience(int add_exp)
 
 void Hero::giveWeapon(Weapons * newWeapon)
 {
-	if (weapon != 0)
-	{
-		delete weapon;
-	}
+	if (weapon != 0) delete weapon;
 	weapon = newWeapon;
 }
 
@@ -379,15 +378,13 @@ void Hero::setPosition(float x, float y)
 {
 	Sprite.setPosition(x, y);
 
-	if (weapon)
-		weapon->setPosition(x, y - 26);
+	if (weapon) weapon->setPosition(x, y - 26);
 }
 
 Hero::~Hero()
 {
-	for (auto &effect : effects_) {
+	for (auto &effect : effects_)
 		delete effect;
-	}
 
 	effects_.clear();
 }
