@@ -15,6 +15,8 @@ protected:
 	float speedMultiplier;
 	bool isChase;
 	sf::Clock Freeze;
+	sf::RectangleShape hpbar_;
+
 public:
 	Enemies();
 	virtual ~Enemies() { }
@@ -22,6 +24,9 @@ public:
 	void chaseHero();
 	void left();
 	void right();
+	virtual void jump(){
+		
+	}
 	virtual void onHeroDetected(Hero* hero);
 	void onHit(float dmg);
 	void freeze();

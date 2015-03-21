@@ -33,15 +33,11 @@ Hero::Hero()
 	faceRight = true;
 	projectileCooldown = 0.0;
 
-	effects_.push_back(new Buff(10, 7.0F, "Speed Buff")); //gives 10 sec boost at the beginning of game
+	//effects_.push_back(new Buff(10, 7.0F, "Speed Buff"));
 	// effects_.push_back(new Debuff(10, 10.0F, "Poison"));
 
 	srand((unsigned int)time(NULL));
 	giveWeapon(new Spear(this));
-}
-
-void Hero::setCollisionNum(int somethingUnderneath){
-	collisionNum = somethingUnderneath;
 }
 
 void Hero::animate(int action)
@@ -54,7 +50,7 @@ void Hero::animate(int action)
 		velocity.x = 0;
 		xFrame = 0;
 		anim.y = 0;
-		if (frameTimer != 0 && action!= attacks)
+		if (frameTimer != 0 && action != attacks)
 			frameTimer = 0;
 		if (faceRight)
 			anim.x = 0;
@@ -361,6 +357,7 @@ void Hero::onHit(float dmg)
 void Hero::setExperience(int add_exp)
 {
 	stats_.experience_ += add_exp;
+
 	while (stats_.experience_ >= 100 * stats_.level_)
 	{
 		++stats_.level_;
@@ -370,10 +367,7 @@ void Hero::setExperience(int add_exp)
 
 void Hero::giveWeapon(Weapons * newWeapon)
 {
-	if (weapon != 0)
-	{
-		delete weapon;
-	}
+	if (weapon != 0) delete weapon;
 	weapon = newWeapon;
 }
 
@@ -395,13 +389,13 @@ void Hero::setPosition(float x, float y)
 {
 	Sprite.setPosition(x, y);
 
-	if (weapon)
-		weapon->setPosition(x, y - 26);
+	if (weapon) weapon->setPosition(x, y - 26);
 }
 
 Hero::~Hero()
 {
-	for (auto &effect : effects_) {
+	for (auto &effect : effects_)
 		delete effect;
-	}
+
+	effects_.clear();
 }

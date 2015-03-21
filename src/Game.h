@@ -12,12 +12,15 @@
 class Game
 {
 private:
-	enum{
+	enum class GameState {
 		titleScreen, inGame, pause, victory, gameOver
-	}GameState;
+	} gameState_;
+
+	enum class MenuSwitch {
+		continueGame, newGame, loadGame, options, exitGame
+	} menuSwitch_;
 
 	sf::RenderWindow window;
-	sf::Event event;
 
 	sf::Clock clock;	//Starts the clock
 	sf::Time deltaTime;	//Difference in time
@@ -27,12 +30,22 @@ private:
 	sf::View camera;
 	sf::View minimap;
 
-
 	sf::Font blackcastle;
-	sf::Font century;
+	sf::Font gothicbold;
 	sf::Text title;
 	sf::Text victoryText;
-	sf::Text pressEnter;
+	sf::Text continueButton;
+	sf::Text continueButtonDisabled;
+	sf::Text newGameButton;
+	sf::Text loadGameButton;
+	sf::Text optionsButton;
+	sf::Text exitGameButton;
+	sf::Text continueButtonHL;
+	sf::Text continueButtonHLDisabled;
+	sf::Text newGameButtonHL;
+	sf::Text loadGameButtonHL;
+	sf::Text optionsButtonHL;
+	sf::Text exitGameButtonHL;
 	sf::Text pauseText;
 	sf::Text pressResume;
     sf::Text youDied;
@@ -44,9 +57,9 @@ private:
 
 	void update();
 	void render();
-	void handleEvent(sf::Event);
+	void handleEvent(sf::Event &event);
 	void loadAssets();
-	void collision(Hero *, sf::FloatRect);
+	void collision(Entity *, Platform);
 	void titleUpdate();
 	void gameUpdate();
 	void pauseUpdate();
@@ -73,6 +86,5 @@ public:
 
 	static std::vector<Entity *> entityRegistry;
 };
-
 
 #endif

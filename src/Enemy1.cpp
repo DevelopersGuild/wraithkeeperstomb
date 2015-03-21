@@ -32,6 +32,21 @@ void Enemy1::update(float time)
 		Freeze.restart().asSeconds();
 		isChase = true;
 	}
+	velocity.x = velocity.x / 2;
 	if (isChase)
-		Enemies::chaseHero();
+	{
+		chaseHero();
+	}
+	doPhysics(time);
+		
+}
+
+void Enemy1::jump()
+{
+	velocity.y -= HERO_JUMP_VELOCITY;
+
+	if (velocity.y < 0){
+		Sprite.move(velocity);
+		velocity.y += GRAVITY;
+	}
 }

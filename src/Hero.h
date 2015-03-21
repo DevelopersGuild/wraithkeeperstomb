@@ -9,10 +9,11 @@
 
 #include <SFML/Graphics.hpp>
 
+typedef Hero Hero;
+
 class Hero : public Entity
 {
 private:
-	sf::Vector2f velocity;
 	sf::Vector2i anim;		//Tracker for hero sprite frames
 	sf::Clock invincibilityCD;
 
@@ -35,7 +36,6 @@ private:
 
 	enum {stands, walks, jumps, attacks};
 	int action;
-	int collisionNum;
 
 	int xFrame;					//Current frame in the x grid
 	int yFrame;					//Current frame in the y grid
@@ -56,7 +56,7 @@ private:
 	//void jump(float seconds);
 public:
 	Hero();
-	virtual ~Hero();
+	~Hero();
 	void update(float seconds);
 	void render(sf::RenderWindow &window);
 	void onHit(float dmg);
@@ -65,7 +65,6 @@ public:
 	void jump(float seconds);
 	void left();
 	void right();
-	void setCollisionNum(int);
 	void setExperience(int add_exp);
 
 	void setLevel(int level) { stats_.level_ = level; }
@@ -74,8 +73,6 @@ public:
 	float getProjectileCooldown() { return projectileCooldown; }
 
 	void giveWeapon(Weapons * weapon);
-	Weapons* getWeapon() const { return weapon; }
-	/*int getProjectileType() const { return projectileType; }*/
 
 	void freeze() {}
 	void knockBack(float, float);
