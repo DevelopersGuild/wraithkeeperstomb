@@ -31,8 +31,8 @@ Hero::Hero()
 	frameTimer = 0;
 	faceRight = true;
 
-	effects_.push_back(new Buff(10, 7.0F, "Speed Buff")); //gives 10 sec boost at the beginning of game
-	// effects_.push_back(new Debuff(10, 10.0F, "Poison"));
+	// effects_.push_back(new Buff(5, 7.0F, "Speed Buff")); //gives 5 sec boost at the beginning of game
+	// effects_.push_back(new Debuff(5, 10.0F, "Poison"));
 
 	srand((unsigned int)time(NULL));
 	giveWeapon(new Spear(this));

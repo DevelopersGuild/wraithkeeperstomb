@@ -1,7 +1,5 @@
 #include <fstream>
 #include <iostream>
-
-
 #include "Game.h"
 #include "Constants.h"
 
@@ -19,27 +17,21 @@ Game::Game()
 	window.setVerticalSyncEnabled(true);
 
 	loadAssets();
-
 	gameState_ = GameState::titleScreen;
-
+	menuSwitch_ = MenuSwitch::continueGame;
 	CreateEntities();
 	LoadStats();
-
 	minimap.setSize(1280, 720);
 	minimap.setCenter(1280, 720);
-
 	camera.setCenter(710, theHero->getY() - 100);
-
 	knockBackTime.restart();
 }
 
 void Game::CreateEntities()
 {
 	entityRegistry.clear();
-
 	theHero = new Hero;
 	entityRegistry.push_back(theHero);
-
 	levels.createEntities();
 }
 
@@ -52,7 +44,6 @@ void Game::mainLoop()
 		// Event loop
 		while (window.pollEvent(event))
 			handleEvent(event);
-
 		switch (gameState_)
 		{
 		case GameState::titleScreen: titleUpdate(); break;
@@ -60,11 +51,8 @@ void Game::mainLoop()
 		case GameState::pause: pauseUpdate(); break;
 		case GameState::victory: victoryUpdate(); break;
 		case GameState::gameOver: gameOverUpdate(); break;
-
-		default:
-			break;
+		default: break;
 		}
-
 		render();
 	}
 }
@@ -84,18 +72,8 @@ void Game::handleEvent(sf::Event &event)
 	// gameState_ handling
 	if (gameState_ == GameState::titleScreen)
 	{
-		// Keys being pressed in menu
-		if (sf::Event::KeyPressed)
-		{
-			// Specifically if space is pressed
-			if (event.key.code == sf::Keyboard::Return)
-			{
-				// Move to inGame (start playing)
-				gameState_ = GameState::inGame;
-			}
-		}
+		
 	}
-
 
 	if (gameState_ == GameState::inGame)
 	{
@@ -108,10 +86,8 @@ void Game::handleEvent(sf::Event &event)
 				// Move to pause
 				gameState_ = GameState::pause;
 			}
-
 		}
 	}
-
 
 	if (gameState_ == GameState::pause)
 	{
@@ -127,7 +103,6 @@ void Game::handleEvent(sf::Event &event)
 		}
 	}
 
-
 	if (gameState_ == GameState::gameOver || gameState_ == GameState::victory)
 	{
 		// Keys being pressed during dead screen
@@ -136,13 +111,10 @@ void Game::handleEvent(sf::Event &event)
 			// Specifically if Enter is pressed
 			if (event.key.code == sf::Keyboard::Return)
 			{
-				
 				for (auto &it : entityRegistry) {
 					delete it;
 				}
-
 				CreateEntities();
-
                 // Move to inGame (resume playing)
 				gameState_ = GameState::inGame;
 				camera.setCenter(500, 500);
@@ -151,7 +123,102 @@ void Game::handleEvent(sf::Event &event)
 		}
 	}
 
-
+	switch (menuSwitch_)
+	{
+	case MenuSwitch::continueGame: 
+		// Keys being pressed in menu
+		if (event.type == sf::Event::KeyPressed)
+		{
+			// Specifically if down is pressed
+			if (event.key.code == sf::Keyboard::Down)
+			{
+				// Move to newGame
+				menuSwitch_ = MenuSwitch::newGame;
+			}
+			// Specifically if up is pressed
+			else if (event.key.code == sf::Keyboard::Up)
+			{
+				// Move to exitGame
+				menuSwitch_ = MenuSwitch::exitGame;
+			}
+		}
+		break;
+	case MenuSwitch::newGame: 
+		// Keys being pressed in menu
+		if (event.type == sf::Event::KeyPressed)
+		{
+			// Specifically if down is pressed
+			if (event.key.code == sf::Keyboard::Down)
+			{
+				menuSwitch_ = MenuSwitch::loadGame;
+			}
+			// Specifically if up is pressed
+			else if (event.key.code == sf::Keyboard::Up)
+			{
+				menuSwitch_ = MenuSwitch::continueGame;
+			}
+			if (event.key.code == sf::Keyboard::Return)
+			{
+				// Move to inGame (start playing)
+				gameState_ = GameState::inGame;
+			}
+		}
+		break;
+	case MenuSwitch::loadGame: 
+		// Keys being pressed in menu
+		if (event.type == sf::Event::KeyPressed)
+		{
+			// Specifically if down is pressed
+			if (event.key.code == sf::Keyboard::Down)
+			{
+				menuSwitch_ = MenuSwitch::options;
+			}
+			// Specifically if up is pressed
+			else if (event.key.code == sf::Keyboard::Up)
+			{
+				menuSwitch_ = MenuSwitch::newGame;
+			}
+		}
+		break;
+	case MenuSwitch::options: 
+		// Keys being pressed in menu
+		if (event.type == sf::Event::KeyPressed)
+		{
+			// Specifically if down is pressed
+			if (event.key.code == sf::Keyboard::Down)
+			{
+				menuSwitch_ = MenuSwitch::exitGame;
+			}
+			// Specifically if up is pressed
+			else if (event.key.code == sf::Keyboard::Up)
+			{
+				menuSwitch_ = MenuSwitch::loadGame;
+			}
+		}
+		break;
+	case MenuSwitch::exitGame:
+		// Keys being pressed in menu
+		if (event.type == sf::Event::KeyPressed)
+		{
+			// Specifically if down is pressed
+			if (event.key.code == sf::Keyboard::Down)
+			{
+				menuSwitch_ = MenuSwitch::continueGame;
+			}
+			// Specifically if up is pressed
+			else if (event.key.code == sf::Keyboard::Up)
+			{
+				menuSwitch_ = MenuSwitch::options;
+			}
+			else if (event.key.code == sf::Keyboard::Return)
+			{
+				window.close();
+			}
+		}
+		break;
+	default:
+		break;
+	}
 }
 
 
@@ -166,10 +233,8 @@ void Game::collision(Entity *hero, Platform plat){
 		if (area.width > area.height)
 		{
 			if (area.contains({ area.left, wallBounds.top}))
-				
 			{
 				hero->setPosition(hero->getX(), hero->getY() - area.height + 12);
-
 				// Down side crash 
 				hero->setCollisionState(0);
 				hero->setGround(&plat);
@@ -180,30 +245,21 @@ void Game::collision(Entity *hero, Platform plat){
 				hero->setPosition(hero->getX(), hero->getY() + area.height);
 				hero->setCollisionState(2);
 			}
-			
 		}
-
 		else if (area.width < area.height)
-		{
-			
+		{			
 			if (hero->getX()<wallBounds.left)
 			{
 				//Right side crash
-				
-				hero->setPosition(hero->getX() - area.width, hero->getY());
-				
+				hero->setPosition(hero->getX() - area.width, hero->getY());				
 			}
 			else
 			{
 				//Left side crash
-
 				hero->setPosition(hero->getX() + area.width, hero->getY());
-				
 			}
 		}
 	}
-
-
 }
 
 void Game::hitCollision(Entity *getsHit, Entity *hitter)
@@ -247,6 +303,12 @@ void Game::loadAssets()
 	continueButton.setColor(sf::Color::White);
 	continueButton.setPosition(510, 310);
 
+	continueButtonDisabled.setFont(gothicbold);
+	continueButtonDisabled.setString("CONTINUE");
+	continueButtonDisabled.setCharacterSize(48);
+	continueButtonDisabled.setColor(sf::Color::Color(100, 100, 100, 255));
+	continueButtonDisabled.setPosition(510, 310);
+
 	newGameButton.setFont(gothicbold);
 	newGameButton.setString("NEW GAME");
 	newGameButton.setCharacterSize(48);
@@ -270,6 +332,48 @@ void Game::loadAssets()
 	exitGameButton.setCharacterSize(48);
 	exitGameButton.setColor(sf::Color::White);
 	exitGameButton.setPosition(510, 510);
+
+	continueButtonHL.setFont(gothicbold);
+	continueButtonHL.setString("CONTINUE");
+	continueButtonHL.setCharacterSize(48);
+	continueButtonHL.setColor(sf::Color::Yellow);
+	continueButtonHL.setStyle(sf::Text::StrikeThrough);
+	continueButtonHL.setPosition(510, 310);
+
+	continueButtonHLDisabled.setFont(gothicbold);
+	continueButtonHLDisabled.setString("CONTINUE");
+	continueButtonHLDisabled.setCharacterSize(48);
+	continueButtonHLDisabled.setColor(sf::Color::Color(100, 100, 100, 255));
+	continueButtonHLDisabled.setStyle(sf::Text::StrikeThrough);
+	continueButtonHLDisabled.setPosition(510, 310);
+
+	newGameButtonHL.setFont(gothicbold);
+	newGameButtonHL.setString("NEW GAME");
+	newGameButtonHL.setCharacterSize(48);
+	newGameButtonHL.setColor(sf::Color::Yellow);
+	newGameButtonHL.setStyle(sf::Text::StrikeThrough);
+	newGameButtonHL.setPosition(510, 360);
+
+	loadGameButtonHL.setFont(gothicbold);
+	loadGameButtonHL.setString("LOAD GAME");
+	loadGameButtonHL.setCharacterSize(48);
+	loadGameButtonHL.setColor(sf::Color::Yellow);
+	loadGameButtonHL.setStyle(sf::Text::StrikeThrough);
+	loadGameButtonHL.setPosition(510, 410);
+
+	optionsButtonHL.setFont(gothicbold);
+	optionsButtonHL.setString("OPTIONS");
+	optionsButtonHL.setCharacterSize(48);
+	optionsButtonHL.setColor(sf::Color::Yellow);
+	optionsButtonHL.setStyle(sf::Text::StrikeThrough);
+	optionsButtonHL.setPosition(510, 460);
+
+	exitGameButtonHL.setFont(gothicbold);
+	exitGameButtonHL.setString("EXIT GAME");
+	exitGameButtonHL.setCharacterSize(48);
+	exitGameButtonHL.setColor(sf::Color::Yellow);
+	exitGameButtonHL.setStyle(sf::Text::StrikeThrough);
+	exitGameButtonHL.setPosition(510, 510);
 
 	victoryText.setFont(gothicbold);
 	victoryText.setString("Victory!");
@@ -383,14 +487,12 @@ void Game::gameUpdate()
 	camera.zoom(.5);
 	window.setView(camera);
 
-
 	if (theHero->getHP() / HERO_BASE_HP > 0)
 		HPbar.setSize(sf::Vector2f(150 * (theHero->getHP() / HERO_BASE_HP), 6));
 	else
 		HPbar.setSize(sf::Vector2f(0, 6));
 
 	HPbar.setPosition(camera.getCenter().x-300, camera.getCenter().y-150);
-
 }
 
 
@@ -418,11 +520,31 @@ void Game::render()
 	if (gameState_ == GameState::titleScreen)
 	{
 		window.draw(title);
-		window.draw(continueButton);
+		// if (current session save file found)
+		//		window.draw(continueButton);
+		// else
+				window.draw(continueButtonDisabled);
 		window.draw(newGameButton);
 		window.draw(loadGameButton);
 		window.draw(optionsButton);
 		window.draw(exitGameButton);
+		switch (menuSwitch_)
+		{
+		case MenuSwitch::continueGame:
+			// if (current session save file found)
+			//		window.draw(continueButtonHL);
+			// else
+					window.draw(continueButtonHLDisabled); 
+			break;
+		case MenuSwitch::newGame: window.draw(newGameButtonHL); break;
+		case MenuSwitch::loadGame: window.draw(loadGameButtonHL); break;
+		case MenuSwitch::options: window.draw(optionsButtonHL); break;
+		case MenuSwitch::exitGame: window.draw(exitGameButtonHL); break;
+
+		default:
+			break;
+		}
+
 	}
 	else if (gameState_ == GameState::inGame)
 	{

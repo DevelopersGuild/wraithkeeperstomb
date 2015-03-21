@@ -16,6 +16,10 @@ private:
 		titleScreen, inGame, pause, victory, gameOver
 	} gameState_;
 
+	enum class MenuSwitch {
+		continueGame, newGame, loadGame, options, exitGame
+	} menuSwitch_;
+
 	sf::RenderWindow window;
 
 	sf::Clock clock;	//Starts the clock
@@ -31,10 +35,17 @@ private:
 	sf::Text title;
 	sf::Text victoryText;
 	sf::Text continueButton;
+	sf::Text continueButtonDisabled;
 	sf::Text newGameButton;
 	sf::Text loadGameButton;
 	sf::Text optionsButton;
 	sf::Text exitGameButton;
+	sf::Text continueButtonHL;
+	sf::Text continueButtonHLDisabled;
+	sf::Text newGameButtonHL;
+	sf::Text loadGameButtonHL;
+	sf::Text optionsButtonHL;
+	sf::Text exitGameButtonHL;
 	sf::Text pauseText;
 	sf::Text pressResume;
     sf::Text youDied;
@@ -70,6 +81,5 @@ public:
 
 	static std::vector<Entity *> entityRegistry;
 };
-
 
 #endif
