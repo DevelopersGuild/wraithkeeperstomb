@@ -20,6 +20,7 @@ Enemy1::Enemy1()
 	is_alive_ = true;
 	armor = ENEMY1_ARMOR;
 	isChase = true;
+	faceRight = true;
 
 	srand((unsigned int)time(NULL));
 }

@@ -39,9 +39,15 @@ bool Enemies::heroDetection(Hero* hero)
 void Enemies::onHeroDetected(Hero* hero)
 {
 	if ((getX() - hero->getX()) > 0)
+	{
 		left();
+		faceRight = false;
+	}
 	else
+	{
 		right();
+		faceRight = true;
+	}
 }
 
 void Enemies::onHit(float dmg)
@@ -59,9 +65,9 @@ void Enemies::freeze()
 		isChase = false;
 }
 
-void Enemies::knockBack(Entity *hitter)
+void Enemies::knockBack(float hitter_x, float hitter_y)
 {
-	if ((getX() - hitter->getX()) <= 1)
+	if ((getX() - hitter_x) <= 1)
 	{
 		Sprite.move((15 * -speed), 0.f);
 	}

@@ -1,8 +1,7 @@
 #include "Levels.h"
 #include "Powerup.h"
-#include "Entity.h"
 #include "Enemy1.h"
-#include "Spear.h"
+
 #include <vector>
 
 Levels::Levels()

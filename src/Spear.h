@@ -9,17 +9,11 @@
 class Spear : public Weapons
 {
 private:
-	sf::Vector2i anim;
 	void stabAnim();
 	int atkTime;
-	int frameTimer;
-	int xFrame;
-	int yFrame;
 public:
 	Spear(Hero *);
 	virtual ~Spear();
-	const sf::Clock getCooldown()
-	{ return cooldown; }
 	const sf::Sprite getSprite()
 	{ return Sprite; }
 	const sf::FloatRect getCollisionRect(Hero *);

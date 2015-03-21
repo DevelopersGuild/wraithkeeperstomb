@@ -193,19 +193,35 @@ void Game::collision(Hero *hero, sf::FloatRect wallBounds){
 
 void Game::hitCollision(Entity *getsHit, Entity *hitter)
 {
-
 	if ((dynamic_cast<Enemies*>(hitter) || dynamic_cast<Hero*>(hitter)) && getsHit->getCollisionRect().intersects(hitter->getDamagingRect()))
 	{
 		getsHit->onHit(hitter->getDamage());
 		if (knockBackTime.getElapsedTime().asMilliseconds() > 300)
 		{
-			getsHit->knockBack(hitter);
+			getsHit->knockBack(hitter->getX(), hitter->getY());
 			
-			knockBackTime.restart();
+			knockBackTime.restart(); //warning: knockbackTime is shared between hero and enemy
 		}
 		hitter->freeze();
 	}
 
+}
+
+bool Game::projectileCollide(Entity *getsHit, Projectile *proj)
+{
+	if ((dynamic_cast<Enemies*>(getsHit) || dynamic_cast<Hero*>(getsHit)) && getsHit->getCollisionRect().intersects(proj->getAttackRect()))
+	{
+		getsHit->onHit(proj->getDamage());
+		if (knockBackTime.getElapsedTime().asMilliseconds() > 300)
+		{
+			getsHit->knockBack(proj->getX(), proj->getY());
+
+			knockBackTime.restart(); //warning: knockbackTime is shared between hero and enemy
+		}
+		return true;
+	}
+	else
+		return false;
 }
 
 void Game::loadAssets()
@@ -299,6 +315,58 @@ void Game::gameUpdate()
 	if (theHero->attack())
 		for (size_t i = 1; i < entityRegistry.size(); i++)
 			hitCollision(entityRegistry[i], theHero);
+
+	//projectile collision check
+	for (auto &iter = projectiles.begin(); iter != projectiles.end();)
+	{//check who shot the projectile
+		if ((*iter)->is_shot_by_hero())
+		{//check collision for every enemy
+			for (unsigned int i = 1; i < entityRegistry.size() && iter != projectiles.end(); i++)
+			{
+				if (projectileCollide(entityRegistry[i], *iter))
+				{
+					delete *iter;
+					iter = projectiles.erase(iter);
+				}
+				else
+					++iter;
+			}
+		}
+		else //shot by an enemy
+		{
+			if (projectileCollide(theHero, *iter))
+			{
+				delete *iter;
+				iter = projectiles.erase(iter);
+			}
+			else
+				++iter;
+		}
+	}
+
+	//check if the hero is shooting projectile
+	if (theHero->projectileShoot())
+	{
+		Projectile* proj = new HolyOrb(theHero->getX(), theHero->getY(), true, theHero->getFaceRight());
+		projectiles.push_back(proj);
+		theHero->setProjectileCooldown(proj->getCooldownDuration());
+	}
+
+	//iterate through all shot projectiles
+	for (auto &iter = projectiles.begin(); iter != projectiles.end();)
+	{ 
+		if ((*iter)->overRange())
+		{ //when max projectile range is reached
+			delete *iter;
+			iter = projectiles.erase(iter); // returns the next iterator
+		}
+		else
+		{
+			(*iter)->update();
+			++iter;
+		}
+	}
+
 	// Camera
 	camera.setSize(sf::Vector2f(1280, 720));
 	// If player is within the boundaries of the screen
@@ -389,6 +457,13 @@ void Game::render()
 			entityRegistry[i]->render(window);
 			window.setView(camera);
 		}
+
+		//iterate through all shot projectiles
+		for (auto &iter = projectiles.begin(); iter != projectiles.end();)
+		{ 
+			(*iter)->render(window);
+			++iter;
+		}
 		
 		window.draw(HPbar);
 	}
@@ -460,4 +535,13 @@ Hero * Game::theHero;
 
 Hero * Game::getHero(){
 	return theHero;
+}
+
+Game::~Game()
+{
+	for (auto &proj : projectiles)
+	{
+		delete proj;
+	}
+	projectiles.clear();
 }

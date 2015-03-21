@@ -2,7 +2,7 @@
 #define WEAPONS_H
 
 #include <SFML/Graphics.hpp>
-//#include "Hero.h"
+#include "Constants.h"
 
 class Hero;
 class Entity;
@@ -10,6 +10,10 @@ class Entity;
 class Weapons
 {
 protected:
+	sf::Vector2i anim;
+	int frameTimer;
+	int xFrame;
+	int yFrame;
 	float damage;
 	float range;
 	float crit_chance;
@@ -33,7 +37,8 @@ public:
 	const float getY()
 	{ return Sprite.getPosition().y; }
 	const float getDamage() { return damage; }
-	const sf::FloatRect getAttackRect(bool);
+	virtual const sf::FloatRect getAttackRect(bool);
+	const sf::Clock getCooldown() { return cooldown; }
 };
 
 

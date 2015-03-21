@@ -1,6 +1,7 @@
 #include "Hero.h"
 #include "Constants.h"
 #include "Spear.h"
+#include "Projectile.h"
 #include <ctime>
 #include <iostream>
 
@@ -30,6 +31,7 @@ Hero::Hero()
 	yFrame = 0;
 	frameTimer = 0;
 	faceRight = true;
+	projectileCooldown = 0.0;
 
 	effects_.push_back(new Buff(10, 7.0F, "Speed Buff")); //gives 10 sec boost at the beginning of game
 	// effects_.push_back(new Debuff(10, 10.0F, "Poison"));
@@ -37,7 +39,6 @@ Hero::Hero()
 	srand((unsigned int)time(NULL));
 	giveWeapon(new Spear(this));
 }
-
 
 void Hero::setCollisionNum(int somethingUnderneath){
 	collisionNum = somethingUnderneath;
@@ -201,6 +202,18 @@ bool Hero::attack()
 		}
 	return false;
 }
+
+bool Hero::projectileShoot()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && velocity.y == 0)
+		if (projectileCooldown <= 0.0)
+		{
+			//magic cast animation
+			return true;
+		}
+	return false;
+}
+
 /*
 void Hero::jump(float seconds)
 {
@@ -274,9 +287,9 @@ void Hero::update(float seconds)
 		}
 
 		// Jump
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)&& (Sprite.getPosition().y == 1360 || collisionNum == 0))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && (Sprite.getPosition().y == 1360 || collisionNum == 0))
 			jump(seconds);
-			//jump(seconds);
+		//jump(seconds);
 
 		// Check if alive
 		if (stats_.HP <= 0)
@@ -296,7 +309,7 @@ void Hero::update(float seconds)
 		{
 			velocity.y = 0;
 			//if (jumpCooldown < 4)
-				//jumpCooldown++;
+			//jumpCooldown++;
 			Sprite.setPosition(Sprite.getPosition().x, 1360);
 		}
 		if (velocity.y != 0)
@@ -311,18 +324,23 @@ void Hero::update(float seconds)
 			weapon->setPosition(getX(), getY() - 26);
 		weapon->update(faceRight);
 	}
+
+	if (projectileCooldown > 0)
+		projectileCooldown -= seconds;
 }
 
 void Hero::render(sf::RenderWindow &window)
 {
-	if (is_alive_){
+	if (is_alive_)
+	{
 		if (atkTime > 0)
 			animate(attacks);
 		else
 			animate(action);
 		Sprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 128, 64, 128));
 		window.draw(Sprite);
-		if (weapon != 0){
+		if (weapon != 0)
+		{
 			weapon->render(window);
 		}
 	}
@@ -339,8 +357,6 @@ void Hero::onHit(float dmg)
 			stats_.HP = stats_.HP - rand() % 5;
 	}
 }
-
-
 
 void Hero::setExperience(int add_exp)
 {
@@ -361,9 +377,9 @@ void Hero::giveWeapon(Weapons * newWeapon)
 	weapon = newWeapon;
 }
 
-void Hero::knockBack(Entity *hitter)
+void Hero::knockBack(float hitter_x, float hitter_y)
 {
-	if ((getX() - hitter->getX()) <= 1)
+	if ((getX() - hitter_x) <= 1)
 	{
 		velocity.x = -stats_.speed;
 		Sprite.move((3 * velocity.x), 0.f);
@@ -388,6 +404,4 @@ Hero::~Hero()
 	for (auto &effect : effects_) {
 		delete effect;
 	}
-
-	effects_.clear();
 }

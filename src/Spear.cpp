@@ -1,5 +1,4 @@
 #include "Spear.h"
-#include "Constants.h"
 #include <iostream>
 
 Spear::Spear(Hero *hero)

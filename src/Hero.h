@@ -3,10 +3,9 @@
 
 #include <list>
 
+#include "Projectile.h"
 #include "Entity.h"
 #include "Effect.h"
-#include "Weapons.h"
-
 
 #include <SFML/Graphics.hpp>
 
@@ -46,7 +45,7 @@ private:
 	float jumpTimer;				//Counter for jump duration
 	bool faceRight;				//Boolean for determining direction hero is facing at rest
 	bool inAir;
-
+	float projectileCooldown;
 
 	std::list<Effect*> effects_;
 
@@ -62,6 +61,7 @@ public:
 	void render(sf::RenderWindow &window);
 	void onHit(float dmg);
 	bool attack();
+	bool projectileShoot();
 	void jump(float seconds);
 	void left();
 	void right();
@@ -70,13 +70,15 @@ public:
 
 	void setLevel(int level) { stats_.level_ = level; }
 	void setHP(float hp) { stats_.HP = hp; }
-
+	void setProjectileCooldown(float cd) { projectileCooldown = cd; }
+	float getProjectileCooldown() { return projectileCooldown; }
 
 	void giveWeapon(Weapons * weapon);
 	Weapons* getWeapon() const { return weapon; }
+	/*int getProjectileType() const { return projectileType; }*/
 
 	void freeze() {}
-	void knockBack(Entity *hitter);
+	void knockBack(float, float);
 
 	virtual void setPosition(float x, float y);
 

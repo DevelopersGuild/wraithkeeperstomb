@@ -7,6 +7,7 @@
 class Enemies: public Entity
 {
 protected:
+	bool faceRight;//NEED: enemy animation
 	float damage;
 	float HP;
 	float armor;
@@ -24,7 +25,7 @@ public:
 	virtual void onHeroDetected(Hero* hero);
 	void onHit(float dmg);
 	void freeze();
-	void knockBack(Entity *hitter);
+	void knockBack(float, float);
 
 	// Accessor(s)
 	const float getDamage()

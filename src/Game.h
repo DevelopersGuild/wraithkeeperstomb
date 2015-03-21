@@ -53,15 +53,20 @@ private:
 	void victoryUpdate();
 	void gameOverUpdate();
 	void hitCollision(Entity *, Entity *);
+	bool projectileCollide(Entity *, Projectile *);
 
 	static Hero *theHero;
 
 	void CreateEntities();
+	//projectiles
+	enum projectileType { holyOrb, fireBall };
+	std::list<Projectile*> projectiles;
 
 	void LoadStats();
 	void SaveStatsToFile();
 public:
 	Game();
+	~Game();
 	void mainLoop();
 
 	static Hero * getHero();
