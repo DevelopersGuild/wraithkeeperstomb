@@ -52,6 +52,7 @@ private:
     sf::Text returnToTitle;
 
 	sf::RectangleShape HPbar;
+	sf::RectangleShape MPbar;
 
 	Levels levels;
 
@@ -72,8 +73,9 @@ private:
 
 	void CreateEntities();
 	//projectiles
-	enum projectileType { holyOrb, fireBall };
-	std::list<Projectile*> projectiles;
+	enum heroProjectileType { holyOrb, thunderOrb } hero_projectile_type;
+	enum enemyProjectileType { fireBall, iceBall, thunderBall } enemy_projectile_type;
+	std::list<Projectile*> projectiles;//may need to be split in 2 (hero's and enemies')
 
 	void LoadStats();
 	void SaveStatsToFile();

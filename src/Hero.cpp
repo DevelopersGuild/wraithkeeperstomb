@@ -21,6 +21,7 @@ Hero::Hero()
 	stats_.experience_ = 0;
 	stats_.armor = HERO_BASE_ARMOR;
 	stats_.HP = HERO_BASE_HP;
+	stats_.MP = HERO_BASE_MP;
 	is_alive_ = true;
 	stats_.speedMultiplier = 1;
 	stats_.speed = HERO_BASE_SPEED * stats_.speedMultiplier;
@@ -201,6 +202,7 @@ bool Hero::attack()
 
 bool Hero::projectileShoot()
 {
+	if (stats_.MP <= 0) return false;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && velocity.y == 0)
 		if (projectileCooldown <= 0.0)
 		{
@@ -208,6 +210,11 @@ bool Hero::projectileShoot()
 			return true;
 		}
 	return false;
+}
+
+void Hero::consumeMP(float cost)
+{
+	stats_.MP -= cost;
 }
 
 /*

@@ -6,6 +6,7 @@ static const int WINDOW_HEIGHT = 720;
 
 //Hero
 const float HERO_BASE_HP = 100.f;
+const float HERO_BASE_MP = 100.f;
 const float HERO_BASE_SPEED = 5.f;
 const float HERO_JUMP_VELOCITY = 32.f; //for testing purpose
 const int HERO_BASE_LEVEL = 1;
@@ -45,6 +46,7 @@ const float HOLYORB_DAMAGE = 25.f;
 const float HOLYORB_CRIT_CHANCE = 10.f;
 const float HOLYORB_CRIT_MULTIPLIER = 1.5f;
 const float HOLYORB_DMG_FLUCTUATION_RATE = 0.3f;
+const float HOLYORB_MANA_COST = 30.f;
 
 const float FIREBALL_SPEED = 5.f;
 const float FIREBALL_RANGE = 750.f;

@@ -9,8 +9,9 @@ protected:
 	void flightAnim();
 	int castTime;
 	float speed;
-	bool shot_by_hero;
+	bool shot_by_hero;//temporary solution until HeroProjectile
 	float cooldownDuration;
+	float mana_cost;//remove to HeroProjectile when done
 public:
 	Projectile(float, float, bool);
 	Projectile(float, float, bool, bool) {}//won't be called anyway
@@ -24,12 +25,13 @@ public:
 	const sf::FloatRect getCollisionRect();
 	bool is_shot_by_hero() { return shot_by_hero; }
 	const sf::FloatRect getAttackRect();
+	virtual float getManaCost() { return 0; }
 
 	void update();
 	bool attack();
 	bool overRange();
 };
-
+//PLAN: HeroProjectile and EnemyProjectile children classes
 class HolyOrb : public Projectile
 {
 private:
@@ -41,6 +43,7 @@ public:
 		Sprite.setTexture(Texture);
 
 		cooldownDuration = HOLYORB_COOLDOWN;
+		mana_cost = HOLYORB_MANA_COST;
 		damage = HOLYORB_DAMAGE;
 		range = HOLYORB_RANGE; //actually is distance left
 		crit_chance = HOLYORB_CRIT_CHANCE;
@@ -54,6 +57,7 @@ public:
 			speed = -HOLYORB_SPEED;
 	}
 	~HolyOrb(){}
+	float getManaCost() { return mana_cost; }
 };
 
 class FireBall : public Projectile

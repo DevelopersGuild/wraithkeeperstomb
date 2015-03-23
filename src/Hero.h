@@ -23,6 +23,7 @@ private:
 
 		float armor;
 		float HP;
+		float MP;
 
 		float heroJumpSpeed;
 		int level_;
@@ -72,6 +73,8 @@ public:
 	void setProjectileCooldown(float cd) { projectileCooldown = cd; }
 	float getProjectileCooldown() { return projectileCooldown; }
 
+	void consumeMP(float);
+
 	void giveWeapon(Weapons * weapon);
 
 	void freeze() {}
@@ -91,6 +94,9 @@ public:
 
 	float getHP() const
 	{ return stats_.HP; }
+
+	float getMP() const
+	{ return stats_.MP; }
 
 	int getLevel() const 
 	{ return stats_.level_; }

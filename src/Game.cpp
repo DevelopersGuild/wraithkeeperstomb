@@ -111,6 +111,11 @@ void Game::handleEvent(sf::Event &event)
 			// Specifically if Enter is pressed
 			if (event.key.code == sf::Keyboard::Return)
 			{
+				for (auto &it2 = projectiles.begin(); it2 != projectiles.end();)
+				{
+					delete *it2;
+					it2 = projectiles.erase(it2);
+				}
 				for (auto &it : entityRegistry) {
 					delete it;
 				}
@@ -306,6 +311,13 @@ void Game::loadAssets()
 	HPbar.setOutlineThickness(1.5);
 	HPbar.setOrigin(0, 6);
 	HPbar.setPosition(camera.getCenter().x - 300, camera.getCenter().y- 580);
+
+	MPbar.setSize(sf::Vector2f(150, 6));
+	MPbar.setOutlineColor(sf::Color::White);
+	MPbar.setFillColor(sf::Color::Blue);
+	MPbar.setOutlineThickness(1.5);
+	MPbar.setOrigin(0, 6);
+	MPbar.setPosition(camera.getCenter().x - 300, camera.getCenter().y - 570);
 
 	title.setFont(blackcastle);
 	title.setString("Chamber's Labyrinth");
@@ -517,8 +529,16 @@ void Game::gameUpdate()
 	if (theHero->projectileShoot())
 	{
 		Projectile* proj = new HolyOrb(theHero->getX(), theHero->getY(), true, theHero->getFaceRight());
-		projectiles.push_back(proj);
-		theHero->setProjectileCooldown(proj->getCooldownDuration());
+
+		if (theHero->getMP() >= proj->getManaCost())
+		{
+			theHero->consumeMP(proj->getManaCost());
+			projectiles.push_back(proj);
+			theHero->setProjectileCooldown(proj->getCooldownDuration());
+		}
+		else
+			delete proj;
+		//other projectiles
 	}
 
 	//iterate through all shot projectiles
@@ -553,13 +573,21 @@ void Game::gameUpdate()
 
 	camera.zoom(.5);
 	window.setView(camera);
-
+	//HP
 	if (theHero->getHP() / HERO_BASE_HP > 0)
 		HPbar.setSize(sf::Vector2f(150 * (theHero->getHP() / HERO_BASE_HP), 6));
 	else
 		HPbar.setSize(sf::Vector2f(0, 6));
 
 	HPbar.setPosition(camera.getCenter().x-300, camera.getCenter().y-150);
+
+	//MP
+	if (theHero->getMP() / HERO_BASE_MP > 0)
+		MPbar.setSize(sf::Vector2f(150 * (theHero->getMP() / HERO_BASE_MP), 6));
+	else
+		MPbar.setSize(sf::Vector2f(0, 6));
+
+	MPbar.setPosition(camera.getCenter().x - 300, camera.getCenter().y - 140);
 }
 
 
@@ -641,6 +669,7 @@ void Game::render()
 		}
 		
 		window.draw(HPbar);
+		window.draw(MPbar);
 	}
 	else if (gameState_ == GameState::pause)
 	{
