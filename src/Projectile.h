@@ -39,7 +39,7 @@ private:
 public:
 	HolyOrb(float a, float b, bool c, bool faceRight) : Projectile(a, b, c)
 	{
-		Texture.loadFromFile("../assets/sprites/holyorb.png");
+		Texture.loadFromFile("../assets/sprites/holyorb1.png");
 		Sprite.setTexture(Texture);
 
 		cooldownDuration = HOLYORB_COOLDOWN;

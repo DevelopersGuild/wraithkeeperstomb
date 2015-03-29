@@ -33,7 +33,7 @@ const float ENEMY2_ARMOR = 15.f;
 //Weapons
 const float SPEAR_RANGE = 125.f;
 const float SPEAR_COOLDOWN = 1.f;
-const float SPEAR_DAMAGE = 25.f;
+const float SPEAR_DAMAGE = 35.f;
 const float SPEAR_CRIT_CHANCE = 15.f;
 const float SPEAR_CRIT_MULTIPLIER = 1.5f;
 const float SPEAR_DMG_FLUCTUATION_RATE = 0.1f;
@@ -42,7 +42,7 @@ const float SPEAR_DMG_FLUCTUATION_RATE = 0.1f;
 const float HOLYORB_SPEED = 10.f;
 const float HOLYORB_RANGE = 500.f;
 const float HOLYORB_COOLDOWN = 2.f;
-const float HOLYORB_DAMAGE = 25.f;
+const float HOLYORB_DAMAGE = 20.f;
 const float HOLYORB_CRIT_CHANCE = 10.f;
 const float HOLYORB_CRIT_MULTIPLIER = 1.5f;
 const float HOLYORB_DMG_FLUCTUATION_RATE = 0.3f;

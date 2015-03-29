@@ -3,7 +3,7 @@
 
 Projectile::Projectile(float shooter_x, float shooter_y, bool byHero)
 {
-	Sprite.setOrigin(20, 16);
+	Sprite.setOrigin(16, 16);
 	Sprite.setPosition(shooter_x, shooter_y - 62);
 
 	shot_by_hero = byHero;
