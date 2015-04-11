@@ -33,6 +33,7 @@ public:
 	void update();
 	void render(sf::RenderWindow &);
 	void renderPlats(sf::RenderWindow &);
+	void platformSets(int sets);
 
 	const sf::FloatRect getGroundRect()
 	{ return ground_.rectangle.getGlobalBounds(); }

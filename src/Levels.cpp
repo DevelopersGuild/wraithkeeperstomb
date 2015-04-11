@@ -28,16 +28,7 @@ Levels::Levels()
 	back.setFillColor(sf::Color::Color(0, 0, 0, 150));
 	
 
-	createPlatform(500.f, 900.f,350.f, 50.f);
-
-	createPlatform(1000.f, 910.f, 40.f, 60.f);
-
-	createPlatform(1230.f, 890.f, 56.f, 52.f);
-
-	createPlatform(1450.f, 920.f, 49.f, 53.f);
-
-	createPlatform(700.f, 1100.f, 350.f, 50.f);
-
+	platformSets(5);
 
 }
 
@@ -62,6 +53,46 @@ void Levels::createPlatform(float posX, float posY, float sizeX, float sizeY)
 	pl.setPosition(sf::Vector2f(posX, posY));
 	pl.setTexture();
 	platforms.emplace_back(pl);
+}
+
+void Levels::platformSets(int sets)
+{
+	switch (sets)
+	{
+	case 1:
+		createPlatform(500.f, 900.f, 350.f, 32.f);
+		createPlatform(1000.f, 910.f, 50.f, 32.f);
+		createPlatform(1230.f, 890.f, 50.f, 32.f);
+		createPlatform(1400.f, 920.f, 50.f, 32.f);
+		createPlatform(700.f, 1100.f, 350.f, 32.f);
+		break;
+	case 2:
+		createPlatform(700.f, 1100.f, 350.f, 32.f);
+		createPlatform(1550.f, 1100.f, 100.f, 32.f);
+		createPlatform(1550.f, 800.f, 100.f, 32.f);
+		createPlatform(1550.f, 600.f, 100.f, 32.f);
+		break;
+	case 3:
+		createPlatform(1200.f, 850.f, 200.f, 32.f);
+		createPlatform(1000.f, 1000.f, 600.f, 32.f);
+		createPlatform(800.f, 850.f, 200.f, 32.f);
+		createPlatform(600.f, 1100.f, 200.f, 32.f);
+		break;
+	case 4:
+		createPlatform(1200.f, 1100.f, 200.f, 32.f);
+		createPlatform(1000.f, 900.f, 200.f, 32.f);
+		createPlatform(800.f, 1200.f, 200.f, 32.f);
+		createPlatform(600.f, 1100.f, 200.f, 32.f);
+		createPlatform(1400.f, 800.f, 200.f, 32.f);
+		break;
+	case 5:
+		createPlatform(1400.f, 1100.f, 300.f, 32.f);
+		createPlatform(1400.f, 750.f, 300.f, 32.f);
+		createPlatform(600.f, 1100.f, 300.f, 32.f);
+		createPlatform(600.f, 750.f, 300.f, 32.f);
+		createPlatform(1000.f, 900.f, 300.f, 32.f);
+		break;
+	}
 }
 
 void Levels::update()
