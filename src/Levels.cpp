@@ -1,6 +1,7 @@
 #include "Levels.h"
 #include "Powerup.h"
 #include "Enemy1.h"
+#include "Enemy2.h"
 
 #include <vector>
 
@@ -42,7 +43,7 @@ Levels::Levels()
 
 void Levels::createEntities()
 {
-	Entity * e = new Enemy1;
+	Entity * e = new Enemy2;
 	Game::entityRegistry.push_back(e);
 
 	e = new PowerupCookie;

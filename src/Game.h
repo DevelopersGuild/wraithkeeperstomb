@@ -7,7 +7,7 @@
 #include "Levels.h"
 #include "Hero.h"
 #include "Entity.h"
-#include "Enemy1.h"
+#include "Enemy2.h"
 
 class Game
 {

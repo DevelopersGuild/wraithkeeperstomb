@@ -5,7 +5,12 @@
 
 Enemies::Enemies()
 {
-
+	Freeze.restart().asSeconds();
+	isChase = false;
+	is_alive_ = true;
+	heroDetected = false;
+	patrol_right = true;
+	patrol_pause = 0.0; //? sec pause
 }
 
 void Enemies::chaseHero()
@@ -20,20 +25,28 @@ void Enemies::chaseHero()
 
 void Enemies::left()
 {
+	faceRight = false;
 	velocity.x = (velocity.x + 3* -speed) / 4;
 }
 
 void Enemies::right()
 {
+	faceRight = true;
 	velocity.x = (velocity.y + 3*speed) / 4;
 }
 
 bool Enemies::heroDetection(Hero* hero)
 {
 	if ((getX() - hero->getX()) <= ENEMY_DETECTION_RADIUS && (hero->getX() - getX()) <= ENEMY_DETECTION_RADIUS && (getY() - hero->getY()) <= ENEMY_DETECTION_RADIUS)
+	{
+		heroDetected = true;
 		return true;
-	else 
+	}
+	else
+	{
+		heroDetected = false;
 		return false;
+	}
 }
 
 void Enemies::onHeroDetected(Hero* hero)
@@ -42,12 +55,10 @@ void Enemies::onHeroDetected(Hero* hero)
 		jump();
 	else if ((getX() - hero->getX()) > 0)
 	{
-		left();
 		faceRight = false;
 	}
 	else
 	{
-		right();
 		faceRight = true;
 	}
 }
@@ -63,6 +74,7 @@ void Enemies::onHit(float dmg)
 
 void Enemies::freeze()
 {
+	Freeze.restart().asSeconds();
 	if (isChase)
 		isChase = false;
 }
@@ -76,5 +88,46 @@ void Enemies::knockBack(float hitter_x, float hitter_y)
 	else
 	{
 		Sprite.move((15 * speed), 0.f);
+	}
+}
+
+void Enemies::areaPatrol(float deltaTime)
+{
+	if (patrol_pause > 0)
+	{
+		if (getX() >= patrol_origin + PATROL_RADIUS)
+		{//on the right edge of patrol boundary
+			if (patrol_right)
+				patrol_right = false;
+			patrol_pause -= deltaTime;
+			if (patrol_pause <= 0) //move back into the boundary
+				while (getX() >= patrol_origin + PATROL_RADIUS)
+				{
+					left();
+					Sprite.move(velocity);
+				}
+		}
+		else if (getX() <= patrol_origin - PATROL_RADIUS)
+		{//on the left edge of patrol boundary
+			if (!patrol_right)
+				patrol_right = true;
+			patrol_pause -= deltaTime;
+			if (patrol_pause <= 0) //move back into the boundary
+				while (getX() <= patrol_origin - PATROL_RADIUS)
+				{
+					right();
+					Sprite.move(velocity);
+				}
+		}
+	}
+	else //sprite within the patrol boundary
+	{
+		if (patrol_right)
+			right();
+		else
+			left();
+		//check if out of boundary after the movement
+		if (getX() >= patrol_origin + PATROL_RADIUS || getX() <= patrol_origin - PATROL_RADIUS)
+			patrol_pause = 3.0; //few sec pause
 	}
 }

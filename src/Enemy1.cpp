@@ -10,17 +10,16 @@ Enemy1::Enemy1()
 	Sprite.setOrigin(32, 128);
 	Sprite.setPosition(1280, 1360);
 
-	Freeze.restart().asSeconds();
-
 	// Initialize basic Enemies stats
 	HP = ENEMY1_BASE_HP;
 	speedMultiplier = 1;
 	speed = ENEMY1_BASE_SPEED * speedMultiplier;
 	damage = ENEMY1_DAMAGE;
-	is_alive_ = true;
+	isShooter = false;
 	armor = ENEMY1_ARMOR;
-	isChase = true;
 	faceRight = true;
+	patrol_origin = getX();
+	Enemies();
 
 	srand((unsigned int)time(NULL));
 }

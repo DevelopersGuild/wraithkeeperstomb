@@ -13,9 +13,14 @@ protected:
 	float armor;
 	float speed;
 	float speedMultiplier;
+	bool isShooter; //used later
 	bool isChase;
+	bool heroDetected;
 	sf::Clock Freeze;
 	sf::RectangleShape hpbar_;
+	float patrol_origin; //x-value only for now
+	bool patrol_right;
+	float patrol_pause;
 
 public:
 	Enemies();
@@ -31,6 +36,7 @@ public:
 	void onHit(float dmg);
 	void freeze();
 	void knockBack(float, float);
+	void areaPatrol(float);
 
 	// Accessor(s)
 	const float getDamage()
@@ -38,6 +44,12 @@ public:
 
 	const float getHP()
 	{ return HP; }
+
+	const bool get_isShooter()
+	{ return isShooter; }
+
+	const bool getFaceRight()
+	{ return faceRight; }
 
 	void onHit(int dmg);
 };

@@ -37,7 +37,8 @@ class HolyOrb : public Projectile
 private:
 	//special features?
 public:
-	HolyOrb(float a, float b, bool c, bool faceRight) : Projectile(a, b, c)
+	HolyOrb(float shooter_x, float shooter_y, bool shot_by_hero, bool faceRight)
+		: Projectile(shooter_x, shooter_y, shot_by_hero)
 	{
 		Texture.loadFromFile("../assets/sprites/holyorb.png");
 		Sprite.setTexture(Texture);
@@ -54,7 +55,10 @@ public:
 		if (faceRight)
 			speed = HOLYORB_SPEED;
 		else
+		{
+			Sprite.setScale(1.f, -1.f);
 			speed = -HOLYORB_SPEED;
+		}
 	}
 	~HolyOrb(){}
 	float getManaCost() { return mana_cost; }
@@ -65,7 +69,8 @@ class FireBall : public Projectile
 private:
 	//special features?
 public:
-	FireBall(float a, float b, bool c, bool faceRight) : Projectile(a, b, c)
+	FireBall(float shooter_x, float shooter_y, bool shot_by_hero, bool faceRight)
+		: Projectile(shooter_x, shooter_y, shot_by_hero)
 	{
 		Texture.loadFromFile("../assets/sprites/fireball.png");
 		Sprite.setTexture(Texture);
@@ -81,7 +86,10 @@ public:
 		if (faceRight)
 			speed = FIREBALL_SPEED;
 		else
+		{
+			Sprite.setScale(-1.f, 1.f);
 			speed = -FIREBALL_SPEED;
+		}
 	}
 	~FireBall(){}
 };

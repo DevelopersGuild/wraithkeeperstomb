@@ -541,6 +541,20 @@ void Game::gameUpdate()
 		//other projectiles
 	}
 
+	for (auto &entity = entityRegistry.begin(); entity != entityRegistry.end();)
+	{
+		if (dynamic_cast<Enemy2*>(*entity))
+			if ((static_cast<Enemy2*>(*entity))->projectileShoot())
+			{
+				Projectile* proj = new FireBall((*entity)->getX(), (*entity)->getY(), false, (static_cast<Enemy2*>(*entity))->getFaceRight());
+
+				projectiles.push_back(proj);
+				static_cast<Enemy2*>(*entity)->setProjectileCooldown(proj->getCooldownDuration());
+				//other projectiles
+			}
+		entity++;
+	}
+
 	//iterate through all shot projectiles
 	for (auto &iter = projectiles.begin(); iter != projectiles.end();)
 	{

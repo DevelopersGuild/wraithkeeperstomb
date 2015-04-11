@@ -19,6 +19,7 @@ const float GRAVITY = 11.f;
 
 //Enemies
 const float ENEMY_DETECTION_RADIUS = 200.f;
+const float PATROL_RADIUS = 200.f;
 
 const float ENEMY1_BASE_HP = 100.f;
 const float ENEMY1_BASE_SPEED = 3.f;
@@ -26,7 +27,7 @@ const float ENEMY1_DAMAGE = 35.f;
 const float ENEMY1_ARMOR = 10.f;
 
 const float ENEMY2_BASE_HP = 100.f;
-const float ENEMY2_BASE_SPEED = 2.f;
+const float ENEMY2_BASE_SPEED = 3.f;
 const float ENEMY2_DAMAGE = 35.f;
 const float ENEMY2_ARMOR = 15.f;
 
@@ -49,9 +50,9 @@ const float HOLYORB_DMG_FLUCTUATION_RATE = 0.3f;
 const float HOLYORB_MANA_COST = 30.f;
 
 const float FIREBALL_SPEED = 5.f;
-const float FIREBALL_RANGE = 750.f;
+const float FIREBALL_RANGE = 500.f;
 const float FIREBALL_COOLDOWN = 3.f;
-const float FIREBALL_DAMAGE = 20.f;
+const float FIREBALL_DAMAGE = 30.f;
 const float FIREBALL_CRIT_CHANCE = 10.f;
 const float FIREBALL_CRIT_MULTIPLIER = 1.5f;
 const float FIREBALL_DMG_FLUCTUATION_RATE = 0.2f;
