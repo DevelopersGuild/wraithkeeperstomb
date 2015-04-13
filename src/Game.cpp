@@ -509,9 +509,9 @@ void Game::gameUpdate()
 					delete *iter;
 					iter = projectiles.erase(iter);
 				}
-				else
-					++iter;
 			}
+			if (iter != projectiles.end())
+				++iter;
 		}
 		else //shot by an enemy
 		{
