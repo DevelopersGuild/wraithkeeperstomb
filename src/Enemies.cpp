@@ -6,11 +6,13 @@
 Enemies::Enemies()
 {
 	Freeze.restart().asSeconds();
-	isChase = false;
 	is_alive_ = true;
 	heroDetected = false;
 	patrol_right = true;
+	isFrozen = false;
 	patrol_pause = 0.0; //? sec pause
+	if (faceRight)
+		Sprite.setScale(-1.f, 1.f);
 }
 
 void Enemies::chaseHero()
@@ -32,7 +34,7 @@ void Enemies::left()
 void Enemies::right()
 {
 	faceRight = true;
-	velocity.x = (velocity.y + 3*speed) / 4;
+	velocity.x = (velocity.x + 3*speed) / 4;
 }
 
 bool Enemies::heroDetection(Hero* hero)
@@ -75,8 +77,8 @@ void Enemies::onHit(float dmg)
 void Enemies::freeze()
 {
 	Freeze.restart().asSeconds();
-	if (isChase)
-		isChase = false;
+	if (!isFrozen)
+		isFrozen = true;
 }
 
 void Enemies::knockBack(float hitter_x, float hitter_y)
@@ -93,41 +95,47 @@ void Enemies::knockBack(float hitter_x, float hitter_y)
 
 void Enemies::areaPatrol(float deltaTime)
 {
+	if (speedMultiplier != 1)
+		speedMultiplier = 1;
 	if (patrol_pause > 0)
 	{
 		if (getX() >= patrol_origin + PATROL_RADIUS)
-		{//on the right edge of patrol boundary
-			if (patrol_right)
+			if (patrol_right)//on the right edge of patrol boundary
 				patrol_right = false;
-			patrol_pause -= deltaTime;
-			if (patrol_pause <= 0) //move back into the boundary
-				while (getX() >= patrol_origin + PATROL_RADIUS)
-				{
-					left();
-					Sprite.move(velocity);
-				}
-		}
+
 		else if (getX() <= patrol_origin - PATROL_RADIUS)
-		{//on the left edge of patrol boundary
-			if (!patrol_right)
+			if (!patrol_right)//on the left edge of patrol boundary
 				patrol_right = true;
-			patrol_pause -= deltaTime;
-			if (patrol_pause <= 0) //move back into the boundary
-				while (getX() <= patrol_origin - PATROL_RADIUS)
-				{
-					right();
-					Sprite.move(velocity);
-				}
-		}
+
+		patrol_pause -= deltaTime;
+		doPhysics(deltaTime);
 	}
-	else //sprite within the patrol boundary
-	{
+	else if (getX() <= patrol_origin + PATROL_RADIUS && getX() >= patrol_origin - PATROL_RADIUS)
+	{//within patrol boundary
 		if (patrol_right)
 			right();
 		else
 			left();
+		doPhysics(deltaTime);
+
 		//check if out of boundary after the movement
 		if (getX() >= patrol_origin + PATROL_RADIUS || getX() <= patrol_origin - PATROL_RADIUS)
 			patrol_pause = 3.0; //few sec pause
+	}
+	else //not frozen, but somehow still outside patrol boundary
+	{
+		if (getX() >= patrol_origin + PATROL_RADIUS)
+		{
+			if (patrol_right)
+				patrol_right = false;
+			left();
+		}
+		else
+		{
+			if (!patrol_right)
+				patrol_right = true;
+			right();
+		}
+		doPhysics(deltaTime);
 	}
 }

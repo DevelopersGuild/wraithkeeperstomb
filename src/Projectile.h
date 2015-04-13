@@ -56,7 +56,7 @@ public:
 			speed = HOLYORB_SPEED;
 		else
 		{
-			Sprite.setScale(1.f, -1.f);
+			Sprite.setScale(-1.f, 1.f);
 			speed = -HOLYORB_SPEED;
 		}
 	}

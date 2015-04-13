@@ -12,7 +12,7 @@ public:
 	Enemy1();
 
 	void update(float time);
-
+	void onHeroDetected(Hero* hero);
 	void jump();
 	//void onHeroDetected(Hero* hero); // if it responds differently
 };

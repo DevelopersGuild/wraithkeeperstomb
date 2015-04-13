@@ -14,7 +14,7 @@ protected:
 	float speed;
 	float speedMultiplier;
 	bool isShooter; //used later
-	bool isChase;
+	bool isFrozen;
 	bool heroDetected;
 	sf::Clock Freeze;
 	sf::RectangleShape hpbar_;
@@ -50,6 +50,21 @@ public:
 
 	const bool getFaceRight()
 	{ return faceRight; }
+
+	const sf::FloatRect getDamagingRect()
+	{// shrink the bounding box
+		float left = Sprite.getGlobalBounds().left + 30;
+		float top = Sprite.getGlobalBounds().top + 20;
+		float width = Sprite.getGlobalBounds().width - 60;
+		float height = Sprite.getGlobalBounds().height - 40;
+		sf::FloatRect collisionRect(left, top, width, height);
+		return collisionRect;
+	}
+
+	const void set_patrol_origin(float x_pos)
+	{
+		patrol_origin = x_pos;
+	}
 
 	void onHit(int dmg);
 };

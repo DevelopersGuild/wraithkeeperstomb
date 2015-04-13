@@ -19,7 +19,6 @@ Enemy2::Enemy2()
 	armor = ENEMY2_ARMOR;
 	faceRight = true;
 	projectileCooldown = 0.0;
-	patrol_origin = getX();
 	Enemies();
 
 	srand((unsigned int)time(NULL));
@@ -28,20 +27,37 @@ Enemy2::Enemy2()
 void Enemy2::update(float time)
 {
 	if (Freeze.getElapsedTime().asSeconds() < 1)
-		isChase = false;
-	else if (heroDetected)
-		isChase = true;
+		isFrozen = true;
+	else
+		isFrozen = false;
 	velocity.x = velocity.x / 2;
 
 	chaseHero(); //check hero detection
 
-	doPhysics(time);
-
 	if (projectileCooldown > 0)
 		projectileCooldown -= time;
 	
-	if(!heroDetected)
+	if (!heroDetected)
+	{
 		areaPatrol(time);
+		if (speedMultiplier != 1)
+			speedMultiplier = 1; //unalerted speed
+	}
+	else
+	{
+		if (speedMultiplier == 1)
+			speedMultiplier = 2; //chasing speed
+	}
+
+	if (isFrozen)
+		velocity.x = 0.f;
+	else
+		speed = ENEMY1_BASE_SPEED * speedMultiplier;
+
+	if (faceRight)
+		Sprite.setScale(-1.f, 1.f); //until animation
+	else
+		Sprite.setScale(1.f, 1.f);
 }
 
 bool Enemy2::projectileShoot()

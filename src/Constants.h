@@ -21,10 +21,10 @@ const float GRAVITY = 11.f;
 const float ENEMY_DETECTION_RADIUS = 200.f;
 const float PATROL_RADIUS = 200.f;
 
-const float ENEMY1_BASE_HP = 100.f;
+const float ENEMY1_BASE_HP = 200.f;
 const float ENEMY1_BASE_SPEED = 3.f;
 const float ENEMY1_DAMAGE = 35.f;
-const float ENEMY1_ARMOR = 10.f;
+const float ENEMY1_ARMOR = 15.f;
 
 const float ENEMY2_BASE_HP = 100.f;
 const float ENEMY2_BASE_SPEED = 3.f;
@@ -38,6 +38,9 @@ const float SPEAR_DAMAGE = 35.f;
 const float SPEAR_CRIT_CHANCE = 15.f;
 const float SPEAR_CRIT_MULTIPLIER = 1.5f;
 const float SPEAR_DMG_FLUCTUATION_RATE = 0.1f;
+
+const float SPEAR2_DAMAGE = 50.f;
+const float SPEAR2_CRIT_CHANCE = 25.f;
 
 //Projectiles
 const float HOLYORB_SPEED = 10.f;

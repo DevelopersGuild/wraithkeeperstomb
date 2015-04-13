@@ -35,6 +35,13 @@ Levels::Levels()
 void Levels::createEntities()
 {
 	Entity * e = new Enemy2;
+	e->setPosition(1280.f, 1360.f);
+	dynamic_cast<Enemy2*> (e)->set_patrol_origin(1280.f);
+	Game::entityRegistry.push_back(e);
+
+	e = new Enemy1;
+	e->setPosition(1000.f, 1360.f);
+	dynamic_cast<Enemy1*> (e)->set_patrol_origin(1000.f);
 	Game::entityRegistry.push_back(e);
 
 	e = new PowerupCookie;
