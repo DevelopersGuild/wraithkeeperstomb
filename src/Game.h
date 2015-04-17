@@ -78,6 +78,8 @@ private:
 
 	void LoadStats();
 	void SaveStatsToFile();
+	int cleanupEntities();
+	void cleanupProjectiles();
 public:
 	Game();
 	~Game();

@@ -441,6 +441,50 @@ void Game::titleUpdate()
 	
 }
 
+int Game::cleanupEntities()
+{
+
+
+	//@ Iterate through the vector, delete a "dead" entity and erase it from the vector;
+	//@ Skip the first entity Hero
+	int countEnemies(0);
+	for (auto &entity = entityRegistry.begin() + 1; entity != entityRegistry.end();) {
+
+		if (dynamic_cast<Enemy*>(*entity)) // check if it is an enemy
+			++countEnemies;
+
+		if (!(*entity)->IsAlive())
+		{
+			delete *entity;
+			entity = entityRegistry.erase(entity);
+		}
+		else {
+			++entity;
+		}
+	}
+
+	if (countEnemies == 0)
+		gameState_ = GameState::victory;
+}
+
+void Game::cleanupProjectiles()
+{
+	//iterate through all shot projectiles
+	for (auto &iter = projectiles.begin(); iter != projectiles.end();)
+	{
+		if ((*iter)->overRange())
+		{ //when max projectile range is reached
+			delete *iter;
+			iter = projectiles.erase(iter); // returns the next iterator
+		}
+		else
+		{
+			(*iter)->update();
+			++iter;
+		}
+	}
+}
+
 void Game::gameUpdate()
 {
 	deltaTime = clock.restart();
@@ -477,26 +521,7 @@ void Game::gameUpdate()
 		for (size_t i = 1; i < entityRegistry.size(); i++)
 			hitCollision(entityRegistry[i], theHero);
 
-	//@ Iterate through the vector, delete a "dead" entity and erase it from the vector;
-	//@ Skip the first entity Hero
-	int countEnemies(0);
-	for (auto &entity = entityRegistry.begin() + 1; entity != entityRegistry.end();) {
-
-		if (dynamic_cast<Enemy*>(*entity)) // check if it is an enemy
-			++countEnemies;
-
-		if (!(*entity)->IsAlive())
-		{
-			delete *entity;
-			entity = entityRegistry.erase(entity);
-		}
-		else {
-			++entity;
-		}
-	}
-
-	if (countEnemies == 0)
-		gameState_ = GameState::victory;
+	cleanupEntities();
 
 	//projectile collision check
 	for (auto &iter = projectiles.begin(); iter != projectiles.end();)
@@ -558,20 +583,7 @@ void Game::gameUpdate()
 		entity++;
 	}
 
-	//iterate through all shot projectiles
-	for (auto &iter = projectiles.begin(); iter != projectiles.end();)
-	{
-		if ((*iter)->overRange())
-		{ //when max projectile range is reached
-			delete *iter;
-			iter = projectiles.erase(iter); // returns the next iterator
-		}
-		else
-		{
-			(*iter)->update();
-			++iter;
-		}
-	}
+	cleanupProjectiles(); 
 
 	// Camera
 	camera.setSize(sf::Vector2f(1280, 720));
