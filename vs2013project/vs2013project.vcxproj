@@ -81,9 +81,9 @@
   <ItemGroup>
     <ClInclude Include="..\src\Constants.h" />
     <ClInclude Include="..\src\Powerup.h" />
-    <ClInclude Include="..\src\Enemies.h" />
-    <ClInclude Include="..\src\Enemy1.h" />
-    <ClInclude Include="..\src\Enemy2.h" />
+    <ClInclude Include="..\src\Enemy.h" />
+    <ClInclude Include="..\src\EnemyReaper.h" />
+    <ClInclude Include="..\src\EnemyMage.h" />
     <ClInclude Include="..\src\Entity.h" />
     <ClInclude Include="..\src\Game.h" />
     <ClInclude Include="..\src\Hero.h" />
@@ -97,9 +97,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Powerup.cpp" />
-    <ClCompile Include="..\src\Enemies.cpp" />
-    <ClCompile Include="..\src\Enemy1.cpp" />
-    <ClCompile Include="..\src\Enemy2.cpp" />
+    <ClCompile Include="..\src\Enemy.cpp" />
+    <ClCompile Include="..\src\EnemyReaper.cpp" />
+    <ClCompile Include="..\src\EnemyMage.cpp" />
     <ClCompile Include="..\src\Entity.cpp" />
     <ClCompile Include="..\src\Game.cpp" />
     <ClCompile Include="..\src\Hero.cpp" />
