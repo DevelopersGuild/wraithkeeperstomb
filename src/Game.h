@@ -4,6 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
 #include <ctime>
+#include <string>
+
 #include "Levels.h"
 #include "Hero.h"
 #include "Entity.h"
@@ -80,6 +82,9 @@ private:
 	void SaveStatsToFile();
 	int cleanupEntities();
 	void cleanupProjectiles();
+	void Game::loadTextLineHL(sf::Text &text, std::string line, int yPos);
+	void Game::loadTextLine(sf::Text &text, std::string line, int yPos);
+
 public:
 	Game();
 	~Game();

@@ -302,6 +302,25 @@ bool Game::projectileCollide(Entity *getsHit, Projectile *proj)
 		return false;
 }
 
+void Game::loadTextLineHL(sf::Text &text, std::string line, int yPos)
+{
+	text.setFont(gothicbold);
+	text.setString(line);
+	text.setCharacterSize(48);
+	text.setColor(sf::Color::Yellow);
+	text.setStyle(sf::Text::StrikeThrough);
+	text.setPosition(510, yPos);
+}
+
+void Game::loadTextLine(sf::Text &text, std::string line, int yPos)
+{
+	text.setFont(gothicbold);
+	text.setString(line);
+	text.setCharacterSize(48);
+	text.setColor(sf::Color::White);
+	text.setPosition(510, yPos);
+}
+
 void Game::loadAssets()
 {
 	gothicbold.loadFromFile("../assets/fonts/gothicb.ttf");
@@ -327,106 +346,49 @@ void Game::loadAssets()
 	title.setColor(sf::Color::White);
 	title.setPosition(75, 25);
 
-	continueButton.setFont(gothicbold);
-	continueButton.setString("CONTINUE");
-	continueButton.setCharacterSize(48);
-	continueButton.setColor(sf::Color::White);
-	continueButton.setPosition(510, 310);
+	//Menu buttons
 
-	continueButtonDisabled.setFont(gothicbold);
-	continueButtonDisabled.setString("CONTINUE");
-	continueButtonDisabled.setCharacterSize(48);
+	loadTextLine(continueButton, "CONTINUE", 310);
+
+	loadTextLine(continueButtonDisabled, "CONTINUE", 310);
 	continueButtonDisabled.setColor(sf::Color::Color(100, 100, 100, 255));
-	continueButtonDisabled.setPosition(510, 310);
 
-	newGameButton.setFont(gothicbold);
-	newGameButton.setString("NEW GAME");
-	newGameButton.setCharacterSize(48);
-	newGameButton.setColor(sf::Color::White);
-	newGameButton.setPosition(510, 360);
+	loadTextLine(newGameButton, "NEW GAME", 360);
 
-	loadGameButton.setFont(gothicbold);
-	loadGameButton.setString("LOAD GAME");
-	loadGameButton.setCharacterSize(48);
-	loadGameButton.setColor(sf::Color::White);
-	loadGameButton.setPosition(510, 410);
+	loadTextLine(loadGameButton, "LOAD GAME", 410);
 
-	optionsButton.setFont(gothicbold);
-	optionsButton.setString("OPTIONS");
-	optionsButton.setCharacterSize(48);
-	optionsButton.setColor(sf::Color::White);
-	optionsButton.setPosition(510, 460);
+	loadTextLine(optionsButton, "OPTIONS", 460);
 
-	exitGameButton.setFont(gothicbold);
-	exitGameButton.setString("EXIT GAME");
-	exitGameButton.setCharacterSize(48);
-	exitGameButton.setColor(sf::Color::White);
-	exitGameButton.setPosition(510, 510);
+	loadTextLine(exitGameButton, "EXIT GAME", 510);
 
-	continueButtonHL.setFont(gothicbold);
-	continueButtonHL.setString("CONTINUE");
-	continueButtonHL.setCharacterSize(48);
-	continueButtonHL.setColor(sf::Color::Yellow);
-	continueButtonHL.setStyle(sf::Text::StrikeThrough);
-	continueButtonHL.setPosition(510, 310);
+	//Highlighted
 
-	continueButtonHLDisabled.setFont(gothicbold);
-	continueButtonHLDisabled.setString("CONTINUE");
-	continueButtonHLDisabled.setCharacterSize(48);
-	continueButtonHLDisabled.setColor(sf::Color::Color(100, 100, 100, 255));
-	continueButtonHLDisabled.setStyle(sf::Text::StrikeThrough);
-	continueButtonHLDisabled.setPosition(510, 310);
+	loadTextLineHL(continueButtonHL, "CONTINUE", 310);
 
-	newGameButtonHL.setFont(gothicbold);
-	newGameButtonHL.setString("NEW GAME");
-	newGameButtonHL.setCharacterSize(48);
-	newGameButtonHL.setColor(sf::Color::Yellow);
-	newGameButtonHL.setStyle(sf::Text::StrikeThrough);
-	newGameButtonHL.setPosition(510, 360);
+	loadTextLineHL(continueButtonHLDisabled, "CONTINUE", 310);
+	continueButtonDisabled.setColor(sf::Color::Color(100, 100, 100, 255));
 
-	loadGameButtonHL.setFont(gothicbold);
-	loadGameButtonHL.setString("LOAD GAME");
-	loadGameButtonHL.setCharacterSize(48);
-	loadGameButtonHL.setColor(sf::Color::Yellow);
-	loadGameButtonHL.setStyle(sf::Text::StrikeThrough);
-	loadGameButtonHL.setPosition(510, 410);
+	loadTextLineHL(newGameButtonHL, "NEW GAME", 360);
 
-	optionsButtonHL.setFont(gothicbold);
-	optionsButtonHL.setString("OPTIONS");
-	optionsButtonHL.setCharacterSize(48);
-	optionsButtonHL.setColor(sf::Color::Yellow);
-	optionsButtonHL.setStyle(sf::Text::StrikeThrough);
-	optionsButtonHL.setPosition(510, 460);
+	loadTextLineHL(loadGameButtonHL, "LOAD GAME", 410);
 
-	exitGameButtonHL.setFont(gothicbold);
-	exitGameButtonHL.setString("EXIT GAME");
-	exitGameButtonHL.setCharacterSize(48);
-	exitGameButtonHL.setColor(sf::Color::Yellow);
-	exitGameButtonHL.setStyle(sf::Text::StrikeThrough);
-	exitGameButtonHL.setPosition(510, 510);
+	loadTextLineHL(optionsButtonHL, "OPTIONS", 460);
 
-	victoryText.setFont(gothicbold);
-	victoryText.setString("Victory!");
-	victoryText.setCharacterSize(100);
-	victoryText.setColor(sf::Color::White);
+	loadTextLineHL(exitGameButtonHL, "EXIT GAME", 510);
+
+
+
+	loadTextLine(victoryText, "Victory!", 225);
 	victoryText.setPosition(480, 225);
 
-	pauseText.setFont(gothicbold);
-	pauseText.setString("Game Paused");
-	pauseText.setCharacterSize(100);
-	pauseText.setColor(sf::Color::White);
+	loadTextLine(pauseText, "Game Paused", 225);
 	pauseText.setPosition(280, 225);
 
-	pressResume.setFont(gothicbold);
-	pressResume.setString("Press R to Resume");
-	pressResume.setCharacterSize(48);
-	pressResume.setColor(sf::Color::White);
+	loadTextLine(pressResume, "Press R to resume", 425);
 	pressResume.setPosition(420, 425);
     
-    youDied.setFont(gothicbold);
-    youDied.setString("YOU DIED");
+	loadTextLine(youDied, "YOU DIED", 425);
     youDied.setCharacterSize((200));
-    youDied.setColor(sf::Color::White);
     youDied.setPosition(130, 190);
     
     returnToTitle.setFont(blackcastle);
@@ -441,10 +403,9 @@ void Game::titleUpdate()
 	
 }
 
+//Also checks for victory
 int Game::cleanupEntities()
 {
-
-
 	//@ Iterate through the vector, delete a "dead" entity and erase it from the vector;
 	//@ Skip the first entity Hero
 	int countEnemies(0);
@@ -465,6 +426,7 @@ int Game::cleanupEntities()
 
 	if (countEnemies == 0)
 		gameState_ = GameState::victory;
+	return countEnemies;
 }
 
 void Game::cleanupProjectiles()
