@@ -2,6 +2,8 @@
 #include <iostream>
 #include "Game.h"
 #include "Constants.h"
+#include "Enemy.h"
+#include "EnemyMage.h"
 
 std::vector<Entity *> Game::entityRegistry;
 
@@ -269,7 +271,7 @@ void Game::collision(Entity *hero, Platform plat){
 
 void Game::hitCollision(Entity *getsHit, Entity *hitter)
 {
-	if ((dynamic_cast<Enemies*>(hitter) || dynamic_cast<Hero*>(hitter)) && getsHit->getCollisionRect().intersects(hitter->getDamagingRect()))
+	if ((dynamic_cast<Enemy*>(hitter) || dynamic_cast<Hero*>(hitter)) && getsHit->getCollisionRect().intersects(hitter->getDamagingRect()))
 	{
 		getsHit->onHit(hitter->getDamage());
 		if (knockBackTime.getElapsedTime().asMilliseconds() > 300)
@@ -285,7 +287,7 @@ void Game::hitCollision(Entity *getsHit, Entity *hitter)
 
 bool Game::projectileCollide(Entity *getsHit, Projectile *proj)
 {
-	if ((dynamic_cast<Enemies*>(getsHit) || dynamic_cast<Hero*>(getsHit)) && getsHit->getCollisionRect().intersects(proj->getAttackRect()))
+	if ((dynamic_cast<Enemy*>(getsHit) || dynamic_cast<Hero*>(getsHit)) && getsHit->getCollisionRect().intersects(proj->getAttackRect()))
 	{
 		getsHit->onHit(proj->getDamage());
 		if (knockBackTime.getElapsedTime().asMilliseconds() > 300)
@@ -481,7 +483,7 @@ void Game::gameUpdate()
 	int countEnemies(0);
 	for (auto &entity = entityRegistry.begin() + 1; entity != entityRegistry.end();) {
 
-		if (dynamic_cast<Enemies*>(*entity)) // check if it is an enemy
+		if (dynamic_cast<Enemy*>(*entity)) // check if it is an enemy
 			++countEnemies;
 
 		if (!(*entity)->IsAlive())
@@ -543,13 +545,13 @@ void Game::gameUpdate()
 
 	for (auto &entity = entityRegistry.begin(); entity != entityRegistry.end();)
 	{
-		if (dynamic_cast<Enemy2*>(*entity))
-			if ((static_cast<Enemy2*>(*entity))->projectileShoot())
+		if (dynamic_cast<EnemyMage*>(*entity))
+			if ((static_cast<EnemyMage*>(*entity))->projectileShoot())
 			{
-				Projectile* proj = new FireBall((*entity)->getX(), (*entity)->getY(), false, (static_cast<Enemy2*>(*entity))->getFaceRight());
+				Projectile* proj = new FireBall((*entity)->getX(), (*entity)->getY(), false, (static_cast<EnemyMage*>(*entity))->getFaceRight());
 
 				projectiles.push_back(proj);
-				static_cast<Enemy2*>(*entity)->setProjectileCooldown(proj->getCooldownDuration());
+				static_cast<EnemyMage*>(*entity)->setProjectileCooldown(proj->getCooldownDuration());
 				//other projectiles
 			}
 		entity++;
