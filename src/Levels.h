@@ -24,6 +24,8 @@ private:
 
 	void createPlatform(float, float, float, float);
 
+	int l; //level
+
 public:
 	std::vector<Platform> platforms;
 
@@ -33,7 +35,12 @@ public:
 	void update();
 	void render(sf::RenderWindow &);
 	void renderPlats(sf::RenderWindow &);
-	void platformSets(int sets);
+	void platformSets(int level);
+
+	void createEnemy(int/*enemy type*/, float, float);
+	void powerup(int/*power up type*/, float, float);
+	void backGroundSets(int level);
+	void entitiesSets(int level);
 
 	const sf::FloatRect getGroundRect()
 	{ return ground_.rectangle.getGlobalBounds(); }

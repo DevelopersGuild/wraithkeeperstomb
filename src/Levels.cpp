@@ -7,8 +7,9 @@
 
 Levels::Levels()
 {
-	// Load background texture and assign to rectangle shape
-	BackgroundGenerator::instance().LoadTextureForLevelOrDie(2); // current level 1; just testing
+	backGroundSets(2);
+	//// Load background texture and assign to rectangle shape
+	//BackgroundGenerator::instance().LoadTextureForLevelOrDie(2); // current level 1; just testing
 
 	background_.texture = BackgroundGenerator::instance().background_texture(); // assign the texture
 	background_.texture.setRepeated(true);
@@ -31,6 +32,77 @@ Levels::Levels()
 	platformSets(5);
 
 }
+
+void Levels::entitiesSets(int l)
+{
+	switch (l)
+	{
+	case 1:
+		createEnemy(1, 700.f, 1360.f);
+		createEnemy(1, 800.f, 1360.f);
+		powerup(1, 500.f, 1200.f);
+		powerup(2, 800.f, 800.f);
+		break;
+	case 2:
+		createEnemy(1, 700.f, 1360.f);
+		createEnemy(2, 800.f, 1360.f);
+		powerup(1, 500.f, 1200.f);
+		powerup(2, 700.f, 1100.f);
+		break;
+	case 3:
+		createEnemy(2, 600.f, 1360.f);
+		createEnemy(2, 779.f, 1360.f);
+		powerup(1, 800.f, 850.f);
+		powerup(2, 1000.f, 1000.f);
+		break;
+	default:
+		createEnemy(2, 600.f, 1360.f);
+		createEnemy(2, 700.f, 1360.f);
+		createEnemy(1, 1000.f, 1360.f);
+		break;
+	}
+}
+
+void Levels::createEnemy(int t/*enemy type*/, float x, float y)
+{
+	Entity *e;
+	switch (t)
+	{
+	case 1:
+		e = new EnemyMage;
+		e->setPosition(x, y);
+		Game::entityRegistry.push_back(e);
+		break;
+	case 2:
+		e = new EnemyReaper;
+		e->setPosition(x, y);
+		Game::entityRegistry.push_back(e);
+		break;
+	default:
+		return;
+	}
+}
+
+void Levels::powerup(int t, float x, float y)
+{
+	Entity *e;
+	switch (t)
+	{
+	case 1:
+		e = new PowerupCookie;
+		e->setPosition(x, y);
+		Game::entityRegistry.push_back(e);
+		break;
+	case 2:
+		e = new PowerupSpear;
+		e->setPosition(x, y);
+		Game::entityRegistry.push_back(e);
+		break;
+	default:
+		return;
+	}
+}
+
 
 void Levels::createEntities()
 {
@@ -98,6 +170,31 @@ void Levels::platformSets(int sets)
 		createPlatform(600.f, 1100.f, 300.f, 32.f);
 		createPlatform(600.f, 750.f, 300.f, 32.f);
 		createPlatform(1000.f, 900.f, 300.f, 32.f);
+		break;
+	}
+}
+
+void Levels::backGroundSets(int level)
+{
+	switch (level)
+	{
+	case 1:
+		BackgroundGenerator::instance().LoadTextureForLevelOrDie(1);
+		break;
+	case 2:
+		BackgroundGenerator::instance().LoadTextureForLevelOrDie(2);
+		break;
+	case 3:
+		BackgroundGenerator::instance().LoadTextureForLevelOrDie(3);
+		break;
+	case 4:
+		BackgroundGenerator::instance().LoadTextureForLevelOrDie(4);
+		break;
+	case 5:
+		BackgroundGenerator::instance().LoadTextureForLevelOrDie(5);
+		break;
+	default:
+		BackgroundGenerator::instance().LoadTextureForLevelOrDie(1);
 		break;
 	}
 }
