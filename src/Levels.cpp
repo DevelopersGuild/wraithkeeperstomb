@@ -1,7 +1,7 @@
 #include "Levels.h"
 #include "Powerup.h"
-#include "Enemy1.h"
-#include "Enemy2.h"
+#include "EnemyMage.h"
+#include "EnemyReaper.h"
 
 #include <vector>
 
@@ -34,14 +34,14 @@ Levels::Levels()
 
 void Levels::createEntities()
 {
-	Entity * e = new Enemy2;
+	Entity * e = new EnemyMage;
 	e->setPosition(1280.f, 1360.f);
-	dynamic_cast<Enemy2*> (e)->set_patrol_origin(1280.f);
+	dynamic_cast<EnemyMage*> (e)->set_patrol_origin(1280.f);
 	Game::entityRegistry.push_back(e);
 
-	e = new Enemy1;
+	e = new EnemyReaper;
 	e->setPosition(1000.f, 1360.f);
-	dynamic_cast<Enemy1*> (e)->set_patrol_origin(1000.f);
+	dynamic_cast<EnemyReaper*> (e)->set_patrol_origin(1000.f);
 	Game::entityRegistry.push_back(e);
 
 	e = new PowerupCookie;

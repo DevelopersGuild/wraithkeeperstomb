@@ -1,8 +1,8 @@
-#include "Enemy2.h"
+#include "EnemyMage.h"
 #include "Constants.h"
 #include <ctime>
 
-Enemy2::Enemy2()
+EnemyMage::EnemyMage()
 {
 	// Load Enemies texture, assign to sprite, set starting sprite dimensions
 	Texture.loadFromFile("../assets/sprites/magebaddie.png");
@@ -19,12 +19,12 @@ Enemy2::Enemy2()
 	armor = ENEMY2_ARMOR;
 	faceRight = true;
 	projectileCooldown = 0.0;
-	Enemies();
+	Enemy();
 
 	srand((unsigned int)time(NULL));
 }
 
-void Enemy2::update(float time)
+void EnemyMage::update(float time)
 {
 	if (Freeze.getElapsedTime().asSeconds() < 1)
 		isFrozen = true;
@@ -60,7 +60,7 @@ void Enemy2::update(float time)
 		Sprite.setScale(1.f, 1.f);
 }
 
-bool Enemy2::projectileShoot()
+bool EnemyMage::projectileShoot()
 {
 	//magic cast animation
 	if (projectileCooldown <= 0 && heroDetected)
@@ -69,7 +69,7 @@ bool Enemy2::projectileShoot()
 		return false;
 }
 
-void Enemy2::jump()
+void EnemyMage::jump()
 {
 	velocity.y -= HERO_JUMP_VELOCITY;
 

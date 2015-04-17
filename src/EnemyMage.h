@@ -1,14 +1,14 @@
 #ifndef ENEMY2_H
 #define ENEMY2_H
-#include "Enemies.h"
+#include "Enemy.h"
 
 //mage baddie
-class Enemy2 : public Enemies
+class EnemyMage : public Enemy
 {
 private:
 	float projectileCooldown;
 public:
-	Enemy2();
+	EnemyMage();
 	void update(float time);
 	bool projectileShoot();
 	void jump();

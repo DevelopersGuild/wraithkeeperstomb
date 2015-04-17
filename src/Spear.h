@@ -4,7 +4,7 @@
 #include "Weapons.h"
 #include "Hero.h"
 #include "Game.h"
-#include "Enemies.h"
+#include "Enemy.h"
 
 class Spear : public Weapons
 {
