@@ -466,7 +466,6 @@ void Game::gameUpdate()
 		{
 			collision(e, levels.platforms[i]);
 		}
-		entityRegistry[i]->update(time);
 	}
 
 	//Exclude hero
@@ -528,6 +527,7 @@ void Game::gameUpdate()
 	}
 
 	//check if the hero is shooting projectile
+	//TODO move to Hero?
 	if (theHero->projectileShoot())
 	{
 		Projectile* proj = new HolyOrb(theHero->getX(), theHero->getY(), true, theHero->getFaceRight());
@@ -543,6 +543,7 @@ void Game::gameUpdate()
 		//other projectiles
 	}
 
+	//TODO move to EnemyMage
 	for (auto &entity = entityRegistry.begin(); entity != entityRegistry.end();)
 	{
 		if (dynamic_cast<EnemyMage*>(*entity))
@@ -677,7 +678,6 @@ void Game::render()
 			entityRegistry[i]->render(window);
 		}
 
-		//iterate through all shot projectiles
 		for (auto &iter = projectiles.begin(); iter != projectiles.end();)
 		{ 
 			(*iter)->render(window);
