@@ -92,6 +92,7 @@
     <ClInclude Include="..\src\Physics.h" />
     <ClInclude Include="..\src\Platform.h" />
     <ClInclude Include="..\src\Projectile.h" />
+    <ClInclude Include="..\src\Scheduler.h" />
     <ClInclude Include="..\src\Spear.h" />
     <ClInclude Include="..\src\Weapons.h" />
   </ItemGroup>
@@ -109,6 +110,7 @@
     <ClCompile Include="..\src\Physics.cpp" />
     <ClCompile Include="..\src\Platform.cpp" />
     <ClCompile Include="..\src\Projectile.cpp" />
+    <ClCompile Include="..\src\Scheduler.cpp" />
     <ClCompile Include="..\src\Spear.cpp" />
     <ClCompile Include="..\src\Weapons.cpp" />
   </ItemGroup>

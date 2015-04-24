@@ -68,4 +68,8 @@ public:
 		Sprite.setOrigin(0, 0);
 		Sprite.setPosition(500.f, 800.f);
 	}
+	void apply(Hero *hero)
+	{
+		
+	}
 };

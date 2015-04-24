@@ -8,7 +8,7 @@ static const int WINDOW_HEIGHT = 720;
 const float HERO_BASE_HP = 100.f;
 const float HERO_BASE_MP = 100.f;
 const float HERO_BASE_SPEED = 5.f;
-const float HERO_JUMP_VELOCITY = 45.f; //for testing purpose
+const float HERO_JUMP_VELOCITY = 33.f; //for testing purpose
 const int HERO_BASE_LEVEL = 1;
 const float HERO_BASE_ARMOR = 30.f;
 const float HERO_BASE_DAMAGE = 20.f;
@@ -39,7 +39,7 @@ const float SPEAR_CRIT_CHANCE = 15.f;
 const float SPEAR_CRIT_MULTIPLIER = 1.5f;
 const float SPEAR_DMG_FLUCTUATION_RATE = 0.1f;
 
-const float SPEAR2_DAMAGE = 50.f;
+const float SPEAR2_DAMAGE = 70.f;
 const float SPEAR2_CRIT_CHANCE = 25.f;
 
 //Projectiles

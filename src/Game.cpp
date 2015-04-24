@@ -514,7 +514,7 @@ void Game::gameUpdate()
 	}
 
 	//check if the hero is shooting projectile
-	//TODO move to Hero?
+	//TODO move to Hero using scheduler task
 	if (theHero->projectileShoot())
 	{
 		Projectile* proj = new HolyOrb(theHero->getX(), theHero->getY(), true, theHero->getFaceRight());
@@ -530,7 +530,7 @@ void Game::gameUpdate()
 		//other projectiles
 	}
 
-	//TODO move to EnemyMage
+	//TODO move to EnemyMage using scheduler task
 	for (auto &entity = entityRegistry.begin(); entity != entityRegistry.end();)
 	{
 		if (dynamic_cast<EnemyMage*>(*entity))
