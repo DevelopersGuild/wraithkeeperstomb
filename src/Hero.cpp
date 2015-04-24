@@ -10,7 +10,7 @@ Hero::Hero()
 	// Load hero texture, assign to sprite, set starting sprite dimensions
 	Texture.loadFromFile("../assets/sprites/hero.png");
 	Sprite.setTexture(Texture);
-	Sprite.setOrigin(32, 128);
+	Sprite.setOrigin(32, 108);
 	Sprite.setPosition(720, 1360);
 	sf::Vector2f velocity(sf::Vector2f(0, 0));
 	sf::Vector2i anim(sf::Vector2i(0, 1));
@@ -340,7 +340,7 @@ void Hero::render(sf::RenderWindow &window)
 			animate(attacks);
 		else
 			animate(action);
-		Sprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 128, 64, 128));
+		Sprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 108 + (anim.y * 20) + 20, 64, 108));
 		window.draw(Sprite);
 		if (weapon != 0)
 		{

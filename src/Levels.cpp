@@ -231,7 +231,7 @@ std::string BackgroundGenerator::GetFileName(LevelNum level_num)
 	switch (level_num)
 	{
 	case 1: return filename = "../assets/sprites/background.png";
-	case 2: return filename = "../assets/sprites/background2.png";
+	case 2: return filename = "../assets/sprites/dungeonwindow.png";//background2.png";
 	default: return filename; // it is "" when initialized
 		break;
 	}
