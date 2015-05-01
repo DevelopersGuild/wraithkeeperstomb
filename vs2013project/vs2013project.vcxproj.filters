@@ -46,7 +46,7 @@
     <ClCompile Include="..\src\EnemyReaper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Scheduler.cpp">
+    <ClCompile Include="..\..\..\Developer%27s Guild\chamberslabyrinth\src\FirstBoss.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -96,7 +96,7 @@
     <ClInclude Include="..\src\EnemyReaper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Scheduler.h">
+    <ClInclude Include="..\..\..\Developer%27s Guild\chamberslabyrinth\src\FirstBoss.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

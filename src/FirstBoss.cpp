@@ -1,29 +1,28 @@
-#include "EnemyReaper.h"
+#include "FirstBoss.h"
 #include "Constants.h"
 #include <ctime>
 
-EnemyReaper::EnemyReaper()
-{
+FirstBoss::FirstBoss() {
 	// Load Enemies texture, assign to sprite, set starting sprite dimensions
-	Texture.loadFromFile("../assets/sprites/reaper.png");
+	Texture.loadFromFile("../assets/sprites/tempBoss.png");
 	Sprite.setTexture(Texture);
-	Sprite.setOrigin(64, 128);
+	Sprite.setOrigin(50, 45);
 	Sprite.setPosition(1000, 1360);
 
 	// Initialize basic Enemies stats
-	HP = ENEMY1_BASE_HP;
-	speedMultiplier = 1;
-	speed = ENEMY1_BASE_SPEED * speedMultiplier;
-	damage = ENEMY1_DAMAGE;
+	HP = BOSS_BASE_HP;
+	speedMultiplier = 0.36;
+	speed = BOSS_BASE_SPEED * speedMultiplier;
+	damage = BOSS_DAMAGE;
 	isShooter = false;
-	armor = ENEMY1_ARMOR;
+	armor = BOSS_ARMOR;
 	faceRight = true;
 	Enemy();
 
 	srand((unsigned int)time(NULL));
 }
 
-void EnemyReaper::update(float time)
+void FirstBoss::update(float time)
 {
 	if (Freeze.getElapsedTime().asSeconds() < 1)
 		isFrozen = true;
@@ -56,7 +55,7 @@ void EnemyReaper::update(float time)
 		Sprite.setScale(1.f, 1.f);
 }
 
-void EnemyReaper::jump()
+void FirstBoss::jump()
 {
 	velocity.y -= HERO_JUMP_VELOCITY;
 
@@ -66,16 +65,16 @@ void EnemyReaper::jump()
 	}
 }
 
-void EnemyReaper::onHeroDetected(Hero* hero)
+void FirstBoss::onHeroDetected(Hero* hero)
 {
 	if (getY() < hero->getY())
 		jump();
-	else if ((getX() - hero->getX()) > 20)
+	else if ((getX() - hero->getX()) > 0)
 	{
 		left();
 		faceRight = false;
 	}
-	else if ((hero->getX() - getX()) < -20)
+	else
 	{
 		right();
 		faceRight = true;

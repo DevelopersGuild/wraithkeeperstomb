@@ -31,6 +31,12 @@ const float ENEMY2_BASE_SPEED = 3.f;
 const float ENEMY2_DAMAGE = 35.f;
 const float ENEMY2_ARMOR = 15.f;
 
+//Bosses
+const float BOSS_BASE_HP = 500.f;
+const float BOSS_BASE_SPEED = 3.1f;
+const float BOSS_DAMAGE = 45.2f;
+const float BOSS_ARMOR = 16.75f;
+
 //Weapons
 const float SPEAR_RANGE = 125.f;
 const float SPEAR_COOLDOWN = 1.f;

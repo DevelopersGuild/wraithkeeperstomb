@@ -24,6 +24,7 @@ private:
 
 	void createPlatform(float, float, float, float);
 
+	bool isBoss;
 	int l; //level
 
 public:

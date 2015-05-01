@@ -2,11 +2,14 @@
 #include "Powerup.h"
 #include "EnemyMage.h"
 #include "EnemyReaper.h"
+#include "FirstBoss.h"
 
 #include <vector>
 
 Levels::Levels()
 {
+	isBoss = false;
+	
 	backGroundSets(2);
 	//// Load background texture and assign to rectangle shape
 	//BackgroundGenerator::instance().LoadTextureForLevelOrDie(2); // current level 1; just testing
@@ -35,51 +38,63 @@ Levels::Levels()
 
 void Levels::entitiesSets(int l)
 {
-	switch (l)
+	if (!isBoss)
+		switch (l)
+		{
+		case 1:
+			createEnemy(1, 700.f, 1360.f);
+			createEnemy(1, 800.f, 1360.f);
+			powerup(1, 500.f, 1200.f);
+			powerup(2, 800.f, 800.f);
+			break;
+		case 2:
+			createEnemy(1, 700.f, 1360.f);
+			createEnemy(2, 800.f, 1360.f);
+			powerup(1, 500.f, 1200.f);
+			powerup(2, 700.f, 1100.f);
+			break;
+		case 3:
+			createEnemy(2, 600.f, 1360.f);
+			createEnemy(2, 779.f, 1360.f);
+			powerup(1, 800.f, 850.f);
+			powerup(2, 1000.f, 1000.f);
+			break;
+		default:
+			createEnemy(2, 600.f, 1360.f);
+			createEnemy(2, 700.f, 1360.f);
+			createEnemy(1, 1000.f, 1360.f);
+			break;
+		}
+	else
 	{
-	case 1:
-		createEnemy(1, 700.f, 1360.f);
-		createEnemy(1, 800.f, 1360.f);
-		powerup(1, 500.f, 1200.f);
-		powerup(2, 800.f, 800.f);
-		break;
-	case 2:
-		createEnemy(1, 700.f, 1360.f);
-		createEnemy(2, 800.f, 1360.f);
-		powerup(1, 500.f, 1200.f);
-		powerup(2, 700.f, 1100.f);
-		break;
-	case 3:
-		createEnemy(2, 600.f, 1360.f);
-		createEnemy(2, 779.f, 1360.f);
-		powerup(1, 800.f, 850.f);
-		powerup(2, 1000.f, 1000.f);
-		break;
-	default:
-		createEnemy(2, 600.f, 1360.f);
-		createEnemy(2, 700.f, 1360.f);
-		createEnemy(1, 1000.f, 1360.f);
-		break;
+
 	}
 }
 
 void Levels::createEnemy(int t/*enemy type*/, float x, float y)
 {
 	Entity *e;
-	switch (t)
+	if (!isBoss)
+		switch (t)
+		{
+		case 1:
+			e = new EnemyMage;
+			e->setPosition(x, y);
+			Game::entityRegistry.push_back(e);
+			break;
+		case 2:
+			e = new EnemyReaper;
+			e->setPosition(x, y);
+			Game::entityRegistry.push_back(e);
+			break;
+		default:
+			return;
+		}
+	else
 	{
-	case 1:
-		e = new EnemyMage;
+		e = new FirstBoss;
 		e->setPosition(x, y);
 		Game::entityRegistry.push_back(e);
-		break;
-	case 2:
-		e = new EnemyReaper;
-		e->setPosition(x, y);
-		Game::entityRegistry.push_back(e);
-		break;
-	default:
-		return;
 	}
 }
 
@@ -231,7 +246,7 @@ std::string BackgroundGenerator::GetFileName(LevelNum level_num)
 	switch (level_num)
 	{
 	case 1: return filename = "../assets/sprites/background.png";
-	case 2: return filename = "../assets/sprites/background2.png";
+	case 2: return filename = "../assets/sprites/dungeonwindow.png";
 	default: return filename; // it is "" when initialized
 		break;
 	}

@@ -30,7 +30,7 @@ void Platform::setTexture(){
 	if (platform_ground_texture == 0)
 	{
 		platform_ground_texture = new sf::Texture;
-		platform_ground_texture->loadFromFile("../assets/sprites/GroundTexture.png");
+		platform_ground_texture->loadFromFile("../assets/sprites/StonePlatform.png");
 		platform_ground_texture->setRepeated(true);
 	}
 	rec.setTexture(platform_ground_texture);

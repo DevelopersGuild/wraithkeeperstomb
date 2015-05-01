@@ -79,6 +79,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\Developer%27s Guild\chamberslabyrinth\src\FirstBoss.h" />
     <ClInclude Include="..\src\Constants.h" />
     <ClInclude Include="..\src\Powerup.h" />
     <ClInclude Include="..\src\Enemy.h" />
@@ -92,11 +93,11 @@
     <ClInclude Include="..\src\Physics.h" />
     <ClInclude Include="..\src\Platform.h" />
     <ClInclude Include="..\src\Projectile.h" />
-    <ClInclude Include="..\src\Scheduler.h" />
     <ClInclude Include="..\src\Spear.h" />
     <ClInclude Include="..\src\Weapons.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Developer%27s Guild\chamberslabyrinth\src\FirstBoss.cpp" />
     <ClCompile Include="..\src\Powerup.cpp" />
     <ClCompile Include="..\src\Enemy.cpp" />
     <ClCompile Include="..\src\EnemyReaper.cpp" />
@@ -110,7 +111,6 @@
     <ClCompile Include="..\src\Physics.cpp" />
     <ClCompile Include="..\src\Platform.cpp" />
     <ClCompile Include="..\src\Projectile.cpp" />
-    <ClCompile Include="..\src\Scheduler.cpp" />
     <ClCompile Include="..\src\Spear.cpp" />
     <ClCompile Include="..\src\Weapons.cpp" />
   </ItemGroup>
