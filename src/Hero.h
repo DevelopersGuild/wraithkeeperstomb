@@ -20,14 +20,11 @@ private:
 	struct {
 		float speed;
 		float speedMultiplier;
-
 		float armor;
 		float HP;
 		float MP;
-
 		float heroJumpSpeed;
 		int level_;
-
 		int experience_;
 	} stats_;
 
@@ -54,7 +51,6 @@ private:
 	void walkAnim();		//Animation sequence for walking
 	void jumpAnim();		//Animation sequence for jumping
 	void attackAnim();		//Animation sequence for attacking
-	//void jump(float seconds);
 public:
 	Hero();
 	~Hero();

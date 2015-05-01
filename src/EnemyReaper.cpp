@@ -8,7 +8,7 @@ EnemyReaper::EnemyReaper()
 	Texture.loadFromFile("../assets/sprites/reaper.png");
 	Sprite.setTexture(Texture);
 	Sprite.setOrigin(64, 128);
-	Sprite.setPosition(1000, 1360);
+	Sprite.setPosition(1000, 1424);
 
 	// Initialize basic Enemies stats
 	HP = ENEMY1_BASE_HP;
@@ -68,9 +68,7 @@ void EnemyReaper::jump()
 
 void EnemyReaper::onHeroDetected(Hero* hero)
 {
-	if (getY() < hero->getY())
-		jump();
-	else if ((getX() - hero->getX()) > 0)
+	if ((getX() - hero->getX()) > 0)
 	{
 		left();
 		faceRight = false;

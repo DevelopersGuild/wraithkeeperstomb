@@ -39,7 +39,7 @@ void Enemy::right()
 
 bool Enemy::heroDetection(Hero* hero)
 {
-	if ((getX() - hero->getX()) <= ENEMY_DETECTION_RADIUS && (hero->getX() - getX()) <= ENEMY_DETECTION_RADIUS && (getY() - hero->getY()) <= ENEMY_DETECTION_RADIUS)
+	if ((getX() - hero->getX()) <= ENEMY_DETECTION_RADIUS) // && (hero->getX() - getX()) <= ENEMY_DETECTION_RADIUS && (getY() - hero->getY()) <= ENEMY_DETECTION_RADIUS)
 	{
 		heroDetected = true;
 		return true;
@@ -53,9 +53,7 @@ bool Enemy::heroDetection(Hero* hero)
 
 void Enemy::onHeroDetected(Hero* hero)
 {
-	if (getY() < hero->getY())
-		jump();
-	else if ((getX() - hero->getX()) > 0)
+	 if ((getX() - hero->getX()) > 0)
 	{
 		faceRight = false;
 	}

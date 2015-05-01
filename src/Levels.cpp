@@ -17,17 +17,9 @@ Levels::Levels()
 	background_.rectangle.setTexture(&background_.texture);
 	background_.rectangle.setTextureRect({ 0, 0, 1200, 600 });
 
-	ground_.texture.loadFromFile("../assets/sprites/GroundTexture.png");
-	ground_.texture.setRepeated(true);
-	ground_.rectangle.setSize(sf::Vector2f(2560, 64));
-	ground_.rectangle.setTexture(&ground_.texture);
-	ground_.rectangle.setTextureRect({ 0, 0, 1000, 32 });													   
-	ground_.rectangle.setPosition(0, 1340);
-
 	//Minimap Background
 	back.setSize(sf::Vector2f(2560, 1440));
 	back.setFillColor(sf::Color::Color(0, 0, 0, 150));
-	
 
 	platformSets(5);
 
@@ -170,6 +162,7 @@ void Levels::platformSets(int sets)
 		createPlatform(600.f, 1100.f, 300.f, 32.f);
 		createPlatform(600.f, 750.f, 300.f, 32.f);
 		createPlatform(1000.f, 900.f, 300.f, 32.f);
+		createPlatform(0.f, 1360.f, 2560.f, 64.f);
 		break;
 	}
 }
@@ -207,7 +200,6 @@ void Levels::update()
 void Levels::render(sf::RenderWindow &window)
 {
 	window.draw(background_.rectangle);
-	window.draw(ground_.rectangle);
 	for (size_t i = 0; i < platforms.size(); i++)
 	{
 		platforms[i].render(window);
@@ -217,7 +209,6 @@ void Levels::render(sf::RenderWindow &window)
 //renders minimap
 void Levels::renderPlats(sf::RenderWindow &window){
 	window.draw(back);
-	window.draw(ground_.rectangle);
 	for (size_t i = 0; i < platforms.size(); i++)
 	{
 		platforms[i].render(window);

@@ -11,7 +11,7 @@ Hero::Hero()
 	Texture.loadFromFile("../assets/sprites/hero.png");
 	Sprite.setTexture(Texture);
 	Sprite.setOrigin(32, 128);
-	Sprite.setPosition(720, 1360);
+	Sprite.setPosition(720, 1424);
 	sf::Vector2f velocity(sf::Vector2f(0, 0));
 	sf::Vector2i anim(sf::Vector2i(0, 1));
 	invincibilityCD.restart();
@@ -245,16 +245,16 @@ void Hero::jump(float seconds)
 		velocity.y = 0;
 	}
 	if (velocity.y < 0){
-		Sprite.move(velocity);
 		velocity.y += GRAVITY;
+		Sprite.move(velocity);
 	}
 }
 
 void Hero::update(float seconds)
 {
+	std::cout << velocity.y << std::endl;
 	//prevent bonuses from increasing over time
 	stats_.speed = HERO_BASE_SPEED * stats_.speedMultiplier;
-
 	for (auto &iter = effects_.begin(); iter != effects_.end();) { //iterate through all buffs/debuffs 
 		if ((*iter)->HasTimedOut())
 		{ //when duration of a buff/debuff expires
@@ -270,7 +270,6 @@ void Hero::update(float seconds)
 			++iter;
 		}
 	}
-
 
 	{
 		// Handle movement
@@ -290,7 +289,7 @@ void Hero::update(float seconds)
 		}
 
 		// Jump
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && (Sprite.getPosition().y == 1360 || collisionNum == 0))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && collisionNum == 0)
 			jump(seconds);
 		//jump(seconds);
 
@@ -298,23 +297,8 @@ void Hero::update(float seconds)
 		if (stats_.HP <= 0)
 			is_alive_ = false;
 
-		//Gravity implementation
-		if (Sprite.getPosition().y + Sprite.getScale().y < 1350)// || collisionNum == 0) //This should later be changed to a collision with groud boolean
-		{
-			velocity.y += GRAVITY * seconds * seconds * 265 * collisionNum;
-			Sprite.move(0.f, velocity.y);
+		doPhysics(seconds);
 
-			if (collisionNum == 0){
-				velocity.y = 0;
-			}
-		}
-		else
-		{
-			velocity.y = 0;
-			//if (jumpCooldown < 4)
-			//jumpCooldown++;
-			Sprite.setPosition(Sprite.getPosition().x, 1360);
-		}
 		if (velocity.y != 0)
 		{
 			action = jumps;

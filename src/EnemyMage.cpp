@@ -8,7 +8,7 @@ EnemyMage::EnemyMage()
 	Texture.loadFromFile("../assets/sprites/magebaddie.png");
 	Sprite.setTexture(Texture);
 	Sprite.setOrigin(32, 128);
-	Sprite.setPosition(1280, 1360);
+	Sprite.setPosition(1280, 1424);
 
 	// Initialize basic Enemies stats
 	HP = ENEMY2_BASE_HP;
@@ -20,6 +20,7 @@ EnemyMage::EnemyMage()
 	faceRight = true;
 	projectileCooldown = 0.0;
 	Enemy();
+
 
 	srand((unsigned int)time(NULL));
 }

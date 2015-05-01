@@ -12,12 +12,6 @@ private:
 	struct {
 		sf::Texture texture;
 		sf::RectangleShape rectangle;
-	} ground_;
-
-	struct
-	{
-		sf::Texture texture;
-		sf::RectangleShape rectangle;
 	} background_;
 
 	sf::RectangleShape back;
@@ -41,9 +35,6 @@ public:
 	void powerup(int/*power up type*/, float, float);
 	void backGroundSets(int level);
 	void entitiesSets(int level);
-
-	const sf::FloatRect getGroundRect()
-	{ return ground_.rectangle.getGlobalBounds(); }
 };
 
 /*************************************************

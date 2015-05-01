@@ -4,6 +4,7 @@
 Entity::Entity()
 {
 	// Initialize basic Entity stats
+	collisionNum = 0;
 }
 
 void Entity::setPosition(float x, float y)
@@ -31,13 +32,10 @@ void Entity::setGround(Platform * ground_){
 
 void Entity::doPhysics(float seconds)
 {
-
 	//Gravity implementation
-	velocity.y += GRAVITY * seconds * 265 * (collisionNum==0 ? 0 : 1);
-
-	if (collisionNum == 0 || (Sprite.getPosition().y + Sprite.getScale().y > 1350)){
-		velocity.y = 0;
+	if (collisionNum == 0)
+	{
+		velocity.y += GRAVITY * seconds * 265 * (collisionNum == 0 ? 0 : 1);
 	}
-
 	Sprite.move(velocity);
 }

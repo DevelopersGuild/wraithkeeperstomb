@@ -318,7 +318,7 @@ void Game::loadTextLine(sf::Text &text, std::string line, int yPos)
 	text.setString(line);
 	text.setCharacterSize(48);
 	text.setColor(sf::Color::White);
-	text.setPosition(510, yPos);
+	text.setPosition(510.f, yPos);
 }
 
 void Game::loadAssets()
@@ -562,7 +562,7 @@ void Game::gameUpdate()
 		camera.setCenter(camera.getCenter().x, theHero->getY() - 100);
 	}
 
-	camera.zoom(.5);
+	camera.zoom(.6);
 	window.setView(camera);
 	//HP
 	if (theHero->getHP() / HERO_BASE_HP > 0)
@@ -570,7 +570,7 @@ void Game::gameUpdate()
 	else
 		HPbar.setSize(sf::Vector2f(0, 6));
 
-	HPbar.setPosition(camera.getCenter().x-300, camera.getCenter().y-150);
+	HPbar.setPosition(camera.getCenter().x-380, camera.getCenter().y-190);
 
 	//MP
 	if (theHero->getMP() / HERO_BASE_MP > 0)
@@ -578,7 +578,7 @@ void Game::gameUpdate()
 	else
 		MPbar.setSize(sf::Vector2f(0, 6));
 
-	MPbar.setPosition(camera.getCenter().x - 300, camera.getCenter().y - 140);
+	MPbar.setPosition(camera.getCenter().x - 380, camera.getCenter().y - 200);
 }
 
 
