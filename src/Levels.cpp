@@ -10,7 +10,18 @@ Levels::Levels()
 {
 	isBoss = false;
 	
-	backGroundSets(2);
+	srand(time(0));
+
+	l = rand() % 5 + 1;
+	createBackground();
+	door.setPosition(2000, 1220);
+	platformSets();
+
+}
+
+void Levels::createBackground()
+{
+	backGroundSets();
 	//// Load background texture and assign to rectangle shape
 	//BackgroundGenerator::instance().LoadTextureForLevelOrDie(2); // current level 1; just testing
 
@@ -24,19 +35,15 @@ Levels::Levels()
 	ground_.texture.setRepeated(true);
 	ground_.rectangle.setSize(sf::Vector2f(2560, 64));
 	ground_.rectangle.setTexture(&ground_.texture);
-	ground_.rectangle.setTextureRect({ 0, 0, 1000, 32 });													   
+	ground_.rectangle.setTextureRect({ 0, 0, 1000, 32 });
 	ground_.rectangle.setPosition(0, 1340);
 
 	//Minimap Background
 	back.setSize(sf::Vector2f(2560, 1440));
 	back.setFillColor(sf::Color::Color(0, 0, 0, 150));
-	
-
-	platformSets(5);
-
 }
 
-void Levels::entitiesSets(int l)
+void Levels::entitiesSets()
 {
 	if (!isBoss)
 		switch (l)
@@ -149,9 +156,9 @@ void Levels::createPlatform(float posX, float posY, float sizeX, float sizeY)
 	platforms.emplace_back(pl);
 }
 
-void Levels::platformSets(int sets)
+void Levels::platformSets()
 {
-	switch (sets)
+	switch (l)
 	{
 	case 1:
 		createPlatform(500.f, 900.f, 350.f, 32.f);
@@ -189,9 +196,9 @@ void Levels::platformSets(int sets)
 	}
 }
 
-void Levels::backGroundSets(int level)
+void Levels::backGroundSets()
 {
-	switch (level)
+	switch (l)
 	{
 	case 1:
 		BackgroundGenerator::instance().LoadTextureForLevelOrDie(1);
@@ -223,6 +230,7 @@ void Levels::render(sf::RenderWindow &window)
 {
 	window.draw(background_.rectangle);
 	window.draw(ground_.rectangle);
+	window.draw(door.getSprite());
 	for (size_t i = 0; i < platforms.size(); i++)
 	{
 		platforms[i].render(window);
@@ -233,6 +241,7 @@ void Levels::render(sf::RenderWindow &window)
 void Levels::renderPlats(sf::RenderWindow &window){
 	window.draw(back);
 	window.draw(ground_.rectangle);
+	window.draw(door.getSprite());
 	for (size_t i = 0; i < platforms.size(); i++)
 	{
 		platforms[i].render(window);

@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Platform.h"
+#include "Door.h"
 
 using LevelNum = int;
 
@@ -27,6 +28,8 @@ private:
 	bool isBoss;
 	int l; //level
 
+	Door door;
+
 public:
 	std::vector<Platform> platforms;
 
@@ -36,15 +39,18 @@ public:
 	void update();
 	void render(sf::RenderWindow &);
 	void renderPlats(sf::RenderWindow &);
-	void platformSets(int level);
+	void platformSets();
 
 	void createEnemy(int/*enemy type*/, float, float);
 	void powerup(int/*power up type*/, float, float);
-	void backGroundSets(int level);
-	void entitiesSets(int level);
+	void backGroundSets();
+	void entitiesSets();
+	void createBackground();
 
 	const sf::FloatRect getGroundRect()
 	{ return ground_.rectangle.getGlobalBounds(); }
+	Door getDoor()
+	{ return door; }
 };
 
 /*************************************************
