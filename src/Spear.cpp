@@ -1,9 +1,10 @@
 #include "Spear.h"
+#include "Paths.h"
 #include <iostream>
 
 Spear::Spear(Hero *hero)
 {
-	Texture.loadFromFile("../assets/sprites/spear1.png");
+	Texture.loadFromFile(resourcePath() + "assets/sprites/spear1.png");
 	Sprite.setTexture(Texture);
 	Sprite.setOrigin(32, 64); // change this
 	Sprite.setPosition(hero->getX(), hero->getY());

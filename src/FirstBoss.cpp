@@ -1,10 +1,11 @@
 #include "FirstBoss.h"
 #include "Constants.h"
+#include "Paths.h"
 #include <ctime>
 
 FirstBoss::FirstBoss() {
 	// Load Enemies texture, assign to sprite, set starting sprite dimensions
-	Texture.loadFromFile("../assets/sprites/tempBoss.png");
+	Texture.loadFromFile(resourcePath() + "assets/sprites/tempBoss.png");
 	Sprite.setTexture(Texture);
 	Sprite.setOrigin(50, 45);
 	Sprite.setPosition(1000, 1360);

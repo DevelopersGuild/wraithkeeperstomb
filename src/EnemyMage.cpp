@@ -1,11 +1,12 @@
 #include "EnemyMage.h"
 #include "Constants.h"
+#include "Paths.h"
 #include <ctime>
 
 EnemyMage::EnemyMage()
 {
 	// Load Enemies texture, assign to sprite, set starting sprite dimensions
-	Texture.loadFromFile("../assets/sprites/magebaddie.png");
+	Texture.loadFromFile(resourcePath() + "assets/sprites/magebaddie.png");
 	Sprite.setTexture(Texture);
 	Sprite.setOrigin(32, 128);
 	Sprite.setPosition(1280, 1424);

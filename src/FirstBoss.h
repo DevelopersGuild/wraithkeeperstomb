@@ -1,5 +1,5 @@
 #ifndef FIRSTBOSS_H
-#define FIRSTBOSS_h
+#define FIRSTBOSS_H
 #include "Enemy.h"
 
 // First Boss

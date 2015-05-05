@@ -2,6 +2,7 @@
 #define PROJECTILE_H
 
 #include "Weapons.h"
+#include "Paths.h"
 
 class Projectile: public Weapons
 {
@@ -40,7 +41,7 @@ public:
 	HolyOrb(float shooter_x, float shooter_y, bool shot_by_hero, bool faceRight)
 		: Projectile(shooter_x, shooter_y, shot_by_hero)
 	{
-		Texture.loadFromFile("../assets/sprites/holyorb.png");
+		Texture.loadFromFile(resourcePath() + "assets/sprites/holyorb.png");
 		Sprite.setTexture(Texture);
 
 		cooldownDuration = HOLYORB_COOLDOWN;
@@ -72,7 +73,7 @@ public:
 	FireBall(float shooter_x, float shooter_y, bool shot_by_hero, bool faceRight)
 		: Projectile(shooter_x, shooter_y, shot_by_hero)
 	{
-		Texture.loadFromFile("../assets/sprites/fireball.png");
+		Texture.loadFromFile(resourcePath() + "assets/sprites/fireball.png");
 		Sprite.setTexture(Texture);
 
 		cooldownDuration = FIREBALL_COOLDOWN;

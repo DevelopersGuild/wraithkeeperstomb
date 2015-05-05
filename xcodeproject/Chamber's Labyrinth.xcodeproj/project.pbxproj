@@ -1,0 +1,414 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5FC7638E1AF8ED7500504B24 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FC7638D1AF8ED7500504B24 /* Images.xcassets */; };
+		5FE148A91AFBE53C007C20CA /* Door.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FE148851AFBE53C007C20CA /* Door.cpp */; };
+		5FE148AA1AFBE53C007C20CA /* Effect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FE148871AFBE53C007C20CA /* Effect.cpp */; };
+		5FE148AB1AFBE53C007C20CA /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FE148891AFBE53C007C20CA /* Enemy.cpp */; };
+		5FE148AC1AFBE53C007C20CA /* EnemyMage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1488B1AFBE53C007C20CA /* EnemyMage.cpp */; };
+		5FE148AD1AFBE53C007C20CA /* EnemyReaper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1488D1AFBE53C007C20CA /* EnemyReaper.cpp */; };
+		5FE148AE1AFBE53C007C20CA /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1488F1AFBE53C007C20CA /* Entity.cpp */; };
+		5FE148AF1AFBE53C007C20CA /* FirstBoss.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FE148911AFBE53C007C20CA /* FirstBoss.cpp */; };
+		5FE148B01AFBE53C007C20CA /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FE148931AFBE53C007C20CA /* Game.cpp */; };
+		5FE148B11AFBE53C007C20CA /* Hero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FE148951AFBE53C007C20CA /* Hero.cpp */; };
+		5FE148B21AFBE53C007C20CA /* Levels.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FE148971AFBE53C007C20CA /* Levels.cpp */; };
+		5FE148B31AFBE53C007C20CA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FE148991AFBE53C007C20CA /* main.cpp */; };
+		5FE148B41AFBE53C007C20CA /* Paths-Mac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1489A1AFBE53C007C20CA /* Paths-Mac.mm */; };
+		5FE148B61AFBE53C007C20CA /* Physics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1489D1AFBE53C007C20CA /* Physics.cpp */; };
+		5FE148B71AFBE53C007C20CA /* Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FE1489F1AFBE53C007C20CA /* Platform.cpp */; };
+		5FE148B81AFBE53C007C20CA /* Powerup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FE148A11AFBE53C007C20CA /* Powerup.cpp */; };
+		5FE148B91AFBE53C007C20CA /* Projectile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FE148A31AFBE53C007C20CA /* Projectile.cpp */; };
+		5FE148BA1AFBE53C007C20CA /* Spear.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FE148A51AFBE53C007C20CA /* Spear.cpp */; };
+		5FE148BB1AFBE53C007C20CA /* Weapons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FE148A71AFBE53C007C20CA /* Weapons.cpp */; };
+		5FE148BD1AFBE546007C20CA /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 5FE148BC1AFBE546007C20CA /* assets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5F3E87031AF8E65600FAC432 /* Chamber's Labyrinth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chamber's Labyrinth.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F3E87071AF8E65600FAC432 /* Chamber's Labyrinth-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Chamber's Labyrinth-Info.plist"; sourceTree = "<group>"; };
+		5FC7638D1AF8ED7500504B24 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		5FE148841AFBE53C007C20CA /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../../src/Constants.h; sourceTree = "<group>"; };
+		5FE148851AFBE53C007C20CA /* Door.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Door.cpp; path = ../../src/Door.cpp; sourceTree = "<group>"; };
+		5FE148861AFBE53C007C20CA /* Door.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Door.h; path = ../../src/Door.h; sourceTree = "<group>"; };
+		5FE148871AFBE53C007C20CA /* Effect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Effect.cpp; path = ../../src/Effect.cpp; sourceTree = "<group>"; };
+		5FE148881AFBE53C007C20CA /* Effect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Effect.h; path = ../../src/Effect.h; sourceTree = "<group>"; };
+		5FE148891AFBE53C007C20CA /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Enemy.cpp; path = ../../src/Enemy.cpp; sourceTree = "<group>"; };
+		5FE1488A1AFBE53C007C20CA /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Enemy.h; path = ../../src/Enemy.h; sourceTree = "<group>"; };
+		5FE1488B1AFBE53C007C20CA /* EnemyMage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EnemyMage.cpp; path = ../../src/EnemyMage.cpp; sourceTree = "<group>"; };
+		5FE1488C1AFBE53C007C20CA /* EnemyMage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnemyMage.h; path = ../../src/EnemyMage.h; sourceTree = "<group>"; };
+		5FE1488D1AFBE53C007C20CA /* EnemyReaper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EnemyReaper.cpp; path = ../../src/EnemyReaper.cpp; sourceTree = "<group>"; };
+		5FE1488E1AFBE53C007C20CA /* EnemyReaper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnemyReaper.h; path = ../../src/EnemyReaper.h; sourceTree = "<group>"; };
+		5FE1488F1AFBE53C007C20CA /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Entity.cpp; path = ../../src/Entity.cpp; sourceTree = "<group>"; };
+		5FE148901AFBE53C007C20CA /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Entity.h; path = ../../src/Entity.h; sourceTree = "<group>"; };
+		5FE148911AFBE53C007C20CA /* FirstBoss.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FirstBoss.cpp; path = ../../src/FirstBoss.cpp; sourceTree = "<group>"; };
+		5FE148921AFBE53C007C20CA /* FirstBoss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirstBoss.h; path = ../../src/FirstBoss.h; sourceTree = "<group>"; };
+		5FE148931AFBE53C007C20CA /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Game.cpp; path = ../../src/Game.cpp; sourceTree = "<group>"; };
+		5FE148941AFBE53C007C20CA /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = ../../src/Game.h; sourceTree = "<group>"; };
+		5FE148951AFBE53C007C20CA /* Hero.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Hero.cpp; path = ../../src/Hero.cpp; sourceTree = "<group>"; };
+		5FE148961AFBE53C007C20CA /* Hero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hero.h; path = ../../src/Hero.h; sourceTree = "<group>"; };
+		5FE148971AFBE53C007C20CA /* Levels.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Levels.cpp; path = ../../src/Levels.cpp; sourceTree = "<group>"; };
+		5FE148981AFBE53C007C20CA /* Levels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Levels.h; path = ../../src/Levels.h; sourceTree = "<group>"; };
+		5FE148991AFBE53C007C20CA /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../src/main.cpp; sourceTree = "<group>"; };
+		5FE1489A1AFBE53C007C20CA /* Paths-Mac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "Paths-Mac.mm"; path = "../../src/Paths-Mac.mm"; sourceTree = "<group>"; };
+		5FE1489C1AFBE53C007C20CA /* Paths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Paths.h; path = ../../src/Paths.h; sourceTree = "<group>"; };
+		5FE1489D1AFBE53C007C20CA /* Physics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Physics.cpp; path = ../../src/Physics.cpp; sourceTree = "<group>"; };
+		5FE1489E1AFBE53C007C20CA /* Physics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Physics.h; path = ../../src/Physics.h; sourceTree = "<group>"; };
+		5FE1489F1AFBE53C007C20CA /* Platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Platform.cpp; path = ../../src/Platform.cpp; sourceTree = "<group>"; };
+		5FE148A01AFBE53C007C20CA /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Platform.h; path = ../../src/Platform.h; sourceTree = "<group>"; };
+		5FE148A11AFBE53C007C20CA /* Powerup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Powerup.cpp; path = ../../src/Powerup.cpp; sourceTree = "<group>"; };
+		5FE148A21AFBE53C007C20CA /* Powerup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Powerup.h; path = ../../src/Powerup.h; sourceTree = "<group>"; };
+		5FE148A31AFBE53C007C20CA /* Projectile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Projectile.cpp; path = ../../src/Projectile.cpp; sourceTree = "<group>"; };
+		5FE148A41AFBE53C007C20CA /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Projectile.h; path = ../../src/Projectile.h; sourceTree = "<group>"; };
+		5FE148A51AFBE53C007C20CA /* Spear.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Spear.cpp; path = ../../src/Spear.cpp; sourceTree = "<group>"; };
+		5FE148A61AFBE53C007C20CA /* Spear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spear.h; path = ../../src/Spear.h; sourceTree = "<group>"; };
+		5FE148A71AFBE53C007C20CA /* Weapons.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Weapons.cpp; path = ../../src/Weapons.cpp; sourceTree = "<group>"; };
+		5FE148A81AFBE53C007C20CA /* Weapons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Weapons.h; path = ../../src/Weapons.h; sourceTree = "<group>"; };
+		5FE148BC1AFBE546007C20CA /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../../assets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5F3E86FF1AF8E65600FAC432 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5F3E86F91AF8E65600FAC432 = {
+			isa = PBXGroup;
+			children = (
+				5F3E87051AF8E65600FAC432 /* Chamber's Labyrinth */,
+				5F3E87041AF8E65600FAC432 /* Products */,
+			);
+			sourceTree = "<group>";
+			usesTabs = 1;
+		};
+		5F3E87041AF8E65600FAC432 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5F3E87031AF8E65600FAC432 /* Chamber's Labyrinth.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5F3E87051AF8E65600FAC432 /* Chamber's Labyrinth */ = {
+			isa = PBXGroup;
+			children = (
+				5FE148841AFBE53C007C20CA /* Constants.h */,
+				5FE148851AFBE53C007C20CA /* Door.cpp */,
+				5FE148861AFBE53C007C20CA /* Door.h */,
+				5FE148871AFBE53C007C20CA /* Effect.cpp */,
+				5FE148881AFBE53C007C20CA /* Effect.h */,
+				5FE148891AFBE53C007C20CA /* Enemy.cpp */,
+				5FE1488A1AFBE53C007C20CA /* Enemy.h */,
+				5FE1488B1AFBE53C007C20CA /* EnemyMage.cpp */,
+				5FE1488C1AFBE53C007C20CA /* EnemyMage.h */,
+				5FE1488D1AFBE53C007C20CA /* EnemyReaper.cpp */,
+				5FE1488E1AFBE53C007C20CA /* EnemyReaper.h */,
+				5FE1488F1AFBE53C007C20CA /* Entity.cpp */,
+				5FE148901AFBE53C007C20CA /* Entity.h */,
+				5FE148911AFBE53C007C20CA /* FirstBoss.cpp */,
+				5FE148921AFBE53C007C20CA /* FirstBoss.h */,
+				5FE148931AFBE53C007C20CA /* Game.cpp */,
+				5FE148941AFBE53C007C20CA /* Game.h */,
+				5FE148951AFBE53C007C20CA /* Hero.cpp */,
+				5FE148961AFBE53C007C20CA /* Hero.h */,
+				5FE148971AFBE53C007C20CA /* Levels.cpp */,
+				5FE148981AFBE53C007C20CA /* Levels.h */,
+				5FE148991AFBE53C007C20CA /* main.cpp */,
+				5FE1489A1AFBE53C007C20CA /* Paths-Mac.mm */,
+				5FE1489C1AFBE53C007C20CA /* Paths.h */,
+				5FE1489D1AFBE53C007C20CA /* Physics.cpp */,
+				5FE1489E1AFBE53C007C20CA /* Physics.h */,
+				5FE1489F1AFBE53C007C20CA /* Platform.cpp */,
+				5FE148A01AFBE53C007C20CA /* Platform.h */,
+				5FE148A11AFBE53C007C20CA /* Powerup.cpp */,
+				5FE148A21AFBE53C007C20CA /* Powerup.h */,
+				5FE148A31AFBE53C007C20CA /* Projectile.cpp */,
+				5FE148A41AFBE53C007C20CA /* Projectile.h */,
+				5FE148A51AFBE53C007C20CA /* Spear.cpp */,
+				5FE148A61AFBE53C007C20CA /* Spear.h */,
+				5FE148A71AFBE53C007C20CA /* Weapons.cpp */,
+				5FE148A81AFBE53C007C20CA /* Weapons.h */,
+				5F3E870D1AF8E65600FAC432 /* Resources */,
+				5FC7638D1AF8ED7500504B24 /* Images.xcassets */,
+				5F3E87061AF8E65600FAC432 /* Supporting Files */,
+			);
+			path = "Chamber's Labyrinth";
+			sourceTree = "<group>";
+		};
+		5F3E87061AF8E65600FAC432 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5F3E87071AF8E65600FAC432 /* Chamber's Labyrinth-Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5F3E870D1AF8E65600FAC432 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5FE148BC1AFBE546007C20CA /* assets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5F3E87021AF8E65600FAC432 /* Chamber's Labyrinth */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F3E87181AF8E65600FAC432 /* Build configuration list for PBXNativeTarget "Chamber's Labyrinth" */;
+			buildPhases = (
+				5F3E86FE1AF8E65600FAC432 /* Sources */,
+				5F3E86FF1AF8E65600FAC432 /* Frameworks */,
+				5F3E87001AF8E65600FAC432 /* Resources */,
+				5F3E87011AF8E65600FAC432 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Chamber's Labyrinth";
+			productName = "Chamber's Labyrinth";
+			productReference = 5F3E87031AF8E65600FAC432 /* Chamber's Labyrinth.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5F3E86FA1AF8E65600FAC432 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "De Anza Developers' Guild";
+				TargetAttributes = {
+					5F3E87021AF8E65600FAC432 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 5F3E86FD1AF8E65600FAC432 /* Build configuration list for PBXProject "Chamber's Labyrinth" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 5F3E86F91AF8E65600FAC432;
+			productRefGroup = 5F3E87041AF8E65600FAC432 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5F3E87021AF8E65600FAC432 /* Chamber's Labyrinth */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5F3E87001AF8E65600FAC432 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FC7638E1AF8ED7500504B24 /* Images.xcassets in Resources */,
+				5FE148BD1AFBE546007C20CA /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5F3E87011AF8E65600FAC432 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This shell script simply copies required SFML dylibs/frameworks into the application bundle frameworks folder.\n# If you're using static libraries (which is not recommended) you should remove this script from your project.\n\n# Are we building a project that uses frameworks or dylibs?\ncase \"$SFML_BINARY_TYPE\" in\n    DYLIBS)\n        frameworks=\"false\"\n        ;;\n    *)\n        frameworks=\"true\"\n        ;;\nesac\n\n# Echoes to stderr\nerror () # $* message to display\n{\n    echo $* 1>&2\n    exit 2\n}\n\nassert () # $1 is a boolean, $2...N is an error message\n{\n    if [ $# -lt 2 ]\n    then\n        error \"Internal error in assert : not enough args\"\n    fi\n\n    if [ $1 -ne 0 ]\n    then\n        shift\n        error \"$*\"\n    fi\n}\n\nforce_remove () # $@ is some paths\n{\n    test $# -ge 1\n    assert $? \"force_remove() requires at least one parameter\"\n    rm -fr $@\n    assert $? \"couldn't remove $@\"\n}\n\ncopy () # $1 is a source, $2 is a destination\n{\n    test $# -eq 2\n    assert $? \"copy() requires two parameters\"\n    ditto \"$1\" \"$2\"\n    assert $? \"couldn't copy $1 to $2\"\n}\n\nrequire () # $1 is a SFML module like 'system' or 'audio'\n{\n    dest=\"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app/Contents/Frameworks\"\n\n    if [ -z \"$1\" ]\n    then\n        error \"require() requires one parameter!\"\n    else\n        # clean potentially old stuff\n        force_remove \"$dest/libsfml-$1\"*\n        force_remove \"$dest/sfml-$1.framework\"\n\n        # copy SFML libraries\n        if [ \"$frameworks\" = \"true\" ]\n        then\n            source=\"/Library/Frameworks/sfml-$1.framework\"\n            target=\"sfml-$1.framework\"\n        elif [ \"$SFML_LINK_DYLIBS_SUFFIX\" = \"-d\" ]\n        then\n            source=\"/usr/local/lib/libsfml-$1-d.dylib\"\n            target=\"`readlink $source`\"\n        else\n            source=\"/usr/local/lib/libsfml-$1.dylib\"\n            target=\"`readlink $source`\"\n        fi\n\n        copy \"$source\" \"$dest/$target\"\n\n        # copy extra dependencies\n        if [ \"$1\" = \"audio\" ]\n        then\n            # copy sndfile framework too\n            copy \"/Library/Frameworks/sndfile.framework\" \"$dest/sndfile.framework\"\n        elif [ \"$1\" = \"graphics\" ]\n        then\n            # copy freetype framework too\n            copy \"/Library/Frameworks/freetype.framework\" \"$dest/freetype.framework\"\n        fi\n    fi\n}\n\nif [ -n \"$SFML_SYSTEM\" ]\nthen\n    require \"system\"\nfi\n\nif [ -n \"$SFML_AUDIO\" ]\nthen\n    require \"audio\"\nfi\n\nif [ -n \"$SFML_NETWORK\" ]\nthen\n    require \"network\"\nfi\n\nif [ -n \"$SFML_WINDOW\" ]\nthen\n    require \"window\"\nfi\n\nif [ -n \"$SFML_GRAPHICS\" ]\nthen\n    require \"graphics\"\nfi\n\n                ";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5F3E86FE1AF8E65600FAC432 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FE148B11AFBE53C007C20CA /* Hero.cpp in Sources */,
+				5FE148AD1AFBE53C007C20CA /* EnemyReaper.cpp in Sources */,
+				5FE148B41AFBE53C007C20CA /* Paths-Mac.mm in Sources */,
+				5FE148AB1AFBE53C007C20CA /* Enemy.cpp in Sources */,
+				5FE148B71AFBE53C007C20CA /* Platform.cpp in Sources */,
+				5FE148AF1AFBE53C007C20CA /* FirstBoss.cpp in Sources */,
+				5FE148B61AFBE53C007C20CA /* Physics.cpp in Sources */,
+				5FE148B31AFBE53C007C20CA /* main.cpp in Sources */,
+				5FE148B21AFBE53C007C20CA /* Levels.cpp in Sources */,
+				5FE148B01AFBE53C007C20CA /* Game.cpp in Sources */,
+				5FE148AA1AFBE53C007C20CA /* Effect.cpp in Sources */,
+				5FE148AC1AFBE53C007C20CA /* EnemyMage.cpp in Sources */,
+				5FE148B91AFBE53C007C20CA /* Projectile.cpp in Sources */,
+				5FE148BB1AFBE53C007C20CA /* Weapons.cpp in Sources */,
+				5FE148AE1AFBE53C007C20CA /* Entity.cpp in Sources */,
+				5FE148B81AFBE53C007C20CA /* Powerup.cpp in Sources */,
+				5FE148A91AFBE53C007C20CA /* Door.cpp in Sources */,
+				5FE148BA1AFBE53C007C20CA /* Spear.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		5F3E87161AF8E65600FAC432 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					i386,
+					x86_64,
+				);
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks/,
+					"$(inherited)",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include/,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib/,
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"$(SFML_SYSTEM)",
+					"$(SFML_WINDOW)",
+					"$(SFML_GRAPHICS)",
+					"$(SFML_AUDIO)",
+					"$(SFML_NETWORK)",
+				);
+				SFML_AUDIO = "$(SFML_LINK_PREFIX) sfml-audio$(SFML_LINK_SUFFIX)";
+				SFML_BINARY_TYPE = FRAMEWORKS;
+				SFML_GRAPHICS = "$(SFML_LINK_PREFIX) sfml-graphics$(SFML_LINK_SUFFIX)";
+				SFML_LINK_DYLIBS_PREFIX = "-l";
+				SFML_LINK_DYLIBS_SUFFIX = "";
+				SFML_LINK_FRAMEWORKS_PREFIX = "-framework";
+				SFML_LINK_FRAMEWORKS_SUFFIX = "";
+				SFML_LINK_PREFIX = "$(SFML_LINK_$(SFML_BINARY_TYPE)_PREFIX)";
+				SFML_LINK_SUFFIX = "$(SFML_LINK_$(SFML_BINARY_TYPE)_SUFFIX)";
+				SFML_NETWORK = "";
+				SFML_SYSTEM = "$(SFML_LINK_PREFIX) sfml-system$(SFML_LINK_SUFFIX)";
+				SFML_WINDOW = "$(SFML_LINK_PREFIX) sfml-window$(SFML_LINK_SUFFIX)";
+				SUPPORTED_PLATFORMS = macosx;
+			};
+			name = Debug;
+		};
+		5F3E87171AF8E65600FAC432 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					i386,
+					x86_64,
+				);
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks/,
+					"$(inherited)",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include/,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib/,
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"$(SFML_SYSTEM)",
+					"$(SFML_WINDOW)",
+					"$(SFML_GRAPHICS)",
+					"$(SFML_AUDIO)",
+					"$(SFML_NETWORK)",
+				);
+				SFML_AUDIO = "$(SFML_LINK_PREFIX) sfml-audio$(SFML_LINK_SUFFIX)";
+				SFML_BINARY_TYPE = FRAMEWORKS;
+				SFML_GRAPHICS = "$(SFML_LINK_PREFIX) sfml-graphics$(SFML_LINK_SUFFIX)";
+				SFML_LINK_DYLIBS_PREFIX = "-l";
+				SFML_LINK_DYLIBS_SUFFIX = "";
+				SFML_LINK_FRAMEWORKS_PREFIX = "-framework";
+				SFML_LINK_FRAMEWORKS_SUFFIX = "";
+				SFML_LINK_PREFIX = "$(SFML_LINK_$(SFML_BINARY_TYPE)_PREFIX)";
+				SFML_LINK_SUFFIX = "$(SFML_LINK_$(SFML_BINARY_TYPE)_SUFFIX)";
+				SFML_NETWORK = "";
+				SFML_SYSTEM = "$(SFML_LINK_PREFIX) sfml-system$(SFML_LINK_SUFFIX)";
+				SFML_WINDOW = "$(SFML_LINK_PREFIX) sfml-window$(SFML_LINK_SUFFIX)";
+				SUPPORTED_PLATFORMS = macosx;
+			};
+			name = Release;
+		};
+		5F3E87191AF8E65600FAC432 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Chamber's Labyrinth/Chamber's Labyrinth-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5F3E871A1AF8E65600FAC432 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Chamber's Labyrinth/Chamber's Labyrinth-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5F3E86FD1AF8E65600FAC432 /* Build configuration list for PBXProject "Chamber's Labyrinth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F3E87161AF8E65600FAC432 /* Debug */,
+				5F3E87171AF8E65600FAC432 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5F3E87181AF8E65600FAC432 /* Build configuration list for PBXNativeTarget "Chamber's Labyrinth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F3E87191AF8E65600FAC432 /* Debug */,
+				5F3E871A1AF8E65600FAC432 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5F3E86FA1AF8E65600FAC432 /* Project object */;
+}
