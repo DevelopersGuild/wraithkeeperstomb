@@ -11,7 +11,7 @@ Hero::Hero()
 	Texture.loadFromFile("../assets/sprites/hero.png");
 	Sprite.setTexture(Texture);
 	Sprite.setOrigin(32, 128);
-	Sprite.setPosition(720, 1424);
+	Sprite.setPosition(720, 1430);
 	sf::Vector2f velocity(sf::Vector2f(0, 0));
 	sf::Vector2i anim(sf::Vector2i(0, 1));
 	invincibilityCD.restart();
@@ -252,7 +252,7 @@ void Hero::jump(float seconds)
 
 void Hero::update(float seconds)
 {
-	std::cout << velocity.y << std::endl;
+	std::cout << collisionNum << " vel: " << velocity.y << std::endl;
 	//prevent bonuses from increasing over time
 	stats_.speed = HERO_BASE_SPEED * stats_.speedMultiplier;
 	for (auto &iter = effects_.begin(); iter != effects_.end();) { //iterate through all buffs/debuffs 
@@ -291,7 +291,6 @@ void Hero::update(float seconds)
 		// Jump
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && collisionNum == 0)
 			jump(seconds);
-		//jump(seconds);
 
 		// Check if alive
 		if (stats_.HP <= 0)

@@ -4,6 +4,8 @@
 static const int WINDOW_WIDTH = 1280;
 static const int WINDOW_HEIGHT = 720;
 
+const float GROUND_HEIGHT = 1360.0f;
+
 //Hero
 const float HERO_BASE_HP = 100.f;
 const float HERO_BASE_MP = 100.f;

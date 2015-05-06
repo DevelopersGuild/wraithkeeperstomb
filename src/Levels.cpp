@@ -123,7 +123,7 @@ void Levels::createPlatform(float posX, float posY, float sizeX, float sizeY)
 	pl.setSize(sf::Vector2f(sizeX, sizeY));
 	pl.setPosition(sf::Vector2f(posX, posY));
 	pl.setTexture();
-	platforms.emplace_back(pl);
+	platforms.push_back(pl);
 }
 
 void Levels::platformSets(int sets)
@@ -162,7 +162,7 @@ void Levels::platformSets(int sets)
 		createPlatform(600.f, 1100.f, 300.f, 32.f);
 		createPlatform(600.f, 750.f, 300.f, 32.f);
 		createPlatform(1000.f, 900.f, 300.f, 32.f);
-		createPlatform(0.f, 1360.f, 2560.f, 64.f);
+		createPlatform(0.f, GROUND_HEIGHT, 2560.f, 64.f);
 		break;
 	}
 }

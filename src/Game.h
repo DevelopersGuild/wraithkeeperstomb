@@ -61,7 +61,7 @@ private:
 	void render();
 	void handleEvent(sf::Event &event);
 	void loadAssets();
-	void collision(Entity *, Platform);
+	void collision(Entity *, Platform&);
 	void titleUpdate();
 	void gameUpdate();
 	void pauseUpdate();

@@ -46,6 +46,7 @@ void Game::mainLoop()
 		// Event loop
 		while (window.pollEvent(event))
 			handleEvent(event);
+		std::cout << theHero->getY() << '\n';
 		switch (gameState_)
 		{
 		case GameState::titleScreen: titleUpdate(); break;
@@ -229,11 +230,11 @@ void Game::handleEvent(sf::Event &event)
 }
 
 
-void Game::collision(Entity *hero, Platform plat){
+void Game::collision(Entity *hero, Platform& plat){
 	//Affected area
 	sf::FloatRect wallBounds = plat.getCollisionRect();
 	sf::FloatRect area;
-	
+	std::cout << hero->getX() << " " << hero->getY() << '\n';
 	if (hero->getCollisionRect().intersects(wallBounds, area))
 	{
 		// Verifying if we need to apply collision to the vertical axis, else we apply to horizontal axis

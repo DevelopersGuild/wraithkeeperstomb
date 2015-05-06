@@ -33,9 +33,30 @@ void Entity::setGround(Platform * ground_){
 void Entity::doPhysics(float seconds)
 {
 	//Gravity implementation
-	if (collisionNum == 0)
+	//if (collisionNum == 0)
+	//{
+	//	velocity.y += GRAVITY * seconds * 265 * (collisionNum == 0 ? 0 : 1);
+	//}
+	//Sprite.move(velocity);
+
+
+
+	//Gravity implementation
+	if (Sprite.getPosition().y + Sprite.getScale().y < GROUND_HEIGHT + 10)// || collisionNum == 0) //This should later be changed to a collision with groud boolean
 	{
-		velocity.y += GRAVITY * seconds * 265 * (collisionNum == 0 ? 0 : 1);
+		velocity.y += GRAVITY * seconds * seconds * 265 * collisionNum;
+		Sprite.move(0.f, velocity.y);
+
+		if (collisionNum == 0){
+			velocity.y = 0;
+		}
 	}
-	Sprite.move(velocity);
+	else
+	{
+		velocity.y = 0;
+		//if (jumpCooldown < 4)
+		//jumpCooldown++;
+		//Sprite.setPosition(Sprite.getPosition().x, 1840);
+	}
+
 }
