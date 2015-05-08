@@ -106,7 +106,6 @@ void Enemy::areaPatrol(float deltaTime)
 				patrol_right = true;
 
 		patrol_pause -= deltaTime;
-		doPhysics(deltaTime);
 	}
 	else if (getX() <= patrol_origin + PATROL_RADIUS && getX() >= patrol_origin - PATROL_RADIUS)
 	{//within patrol boundary
@@ -114,7 +113,6 @@ void Enemy::areaPatrol(float deltaTime)
 			right();
 		else
 			left();
-		doPhysics(deltaTime);
 
 		//check if out of boundary after the movement
 		if (getX() >= patrol_origin + PATROL_RADIUS || getX() <= patrol_origin - PATROL_RADIUS)
@@ -134,6 +132,6 @@ void Enemy::areaPatrol(float deltaTime)
 				patrol_right = true;
 			right();
 		}
-		doPhysics(deltaTime);
 	}
+	doPhysics(deltaTime);
 }

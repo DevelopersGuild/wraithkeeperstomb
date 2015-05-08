@@ -59,4 +59,6 @@ void Entity::doPhysics(float seconds)
 		//Sprite.setPosition(Sprite.getPosition().x, 1840);
 	}
 
+	Sprite.move(velocity);
+
 }
