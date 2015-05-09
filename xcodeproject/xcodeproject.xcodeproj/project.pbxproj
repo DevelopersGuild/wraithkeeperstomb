@@ -7,43 +7,61 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1054A12F1A908327000FB7D6 /* Enemies.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1054A11A1A908327000FB7D6 /* Enemies.cpp */; };
-		1054A1301A908327000FB7D6 /* Enemy1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1054A11C1A908327000FB7D6 /* Enemy1.cpp */; };
-		1054A1311A908327000FB7D6 /* Enemy2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1054A11E1A908327000FB7D6 /* Enemy2.cpp */; };
-		1054A1321A908327000FB7D6 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1054A1201A908327000FB7D6 /* Entity.cpp */; };
-		1054A1331A908327000FB7D6 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1054A1221A908327000FB7D6 /* Game.cpp */; };
-		1054A1341A908327000FB7D6 /* Hero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1054A1241A908327000FB7D6 /* Hero.cpp */; };
-		1054A1351A908327000FB7D6 /* Levels.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1054A1261A908327000FB7D6 /* Levels.cpp */; };
-		1054A1361A908327000FB7D6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1054A1281A908327000FB7D6 /* main.cpp */; };
-		1054A1371A908327000FB7D6 /* Physics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1054A1291A908327000FB7D6 /* Physics.cpp */; };
-		1054A1381A908327000FB7D6 /* Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1054A12B1A908327000FB7D6 /* Platform.cpp */; };
-		1054A1391A908327000FB7D6 /* Weapons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1054A12D1A908327000FB7D6 /* Weapons.cpp */; };
+		9BE227FA1AFE01DD00B5BC3E /* Door.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BE227D91AFE01DD00B5BC3E /* Door.cpp */; };
+		9BE227FB1AFE01DD00B5BC3E /* Effect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BE227DB1AFE01DD00B5BC3E /* Effect.cpp */; };
+		9BE227FC1AFE01DD00B5BC3E /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BE227DD1AFE01DD00B5BC3E /* Enemy.cpp */; };
+		9BE227FD1AFE01DD00B5BC3E /* EnemyMage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BE227DF1AFE01DD00B5BC3E /* EnemyMage.cpp */; };
+		9BE227FE1AFE01DD00B5BC3E /* EnemyReaper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BE227E11AFE01DD00B5BC3E /* EnemyReaper.cpp */; };
+		9BE227FF1AFE01DD00B5BC3E /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BE227E31AFE01DD00B5BC3E /* Entity.cpp */; };
+		9BE228001AFE01DD00B5BC3E /* FirstBoss.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BE227E51AFE01DD00B5BC3E /* FirstBoss.cpp */; };
+		9BE228011AFE01DD00B5BC3E /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BE227E71AFE01DD00B5BC3E /* Game.cpp */; };
+		9BE228021AFE01DD00B5BC3E /* Hero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BE227E91AFE01DD00B5BC3E /* Hero.cpp */; };
+		9BE228031AFE01DD00B5BC3E /* Levels.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BE227EB1AFE01DD00B5BC3E /* Levels.cpp */; };
+		9BE228041AFE01DD00B5BC3E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BE227ED1AFE01DD00B5BC3E /* main.cpp */; };
+		9BE228051AFE01DD00B5BC3E /* Physics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BE227EE1AFE01DD00B5BC3E /* Physics.cpp */; };
+		9BE228061AFE01DD00B5BC3E /* Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BE227F01AFE01DD00B5BC3E /* Platform.cpp */; };
+		9BE228071AFE01DD00B5BC3E /* Powerup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BE227F21AFE01DD00B5BC3E /* Powerup.cpp */; };
+		9BE228081AFE01DD00B5BC3E /* Projectile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BE227F41AFE01DD00B5BC3E /* Projectile.cpp */; };
+		9BE228091AFE01DD00B5BC3E /* Spear.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BE227F61AFE01DD00B5BC3E /* Spear.cpp */; };
+		9BE2280A1AFE01DD00B5BC3E /* Weapons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BE227F81AFE01DD00B5BC3E /* Weapons.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1054A10A1A908304000FB7D6 /* xcodeproject */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = xcodeproject; sourceTree = BUILT_PRODUCTS_DIR; };
-		1054A1191A908327000FB7D6 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../../src/Constants.h; sourceTree = "<group>"; };
-		1054A11A1A908327000FB7D6 /* Enemies.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Enemies.cpp; path = ../../src/Enemies.cpp; sourceTree = "<group>"; };
-		1054A11B1A908327000FB7D6 /* Enemies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Enemies.h; path = ../../src/Enemies.h; sourceTree = "<group>"; };
-		1054A11C1A908327000FB7D6 /* Enemy1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Enemy1.cpp; path = ../../src/Enemy1.cpp; sourceTree = "<group>"; };
-		1054A11D1A908327000FB7D6 /* Enemy1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Enemy1.h; path = ../../src/Enemy1.h; sourceTree = "<group>"; };
-		1054A11E1A908327000FB7D6 /* Enemy2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Enemy2.cpp; path = ../../src/Enemy2.cpp; sourceTree = "<group>"; };
-		1054A11F1A908327000FB7D6 /* Enemy2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Enemy2.h; path = ../../src/Enemy2.h; sourceTree = "<group>"; };
-		1054A1201A908327000FB7D6 /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Entity.cpp; path = ../../src/Entity.cpp; sourceTree = "<group>"; };
-		1054A1211A908327000FB7D6 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Entity.h; path = ../../src/Entity.h; sourceTree = "<group>"; };
-		1054A1221A908327000FB7D6 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Game.cpp; path = ../../src/Game.cpp; sourceTree = "<group>"; };
-		1054A1231A908327000FB7D6 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = ../../src/Game.h; sourceTree = "<group>"; };
-		1054A1241A908327000FB7D6 /* Hero.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Hero.cpp; path = ../../src/Hero.cpp; sourceTree = "<group>"; };
-		1054A1251A908327000FB7D6 /* Hero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hero.h; path = ../../src/Hero.h; sourceTree = "<group>"; };
-		1054A1261A908327000FB7D6 /* Levels.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Levels.cpp; path = ../../src/Levels.cpp; sourceTree = "<group>"; };
-		1054A1271A908327000FB7D6 /* Levels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Levels.h; path = ../../src/Levels.h; sourceTree = "<group>"; };
-		1054A1281A908327000FB7D6 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../src/main.cpp; sourceTree = "<group>"; };
-		1054A1291A908327000FB7D6 /* Physics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Physics.cpp; path = ../../src/Physics.cpp; sourceTree = "<group>"; };
-		1054A12A1A908327000FB7D6 /* Physics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Physics.h; path = ../../src/Physics.h; sourceTree = "<group>"; };
-		1054A12B1A908327000FB7D6 /* Platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Platform.cpp; path = ../../src/Platform.cpp; sourceTree = "<group>"; };
-		1054A12C1A908327000FB7D6 /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Platform.h; path = ../../src/Platform.h; sourceTree = "<group>"; };
-		1054A12D1A908327000FB7D6 /* Weapons.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Weapons.cpp; path = ../../src/Weapons.cpp; sourceTree = "<group>"; };
-		1054A12E1A908327000FB7D6 /* Weapons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Weapons.h; path = ../../src/Weapons.h; sourceTree = "<group>"; };
+		9BE227D81AFE01DD00B5BC3E /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		9BE227D91AFE01DD00B5BC3E /* Door.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Door.cpp; sourceTree = "<group>"; };
+		9BE227DA1AFE01DD00B5BC3E /* Door.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Door.h; sourceTree = "<group>"; };
+		9BE227DB1AFE01DD00B5BC3E /* Effect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Effect.cpp; sourceTree = "<group>"; };
+		9BE227DC1AFE01DD00B5BC3E /* Effect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Effect.h; sourceTree = "<group>"; };
+		9BE227DD1AFE01DD00B5BC3E /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
+		9BE227DE1AFE01DD00B5BC3E /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
+		9BE227DF1AFE01DD00B5BC3E /* EnemyMage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnemyMage.cpp; sourceTree = "<group>"; };
+		9BE227E01AFE01DD00B5BC3E /* EnemyMage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyMage.h; sourceTree = "<group>"; };
+		9BE227E11AFE01DD00B5BC3E /* EnemyReaper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnemyReaper.cpp; sourceTree = "<group>"; };
+		9BE227E21AFE01DD00B5BC3E /* EnemyReaper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyReaper.h; sourceTree = "<group>"; };
+		9BE227E31AFE01DD00B5BC3E /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
+		9BE227E41AFE01DD00B5BC3E /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
+		9BE227E51AFE01DD00B5BC3E /* FirstBoss.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FirstBoss.cpp; sourceTree = "<group>"; };
+		9BE227E61AFE01DD00B5BC3E /* FirstBoss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstBoss.h; sourceTree = "<group>"; };
+		9BE227E71AFE01DD00B5BC3E /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
+		9BE227E81AFE01DD00B5BC3E /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		9BE227E91AFE01DD00B5BC3E /* Hero.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hero.cpp; sourceTree = "<group>"; };
+		9BE227EA1AFE01DD00B5BC3E /* Hero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hero.h; sourceTree = "<group>"; };
+		9BE227EB1AFE01DD00B5BC3E /* Levels.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Levels.cpp; sourceTree = "<group>"; };
+		9BE227EC1AFE01DD00B5BC3E /* Levels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Levels.h; sourceTree = "<group>"; };
+		9BE227ED1AFE01DD00B5BC3E /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		9BE227EE1AFE01DD00B5BC3E /* Physics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Physics.cpp; sourceTree = "<group>"; };
+		9BE227EF1AFE01DD00B5BC3E /* Physics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Physics.h; sourceTree = "<group>"; };
+		9BE227F01AFE01DD00B5BC3E /* Platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Platform.cpp; sourceTree = "<group>"; };
+		9BE227F11AFE01DD00B5BC3E /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Platform.h; sourceTree = "<group>"; };
+		9BE227F21AFE01DD00B5BC3E /* Powerup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Powerup.cpp; sourceTree = "<group>"; };
+		9BE227F31AFE01DD00B5BC3E /* Powerup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Powerup.h; sourceTree = "<group>"; };
+		9BE227F41AFE01DD00B5BC3E /* Projectile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Projectile.cpp; sourceTree = "<group>"; };
+		9BE227F51AFE01DD00B5BC3E /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Projectile.h; sourceTree = "<group>"; };
+		9BE227F61AFE01DD00B5BC3E /* Spear.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Spear.cpp; sourceTree = "<group>"; };
+		9BE227F71AFE01DD00B5BC3E /* Spear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spear.h; sourceTree = "<group>"; };
+		9BE227F81AFE01DD00B5BC3E /* Weapons.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Weapons.cpp; sourceTree = "<group>"; };
+		9BE227F91AFE01DD00B5BC3E /* Weapons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weapons.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +78,40 @@
 		1054A1021A908304000FB7D6 = {
 			isa = PBXGroup;
 			children = (
+				9BE227D81AFE01DD00B5BC3E /* Constants.h */,
+				9BE227D91AFE01DD00B5BC3E /* Door.cpp */,
+				9BE227DA1AFE01DD00B5BC3E /* Door.h */,
+				9BE227DB1AFE01DD00B5BC3E /* Effect.cpp */,
+				9BE227DC1AFE01DD00B5BC3E /* Effect.h */,
+				9BE227DD1AFE01DD00B5BC3E /* Enemy.cpp */,
+				9BE227DE1AFE01DD00B5BC3E /* Enemy.h */,
+				9BE227DF1AFE01DD00B5BC3E /* EnemyMage.cpp */,
+				9BE227E01AFE01DD00B5BC3E /* EnemyMage.h */,
+				9BE227E11AFE01DD00B5BC3E /* EnemyReaper.cpp */,
+				9BE227E21AFE01DD00B5BC3E /* EnemyReaper.h */,
+				9BE227E31AFE01DD00B5BC3E /* Entity.cpp */,
+				9BE227E41AFE01DD00B5BC3E /* Entity.h */,
+				9BE227E51AFE01DD00B5BC3E /* FirstBoss.cpp */,
+				9BE227E61AFE01DD00B5BC3E /* FirstBoss.h */,
+				9BE227E71AFE01DD00B5BC3E /* Game.cpp */,
+				9BE227E81AFE01DD00B5BC3E /* Game.h */,
+				9BE227E91AFE01DD00B5BC3E /* Hero.cpp */,
+				9BE227EA1AFE01DD00B5BC3E /* Hero.h */,
+				9BE227EB1AFE01DD00B5BC3E /* Levels.cpp */,
+				9BE227EC1AFE01DD00B5BC3E /* Levels.h */,
+				9BE227ED1AFE01DD00B5BC3E /* main.cpp */,
+				9BE227EE1AFE01DD00B5BC3E /* Physics.cpp */,
+				9BE227EF1AFE01DD00B5BC3E /* Physics.h */,
+				9BE227F01AFE01DD00B5BC3E /* Platform.cpp */,
+				9BE227F11AFE01DD00B5BC3E /* Platform.h */,
+				9BE227F21AFE01DD00B5BC3E /* Powerup.cpp */,
+				9BE227F31AFE01DD00B5BC3E /* Powerup.h */,
+				9BE227F41AFE01DD00B5BC3E /* Projectile.cpp */,
+				9BE227F51AFE01DD00B5BC3E /* Projectile.h */,
+				9BE227F61AFE01DD00B5BC3E /* Spear.cpp */,
+				9BE227F71AFE01DD00B5BC3E /* Spear.h */,
+				9BE227F81AFE01DD00B5BC3E /* Weapons.cpp */,
+				9BE227F91AFE01DD00B5BC3E /* Weapons.h */,
 				1054A10C1A908304000FB7D6 /* xcodeproject */,
 				1054A10B1A908304000FB7D6 /* Products */,
 			);
@@ -76,28 +128,6 @@
 		1054A10C1A908304000FB7D6 /* xcodeproject */ = {
 			isa = PBXGroup;
 			children = (
-				1054A1191A908327000FB7D6 /* Constants.h */,
-				1054A11A1A908327000FB7D6 /* Enemies.cpp */,
-				1054A11B1A908327000FB7D6 /* Enemies.h */,
-				1054A11C1A908327000FB7D6 /* Enemy1.cpp */,
-				1054A11D1A908327000FB7D6 /* Enemy1.h */,
-				1054A11E1A908327000FB7D6 /* Enemy2.cpp */,
-				1054A11F1A908327000FB7D6 /* Enemy2.h */,
-				1054A1201A908327000FB7D6 /* Entity.cpp */,
-				1054A1211A908327000FB7D6 /* Entity.h */,
-				1054A1221A908327000FB7D6 /* Game.cpp */,
-				1054A1231A908327000FB7D6 /* Game.h */,
-				1054A1241A908327000FB7D6 /* Hero.cpp */,
-				1054A1251A908327000FB7D6 /* Hero.h */,
-				1054A1261A908327000FB7D6 /* Levels.cpp */,
-				1054A1271A908327000FB7D6 /* Levels.h */,
-				1054A1281A908327000FB7D6 /* main.cpp */,
-				1054A1291A908327000FB7D6 /* Physics.cpp */,
-				1054A12A1A908327000FB7D6 /* Physics.h */,
-				1054A12B1A908327000FB7D6 /* Platform.cpp */,
-				1054A12C1A908327000FB7D6 /* Platform.h */,
-				1054A12D1A908327000FB7D6 /* Weapons.cpp */,
-				1054A12E1A908327000FB7D6 /* Weapons.h */,
 			);
 			path = xcodeproject;
 			sourceTree = "<group>";
@@ -152,17 +182,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1054A1371A908327000FB7D6 /* Physics.cpp in Sources */,
-				1054A1321A908327000FB7D6 /* Entity.cpp in Sources */,
-				1054A1311A908327000FB7D6 /* Enemy2.cpp in Sources */,
-				1054A1301A908327000FB7D6 /* Enemy1.cpp in Sources */,
-				1054A1381A908327000FB7D6 /* Platform.cpp in Sources */,
-				1054A1351A908327000FB7D6 /* Levels.cpp in Sources */,
-				1054A1391A908327000FB7D6 /* Weapons.cpp in Sources */,
-				1054A1341A908327000FB7D6 /* Hero.cpp in Sources */,
-				1054A12F1A908327000FB7D6 /* Enemies.cpp in Sources */,
-				1054A1361A908327000FB7D6 /* main.cpp in Sources */,
-				1054A1331A908327000FB7D6 /* Game.cpp in Sources */,
+				9BE228021AFE01DD00B5BC3E /* Hero.cpp in Sources */,
+				9BE227FE1AFE01DD00B5BC3E /* EnemyReaper.cpp in Sources */,
+				9BE2280A1AFE01DD00B5BC3E /* Weapons.cpp in Sources */,
+				9BE228081AFE01DD00B5BC3E /* Projectile.cpp in Sources */,
+				9BE227FC1AFE01DD00B5BC3E /* Enemy.cpp in Sources */,
+				9BE228061AFE01DD00B5BC3E /* Platform.cpp in Sources */,
+				9BE228091AFE01DD00B5BC3E /* Spear.cpp in Sources */,
+				9BE228051AFE01DD00B5BC3E /* Physics.cpp in Sources */,
+				9BE228001AFE01DD00B5BC3E /* FirstBoss.cpp in Sources */,
+				9BE228041AFE01DD00B5BC3E /* main.cpp in Sources */,
+				9BE228031AFE01DD00B5BC3E /* Levels.cpp in Sources */,
+				9BE228011AFE01DD00B5BC3E /* Game.cpp in Sources */,
+				9BE227FB1AFE01DD00B5BC3E /* Effect.cpp in Sources */,
+				9BE228071AFE01DD00B5BC3E /* Powerup.cpp in Sources */,
+				9BE227FD1AFE01DD00B5BC3E /* EnemyMage.cpp in Sources */,
+				9BE227FF1AFE01DD00B5BC3E /* Entity.cpp in Sources */,
+				9BE227FA1AFE01DD00B5BC3E /* Door.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +332,7 @@
 				1054A1181A908304000FB7D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

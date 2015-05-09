@@ -80,6 +80,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Constants.h" />
+    <ClInclude Include="..\src\Door.h" />
+    <ClInclude Include="..\src\FirstBoss.h" />
     <ClInclude Include="..\src\Powerup.h" />
     <ClInclude Include="..\src\Enemy.h" />
     <ClInclude Include="..\src\EnemyReaper.h" />
@@ -96,6 +98,8 @@
     <ClInclude Include="..\src\Weapons.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\Door.cpp" />
+    <ClCompile Include="..\src\FirstBoss.cpp" />
     <ClCompile Include="..\src\Powerup.cpp" />
     <ClCompile Include="..\src\Enemy.cpp" />
     <ClCompile Include="..\src\EnemyReaper.cpp" />
