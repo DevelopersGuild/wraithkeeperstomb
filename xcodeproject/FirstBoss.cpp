@@ -1,31 +1,28 @@
-#include "EnemyMage.h"
+#include "FirstBoss.h"
 #include "Constants.h"
 #include <ctime>
 
-EnemyMage::EnemyMage()
-{
+FirstBoss::FirstBoss() {
 	// Load Enemies texture, assign to sprite, set starting sprite dimensions
-	Texture.loadFromFile("../assets/sprites/magebaddie.png");
+	Texture.loadFromFile("../assets/sprites/tempBoss.png");
 	Sprite.setTexture(Texture);
-	Sprite.setOrigin(32, 128);
-	Sprite.setPosition(1280, 1424);
+	Sprite.setOrigin(50, 45);
+	Sprite.setPosition(1000, 1360);
 
 	// Initialize basic Enemies stats
-	HP = ENEMY2_BASE_HP;
-	speedMultiplier = 1;
-	speed = ENEMY2_BASE_SPEED * speedMultiplier;
-	damage = ENEMY2_DAMAGE;
-	isShooter = true;
-	armor = ENEMY2_ARMOR;
+	HP = BOSS_BASE_HP;
+	speedMultiplier = 0.36;
+	speed = BOSS_BASE_SPEED * speedMultiplier;
+	damage = BOSS_DAMAGE;
+	isShooter = false;
+	armor = BOSS_ARMOR;
 	faceRight = true;
-	projectileCooldown = 0.0;
 	Enemy();
-
 
 	srand((unsigned int)time(NULL));
 }
 
-void EnemyMage::update(float time)
+void FirstBoss::update(float time)
 {
 	if (Freeze.getElapsedTime().asSeconds() < 1)
 		isFrozen = true;
@@ -35,9 +32,6 @@ void EnemyMage::update(float time)
 
 	chaseHero(); //check hero detection
 
-	if (projectileCooldown > 0)
-		projectileCooldown -= time;
-	
 	if (!heroDetected)
 	{
 		areaPatrol(time);
@@ -48,34 +42,41 @@ void EnemyMage::update(float time)
 	{
 		if (speedMultiplier == 1)
 			speedMultiplier = 2; //chasing speed
+		doPhysics(time);
 	}
-
 	if (isFrozen)
 		velocity.x = 0.f;
 	else
 		speed = ENEMY1_BASE_SPEED * speedMultiplier;
 
 	if (faceRight)
-		Sprite.setScale(-1.f, 1.f); //until animation
+		Sprite.setScale(-1.f, 1.f); //until animation is available
 	else
 		Sprite.setScale(1.f, 1.f);
 }
 
-bool EnemyMage::projectileShoot()
-{
-	//magic cast animation
-	if (projectileCooldown <= 0 && heroDetected)
-		return true;
-	else
-		return false;
-}
-
-void EnemyMage::jump()
+void FirstBoss::jump()
 {
 	velocity.y -= HERO_JUMP_VELOCITY;
 
 	if (velocity.y < 0){
 		Sprite.move(velocity);
 		velocity.y += GRAVITY;
+	}
+}
+
+void FirstBoss::onHeroDetected(Hero* hero)
+{
+	if (getY() < hero->getY())
+		jump();
+	else if ((getX() - hero->getX()) > 0)
+	{
+		left();
+		faceRight = false;
+	}
+	else
+	{
+		right();
+		faceRight = true;
 	}
 }
