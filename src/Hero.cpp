@@ -177,7 +177,6 @@ void Hero::left()
 		action = walks;
 	else
 		anim.x = xFrame = 0;
-	Sprite.move(velocity.x, 0.f);
 }
 
 void Hero::right()
@@ -187,7 +186,6 @@ void Hero::right()
 		action = walks;
 	else
 		anim.x = xFrame = 0;
-	Sprite.move(velocity.x, 0.f);
 }
 
 bool Hero::attack()
