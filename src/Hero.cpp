@@ -2,13 +2,14 @@
 #include "Constants.h"
 #include "Spear.h"
 #include "Projectile.h"
+#include "Paths.h"
 #include <ctime>
 #include <iostream>
 
 Hero::Hero()
 {
 	// Load hero texture, assign to sprite, set starting sprite dimensions
-	Texture.loadFromFile("../assets/sprites/hero.png");
+	Texture.loadFromFile(resourcePath() + "assets/sprites/hero.png");
 	Sprite.setTexture(Texture);
 	Sprite.setOrigin(32, 128);
 	Sprite.setPosition(720, 1430);
@@ -255,7 +256,7 @@ void Hero::update(float seconds)
 	std::cout << collisionNum << " vel: " << velocity.y << std::endl;
 	//prevent bonuses from increasing over time
 	stats_.speed = HERO_BASE_SPEED * stats_.speedMultiplier;
-	for (auto &iter = effects_.begin(); iter != effects_.end();) { //iterate through all buffs/debuffs 
+	for (auto iter = effects_.begin(); iter != effects_.end();) { //iterate through all buffs/debuffs 
 		if ((*iter)->HasTimedOut())
 		{ //when duration of a buff/debuff expires
 			delete *iter;

@@ -98,12 +98,16 @@ void Enemy::areaPatrol(float deltaTime)
 	if (patrol_pause > 0)
 	{
 		if (getX() >= patrol_origin + PATROL_RADIUS)
+		{
 			if (patrol_right)//on the right edge of patrol boundary
 				patrol_right = false;
+		}
 
 		else if (getX() <= patrol_origin - PATROL_RADIUS)
+		{
 			if (!patrol_right)//on the left edge of patrol boundary
 				patrol_right = true;
+		}
 
 		patrol_pause -= deltaTime;
 	}

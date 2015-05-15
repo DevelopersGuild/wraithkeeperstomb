@@ -3,6 +3,7 @@
 #include "EnemyMage.h"
 #include "EnemyReaper.h"
 #include "FirstBoss.h"
+#include "Paths.h"
 
 #include <vector>
 
@@ -30,7 +31,6 @@ void Levels::createBackground()
 	background_.rectangle.setSize(sf::Vector2f(2560, 1440));
 	background_.rectangle.setTexture(&background_.texture);
 	background_.rectangle.setTextureRect({ 0, 0, 1200, 600 });
-
 
 	//Minimap Background
 	back.setSize(sf::Vector2f(2560, 1440));
@@ -255,8 +255,8 @@ std::string BackgroundGenerator::GetFileName(LevelNum level_num)
 	std::string filename;
 	switch (level_num)
 	{
-	case 1: return filename = "../assets/sprites/background.png";
-	case 2: return filename = "../assets/sprites/dungeonwindow.png";
+	case 1: return filename = resourcePath() + "assets/sprites/background.png";
+	case 2: return filename = resourcePath() + "assets/sprites/dungeonwindow.png";
 	default: return filename; // it is "" when initialized
 		break;
 	}

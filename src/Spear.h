@@ -5,6 +5,7 @@
 #include "Hero.h"
 #include "Game.h"
 #include "Enemy.h"
+#include "Paths.h"
 
 class Spear : public Weapons
 {
@@ -28,7 +29,7 @@ public:
 	Spear2(Hero *hero) :Spear(hero)
 	{
 		sf::Vector2i anim(sf::Vector2i(0, 0));
-		Texture.loadFromFile("../assets/sprites/spear2.png");
+		Texture.loadFromFile(resourcePath() + "assets/sprites/spear2.png");
 		Sprite.setTexture(Texture);
 		Sprite.setOrigin(32, 64);
 		Sprite.setPosition(280, 1360);
