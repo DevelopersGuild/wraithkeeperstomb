@@ -155,7 +155,7 @@ void Levels::createPlatform(float posX, float posY, float sizeX, float sizeY)
 
 void Levels::platformSets()
 {
-	switch (l)
+	switch (2)
 	{
 	case 1:
 		createPlatform(500.f, 900.f, 350.f, 32.f);
@@ -163,18 +163,21 @@ void Levels::platformSets()
 		createPlatform(1230.f, 890.f, 50.f, 32.f);
 		createPlatform(1400.f, 920.f, 50.f, 32.f);
 		createPlatform(700.f, 1100.f, 350.f, 32.f);
+		createPlatform(0.f, GROUND_HEIGHT, 2560.f, 64.f);
 		break;
 	case 2:
 		createPlatform(700.f, 1100.f, 350.f, 32.f);
 		createPlatform(1550.f, 1100.f, 100.f, 32.f);
 		createPlatform(1550.f, 800.f, 100.f, 32.f);
 		createPlatform(1550.f, 600.f, 100.f, 32.f);
+		createPlatform(0.f, GROUND_HEIGHT, 2560.f, 64.f);
 		break;
 	case 3:
 		createPlatform(1200.f, 850.f, 200.f, 32.f);
 		createPlatform(1000.f, 1000.f, 600.f, 32.f);
 		createPlatform(800.f, 850.f, 200.f, 32.f);
 		createPlatform(600.f, 1100.f, 200.f, 32.f);
+		createPlatform(0.f, GROUND_HEIGHT, 2560.f, 64.f);
 		break;
 	case 4:
 		createPlatform(1200.f, 1100.f, 200.f, 32.f);
@@ -182,6 +185,7 @@ void Levels::platformSets()
 		createPlatform(800.f, 1200.f, 200.f, 32.f);
 		createPlatform(600.f, 1100.f, 200.f, 32.f);
 		createPlatform(1400.f, 800.f, 200.f, 32.f);
+		createPlatform(0.f, GROUND_HEIGHT, 2560.f, 64.f);
 		break;
 	case 5:
 		createPlatform(1400.f, 1100.f, 300.f, 32.f);
@@ -196,7 +200,7 @@ void Levels::platformSets()
 
 void Levels::backGroundSets()
 {
-	switch (l)
+	switch (2)
 	{
 	case 1:
 		BackgroundGenerator::instance().LoadTextureForLevelOrDie(1);
@@ -253,7 +257,7 @@ void Levels::renderPlats(sf::RenderWindow &window){
 std::string BackgroundGenerator::GetFileName(LevelNum level_num)
 {
 	std::string filename;
-	switch (level_num)
+	switch (2)
 	{
 	case 1: return filename = resourcePath() + "assets/sprites/background.png";
 	case 2: return filename = resourcePath() + "assets/sprites/dungeonwindow.png";

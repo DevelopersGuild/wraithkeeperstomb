@@ -17,10 +17,10 @@ Game::Game()
 	
 	// Set the Icon
 	sf::Image icon;
-	if (!icon.loadFromFile(resourcePath() + "assets/sprites/reaper.png")) {
-		return EXIT_FAILURE;
-	}
-	window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+	//if (!icon.loadFromFile(resourcePath() + "assets/sprites/reaper.png")) {
+	//	return EXIT_FAILURE;
+	//}
+	//window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 	
 	// Limit framerate to 60 and enable Vsync
 	window.setFramerateLimit(60);
