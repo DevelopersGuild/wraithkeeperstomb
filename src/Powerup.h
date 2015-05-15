@@ -3,6 +3,7 @@
 #include "Hero.h"
 #include "Spear.h"
 #include "Game.h"
+#include "Paths.h"
 
 //powerup
 class Powerup : public Entity
@@ -25,7 +26,7 @@ class PowerupCookie : public Powerup
 public:
 	PowerupCookie()
 	{
-		Texture.loadFromFile("../assets/sprites/cookie.png");
+		Texture.loadFromFile(resourcePath() + "assets/sprites/cookie.png");
 		Sprite.setTexture(Texture);
 		Sprite.setOrigin(0, 0);
 		Sprite.setPosition(500.f, 800.f);
@@ -42,7 +43,7 @@ class PowerupSpear : public Powerup
 public:
 	PowerupSpear()
 	{
-		Texture.loadFromFile("../assets/sprites/spear2.png");
+		Texture.loadFromFile(resourcePath() + "assets/sprites/spear2.png");
 		Sprite.setTexture(Texture);
 		Sprite.setOrigin(0, 0);
 		Sprite.setPosition(500.f, 800.f);
@@ -63,7 +64,7 @@ class PowerupCoffee : public Powerup
 public:
 	PowerupCoffee()
 	{
-		Texture.loadFromFile("../assets/sprites/speedBoost.png");
+		Texture.loadFromFile(resourcePath() + "assets/sprites/speedBoost.png");
 		Sprite.setTexture(Texture);
 		Sprite.setOrigin(0, 0);
 		Sprite.setPosition(500.f, 800.f);

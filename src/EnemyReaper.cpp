@@ -1,14 +1,15 @@
 #include "EnemyReaper.h"
 #include "Constants.h"
+#include "Paths.h"
 #include <ctime>
 
 EnemyReaper::EnemyReaper()
 {
 	// Load Enemies texture, assign to sprite, set starting sprite dimensions
-	Texture.loadFromFile("../assets/sprites/reaper.png");
+	Texture.loadFromFile(resourcePath() + "assets/sprites/reaper.png");
 	Sprite.setTexture(Texture);
 	Sprite.setOrigin(64, 128);
-	Sprite.setPosition(1000, 1360);
+	Sprite.setPosition(1000, 1424);
 
 	// Initialize basic Enemies stats
 	HP = ENEMY1_BASE_HP;

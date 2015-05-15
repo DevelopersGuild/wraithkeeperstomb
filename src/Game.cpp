@@ -4,6 +4,7 @@
 #include "Constants.h"
 #include "Enemy.h"
 #include "EnemyMage.h"
+#include "Paths.h"
 
 std::vector<Entity *> Game::entityRegistry;
 
@@ -13,7 +14,14 @@ Game::Game()
 	window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Chamber's Labyrinth");
 	window.setMouseCursorVisible(true);
 	window.setKeyRepeatEnabled(false);
-
+	
+	// Set the Icon
+	sf::Image icon;
+	if (!icon.loadFromFile(resourcePath() + "assets/sprites/reaper.png")) {
+		return EXIT_FAILURE;
+	}
+	window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+	
 	// Limit framerate to 60 and enable Vsync
 	window.setFramerateLimit(60);
 	window.setVerticalSyncEnabled(true);
@@ -46,6 +54,7 @@ void Game::mainLoop()
 		// Event loop
 		while (window.pollEvent(event))
 			handleEvent(event);
+		std::cout << theHero->getY() << '\n';
 		switch (gameState_)
 		{
 		case GameState::titleScreen: titleUpdate(); break;
@@ -113,7 +122,7 @@ void Game::handleEvent(sf::Event &event)
 			// Specifically if Enter is pressed
 			if (event.key.code == sf::Keyboard::Return)
 			{
-				for (auto &it2 = projectiles.begin(); it2 != projectiles.end();)
+				for (auto it2 = projectiles.begin(); it2 != projectiles.end();)
 				{
 					delete *it2;
 					it2 = projectiles.erase(it2);
@@ -229,11 +238,11 @@ void Game::handleEvent(sf::Event &event)
 }
 
 
-void Game::collision(Entity *hero, Platform plat){
+void Game::collision(Entity *hero, Platform& plat){
 	//Affected area
 	sf::FloatRect wallBounds = plat.getCollisionRect();
 	sf::FloatRect area;
-	
+	std::cout << hero->getX() << " " << hero->getY() << '\n';
 	if (hero->getCollisionRect().intersects(wallBounds, area))
 	{
 		// Verifying if we need to apply collision to the vertical axis, else we apply to horizontal axis
@@ -318,13 +327,13 @@ void Game::loadTextLine(sf::Text &text, std::string line, int yPos)
 	text.setString(line);
 	text.setCharacterSize(48);
 	text.setColor(sf::Color::White);
-	text.setPosition(510, yPos);
+	text.setPosition(510.f, yPos);
 }
 
 void Game::loadAssets()
 {
-	gothicbold.loadFromFile("../assets/fonts/gothicb.ttf");
-	blackcastle.loadFromFile("../assets/fonts/blackcastle.ttf");
+	gothicbold.loadFromFile(resourcePath() + "assets/fonts/gothicb.ttf");
+	blackcastle.loadFromFile(resourcePath() + "assets/fonts/blackcastle.ttf");
 
 	HPbar.setSize(sf::Vector2f(150, 6));
 	HPbar.setOutlineColor(sf::Color::White);
@@ -409,7 +418,7 @@ int Game::cleanupEntities()
 	//@ Iterate through the vector, delete a "dead" entity and erase it from the vector;
 	//@ Skip the first entity Hero
 	int countEnemies(0);
-	for (auto &entity = entityRegistry.begin() + 1; entity != entityRegistry.end();) {
+	for (auto entity = entityRegistry.begin() + 1; entity != entityRegistry.end();) {
 
 		if (dynamic_cast<Enemy*>(*entity)) // check if it is an enemy
 			++countEnemies;
@@ -432,7 +441,7 @@ int Game::cleanupEntities()
 void Game::cleanupProjectiles()
 {
 	//iterate through all shot projectiles
-	for (auto &iter = projectiles.begin(); iter != projectiles.end();)
+	for (auto iter = projectiles.begin(); iter != projectiles.end();)
 	{
 		if ((*iter)->overRange())
 		{ //when max projectile range is reached
@@ -486,7 +495,7 @@ void Game::gameUpdate()
 	cleanupEntities();
 
 	//projectile collision check
-	for (auto &iter = projectiles.begin(); iter != projectiles.end();)
+	for (auto iter = projectiles.begin(); iter != projectiles.end();)
 	{//check who shot the projectile
 		if ((*iter)->is_shot_by_hero())
 		{//check collision for every enemy
@@ -531,7 +540,7 @@ void Game::gameUpdate()
 	}
 
 	//TODO move to EnemyMage using scheduler task
-	for (auto &entity = entityRegistry.begin(); entity != entityRegistry.end();)
+	for (auto entity = entityRegistry.begin(); entity != entityRegistry.end();)
 	{
 		if (dynamic_cast<EnemyMage*>(*entity))
 			if ((static_cast<EnemyMage*>(*entity))->projectileShoot())
@@ -562,7 +571,7 @@ void Game::gameUpdate()
 		camera.setCenter(camera.getCenter().x, theHero->getY() - 100);
 	}
 
-	camera.zoom(.5);
+	camera.zoom(.6);
 	window.setView(camera);
 	//HP
 	if (theHero->getHP() / HERO_BASE_HP > 0)
@@ -570,7 +579,7 @@ void Game::gameUpdate()
 	else
 		HPbar.setSize(sf::Vector2f(0, 6));
 
-	HPbar.setPosition(camera.getCenter().x-300, camera.getCenter().y-150);
+	HPbar.setPosition(camera.getCenter().x-380, camera.getCenter().y-190);
 
 	//MP
 	if (theHero->getMP() / HERO_BASE_MP > 0)
@@ -578,7 +587,7 @@ void Game::gameUpdate()
 	else
 		MPbar.setSize(sf::Vector2f(0, 6));
 
-	MPbar.setPosition(camera.getCenter().x - 300, camera.getCenter().y - 140);
+	MPbar.setPosition(camera.getCenter().x - 380, camera.getCenter().y - 200);
 }
 
 
@@ -652,7 +661,7 @@ void Game::render()
 			entityRegistry[i]->render(window);
 		}
 
-		for (auto &iter = projectiles.begin(); iter != projectiles.end();)
+		for (auto iter = projectiles.begin(); iter != projectiles.end();)
 		{ 
 			(*iter)->render(window);
 			++iter;
@@ -682,7 +691,7 @@ void Game::render()
 
 void Game::SaveStatsToFile()
 {
-	std::fstream out("../data/stats.bin", std::ios::binary | std::fstream::out);
+	std::fstream out(savePath() + "stats.bin", std::ios::binary | std::fstream::out);
 
 	if (out.fail()) {
 		// TODO(Dmitry): Log error
@@ -700,7 +709,7 @@ void Game::SaveStatsToFile()
 
 void Game::LoadStats()
 {
-	std::ifstream inFile("../data/stats.bin", std::ios::binary);
+	std::ifstream inFile(savePath() + "stats.bin", std::ios::binary);
 
 	if (inFile.fail()) {
 		// TODO(Dmitry): Log error

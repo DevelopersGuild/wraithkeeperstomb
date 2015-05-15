@@ -39,7 +39,7 @@ void Enemy::right()
 
 bool Enemy::heroDetection(Hero* hero)
 {
-	if ((getX() - hero->getX()) <= ENEMY_DETECTION_RADIUS && (hero->getX() - getX()) <= ENEMY_DETECTION_RADIUS && (getY() - hero->getY()) <= ENEMY_DETECTION_RADIUS)
+	if ((getX() - hero->getX()) <= ENEMY_DETECTION_RADIUS) // && (hero->getX() - getX()) <= ENEMY_DETECTION_RADIUS && (getY() - hero->getY()) <= ENEMY_DETECTION_RADIUS)
 	{
 		heroDetected = true;
 		return true;
@@ -53,9 +53,7 @@ bool Enemy::heroDetection(Hero* hero)
 
 void Enemy::onHeroDetected(Hero* hero)
 {
-	if (getY() < hero->getY())
-		jump();
-	else if ((getX() - hero->getX()) > 0)
+	 if ((getX() - hero->getX()) > 0)
 	{
 		faceRight = false;
 	}
@@ -100,15 +98,18 @@ void Enemy::areaPatrol(float deltaTime)
 	if (patrol_pause > 0)
 	{
 		if (getX() >= patrol_origin + PATROL_RADIUS)
+		{
 			if (patrol_right)//on the right edge of patrol boundary
 				patrol_right = false;
+		}
 
 		else if (getX() <= patrol_origin - PATROL_RADIUS)
+		{
 			if (!patrol_right)//on the left edge of patrol boundary
 				patrol_right = true;
+		}
 
 		patrol_pause -= deltaTime;
-		doPhysics(deltaTime);
 	}
 	else if (getX() <= patrol_origin + PATROL_RADIUS && getX() >= patrol_origin - PATROL_RADIUS)
 	{//within patrol boundary
@@ -116,7 +117,6 @@ void Enemy::areaPatrol(float deltaTime)
 			right();
 		else
 			left();
-		doPhysics(deltaTime);
 
 		//check if out of boundary after the movement
 		if (getX() >= patrol_origin + PATROL_RADIUS || getX() <= patrol_origin - PATROL_RADIUS)
@@ -136,6 +136,6 @@ void Enemy::areaPatrol(float deltaTime)
 				patrol_right = true;
 			right();
 		}
-		doPhysics(deltaTime);
 	}
+	doPhysics(deltaTime);
 }

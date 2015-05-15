@@ -13,20 +13,21 @@
 - [GitHub](https://github.com/)
 - [SFML](http://www.sfml-dev.org/) (Simple and Fast Multimedia Library): SFML is multi-platform and multi-language. It provides a simple interface to the various components of your PC, to ease the development of games and multimedia applications. It is composed of five modules: system, window, graphics, audio and network.
 
-**Group Members**
+**Contributors**
 
-- Anthony Bilic: Project Management Lead, Officer
-- Vihan Chaudhry: Lead Developer, Officer
-- Dmitry Sokolov: Developer, Officer
-- Victor La: Lead Animator, Developer
-- Arjan Sohal: Developer
+- Vihan Chaudhry: Project Leader, Developer
+- Anthony Bilic: Project Manager
+- Dmitry Sokolov: Developer
+- Victor La: Animator, Developer
+- Arjan Sohal: Animator, Developer
 - Edwin Angkasa: Developer
 - Jaison Tiu: Developer
+- Paul Merrill: Developer
 - Rui Li: Developer
-- Adam Price: Developer
+- Adam Price: Animator, Developer
 - Denny Hung: Developer
 - Kevin Wang: Developer
 
 **License**
 
-This software is licensed under the [MIT License](http://en.wikipedia.org/wiki/MIT_License).
+This repository is licensed under the [MIT License](http://en.wikipedia.org/wiki/MIT_License).

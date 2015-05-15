@@ -1,14 +1,15 @@
 #include "EnemyMage.h"
 #include "Constants.h"
+#include "Paths.h"
 #include <ctime>
 
 EnemyMage::EnemyMage()
 {
 	// Load Enemies texture, assign to sprite, set starting sprite dimensions
-	Texture.loadFromFile("../assets/sprites/magebaddie.png");
+	Texture.loadFromFile(resourcePath() + "assets/sprites/magebaddie.png");
 	Sprite.setTexture(Texture);
 	Sprite.setOrigin(32, 128);
-	Sprite.setPosition(1280, 1360);
+	Sprite.setPosition(1280, 1424);
 
 	// Initialize basic Enemies stats
 	HP = ENEMY2_BASE_HP;
@@ -20,6 +21,7 @@ EnemyMage::EnemyMage()
 	faceRight = true;
 	projectileCooldown = 0.0;
 	Enemy();
+
 
 	srand((unsigned int)time(NULL));
 }

@@ -61,7 +61,7 @@ private:
 	void render();
 	void handleEvent(sf::Event &event);
 	void loadAssets();
-	void collision(Entity *, Platform);
+	void collision(Entity *, Platform&);
 	void titleUpdate();
 	void gameUpdate();
 	void pauseUpdate();
@@ -82,8 +82,8 @@ private:
 	void SaveStatsToFile();
 	int cleanupEntities();
 	void cleanupProjectiles();
-	void Game::loadTextLineHL(sf::Text &text, std::string line, int yPos);
-	void Game::loadTextLine(sf::Text &text, std::string line, int yPos);
+	void loadTextLineHL(sf::Text &text, std::string line, int yPos);
+	void loadTextLine(sf::Text &text, std::string line, int yPos);
 
 public:
 	Game();
