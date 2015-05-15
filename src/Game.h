@@ -14,7 +14,7 @@ class Game
 {
 private:
 	enum class GameState {
-		titleScreen, inGame, pause, victory, gameOver
+		titleScreen, inGame, pause, victory, gameOver, openDoor
 	} gameState_;
 
 	enum class MenuSwitch {
@@ -57,6 +57,8 @@ private:
 
 	Levels levels;
 
+	bool doorOpen;
+
 	void update();
 	void render();
 	void handleEvent(sf::Event &event);
@@ -69,6 +71,7 @@ private:
 	void gameOverUpdate();
 	void hitCollision(Entity *, Entity *);
 	bool projectileCollide(Entity *, Projectile *);
+	void enterDoor(Entity *);
 
 	static Hero *theHero;
 

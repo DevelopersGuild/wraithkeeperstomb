@@ -5,14 +5,18 @@
 class Door
 {
 private:
-	sf::Texture texture;
+	sf::Texture closs_texture;
+	sf::Texture open_texture;
 	sf::Sprite sprite;
-
-	bool isOpen;
+//public:
+	//bool isOpen;
 public:
 	Door();
-	void openDoor();
+	bool openDoor();
 	void setPosition(float x, float y);
+	//bool getOpen() { return isOpen; }
+
+	sf::FloatRect getDoorRect() { return sprite.getGlobalBounds(); }
 	sf::Sprite getSprite() { return sprite; }
 	~Door();
 };

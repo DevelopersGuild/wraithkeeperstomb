@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Platform.h"
 #include "Door.h"
+#include "Entity.h"
 
 using LevelNum = int;
 
@@ -40,6 +41,9 @@ public:
 	void backGroundSets();
 	void entitiesSets();
 	void createBackground();
+
+	void roomGenerater();
+	void cleanup(Entity *hero);
 
 //	const sf::FloatRect getGroundRect()
 //	{ return ground_.rectangle.getGlobalBounds(); }

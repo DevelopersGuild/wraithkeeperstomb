@@ -35,6 +35,8 @@ Game::Game()
 	minimap.setCenter(1280, 720);
 	camera.setCenter(710, theHero->getY() - 100);
 	knockBackTime.restart();
+
+	doorOpen = false;
 }
 
 void Game::CreateEntities()
@@ -42,7 +44,7 @@ void Game::CreateEntities()
 	entityRegistry.clear();
 	theHero = new Hero;
 	entityRegistry.push_back(theHero);
-	levels.createEntities();
+	levels.roomGenerater();
 }
 
 void Game::mainLoop()
@@ -98,6 +100,11 @@ void Game::handleEvent(sf::Event &event)
 				gameState_ = GameState::pause;
 			}
 		}
+	}
+
+	if (gameState_ == GameState::openDoor)
+	{
+		doorOpen = levels.getDoor().openDoor();
 	}
 
 	if (gameState_ == GameState::pause)
@@ -311,6 +318,20 @@ bool Game::projectileCollide(Entity *getsHit, Projectile *proj)
 		return false;
 }
 
+void Game::enterDoor(Entity *hero)
+{
+	if (doorOpen)
+	{
+		if (hero->getCollisionRect().intersects(levels.getDoor().getDoorRect()))
+		{
+			doorOpen = false;
+			levels.cleanup(theHero);
+			levels.roomGenerater();	
+			gameState_ = GameState::inGame;
+		}
+	}
+}
+
 void Game::loadTextLineHL(sf::Text &text, std::string line, int yPos)
 {
 	text.setFont(gothicbold);
@@ -434,7 +455,8 @@ int Game::cleanupEntities()
 	}
 
 	if (countEnemies == 0)
-		gameState_ = GameState::victory;
+		gameState_ = GameState::openDoor;
+
 	return countEnemies;
 }
 
@@ -493,6 +515,8 @@ void Game::gameUpdate()
 			hitCollision(entityRegistry[i], theHero);
 
 	cleanupEntities();
+
+	enterDoor(theHero);
 
 	//projectile collision check
 	for (auto iter = projectiles.begin(); iter != projectiles.end();)

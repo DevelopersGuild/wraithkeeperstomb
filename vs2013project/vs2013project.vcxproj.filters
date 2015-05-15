@@ -52,7 +52,9 @@
     <ClCompile Include="..\src\Door.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Developer%27s Guild\chamberslabyrinth\src\Paths-Windows.cpp" />
+    <ClCompile Include="..\src\Paths-Windows.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Constants.h">

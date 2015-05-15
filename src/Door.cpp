@@ -4,20 +4,20 @@
 
 Door::Door()
 {
-	isOpen = false;
+	//isOpen = false;
 
-	texture.loadFromFile(resourcePath() + "assets/sprites/clossdoor.png");
-	texture.setRepeated(true);
-	sprite.setTexture(texture);
+	closs_texture.loadFromFile("../assets/sprites/clossdoor.png");
+	//closs_texture.setRepeated(true);
+	sprite.setTexture(closs_texture);
 	sprite.setPosition(1260, 1290);
-
 }
 
-void Door::openDoor()
+bool Door::openDoor()
 {
-	isOpen = true;
-	texture.loadFromFile(resourcePath() + "assets/sprites/opendoor.png");
-	sprite.setTexture(texture);
+	open_texture.loadFromFile("../assets/sprites/opendoor.png");
+	//open_texture.setRepeated(true);
+	sprite.setTexture(open_texture);
+	return true;
 }
 
 void Door::setPosition(float x, float y)

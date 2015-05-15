@@ -12,12 +12,23 @@ Levels::Levels()
 	isBoss = false;
 	
 	srand(time(0));
+}
 
+void Levels::cleanup(Entity *hero)
+{
+	platforms.clear();
+	Entity *tempHero = hero;
+	Game::entityRegistry.clear();
+	Game::entityRegistry.push_back(tempHero);
+}
+
+void Levels::roomGenerater()
+{
 	l = rand() % 5 + 1;
 	createBackground();
 	door.setPosition(2000, 1220);
 	platformSets();
-
+	entitiesSets();
 }
 
 void Levels::createBackground()
@@ -84,11 +95,13 @@ void Levels::createEnemy(int t/*enemy type*/, float x, float y)
 		case 1:
 			e = new EnemyMage;
 			e->setPosition(x, y);
+			dynamic_cast<EnemyMage*> (e)->set_patrol_origin(1280.f);
 			Game::entityRegistry.push_back(e);
 			break;
 		case 2:
 			e = new EnemyReaper;
 			e->setPosition(x, y);
+			dynamic_cast<EnemyReaper*> (e)->set_patrol_origin(1000.f);
 			Game::entityRegistry.push_back(e);
 			break;
 		default:

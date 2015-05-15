@@ -98,9 +98,9 @@
     <ClInclude Include="..\src\Weapons.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Developer%27s Guild\chamberslabyrinth\src\Paths-Windows.cpp" />
     <ClCompile Include="..\src\Door.cpp" />
     <ClCompile Include="..\src\FirstBoss.cpp" />
+    <ClCompile Include="..\src\Paths-Windows.cpp" />
     <ClCompile Include="..\src\Powerup.cpp" />
     <ClCompile Include="..\src\Enemy.cpp" />
     <ClCompile Include="..\src\EnemyReaper.cpp" />
