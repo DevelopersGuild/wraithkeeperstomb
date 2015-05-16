@@ -19,7 +19,6 @@
 		106BC8C31B080DF3000AF483 /* Levels.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8A81B080DF3000AF483 /* Levels.cpp */; };
 		106BC8C41B080DF3000AF483 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8AA1B080DF3000AF483 /* main.cpp */; };
 		106BC8C51B080DF3000AF483 /* Paths-Mac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8AB1B080DF3000AF483 /* Paths-Mac.mm */; };
-		106BC8C71B080DF3000AF483 /* Physics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8AE1B080DF3000AF483 /* Physics.cpp */; };
 		106BC8C81B080DF3000AF483 /* Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8B01B080DF3000AF483 /* Platform.cpp */; };
 		106BC8C91B080DF3000AF483 /* Powerup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8B21B080DF3000AF483 /* Powerup.cpp */; };
 		106BC8CA1B080DF3000AF483 /* Projectile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8B41B080DF3000AF483 /* Projectile.cpp */; };
@@ -54,8 +53,6 @@
 		106BC8AA1B080DF3000AF483 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../src/main.cpp; sourceTree = "<group>"; };
 		106BC8AB1B080DF3000AF483 /* Paths-Mac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "Paths-Mac.mm"; path = "../src/Paths-Mac.mm"; sourceTree = "<group>"; };
 		106BC8AD1B080DF3000AF483 /* Paths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Paths.h; path = ../src/Paths.h; sourceTree = "<group>"; };
-		106BC8AE1B080DF3000AF483 /* Physics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Physics.cpp; path = ../src/Physics.cpp; sourceTree = "<group>"; };
-		106BC8AF1B080DF3000AF483 /* Physics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Physics.h; path = ../src/Physics.h; sourceTree = "<group>"; };
 		106BC8B01B080DF3000AF483 /* Platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Platform.cpp; path = ../src/Platform.cpp; sourceTree = "<group>"; };
 		106BC8B11B080DF3000AF483 /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Platform.h; path = ../src/Platform.h; sourceTree = "<group>"; };
 		106BC8B21B080DF3000AF483 /* Powerup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Powerup.cpp; path = ../src/Powerup.cpp; sourceTree = "<group>"; };
@@ -110,8 +107,6 @@
 				106BC8AA1B080DF3000AF483 /* main.cpp */,
 				106BC8AB1B080DF3000AF483 /* Paths-Mac.mm */,
 				106BC8AD1B080DF3000AF483 /* Paths.h */,
-				106BC8AE1B080DF3000AF483 /* Physics.cpp */,
-				106BC8AF1B080DF3000AF483 /* Physics.h */,
 				106BC8B01B080DF3000AF483 /* Platform.cpp */,
 				106BC8B11B080DF3000AF483 /* Platform.h */,
 				106BC8B21B080DF3000AF483 /* Powerup.cpp */,
@@ -254,7 +249,6 @@
 				106BC8BC1B080DF3000AF483 /* Enemy.cpp in Sources */,
 				106BC8C81B080DF3000AF483 /* Platform.cpp in Sources */,
 				106BC8C01B080DF3000AF483 /* FirstBoss.cpp in Sources */,
-				106BC8C71B080DF3000AF483 /* Physics.cpp in Sources */,
 				106BC8C41B080DF3000AF483 /* main.cpp in Sources */,
 				106BC8C31B080DF3000AF483 /* Levels.cpp in Sources */,
 				106BC8C11B080DF3000AF483 /* Game.cpp in Sources */,
