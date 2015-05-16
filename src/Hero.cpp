@@ -387,5 +387,7 @@ Hero::~Hero()
 	for (auto &effect : effects_)
 		delete effect;
 
+	delete weapon;
+
 	effects_.clear();
 }

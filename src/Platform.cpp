@@ -45,5 +45,9 @@ void Platform::render(sf::RenderWindow &window)
 
 Platform::~Platform()
 {
-
+	if (!platform_ground_texture)
+	{
+		delete platform_ground_texture;
+		platform_ground_texture = 0;
+	}
 }
