@@ -5,12 +5,12 @@ sf::Texture * platform_ground_texture = 0;
 
 Platform::Platform()
 {
-	setTexture();
+	
 }
 
-Platform::Platform(sf::Vector2f nPos, sf::Vector2f nSize) : pos(nPos), size(nPos)
+Platform::Platform(sf::Vector2f nPos, sf::Vector2f nSize, int type) : pos(nPos), size(nPos)
 {
-	setTexture();
+	setTexture(type);
 	rec.setSize(size);
 	rec.setPosition(pos);
 }
@@ -27,7 +27,7 @@ void Platform::setPosition(sf::Vector2f nPos)
 	rec.setPosition(pos);
 }
 
-void Platform::setTexture(){
+void Platform::setTexture(int type){ //need texture for walls (borrowing from ground for now)
 	if (platform_ground_texture == 0)
 	{
 		platform_ground_texture = new sf::Texture;

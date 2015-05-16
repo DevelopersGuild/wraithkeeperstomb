@@ -41,9 +41,9 @@ void EnemyMage::update(float time)
 	
 	if (!heroDetected)
 	{
-		areaPatrol(time);
 		if (speedMultiplier != 1)
 			speedMultiplier = 1; //unalerted speed
+		areaPatrol(time);
 	}
 	else
 	{
@@ -60,6 +60,8 @@ void EnemyMage::update(float time)
 		Sprite.setScale(-1.f, 1.f); //until animation
 	else
 		Sprite.setScale(1.f, 1.f);
+
+	doPhysics(time);
 }
 
 bool EnemyMage::projectileShoot()

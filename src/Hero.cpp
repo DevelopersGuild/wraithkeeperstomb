@@ -34,6 +34,7 @@ Hero::Hero()
 	frameTimer = 0;
 	faceRight = true;
 	projectileCooldown = 0.0;
+	collisionNum = 0;
 
 	//effects_.push_back(new Buff(10, 7.0F, "Speed Buff"));
 	// effects_.push_back(new Debuff(10, 10.0F, "Poison"));
@@ -251,7 +252,7 @@ void Hero::jump(float seconds)
 
 void Hero::update(float seconds)
 {
-	std::cout << collisionNum << " vel: " << velocity.y << std::endl;
+	/*std::cout << collisionNum << " vel: " << velocity.y << std::endl;*/
 	//prevent bonuses from increasing over time
 	stats_.speed = HERO_BASE_SPEED * stats_.speedMultiplier;
 	for (auto iter = effects_.begin(); iter != effects_.end();) { //iterate through all buffs/debuffs 

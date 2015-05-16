@@ -36,15 +36,14 @@ void EnemyReaper::update(float time)
 
 	if (!heroDetected)
 	{
-		areaPatrol(time);
 		if (speedMultiplier != 1)
 			speedMultiplier = 1; //unalerted speed
+		areaPatrol(time);
 	}
 	else
 	{
 		if (speedMultiplier == 1)
 			speedMultiplier = 2; //chasing speed
-		doPhysics(time);
 	}
 	if (isFrozen)
 		velocity.x = 0.f;
@@ -55,28 +54,38 @@ void EnemyReaper::update(float time)
 		Sprite.setScale(-1.f, 1.f); //until animation is available
 	else
 		Sprite.setScale(1.f, 1.f);
+
+	if (collisionNum == 2 || collisionNum == 0)
+		velocity.y = 0;
+
+	doPhysics(.1*time);
 }
 
 void EnemyReaper::jump()
 {
+	collisionNum = 1;
 	velocity.y -= HERO_JUMP_VELOCITY;
 
+	if (collisionNum == 2){
+		velocity.y = 0;
+	}
+
 	if (velocity.y < 0){
-		Sprite.move(velocity);
 		velocity.y += GRAVITY;
+		Sprite.move(velocity);
 	}
 }
 
 void EnemyReaper::onHeroDetected(Hero* hero)
 {
-	if (getY() < hero->getY())
+	if (getY() < hero->getY() && collisionNum == 0)
 		jump();
-	else if ((getX() - hero->getX()) > 20)
+	if ((getX() - hero->getX()) > 20)
 	{
 		left();
 		faceRight = false;
 	}
-	else if ((hero->getX() - getX()) < -20)
+	else if ((hero->getX() - getX()) > 20)
 	{
 		right();
 		faceRight = true;

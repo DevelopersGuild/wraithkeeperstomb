@@ -18,11 +18,11 @@ private:
 
 	sf::RectangleShape back;
 
-	void createPlatform(float, float, float, float);
+	void createPlatform(int, float, float, float, float);
 
 	bool isBoss;
 	int l; //level
-
+	int platformType; //0 = horizontal, 1 = vertical (wall)
 	Door door;
 
 public:

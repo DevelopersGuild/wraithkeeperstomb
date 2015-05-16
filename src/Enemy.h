@@ -16,6 +16,7 @@ protected:
 	bool isShooter; //used later
 	bool isFrozen;
 	bool heroDetected;
+	bool wasPaused;
 	sf::Clock Freeze;
 	sf::RectangleShape hpbar_;
 	float patrol_origin; //x-value only for now

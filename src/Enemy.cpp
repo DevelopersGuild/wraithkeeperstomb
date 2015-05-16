@@ -10,7 +10,9 @@ Enemy::Enemy()
 	heroDetected = false;
 	patrol_right = true;
 	isFrozen = false;
+	wasPaused = true;
 	patrol_pause = 0.0; //? sec pause
+	collisionNum = 0;
 	if (faceRight)
 		Sprite.setScale(-1.f, 1.f);
 }
@@ -39,7 +41,7 @@ void Enemy::right()
 
 bool Enemy::heroDetection(Hero* hero)
 {
-	if ((getX() - hero->getX()) <= ENEMY_DETECTION_RADIUS) // && (hero->getX() - getX()) <= ENEMY_DETECTION_RADIUS && (getY() - hero->getY()) <= ENEMY_DETECTION_RADIUS)
+	if ((getX() - hero->getX()) <= ENEMY_DETECTION_RADIUS && (hero->getX() - getX()) <= ENEMY_DETECTION_RADIUS && (getY() - hero->getY()) <= ENEMY_DETECTION_RADIUS)
 	{
 		heroDetected = true;
 		return true;
@@ -65,7 +67,7 @@ void Enemy::onHeroDetected(Hero* hero)
 
 void Enemy::onHit(float dmg)
 {
-	std::cout << "attacked";
+	//std::cout << "attacked";
 	if (dmg > armor)
 		HP = HP - (dmg - armor / 4);
 	else
@@ -108,7 +110,6 @@ void Enemy::areaPatrol(float deltaTime)
 			if (!patrol_right)//on the left edge of patrol boundary
 				patrol_right = true;
 		}
-
 		patrol_pause -= deltaTime;
 	}
 	else if (getX() <= patrol_origin + PATROL_RADIUS && getX() >= patrol_origin - PATROL_RADIUS)
@@ -117,13 +118,15 @@ void Enemy::areaPatrol(float deltaTime)
 			right();
 		else
 			left();
-
-		//check if out of boundary after the movement
-		if (getX() >= patrol_origin + PATROL_RADIUS || getX() <= patrol_origin - PATROL_RADIUS)
-			patrol_pause = 3.0; //few sec pause
+		wasPaused = false;
 	}
-	else //not frozen, but somehow still outside patrol boundary
+	else //outside patrol boundary
 	{
+		if (!wasPaused)
+		{
+			patrol_pause = 3.0;
+			wasPaused = true;
+		}
 		if (getX() >= patrol_origin + PATROL_RADIUS)
 		{
 			if (patrol_right)
@@ -137,5 +140,4 @@ void Enemy::areaPatrol(float deltaTime)
 			right();
 		}
 	}
-	doPhysics(deltaTime);
 }

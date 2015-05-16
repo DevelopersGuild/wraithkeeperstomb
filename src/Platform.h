@@ -11,11 +11,11 @@ private:
 	sf::RectangleShape rec;
 public:
 	Platform();
-	Platform(sf::Vector2f nPos, sf::Vector2f nSize);
+	Platform(sf::Vector2f nPos, sf::Vector2f nSize, int type);
 	~Platform();
 
 	// setters
-	void setTexture();
+	void setTexture(int type);
 	void setSize(sf::Vector2f nSize);
 	void setPosition(sf::Vector2f nPos);
 
