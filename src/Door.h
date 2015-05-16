@@ -12,7 +12,7 @@ private:
 	//bool isOpen;
 public:
 	Door();
-	bool openDoor();
+	void setTexture(bool status); //0=closed, 1=open
 	void setPosition(float x, float y);
 	//bool getOpen() { return isOpen; }
 

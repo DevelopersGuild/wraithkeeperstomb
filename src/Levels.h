@@ -49,6 +49,7 @@ public:
 //	{ return ground_.rectangle.getGlobalBounds(); }
 	Door getDoor()
 	{ return door; }
+	bool setDoor(bool status);
 };
 
 /*************************************************

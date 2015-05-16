@@ -62,6 +62,7 @@ void Game::mainLoop()
 		case GameState::titleScreen: titleUpdate(); break;
 		case GameState::inGame: gameUpdate(); break;
 		case GameState::pause: pauseUpdate(); break;
+		case GameState::openDoor: gameUpdate(); break;
 		case GameState::victory: victoryUpdate(); break;
 		case GameState::gameOver: gameOverUpdate(); break;
 		default: break;
@@ -88,7 +89,7 @@ void Game::handleEvent(sf::Event &event)
 		
 	}
 
-	if (gameState_ == GameState::inGame)
+	if (gameState_ == GameState::inGame || gameState_ == GameState::openDoor)
 	{
 		// Keys being pressed during gameplay
 		if (sf::Event::KeyPressed)
@@ -99,12 +100,13 @@ void Game::handleEvent(sf::Event &event)
 				// Move to pause
 				gameState_ = GameState::pause;
 			}
+			if (event.key.code == sf::Keyboard::Up)
+			{
+				//enable hero to enter door when up is pressed
+				if (doorOpen)
+					enterDoor(theHero);
+			}
 		}
-	}
-
-	if (gameState_ == GameState::openDoor)
-	{
-		doorOpen = levels.getDoor().openDoor();
 	}
 
 	if (gameState_ == GameState::pause)
@@ -320,15 +322,12 @@ bool Game::projectileCollide(Entity *getsHit, Projectile *proj)
 
 void Game::enterDoor(Entity *hero)
 {
-	if (doorOpen)
+	if (hero->getCollisionRect().intersects(levels.getDoor().getDoorRect()))
 	{
-		if (hero->getCollisionRect().intersects(levels.getDoor().getDoorRect()))
-		{
-			doorOpen = false;
-			levels.cleanup(theHero);
-			levels.roomGenerater();	
-			gameState_ = GameState::inGame;
-		}
+		doorOpen = false;
+		levels.cleanup(theHero);
+		levels.roomGenerater();	
+		gameState_ = GameState::inGame;
 	}
 }
 
@@ -490,6 +489,9 @@ void Game::gameUpdate()
 
 	levels.update();
 
+	if (gameState_ == GameState::openDoor)
+		doorOpen = levels.setDoor(1);
+
 	float time = deltaTime.asSeconds();
 
 	for (size_t i = 0; i < entityRegistry.size(); i++)
@@ -515,8 +517,6 @@ void Game::gameUpdate()
 			hitCollision(entityRegistry[i], theHero);
 
 	cleanupEntities();
-
-	enterDoor(theHero);
 
 	//projectile collision check
 	for (auto iter = projectiles.begin(); iter != projectiles.end();)
@@ -665,7 +665,7 @@ void Game::render()
 		}
 
 	}
-	else if (gameState_ == GameState::inGame)
+	else if (gameState_ == GameState::inGame || gameState_ == GameState::openDoor)
 	{
 		camera.setViewport(sf::FloatRect(0, 0, 1, 1));
 		minimap.setViewport(sf::FloatRect(0.75f, 0, 0.25f, 0.25f));
