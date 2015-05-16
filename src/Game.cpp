@@ -325,7 +325,9 @@ void Game::enterDoor(Entity *hero)
 	if (hero->getCollisionRect().intersects(levels.getDoor().getDoorRect()))
 	{
 		doorOpen = false;
-		levels.cleanup(theHero);
+		cleanupAll();
+		levels.cleanup();
+		entityRegistry.push_back(theHero);
 		levels.roomGenerater();	
 		gameState_ = GameState::inGame;
 	}
@@ -475,6 +477,21 @@ void Game::cleanupProjectiles()
 			++iter;
 		}
 	}
+}
+
+void Game::cleanupAll()
+{//delete all entities and projectiles (except hero), empty containers
+	for (auto &proj : projectiles)
+		delete proj;
+
+	for (auto entity = entityRegistry.begin() + 1; entity != entityRegistry.end();)
+	{
+		delete *entity;
+		entity = entityRegistry.erase(entity);
+	}
+	
+	projectiles.clear();
+	entityRegistry.clear();
 }
 
 void Game::gameUpdate()
@@ -771,5 +788,11 @@ Game::~Game()
 	{
 		delete proj;
 	}
+	for (auto &ent : entityRegistry)
+	{
+		delete ent;
+	}
+	
 	projectiles.clear();
+	entityRegistry.clear();
 }
