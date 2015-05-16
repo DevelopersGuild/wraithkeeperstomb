@@ -31,6 +31,7 @@ private:
 	Weapons *weapon = NULL;
 
 	sf::Clock jumpClock;
+	sf::Clock freezeClock;
 
 	enum {stands, walks, jumps, attacks};
 	int action;
@@ -42,7 +43,7 @@ private:
 	float jumpCooldown;			//Cooldown counter for jump
 	float jumpTimer;				//Counter for jump duration
 	bool faceRight;				//Boolean for determining direction hero is facing at rest
-	bool inAir;
+	bool isFrozen;
 	float projectileCooldown;
 
 	std::list<Effect*> effects_;
@@ -73,10 +74,12 @@ public:
 
 	void giveWeapon(Weapons * weapon);
 
-	void freeze() {}
+	void freeze() {};
+	void freezeHero(sf::Clock &);
+	void unfreezeHero(sf::Clock);
 	void knockBack(float, float);
 
-	virtual void setPosition(float x, float y);
+	void setPosition(float x, float y);
 
 	// Accessors
 	bool getFaceRight() const
