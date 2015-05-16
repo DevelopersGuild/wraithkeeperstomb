@@ -5,8 +5,8 @@
 Door::Door()
 {
 	//isOpen = false;
-	open_texture.loadFromFile("../assets/sprites/opendoor.png");
-	closs_texture.loadFromFile("../assets/sprites/clossdoor.png");
+	open_texture.loadFromFile(resourcePath() + "assets/sprites/opendoor.png");
+	closs_texture.loadFromFile(resourcePath() + "assets/sprites/clossdoor.png");
 	//closs_texture.setRepeated(true);
 	sprite.setTexture(closs_texture);
 	sprite.setPosition(1260, 1290);

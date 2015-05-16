@@ -33,6 +33,7 @@ Hero::Hero()
 	yFrame = 0;
 	frameTimer = 0;
 	faceRight = true;
+	isFrozen = false;
 	projectileCooldown = 0.0;
 	collisionNum = 0;
 
@@ -191,13 +192,26 @@ void Hero::right()
 
 bool Hero::attack()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && velocity.y == 0)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && velocity.y == 0 && collisionNum == 0)
 		if (weapon->attack())
 		{
 			atkTime = 50;
+			freezeHero(freezeClock);
 			return true;
 		}
 	return false;
+}
+
+void Hero::freezeHero(sf::Clock &freezeClock)
+{
+	isFrozen = true;
+	freezeClock.restart().asSeconds();
+}
+
+void Hero::unfreezeHero(sf::Clock freezeClock)
+{
+	if (freezeClock.getElapsedTime().asSeconds() >= 0.5f)
+		isFrozen = false;
 }
 
 bool Hero::projectileShoot()
@@ -217,25 +231,6 @@ void Hero::consumeMP(float cost)
 	stats_.MP -= cost;
 }
 
-/*
-void Hero::jump(float seconds)
-{
-	if (jumpTimer < 22 && jumpCooldown > 3)
-	{
-		velocity.y = -1050;
-		velocity.y += GRAVITY*seconds*jumpTimer*2;
-		Sprite.move(velocity*seconds);
-		velocity.y = 0;
-		jumpTimer++;
-	}
-	if (Sprite.getPosition().y + Sprite.getScale().y >= 1359)
-	{
-		jumpTimer = 0;
-		jumpCooldown = 0;
-	}
-}
-*/
-
 void Hero::jump(float seconds)
 {
 	collisionNum = 1;
@@ -244,7 +239,7 @@ void Hero::jump(float seconds)
 	if (collisionNum == 2){
 		velocity.y = 0;
 	}
-	if (velocity.y < 0){
+	if (velocity.y < 0 && !isFrozen){
 		velocity.y += GRAVITY;
 		Sprite.move(velocity);
 	}
@@ -252,7 +247,6 @@ void Hero::jump(float seconds)
 
 void Hero::update(float seconds)
 {
-	/*std::cout << collisionNum << " vel: " << velocity.y << std::endl;*/
 	//prevent bonuses from increasing over time
 	stats_.speed = HERO_BASE_SPEED * stats_.speedMultiplier;
 	for (auto iter = effects_.begin(); iter != effects_.end();) { //iterate through all buffs/debuffs 
@@ -270,15 +264,15 @@ void Hero::update(float seconds)
 			++iter;
 		}
 	}
-
+	unfreezeHero(freezeClock);
 	{
 		// Handle movement
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !isFrozen)
 		{
 			faceRight = false;
 			left();
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && !isFrozen)
 		{
 			faceRight = true;
 			right();
@@ -289,7 +283,7 @@ void Hero::update(float seconds)
 		}
 
 		// Jump
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && collisionNum == 0)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && collisionNum == 0 && !isFrozen)
 			jump(seconds);
 
 		// Check if alive
@@ -305,7 +299,6 @@ void Hero::update(float seconds)
 	}
 	if (weapon != 0)
 	{
-		//weapon->update(this, static_cast<Entity *>(NULL));
 		if (atkTime == 0)
 			weapon->setPosition(getX(), getY() - 26);
 		weapon->update(faceRight);
