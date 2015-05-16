@@ -1,0 +1,415 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		106BC8BA1B080DF3000AF483 /* Door.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8961B080DF3000AF483 /* Door.cpp */; };
+		106BC8BB1B080DF3000AF483 /* Effect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8981B080DF3000AF483 /* Effect.cpp */; };
+		106BC8BC1B080DF3000AF483 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC89A1B080DF3000AF483 /* Enemy.cpp */; };
+		106BC8BD1B080DF3000AF483 /* EnemyMage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC89C1B080DF3000AF483 /* EnemyMage.cpp */; };
+		106BC8BE1B080DF3000AF483 /* EnemyReaper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC89E1B080DF3000AF483 /* EnemyReaper.cpp */; };
+		106BC8BF1B080DF3000AF483 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8A01B080DF3000AF483 /* Entity.cpp */; };
+		106BC8C01B080DF3000AF483 /* FirstBoss.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8A21B080DF3000AF483 /* FirstBoss.cpp */; };
+		106BC8C11B080DF3000AF483 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8A41B080DF3000AF483 /* Game.cpp */; };
+		106BC8C21B080DF3000AF483 /* Hero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8A61B080DF3000AF483 /* Hero.cpp */; };
+		106BC8C31B080DF3000AF483 /* Levels.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8A81B080DF3000AF483 /* Levels.cpp */; };
+		106BC8C41B080DF3000AF483 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8AA1B080DF3000AF483 /* main.cpp */; };
+		106BC8C51B080DF3000AF483 /* Paths-Mac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8AB1B080DF3000AF483 /* Paths-Mac.mm */; };
+		106BC8C71B080DF3000AF483 /* Physics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8AE1B080DF3000AF483 /* Physics.cpp */; };
+		106BC8C81B080DF3000AF483 /* Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8B01B080DF3000AF483 /* Platform.cpp */; };
+		106BC8C91B080DF3000AF483 /* Powerup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8B21B080DF3000AF483 /* Powerup.cpp */; };
+		106BC8CA1B080DF3000AF483 /* Projectile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8B41B080DF3000AF483 /* Projectile.cpp */; };
+		106BC8CB1B080DF3000AF483 /* Spear.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8B61B080DF3000AF483 /* Spear.cpp */; };
+		106BC8CC1B080DF3000AF483 /* Weapons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8B81B080DF3000AF483 /* Weapons.cpp */; };
+		5FC7638E1AF8ED7500504B24 /* .. in Resources */ = {isa = PBXBuildFile; fileRef = 5FC7638D1AF8ED7500504B24 /* .. */; };
+		5FE148BD1AFBE546007C20CA /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 5FE148BC1AFBE546007C20CA /* assets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		106BC8951B080DF3000AF483 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../src/Constants.h; sourceTree = "<group>"; };
+		106BC8961B080DF3000AF483 /* Door.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Door.cpp; path = ../src/Door.cpp; sourceTree = "<group>"; };
+		106BC8971B080DF3000AF483 /* Door.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Door.h; path = ../src/Door.h; sourceTree = "<group>"; };
+		106BC8981B080DF3000AF483 /* Effect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Effect.cpp; path = ../src/Effect.cpp; sourceTree = "<group>"; };
+		106BC8991B080DF3000AF483 /* Effect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Effect.h; path = ../src/Effect.h; sourceTree = "<group>"; };
+		106BC89A1B080DF3000AF483 /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Enemy.cpp; path = ../src/Enemy.cpp; sourceTree = "<group>"; };
+		106BC89B1B080DF3000AF483 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Enemy.h; path = ../src/Enemy.h; sourceTree = "<group>"; };
+		106BC89C1B080DF3000AF483 /* EnemyMage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EnemyMage.cpp; path = ../src/EnemyMage.cpp; sourceTree = "<group>"; };
+		106BC89D1B080DF3000AF483 /* EnemyMage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnemyMage.h; path = ../src/EnemyMage.h; sourceTree = "<group>"; };
+		106BC89E1B080DF3000AF483 /* EnemyReaper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EnemyReaper.cpp; path = ../src/EnemyReaper.cpp; sourceTree = "<group>"; };
+		106BC89F1B080DF3000AF483 /* EnemyReaper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnemyReaper.h; path = ../src/EnemyReaper.h; sourceTree = "<group>"; };
+		106BC8A01B080DF3000AF483 /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Entity.cpp; path = ../src/Entity.cpp; sourceTree = "<group>"; };
+		106BC8A11B080DF3000AF483 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Entity.h; path = ../src/Entity.h; sourceTree = "<group>"; };
+		106BC8A21B080DF3000AF483 /* FirstBoss.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FirstBoss.cpp; path = ../src/FirstBoss.cpp; sourceTree = "<group>"; };
+		106BC8A31B080DF3000AF483 /* FirstBoss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirstBoss.h; path = ../src/FirstBoss.h; sourceTree = "<group>"; };
+		106BC8A41B080DF3000AF483 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Game.cpp; path = ../src/Game.cpp; sourceTree = "<group>"; };
+		106BC8A51B080DF3000AF483 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = ../src/Game.h; sourceTree = "<group>"; };
+		106BC8A61B080DF3000AF483 /* Hero.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Hero.cpp; path = ../src/Hero.cpp; sourceTree = "<group>"; };
+		106BC8A71B080DF3000AF483 /* Hero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hero.h; path = ../src/Hero.h; sourceTree = "<group>"; };
+		106BC8A81B080DF3000AF483 /* Levels.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Levels.cpp; path = ../src/Levels.cpp; sourceTree = "<group>"; };
+		106BC8A91B080DF3000AF483 /* Levels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Levels.h; path = ../src/Levels.h; sourceTree = "<group>"; };
+		106BC8AA1B080DF3000AF483 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../src/main.cpp; sourceTree = "<group>"; };
+		106BC8AB1B080DF3000AF483 /* Paths-Mac.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "Paths-Mac.mm"; path = "../src/Paths-Mac.mm"; sourceTree = "<group>"; };
+		106BC8AD1B080DF3000AF483 /* Paths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Paths.h; path = ../src/Paths.h; sourceTree = "<group>"; };
+		106BC8AE1B080DF3000AF483 /* Physics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Physics.cpp; path = ../src/Physics.cpp; sourceTree = "<group>"; };
+		106BC8AF1B080DF3000AF483 /* Physics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Physics.h; path = ../src/Physics.h; sourceTree = "<group>"; };
+		106BC8B01B080DF3000AF483 /* Platform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Platform.cpp; path = ../src/Platform.cpp; sourceTree = "<group>"; };
+		106BC8B11B080DF3000AF483 /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Platform.h; path = ../src/Platform.h; sourceTree = "<group>"; };
+		106BC8B21B080DF3000AF483 /* Powerup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Powerup.cpp; path = ../src/Powerup.cpp; sourceTree = "<group>"; };
+		106BC8B31B080DF3000AF483 /* Powerup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Powerup.h; path = ../src/Powerup.h; sourceTree = "<group>"; };
+		106BC8B41B080DF3000AF483 /* Projectile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Projectile.cpp; path = ../src/Projectile.cpp; sourceTree = "<group>"; };
+		106BC8B51B080DF3000AF483 /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Projectile.h; path = ../src/Projectile.h; sourceTree = "<group>"; };
+		106BC8B61B080DF3000AF483 /* Spear.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Spear.cpp; path = ../src/Spear.cpp; sourceTree = "<group>"; };
+		106BC8B71B080DF3000AF483 /* Spear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spear.h; path = ../src/Spear.h; sourceTree = "<group>"; };
+		106BC8B81B080DF3000AF483 /* Weapons.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Weapons.cpp; path = ../src/Weapons.cpp; sourceTree = "<group>"; };
+		106BC8B91B080DF3000AF483 /* Weapons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Weapons.h; path = ../src/Weapons.h; sourceTree = "<group>"; };
+		5F3E87031AF8E65600FAC432 /* Wraithkeeper's Tomb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wraithkeeper's Tomb.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F3E87071AF8E65600FAC432 /* Wraithkeeper's Tomb-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Wraithkeeper's Tomb-Info.plist"; sourceTree = "<group>"; };
+		5FC7638D1AF8ED7500504B24 /* .. */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ..; sourceTree = "<group>"; };
+		5FE148BC1AFBE546007C20CA /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../../assets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5F3E86FF1AF8E65600FAC432 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5F3E86F91AF8E65600FAC432 = {
+			isa = PBXGroup;
+			children = (
+				106BC8951B080DF3000AF483 /* Constants.h */,
+				106BC8961B080DF3000AF483 /* Door.cpp */,
+				106BC8971B080DF3000AF483 /* Door.h */,
+				106BC8981B080DF3000AF483 /* Effect.cpp */,
+				106BC8991B080DF3000AF483 /* Effect.h */,
+				106BC89A1B080DF3000AF483 /* Enemy.cpp */,
+				106BC89B1B080DF3000AF483 /* Enemy.h */,
+				106BC89C1B080DF3000AF483 /* EnemyMage.cpp */,
+				106BC89D1B080DF3000AF483 /* EnemyMage.h */,
+				106BC89E1B080DF3000AF483 /* EnemyReaper.cpp */,
+				106BC89F1B080DF3000AF483 /* EnemyReaper.h */,
+				106BC8A01B080DF3000AF483 /* Entity.cpp */,
+				106BC8A11B080DF3000AF483 /* Entity.h */,
+				106BC8A21B080DF3000AF483 /* FirstBoss.cpp */,
+				106BC8A31B080DF3000AF483 /* FirstBoss.h */,
+				106BC8A41B080DF3000AF483 /* Game.cpp */,
+				106BC8A51B080DF3000AF483 /* Game.h */,
+				106BC8A61B080DF3000AF483 /* Hero.cpp */,
+				106BC8A71B080DF3000AF483 /* Hero.h */,
+				106BC8A81B080DF3000AF483 /* Levels.cpp */,
+				106BC8A91B080DF3000AF483 /* Levels.h */,
+				106BC8AA1B080DF3000AF483 /* main.cpp */,
+				106BC8AB1B080DF3000AF483 /* Paths-Mac.mm */,
+				106BC8AD1B080DF3000AF483 /* Paths.h */,
+				106BC8AE1B080DF3000AF483 /* Physics.cpp */,
+				106BC8AF1B080DF3000AF483 /* Physics.h */,
+				106BC8B01B080DF3000AF483 /* Platform.cpp */,
+				106BC8B11B080DF3000AF483 /* Platform.h */,
+				106BC8B21B080DF3000AF483 /* Powerup.cpp */,
+				106BC8B31B080DF3000AF483 /* Powerup.h */,
+				106BC8B41B080DF3000AF483 /* Projectile.cpp */,
+				106BC8B51B080DF3000AF483 /* Projectile.h */,
+				106BC8B61B080DF3000AF483 /* Spear.cpp */,
+				106BC8B71B080DF3000AF483 /* Spear.h */,
+				106BC8B81B080DF3000AF483 /* Weapons.cpp */,
+				106BC8B91B080DF3000AF483 /* Weapons.h */,
+				5F3E87051AF8E65600FAC432 /* Wraithkeeper's Tomb */,
+				5F3E87041AF8E65600FAC432 /* Products */,
+			);
+			sourceTree = "<group>";
+			usesTabs = 1;
+		};
+		5F3E87041AF8E65600FAC432 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5F3E87031AF8E65600FAC432 /* Wraithkeeper's Tomb.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5F3E87051AF8E65600FAC432 /* Wraithkeeper's Tomb */ = {
+			isa = PBXGroup;
+			children = (
+				5F3E870D1AF8E65600FAC432 /* Resources */,
+				5FC7638D1AF8ED7500504B24 /* .. */,
+				5F3E87061AF8E65600FAC432 /* Supporting Files */,
+			);
+			name = "Wraithkeeper's Tomb";
+			path = "Chamber's Labyrinth";
+			sourceTree = "<group>";
+		};
+		5F3E87061AF8E65600FAC432 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5F3E87071AF8E65600FAC432 /* Wraithkeeper's Tomb-Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5F3E870D1AF8E65600FAC432 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5FE148BC1AFBE546007C20CA /* assets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5F3E87021AF8E65600FAC432 /* Wraithkeeper's Tomb */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F3E87181AF8E65600FAC432 /* Build configuration list for PBXNativeTarget "Wraithkeeper's Tomb" */;
+			buildPhases = (
+				5F3E86FE1AF8E65600FAC432 /* Sources */,
+				5F3E86FF1AF8E65600FAC432 /* Frameworks */,
+				5F3E87001AF8E65600FAC432 /* Resources */,
+				5F3E87011AF8E65600FAC432 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Wraithkeeper's Tomb";
+			productName = "Chamber's Labyrinth";
+			productReference = 5F3E87031AF8E65600FAC432 /* Wraithkeeper's Tomb.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5F3E86FA1AF8E65600FAC432 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Developers' Guild";
+				TargetAttributes = {
+					5F3E87021AF8E65600FAC432 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 5F3E86FD1AF8E65600FAC432 /* Build configuration list for PBXProject "Wraithkeeper's Tomb" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 5F3E86F91AF8E65600FAC432;
+			productRefGroup = 5F3E87041AF8E65600FAC432 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5F3E87021AF8E65600FAC432 /* Wraithkeeper's Tomb */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5F3E87001AF8E65600FAC432 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FC7638E1AF8ED7500504B24 /* .. in Resources */,
+				5FE148BD1AFBE546007C20CA /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5F3E87011AF8E65600FAC432 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This shell script simply copies required SFML dylibs/frameworks into the application bundle frameworks folder.\n# If you're using static libraries (which is not recommended) you should remove this script from your project.\n\n# Are we building a project that uses frameworks or dylibs?\ncase \"$SFML_BINARY_TYPE\" in\n    DYLIBS)\n        frameworks=\"false\"\n        ;;\n    *)\n        frameworks=\"true\"\n        ;;\nesac\n\n# Echoes to stderr\nerror () # $* message to display\n{\n    echo $* 1>&2\n    exit 2\n}\n\nassert () # $1 is a boolean, $2...N is an error message\n{\n    if [ $# -lt 2 ]\n    then\n        error \"Internal error in assert : not enough args\"\n    fi\n\n    if [ $1 -ne 0 ]\n    then\n        shift\n        error \"$*\"\n    fi\n}\n\nforce_remove () # $@ is some paths\n{\n    test $# -ge 1\n    assert $? \"force_remove() requires at least one parameter\"\n    rm -fr $@\n    assert $? \"couldn't remove $@\"\n}\n\ncopy () # $1 is a source, $2 is a destination\n{\n    test $# -eq 2\n    assert $? \"copy() requires two parameters\"\n    ditto \"$1\" \"$2\"\n    assert $? \"couldn't copy $1 to $2\"\n}\n\nrequire () # $1 is a SFML module like 'system' or 'audio'\n{\n    dest=\"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app/Contents/Frameworks\"\n\n    if [ -z \"$1\" ]\n    then\n        error \"require() requires one parameter!\"\n    else\n        # clean potentially old stuff\n        force_remove \"$dest/libsfml-$1\"*\n        force_remove \"$dest/sfml-$1.framework\"\n\n        # copy SFML libraries\n        if [ \"$frameworks\" = \"true\" ]\n        then\n            source=\"/Library/Frameworks/sfml-$1.framework\"\n            target=\"sfml-$1.framework\"\n        elif [ \"$SFML_LINK_DYLIBS_SUFFIX\" = \"-d\" ]\n        then\n            source=\"/usr/local/lib/libsfml-$1-d.dylib\"\n            target=\"`readlink $source`\"\n        else\n            source=\"/usr/local/lib/libsfml-$1.dylib\"\n            target=\"`readlink $source`\"\n        fi\n\n        copy \"$source\" \"$dest/$target\"\n\n        # copy extra dependencies\n        if [ \"$1\" = \"audio\" ]\n        then\n            # copy sndfile framework too\n            copy \"/Library/Frameworks/sndfile.framework\" \"$dest/sndfile.framework\"\n        elif [ \"$1\" = \"graphics\" ]\n        then\n            # copy freetype framework too\n            copy \"/Library/Frameworks/freetype.framework\" \"$dest/freetype.framework\"\n        fi\n    fi\n}\n\nif [ -n \"$SFML_SYSTEM\" ]\nthen\n    require \"system\"\nfi\n\nif [ -n \"$SFML_AUDIO\" ]\nthen\n    require \"audio\"\nfi\n\nif [ -n \"$SFML_NETWORK\" ]\nthen\n    require \"network\"\nfi\n\nif [ -n \"$SFML_WINDOW\" ]\nthen\n    require \"window\"\nfi\n\nif [ -n \"$SFML_GRAPHICS\" ]\nthen\n    require \"graphics\"\nfi\n\n                ";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5F3E86FE1AF8E65600FAC432 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				106BC8C21B080DF3000AF483 /* Hero.cpp in Sources */,
+				106BC8BE1B080DF3000AF483 /* EnemyReaper.cpp in Sources */,
+				106BC8C51B080DF3000AF483 /* Paths-Mac.mm in Sources */,
+				106BC8BC1B080DF3000AF483 /* Enemy.cpp in Sources */,
+				106BC8C81B080DF3000AF483 /* Platform.cpp in Sources */,
+				106BC8C01B080DF3000AF483 /* FirstBoss.cpp in Sources */,
+				106BC8C71B080DF3000AF483 /* Physics.cpp in Sources */,
+				106BC8C41B080DF3000AF483 /* main.cpp in Sources */,
+				106BC8C31B080DF3000AF483 /* Levels.cpp in Sources */,
+				106BC8C11B080DF3000AF483 /* Game.cpp in Sources */,
+				106BC8BB1B080DF3000AF483 /* Effect.cpp in Sources */,
+				106BC8BD1B080DF3000AF483 /* EnemyMage.cpp in Sources */,
+				106BC8CA1B080DF3000AF483 /* Projectile.cpp in Sources */,
+				106BC8CC1B080DF3000AF483 /* Weapons.cpp in Sources */,
+				106BC8BF1B080DF3000AF483 /* Entity.cpp in Sources */,
+				106BC8C91B080DF3000AF483 /* Powerup.cpp in Sources */,
+				106BC8BA1B080DF3000AF483 /* Door.cpp in Sources */,
+				106BC8CB1B080DF3000AF483 /* Spear.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		5F3E87161AF8E65600FAC432 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					i386,
+					x86_64,
+				);
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks/,
+					"$(inherited)",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include/,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib/,
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"$(SFML_SYSTEM)",
+					"$(SFML_WINDOW)",
+					"$(SFML_GRAPHICS)",
+					"$(SFML_AUDIO)",
+					"$(SFML_NETWORK)",
+				);
+				SFML_AUDIO = "$(SFML_LINK_PREFIX) sfml-audio$(SFML_LINK_SUFFIX)";
+				SFML_BINARY_TYPE = FRAMEWORKS;
+				SFML_GRAPHICS = "$(SFML_LINK_PREFIX) sfml-graphics$(SFML_LINK_SUFFIX)";
+				SFML_LINK_DYLIBS_PREFIX = "-l";
+				SFML_LINK_DYLIBS_SUFFIX = "";
+				SFML_LINK_FRAMEWORKS_PREFIX = "-framework";
+				SFML_LINK_FRAMEWORKS_SUFFIX = "";
+				SFML_LINK_PREFIX = "$(SFML_LINK_$(SFML_BINARY_TYPE)_PREFIX)";
+				SFML_LINK_SUFFIX = "$(SFML_LINK_$(SFML_BINARY_TYPE)_SUFFIX)";
+				SFML_NETWORK = "";
+				SFML_SYSTEM = "$(SFML_LINK_PREFIX) sfml-system$(SFML_LINK_SUFFIX)";
+				SFML_WINDOW = "$(SFML_LINK_PREFIX) sfml-window$(SFML_LINK_SUFFIX)";
+				SUPPORTED_PLATFORMS = macosx;
+			};
+			name = Debug;
+		};
+		5F3E87171AF8E65600FAC432 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					i386,
+					x86_64,
+				);
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks/,
+					"$(inherited)",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include/,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib/,
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"$(SFML_SYSTEM)",
+					"$(SFML_WINDOW)",
+					"$(SFML_GRAPHICS)",
+					"$(SFML_AUDIO)",
+					"$(SFML_NETWORK)",
+				);
+				SFML_AUDIO = "$(SFML_LINK_PREFIX) sfml-audio$(SFML_LINK_SUFFIX)";
+				SFML_BINARY_TYPE = FRAMEWORKS;
+				SFML_GRAPHICS = "$(SFML_LINK_PREFIX) sfml-graphics$(SFML_LINK_SUFFIX)";
+				SFML_LINK_DYLIBS_PREFIX = "-l";
+				SFML_LINK_DYLIBS_SUFFIX = "";
+				SFML_LINK_FRAMEWORKS_PREFIX = "-framework";
+				SFML_LINK_FRAMEWORKS_SUFFIX = "";
+				SFML_LINK_PREFIX = "$(SFML_LINK_$(SFML_BINARY_TYPE)_PREFIX)";
+				SFML_LINK_SUFFIX = "$(SFML_LINK_$(SFML_BINARY_TYPE)_SUFFIX)";
+				SFML_NETWORK = "";
+				SFML_SYSTEM = "$(SFML_LINK_PREFIX) sfml-system$(SFML_LINK_SUFFIX)";
+				SFML_WINDOW = "$(SFML_LINK_PREFIX) sfml-window$(SFML_LINK_SUFFIX)";
+				SUPPORTED_PLATFORMS = macosx;
+			};
+			name = Release;
+		};
+		5F3E87191AF8E65600FAC432 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "$(SRCROOT)/Wraithkeeper's Tomb/Wraithkeeper's Tomb-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = "";
+				PRODUCT_NAME = "Wraithkeeper's Tomb";
+			};
+			name = Debug;
+		};
+		5F3E871A1AF8E65600FAC432 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "$(SRCROOT)/Wraithkeeper's Tomb/Wraithkeeper's Tomb-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = "";
+				PRODUCT_NAME = "Wraithkeeper's Tomb";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5F3E86FD1AF8E65600FAC432 /* Build configuration list for PBXProject "Wraithkeeper's Tomb" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F3E87161AF8E65600FAC432 /* Debug */,
+				5F3E87171AF8E65600FAC432 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5F3E87181AF8E65600FAC432 /* Build configuration list for PBXNativeTarget "Wraithkeeper's Tomb" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F3E87191AF8E65600FAC432 /* Debug */,
+				5F3E871A1AF8E65600FAC432 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5F3E86FA1AF8E65600FAC432 /* Project object */;
+}

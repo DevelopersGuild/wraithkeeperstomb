@@ -11,7 +11,7 @@ std::vector<Entity *> Game::entityRegistry;
 Game::Game()
 {
 	// Create game render window
-	window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Chamber's Labyrinth");
+	window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Wraithkeeper's Tomb");
 	window.setMouseCursorVisible(true);
 	window.setKeyRepeatEnabled(false);
 	
@@ -372,10 +372,10 @@ void Game::loadAssets()
 	MPbar.setPosition(camera.getCenter().x - 300, camera.getCenter().y - 570);
 
 	title.setFont(blackcastle);
-	title.setString("Chamber's Labyrinth");
+	title.setString("Wraithkeeper's Tomb");
 	title.setCharacterSize(150);
 	title.setColor(sf::Color::White);
-	title.setPosition(75, 25);
+	title.setPosition(60, 25);
 
 	//Menu buttons
 
@@ -397,6 +397,8 @@ void Game::loadAssets()
 	loadTextLineHL(continueButtonHL, "CONTINUE", 310);
 
 	loadTextLineHL(continueButtonHLDisabled, "CONTINUE", 310);
+	continueButtonHLDisabled.setColor(sf::Color::Color(100, 100, 100, 255));
+
 	continueButtonDisabled.setColor(sf::Color::Color(100, 100, 100, 255));
 
 	loadTextLineHL(newGameButtonHL, "NEW GAME", 360);

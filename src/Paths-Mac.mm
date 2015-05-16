@@ -48,7 +48,7 @@ std::string resourcePath()
 std::string savePath()
 {
 	// Save to the user's library.  I think this is common on Mac applications.  --Paul
-	std::string spath = std::string(getenv("HOME")) + "/Library/ChambersLabyrinth/";
+	std::string spath = std::string(getenv("HOME")) + "/Library/WraithkeepersTomb/";
 	mkdir(spath.c_str(), 0777);
 	return spath;
 }

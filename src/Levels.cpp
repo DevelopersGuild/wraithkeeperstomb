@@ -176,6 +176,7 @@ void Levels::platformSets()
 		createPlatform(0, 700.f, 1100.f, 350.f, 32.f);
 		createPlatform(0, 0.f, GROUND_HEIGHT, 2560.f, 64.f);
 		createPlatform(1, 300.f, 0.f, 64.f, 1440.f);
+		// Ground Platform
 		createPlatform(1, 2250.f, 0.f, 64.f, 1440.f);
 		break;
 	case 2:
@@ -185,6 +186,7 @@ void Levels::platformSets()
 		createPlatform(0, 1550.f, 600.f, 100.f, 32.f);
 		createPlatform(0, 0.f, GROUND_HEIGHT, 2560.f, 64.f);
 		createPlatform(1, 300.f, 0.f, 64.f, 1440.f);
+		// Ground Platform
 		createPlatform(1, 2250.f, 0.f, 64.f, 1440.f);
 		break;
 	case 3:
@@ -194,6 +196,7 @@ void Levels::platformSets()
 		createPlatform(0, 600.f, 1100.f, 200.f, 32.f);
 		createPlatform(0, 0.f, GROUND_HEIGHT, 2560.f, 64.f);
 		createPlatform(1, 300.f, 0.f, 64.f, 1440.f);
+		// Ground Platform
 		createPlatform(1, 2250.f, 0.f, 64.f, 1440.f);
 		break;
 	case 4:
@@ -204,6 +207,7 @@ void Levels::platformSets()
 		createPlatform(0, 1400.f, 800.f, 200.f, 32.f);
 		createPlatform(0, 0.f, GROUND_HEIGHT, 2560.f, 64.f);
 		createPlatform(1, 300.f, 0.f, 64.f, 1440.f);
+		// Ground Platform
 		createPlatform(1, 2250.f, 0.f, 64.f, 1440.f);
 		break;
 	case 5:
@@ -214,6 +218,7 @@ void Levels::platformSets()
 		createPlatform(0, 1000.f, 900.f, 300.f, 32.f);
 		createPlatform(0, 0.f, GROUND_HEIGHT, 2560.f, 64.f);
 		createPlatform(1, 300.f, 0.f, 64.f, 1440.f);
+		// Ground Platform
 		createPlatform(1, 2250.f, 0.f, 64.f, 1440.f);
 		break;
 	}
