@@ -9,7 +9,7 @@
 
 Levels::Levels()
 {
-	isBoss = true;
+	isBoss = false;
 	bossFightChance = 0;
 	srand(time(0));
 }
