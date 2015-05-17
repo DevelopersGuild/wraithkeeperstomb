@@ -520,8 +520,8 @@ void Game::gameUpdate()
 
 	float time = deltaTime.asSeconds();
 
-	if (stageLoadingTime != 10.0)
-		stageLoadingTime = 10.0;
+	if (stageLoadingTime != 1.0)
+		stageLoadingTime = 1.0;
 
 	for (size_t i = 0; i < entityRegistry.size(); i++)
 	{
