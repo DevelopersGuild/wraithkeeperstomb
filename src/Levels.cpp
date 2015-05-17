@@ -39,8 +39,6 @@ void Levels::roomGenerater()
 {
 	l = rand() % 5 + 1;
 	createBackground();
-	door.setTexture(0); //close door
-	door.setPosition(2000, 1210);
 	//platformSets();
 	entitiesSets();
 }
@@ -62,7 +60,8 @@ void Levels::createBackground()
 	back.setFillColor(sf::Color::Color(0, 0, 0, 150));
 
 	platformSets();
-    
+	door.setTexture(0); //close door
+	doorSets();
 }
 
 void Levels::doorSets()
