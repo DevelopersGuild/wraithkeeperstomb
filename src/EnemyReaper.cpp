@@ -91,3 +91,9 @@ void EnemyReaper::onHeroDetected(Hero* hero)
 		faceRight = true;
 	}
 }
+
+const sf::FloatRect EnemyReaper::getCollisionRect()
+{
+	sf::FloatRect bigBox = Sprite.getGlobalBounds();
+	return sf::FloatRect(bigBox.left + 10.f, bigBox.top + 8.f, bigBox.width - 10.f, bigBox.height - 8.f);
+}

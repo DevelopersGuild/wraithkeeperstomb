@@ -24,7 +24,7 @@ void Levels::incrBossFightChance()
 
 void Levels::bossAppearance()
 {
-	if (rand() % 100 > bossFightChance)
+	if (rand() % 100 < bossFightChance)
 	{
 		isBoss = true;
 	}
@@ -78,7 +78,6 @@ void Levels::doorSets()
 	}
 	else
 	{
-		isBoss = false;
 		door.setPosition(2000, 1220);
 	}
 }
@@ -114,9 +113,10 @@ void Levels::entitiesSets()
 	}
 	else
 	{
-		isBoss = false;
-		createEnemy(0, 2000.f, 1360.f);
+		createEnemy(0, 1500.f, 1360.f);
 		powerup(1, 1200.f, 1100.f);
+		isBoss = false;
+		bossFightChance = 0;
 	}
 }
 
@@ -262,7 +262,6 @@ void Levels::platformSets()
 		}
 	else
 	{
-		isBoss = false;
 		createPlatform(0, 1000.f, 1100.f, 700.f, 32.f);
 		createPlatform(1, 300.f, 0.f, 64.f, 1440.f);
 		createPlatform(1, 2250.f, 0.f, 64.f, 1440.f);
@@ -296,8 +295,7 @@ void Levels::backGroundSets()
 	}
 	else
 	{
-		isBoss = false;
-		BackgroundGenerator::instance().LoadTextureForLevelOrDie(2);
+		BackgroundGenerator::instance().LoadTextureForLevelOrDie(6);
 	}
 }
 
@@ -335,10 +333,14 @@ void Levels::renderPlats(sf::RenderWindow &window){
 std::string BackgroundGenerator::GetFileName(LevelNum level_num)
 {
 	std::string filename;
-	switch (2)
+	switch (level_num)
 	{
-	case 1: return filename = resourcePath() + "assets/sprites/background.png";
-	case 2: return filename = resourcePath() + "assets/sprites/dungeonwindow.png";
+	case 1: /*return filename = resourcePath() + "assets/sprites/background.png";*/
+	case 2: 
+	case 3:
+	case 4:
+	case 5: return filename = resourcePath() + "assets/sprites/dungeonwindow.png";
+	case 6: return filename = resourcePath() + "assets/sprites/boss_bg.png";
 	default: return filename; // it is "" when initialized
 		break;
 	}

@@ -52,7 +52,7 @@ public:
 	const bool getFaceRight()
 	{ return faceRight; }
 
-	const sf::FloatRect getDamagingRect()
+	virtual const sf::FloatRect getDamagingRect()
 	{// shrink the bounding box
 		float left = Sprite.getGlobalBounds().left + 30;
 		float top = Sprite.getGlobalBounds().top + 20;

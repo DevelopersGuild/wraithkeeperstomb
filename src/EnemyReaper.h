@@ -14,6 +14,7 @@ public:
 	void update(float time);
 	void onHeroDetected(Hero* hero);
 	void jump();
+	const sf::FloatRect getCollisionRect();
 	//void onHeroDetected(Hero* hero); // if it responds differently
 };
 

@@ -5,9 +5,9 @@
 
 FirstBoss::FirstBoss() {
 	// Load Enemies texture, assign to sprite, set starting sprite dimensions
-	Texture.loadFromFile(resourcePath() + "assets/sprites/tempBoss.png");
+	Texture.loadFromFile(resourcePath() + "assets/sprites/tempBoss2.png");
 	Sprite.setTexture(Texture);
-	Sprite.setOrigin(50, 45);
+	//Sprite.setOrigin(50, 45);
 	Sprite.setPosition(1000, 1360);
 
 	// Initialize basic Enemies stats
@@ -43,7 +43,6 @@ void FirstBoss::update(float time)
 	{
 		if (speedMultiplier == 1)
 			speedMultiplier = 2; //chasing speed
-		doPhysics(time);
 	}
 	if (isFrozen)
 		velocity.x = 0.f;
@@ -54,6 +53,7 @@ void FirstBoss::update(float time)
 		Sprite.setScale(-1.f, 1.f); //until animation is available
 	else
 		Sprite.setScale(1.f, 1.f);
+	doPhysics(.2*time);
 }
 
 void FirstBoss::jump()
@@ -68,16 +68,32 @@ void FirstBoss::jump()
 
 void FirstBoss::onHeroDetected(Hero* hero)
 {
-	if (getY() < hero->getY())
+	/*if (getY() < hero->getY())
 		jump();
-	else if ((getX() - hero->getX()) > 0)
+	else */if ((getX() - hero->getX()) > 10)
 	{
 		left();
 		faceRight = false;
 	}
-	else
+	else if ((hero->getX() - getX()) > 10)
 	{
 		right();
 		faceRight = true;
 	}
+}
+
+const sf::FloatRect FirstBoss::getCollisionRect()
+{
+	sf::FloatRect bigBox = Sprite.getGlobalBounds();
+	return sf::FloatRect(bigBox.left + 10.f, bigBox.top, bigBox.width - 10.f, bigBox.height);
+}
+
+const sf::FloatRect FirstBoss::getDamagingRect()
+{// shrink the bounding box
+	float left = Sprite.getGlobalBounds().left + 10;
+	float top = Sprite.getGlobalBounds().top + 10;
+	float width = Sprite.getGlobalBounds().width - 20;
+	float height = Sprite.getGlobalBounds().height - 20;
+	sf::FloatRect collisionRect(left, top, width, height);
+	return collisionRect;
 }

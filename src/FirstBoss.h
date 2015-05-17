@@ -11,6 +11,8 @@ public:
 	FirstBoss();
 	void update(float time);
 	void onHeroDetected(Hero* hero);
+	const sf::FloatRect getCollisionRect();
+	const sf::FloatRect getDamagingRect();
 	void jump();
 	//void onHeroDetected(Hero* hero); // if it responds differently
 };
