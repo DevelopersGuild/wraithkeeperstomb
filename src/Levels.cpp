@@ -10,8 +10,26 @@
 Levels::Levels()
 {
 	isBoss = false;
-	
+	bossFightChance = 0;
 	srand(time(0));
+}
+
+void Levels::incrBossFightChance()
+{
+	if (bossFightChance == 0)
+		bossFightChance = 1;
+	else if (bossFightChance < 90)
+		bossFightChance = bossFightChance * 18;
+	else
+		bossFightChance = 90;
+}
+
+void Levels::bossAppearance()
+{
+	if (rand() % 100 > bossFightChance)
+	{
+		isBoss = true;
+	}
 }
 
 void Levels::cleanup()
@@ -49,38 +67,59 @@ void Levels::createBackground()
     
 }
 
+void Levels::doorSets()
+{
+	if (!isBoss)
+	{
+		switch (l)
+		{
+		case 1:	door.setPosition(1000.f, 1220.f);
+		case 2:	door.setPosition(1200.f, 1220.f);
+		case 3: door.setPosition(100.f, 1220.f);
+		default: door.setPosition(2000, 1220);
+		}
+	}
+	else
+	{
+		isBoss = false;
+		door.setPosition(2000, 1220);
+	}
+}
+
 void Levels::entitiesSets()
 {
 	if (!isBoss)
 		switch (l)
-		{
+	{
 		case 1:
-			createEnemy(1, 700.f, 1360.f);
-			createEnemy(1, 800.f, 1360.f);
+			createEnemy(1, 1700.f, 1360.f);
+			createEnemy(1, 1800.f, 1360.f);
 			powerup(1, 500.f, 1200.f);
 			powerup(2, 800.f, 800.f);
 			break;
 		case 2:
-			createEnemy(1, 700.f, 1360.f);
-			createEnemy(2, 800.f, 1360.f);
+			createEnemy(1, 1700.f, 1360.f);
+			createEnemy(2, 1800.f, 1340.f);
 			powerup(1, 500.f, 1200.f);
 			powerup(2, 700.f, 1100.f);
 			break;
 		case 3:
-			createEnemy(2, 600.f, 1360.f);
-			createEnemy(2, 779.f, 1360.f);
+			createEnemy(2, 1600.f, 1340.f);
+			createEnemy(2, 1779.f, 1340.f);
 			powerup(1, 800.f, 850.f);
 			powerup(2, 1000.f, 1000.f);
 			break;
 		default:
-			createEnemy(2, 600.f, 1360.f);
-			createEnemy(2, 700.f, 1360.f);
+			createEnemy(2, 1600.f, 1340.f);
+			createEnemy(2, 1700.f, 1340.f);
 			createEnemy(1, 1000.f, 1360.f);
 			break;
-		}
+	}
 	else
 	{
-
+		isBoss = false;
+		createEnemy(0, 2000.f, 1360.f);
+		powerup(1, 1200.f, 1100.f);
 	}
 }
 
@@ -166,87 +205,102 @@ void Levels::createPlatform(int type, float posX, float posY, float sizeX, float
 
 void Levels::platformSets()
 {
-	switch (l)
+	if (!isBoss)
+		switch (l)
+		{
+		case 1:
+			createPlatform(0, 500.f, 900.f, 350.f, 32.f);
+			createPlatform(0, 1000.f, 910.f, 50.f, 32.f);
+			createPlatform(0, 1230.f, 890.f, 50.f, 32.f);
+			createPlatform(0, 1400.f, 920.f, 50.f, 32.f);
+			createPlatform(0, 700.f, 1100.f, 350.f, 32.f);
+			createPlatform(1, 275.f, 0.f, 32.f, 1440.f);
+			createPlatform(1, 2284.f, 0.f, 32.f, 1440.f);
+			// Ground Platform
+			createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
+			break;
+		case 2:
+			createPlatform(0, 700.f, 1100.f, 350.f, 32.f);
+			createPlatform(0, 1550.f, 1100.f, 100.f, 32.f);
+			createPlatform(0, 1550.f, 800.f, 100.f, 32.f);
+			createPlatform(0, 1550.f, 600.f, 100.f, 32.f);
+			createPlatform(1, 275.f, 0.f, 32.f, 1440.f);
+			createPlatform(1, 2284.f, 0.f, 32.f, 1440.f);
+			// Ground Platform
+			createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
+			createPlatform(0, 0.f, GROUND_HEIGHT, 2560.f, 64.f);
+			break;
+		case 3:
+			createPlatform(0, 1200.f, 850.f, 200.f, 32.f);
+			createPlatform(0, 1000.f, 1000.f, 600.f, 32.f);
+			createPlatform(0, 800.f, 850.f, 200.f, 32.f);
+			createPlatform(0, 600.f, 1100.f, 200.f, 32.f);
+			createPlatform(1, 275.f, 0.f, 32.f, 1440.f);
+			createPlatform(1, 2284.f, 0.f, 32.f, 1440.f);
+			// Ground Platform
+			createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
+			break;
+		case 4:
+			createPlatform(0, 1200.f, 1100.f, 200.f, 32.f);
+			createPlatform(0, 1000.f, 900.f, 200.f, 32.f);
+			createPlatform(0, 800.f, 1200.f, 200.f, 32.f);
+			createPlatform(0, 600.f, 1100.f, 200.f, 32.f);
+			createPlatform(0, 1400.f, 800.f, 200.f, 32.f);
+			createPlatform(1, 275.f, 0.f, 32.f, 1440.f);
+			createPlatform(1, 2284.f, 0.f, 32.f, 1440.f);
+			// Ground Platform
+			createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
+			break;
+		case 5:
+			createPlatform(0, 1400.f, 1100.f, 300.f, 32.f);
+			createPlatform(0, 1400.f, 750.f, 300.f, 32.f);
+			createPlatform(0, 600.f, 1100.f, 300.f, 32.f);
+			createPlatform(0, 600.f, 750.f, 300.f, 32.f);
+			createPlatform(0, 1000.f, 900.f, 300.f, 32.f);
+			createPlatform(1, 275.f, 0.f, 32.f, 1440.f);
+			createPlatform(1, 2284.f, 0.f, 32.f, 1440.f);
+			// Ground Platform
+			createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
+			break;
+		}
+	else
 	{
-	case 1:
-		createPlatform(0, 500.f, 900.f, 350.f, 32.f);
-		createPlatform(0, 1000.f, 910.f, 50.f, 32.f);
-		createPlatform(0, 1230.f, 890.f, 50.f, 32.f);
-		createPlatform(0, 1400.f, 920.f, 50.f, 32.f);
-		createPlatform(0, 700.f, 1100.f, 350.f, 32.f);
-		createPlatform(1, 275.f, 0.f, 32.f, 1440.f);
-		createPlatform(1, 2284.f, 0.f, 32.f, 1440.f);
-		// Ground Platform
-		createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
-		break;
-	case 2:
-		createPlatform(0, 700.f, 1100.f, 350.f, 32.f);
-		createPlatform(0, 1550.f, 1100.f, 100.f, 32.f);
-		createPlatform(0, 1550.f, 800.f, 100.f, 32.f);
-		createPlatform(0, 1550.f, 600.f, 100.f, 32.f);
-		createPlatform(1, 275.f, 0.f, 32.f, 1440.f);
-		createPlatform(1, 2284.f, 0.f, 32.f, 1440.f);
-		// Ground Platform
-		createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
+		isBoss = false;
+		createPlatform(0, 1000.f, 1100.f, 700.f, 32.f);
+		createPlatform(1, 300.f, 0.f, 64.f, 1440.f);
+		createPlatform(1, 2250.f, 0.f, 64.f, 1440.f);
 		createPlatform(0, 0.f, GROUND_HEIGHT, 2560.f, 64.f);
-		break;
-	case 3:
-		createPlatform(0, 1200.f, 850.f, 200.f, 32.f);
-		createPlatform(0, 1000.f, 1000.f, 600.f, 32.f);
-		createPlatform(0, 800.f, 850.f, 200.f, 32.f);
-		createPlatform(0, 600.f, 1100.f, 200.f, 32.f);
-		createPlatform(1, 275.f, 0.f, 32.f, 1440.f);
-		createPlatform(1, 2284.f, 0.f, 32.f, 1440.f);
-		// Ground Platform
-		createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
-		break;
-	case 4:
-		createPlatform(0, 1200.f, 1100.f, 200.f, 32.f);
-		createPlatform(0, 1000.f, 900.f, 200.f, 32.f);
-		createPlatform(0, 800.f, 1200.f, 200.f, 32.f);
-		createPlatform(0, 600.f, 1100.f, 200.f, 32.f);
-		createPlatform(0, 1400.f, 800.f, 200.f, 32.f);
-		createPlatform(1, 275.f, 0.f, 32.f, 1440.f);
-		createPlatform(1, 2284.f, 0.f, 32.f, 1440.f);
-		// Ground Platform
-		createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
-		break;
-	case 5:
-		createPlatform(0, 1400.f, 1100.f, 300.f, 32.f);
-		createPlatform(0, 1400.f, 750.f, 300.f, 32.f);
-		createPlatform(0, 600.f, 1100.f, 300.f, 32.f);
-		createPlatform(0, 600.f, 750.f, 300.f, 32.f);
-		createPlatform(0, 1000.f, 900.f, 300.f, 32.f);
-		createPlatform(1, 275.f, 0.f, 32.f, 1440.f);
-		createPlatform(1, 2284.f, 0.f, 32.f, 1440.f);
-		// Ground Platform
-		createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
-		break;
 	}
 }
 
 void Levels::backGroundSets()
 {
-	switch (2)
+	if (!isBoss)
+		switch (2)
 	{
-	case 1:
-		BackgroundGenerator::instance().LoadTextureForLevelOrDie(1);
-		break;
-	case 2:
+		case 1:
+			BackgroundGenerator::instance().LoadTextureForLevelOrDie(1);
+			break;
+		case 2:
+			BackgroundGenerator::instance().LoadTextureForLevelOrDie(2);
+			break;
+		case 3:
+			BackgroundGenerator::instance().LoadTextureForLevelOrDie(3);
+			break;
+		case 4:
+			BackgroundGenerator::instance().LoadTextureForLevelOrDie(4);
+			break;
+		case 5:
+			BackgroundGenerator::instance().LoadTextureForLevelOrDie(5);
+			break;
+		default:
+			BackgroundGenerator::instance().LoadTextureForLevelOrDie(1);
+			break;
+	}
+	else
+	{
+		isBoss = false;
 		BackgroundGenerator::instance().LoadTextureForLevelOrDie(2);
-		break;
-	case 3:
-		BackgroundGenerator::instance().LoadTextureForLevelOrDie(3);
-		break;
-	case 4:
-		BackgroundGenerator::instance().LoadTextureForLevelOrDie(4);
-		break;
-	case 5:
-		BackgroundGenerator::instance().LoadTextureForLevelOrDie(5);
-		break;
-	default:
-		BackgroundGenerator::instance().LoadTextureForLevelOrDie(1);
-		break;
 	}
 }
 

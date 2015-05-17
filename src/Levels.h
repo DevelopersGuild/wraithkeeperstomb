@@ -27,6 +27,8 @@ private:
 	int platformType; //0 = horizontal, 1 = vertical (wall)
 	Door door;
 
+	int bossFightChance;
+
 public:
 	std::vector<Platform> platforms;
 
@@ -42,10 +44,14 @@ public:
 	void powerup(int/*power up type*/, float, float);
 	void backGroundSets();
 	void entitiesSets();
+	void doorSets();
 	void createBackground();
 
 	void roomGenerater();
 	void cleanup();
+
+	void bossAppearance();
+	void incrBossFightChance();
 
 //	const sf::FloatRect getGroundRect()
 //	{ return ground_.rectangle.getGlobalBounds(); }

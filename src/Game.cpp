@@ -142,6 +142,7 @@ void Game::handleEvent(sf::Event &event)
 				for (auto &it : entityRegistry) {
 					delete it;
 				}
+				levels.cleanup();
 				CreateEntities();
                 // Move to inGame (resume playing)
 				gameState_ = GameState::inGame;
@@ -328,6 +329,8 @@ void Game::enterDoor(Entity *hero)
 	if (hero->getCollisionRect().intersects(levels.getDoor().getDoorRect()))
 	{
 		doorOpen = false;
+		levels.incrBossFightChance();
+		levels.bossAppearance();
 		cleanupAll();
 		levels.cleanup();
 		gameState_ = GameState::enterDoor;
