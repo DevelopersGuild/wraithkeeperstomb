@@ -35,7 +35,7 @@ const float ENEMY2_ARMOR = 15.f;
 
 //Bosses
 const float BOSS_BASE_HP = 500.f;
-const float BOSS_BASE_SPEED = 3.1f;
+const float BOSS_BASE_SPEED = 2.9f;
 const float BOSS_DAMAGE = 45.2f;
 const float BOSS_ARMOR = 16.75f;
 

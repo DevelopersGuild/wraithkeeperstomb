@@ -9,7 +9,7 @@
 
 Levels::Levels()
 {
-	isBoss = false;
+	isBoss = true;
 	bossFightChance = 0;
 	srand(time(0));
 }
@@ -48,12 +48,20 @@ void Levels::createBackground()
 	backGroundSets();
 	//// Load background texture and assign to rectangle shape
 	//BackgroundGenerator::instance().LoadTextureForLevelOrDie(2); // current level 1; just testing
-
-	background_.texture = BackgroundGenerator::instance().background_texture(); // assign the texture
-	background_.texture.setRepeated(true);
-	background_.rectangle.setSize(sf::Vector2f(2560, 1440));
-	background_.rectangle.setTexture(&background_.texture);
-	background_.rectangle.setTextureRect({ 0, 0, 1200, 600 });
+	if (!isBoss) {
+		background_.texture = BackgroundGenerator::instance().background_texture(); // assign the texture
+		background_.texture.setRepeated(true);
+		background_.rectangle.setSize(sf::Vector2f(2560, 1440));
+		background_.rectangle.setTexture(&background_.texture);
+		background_.rectangle.setTextureRect({ 0, 0, 1200, 600 });
+	}
+	else {
+		background_.texture = BackgroundGenerator::instance().background_texture(); // assign the texture
+		background_.texture.setRepeated(true);
+		background_.rectangle.setSize(sf::Vector2f(2560, 1440));
+		background_.rectangle.setTexture(&background_.texture);
+		background_.rectangle.setTextureRect({ 0, 0, 1200, 600 });
+	}
 
 	//Minimap Background
 	back.setSize(sf::Vector2f(2560, 1440));
@@ -70,15 +78,15 @@ void Levels::doorSets()
 	{
 		switch (l)
 		{
-		case 1:	door.setPosition(1000.f, 1220.f);
-		case 2:	door.setPosition(1200.f, 1220.f);
-		case 3: door.setPosition(100.f, 1220.f);
-		default: door.setPosition(2000, 1220);
+		case 1:	door.setPosition(1000.f, 1205.f);
+		case 2:	door.setPosition(1200.f, 1205.f);
+		case 3: door.setPosition(100.f, 1205.f);
+		default: door.setPosition(2000.f, 1205.f);
 		}
 	}
 	else
 	{
-		door.setPosition(2000, 1220);
+		door.setPosition(2000.f, 1205.f);
 	}
 }
 
@@ -211,8 +219,8 @@ void Levels::platformSets()
 			createPlatform(0, 1230.f, 890.f, 50.f, 32.f);
 			createPlatform(0, 1400.f, 920.f, 50.f, 32.f);
 			createPlatform(0, 700.f, 1100.f, 350.f, 32.f);
-			createPlatform(1, 275.f, 0.f, 32.f, 1440.f);
-			createPlatform(1, 2284.f, 0.f, 32.f, 1440.f);
+			createPlatform(2, 275.f, 0.f, 32.f, 1440.f);
+			createPlatform(2, 2284.f, 0.f, 32.f, 1440.f);
 			// Ground Platform
 			createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
 			break;
@@ -221,19 +229,18 @@ void Levels::platformSets()
 			createPlatform(0, 1550.f, 1100.f, 100.f, 32.f);
 			createPlatform(0, 1550.f, 800.f, 100.f, 32.f);
 			createPlatform(0, 1550.f, 600.f, 100.f, 32.f);
-			createPlatform(1, 275.f, 0.f, 32.f, 1440.f);
-			createPlatform(1, 2284.f, 0.f, 32.f, 1440.f);
+			createPlatform(2, 275.f, 0.f, 32.f, 1440.f);
+			createPlatform(2, 2284.f, 0.f, 32.f, 1440.f);
 			// Ground Platform
 			createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
-			createPlatform(0, 0.f, GROUND_HEIGHT, 2560.f, 64.f);
 			break;
 		case 3:
 			createPlatform(0, 1200.f, 850.f, 200.f, 32.f);
 			createPlatform(0, 1000.f, 1000.f, 600.f, 32.f);
 			createPlatform(0, 800.f, 850.f, 200.f, 32.f);
 			createPlatform(0, 600.f, 1100.f, 200.f, 32.f);
-			createPlatform(1, 275.f, 0.f, 32.f, 1440.f);
-			createPlatform(1, 2284.f, 0.f, 32.f, 1440.f);
+			createPlatform(2, 275.f, 0.f, 32.f, 1440.f);
+			createPlatform(2, 2284.f, 0.f, 32.f, 1440.f);
 			// Ground Platform
 			createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
 			break;
@@ -243,8 +250,8 @@ void Levels::platformSets()
 			createPlatform(0, 800.f, 1200.f, 200.f, 32.f);
 			createPlatform(0, 600.f, 1100.f, 200.f, 32.f);
 			createPlatform(0, 1400.f, 800.f, 200.f, 32.f);
-			createPlatform(1, 275.f, 0.f, 32.f, 1440.f);
-			createPlatform(1, 2284.f, 0.f, 32.f, 1440.f);
+			createPlatform(2, 275.f, 0.f, 32.f, 1440.f);
+			createPlatform(2, 2284.f, 0.f, 32.f, 1440.f);
 			// Ground Platform
 			createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
 			break;
@@ -254,8 +261,8 @@ void Levels::platformSets()
 			createPlatform(0, 600.f, 1100.f, 300.f, 32.f);
 			createPlatform(0, 600.f, 750.f, 300.f, 32.f);
 			createPlatform(0, 1000.f, 900.f, 300.f, 32.f);
-			createPlatform(1, 275.f, 0.f, 32.f, 1440.f);
-			createPlatform(1, 2284.f, 0.f, 32.f, 1440.f);
+			createPlatform(2, 275.f, 0.f, 32.f, 1440.f);
+			createPlatform(2, 2284.f, 0.f, 32.f, 1440.f);
 			// Ground Platform
 			createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
 			break;
@@ -263,9 +270,10 @@ void Levels::platformSets()
 	else
 	{
 		createPlatform(0, 1000.f, 1100.f, 700.f, 32.f);
-		createPlatform(1, 300.f, 0.f, 64.f, 1440.f);
-		createPlatform(1, 2250.f, 0.f, 64.f, 1440.f);
-		createPlatform(0, 0.f, GROUND_HEIGHT, 2560.f, 64.f);
+		createPlatform(2, 275.f, 0.f, 32.f, 1440.f);
+		createPlatform(2, 2284.f, 0.f, 32.f, 1440.f);
+		// Ground Platform
+		createPlatform(2, 0.f, GROUND_HEIGHT, 2560.f, 64.f);
 	}
 }
 
@@ -308,12 +316,13 @@ void Levels::render(sf::RenderWindow &window)
 {
 	window.draw(background_.rectangle);
 //	window.draw(ground_.rectangle);
-	window.draw(door.getSprite());
 
 	for (size_t i = 0; i < platforms.size(); i++)
 	{
 		platforms[i].render(window);
 	}
+	window.draw(door.getSprite());
+	
 }
 
 //renders minimap

@@ -7,7 +7,7 @@ FirstBoss::FirstBoss() {
 	// Load Enemies texture, assign to sprite, set starting sprite dimensions
 	Texture.loadFromFile(resourcePath() + "assets/sprites/tempBoss2.png");
 	Sprite.setTexture(Texture);
-	//Sprite.setOrigin(50, 45);
+	Sprite.setOrigin(66, 160);
 	Sprite.setPosition(1000, 1360);
 
 	// Initialize basic Enemies stats
