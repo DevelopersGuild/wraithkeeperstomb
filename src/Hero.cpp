@@ -126,43 +126,43 @@ void Hero::attackAnim()
 	if (faceRight)
 	{
 		anim.y = 5;
-		velocity.x = 4;
+		velocity.x = 2;
 		yFrame = 1;
 	}
 	else
 	{
 		anim.y = 6;
-		velocity.x = -4;
+		velocity.x = -2;
 		yFrame = -1;
 	}
 	//Move frame forward
-	if (frameTimer < 7)
+	if (frameTimer < 4)
 	{
 		xFrame = 0;
 		weapon->setPosition(getX() + 17 * yFrame, getY() - 14);
 	}
-	else if (frameTimer < 11)
+	else if (frameTimer < 6)
 	{
 		xFrame = 1;
-		Sprite.move(velocity.x * .6f, 0.f);
+		Sprite.move(velocity.x * .5f, 0.f);
 		weapon->setPosition(getX() + 23 * yFrame, getY() - 10);
 	}
-	else if (frameTimer < 17)
+	else if (frameTimer < 12)
 	{
 		xFrame = 2;
-		Sprite.move(velocity.x * .9f, 0.f);
+		Sprite.move(velocity.x * .7f, 0.f);
 		weapon->setPosition(getX() + 28 * yFrame, getY() - 8);
 	}
-	else if (frameTimer < 38)
+	else if (frameTimer < 28)
 	{
 		xFrame = 3;
-		weapon->setPosition(getX() + 38 * yFrame, getY() - 8);
+		weapon->setPosition(getX() + 39 * yFrame, getY() - 8);
 	}
 	else
 	{
 		xFrame = 0;
-		Sprite.move(velocity.x * .1f, 0.f);
-		weapon->setPosition(getX(), getY() - 14);
+		Sprite.move(velocity.x * .02f, 0.f);
+		weapon->setPosition(getX() + 12 * yFrame , getY() - 14);
 	}
 	anim.x = xFrame;
 	frameTimer++;
@@ -195,7 +195,7 @@ bool Hero::attack()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && velocity.y == 0 && collisionNum == 0)
 		if (weapon->attack())
 		{
-			atkTime = 50;
+			atkTime = 35;
 			freezeHero(freezeClock);
 			return true;
 		}
