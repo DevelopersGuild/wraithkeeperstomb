@@ -82,3 +82,9 @@ void EnemyMage::jump()
 		velocity.y += GRAVITY;
 	}
 }
+
+const sf::FloatRect EnemyMage::getCollisionRect()
+{
+	sf::FloatRect bigBox = Sprite.getGlobalBounds();
+	return sf::FloatRect(bigBox.left + 10.f, bigBox.top + 8.f, bigBox.width - 10.f, bigBox.height - 8.f);
+}

@@ -44,8 +44,12 @@ public:
 
 	virtual const float getDamage()
 	{ return 0; }
-
-	const sf::FloatRect getCollisionRect()
+	
+	// Real function - Testing the other right now
+	//const sf::FloatRect getCollisionRect()
+	//{ return Sprite.getGlobalBounds(); }
+	
+	virtual const sf::FloatRect getCollisionRect()
 	{ return Sprite.getGlobalBounds(); }
 
 	virtual const sf::FloatRect getDamagingRect()

@@ -42,7 +42,7 @@ void Levels::roomGenerater()
 	l = rand() % 5 + 1;
 	createBackground();
 	door.setTexture(0); //close door
-	door.setPosition(2000, 1220);
+	door.setPosition(2000, 1210);
 	//platformSets();
 	entitiesSets();
 }

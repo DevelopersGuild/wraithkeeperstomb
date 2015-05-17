@@ -31,6 +31,11 @@ const sf::FloatRect Projectile::getCollisionRect()
 	return collisionRect;
 }
 
+const sf::FloatRect FireBall::getCollisionRect()
+{
+	return Sprite.getGlobalBounds();
+}
+
 bool Projectile::attack()
 {
 	if (cooldown.getElapsedTime().asSeconds() > cooldownDuration)
@@ -72,6 +77,12 @@ bool Projectile::overRange()
 const sf::FloatRect Projectile::getAttackRect()
 {
 	return sf::FloatRect(getX(), getY(), 10, 10);
+}
+
+const sf::FloatRect FireBall::getAttackRect()
+{
+	sf::FloatRect box1 = Sprite.getGlobalBounds();
+	return sf::FloatRect(box1.left + 5.f, box1.top + 5.f, box1.width - 5.f, box1.height - 5.f);
 }
 
 Projectile::~Projectile()

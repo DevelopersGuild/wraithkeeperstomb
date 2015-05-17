@@ -368,6 +368,12 @@ void Hero::knockBack(float hitter_x, float hitter_y)
 	}
 }
 
+const sf::FloatRect Hero::getCollisionRect()
+{
+	sf::FloatRect bigBox = Sprite.getGlobalBounds();
+	return sf::FloatRect(bigBox.left + 15.5f, bigBox.top + 23.f, bigBox.width - 31.f, bigBox.height - 23.f);
+}
+
 void Hero::setPosition(float x, float y)
 {
 	Sprite.setPosition(x, y);

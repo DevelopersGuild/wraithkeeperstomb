@@ -110,6 +110,8 @@ public:
 	const sf::FloatRect getDamagingRect()
 	{ return weapon->getAttackRect(faceRight); }
 
+	const sf::FloatRect getCollisionRect();
+
 	const float getDamage()
 	{ return weapon->getDamage(); }
 
