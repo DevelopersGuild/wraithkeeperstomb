@@ -52,6 +52,7 @@ private:
 	sf::Text pressResume;
     sf::Text youDied;
     sf::Text returnToTitle;
+	sf::Text loading;
 
 	sf::RectangleShape HPbar;
 	sf::RectangleShape MPbar;

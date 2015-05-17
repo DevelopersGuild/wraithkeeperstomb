@@ -378,7 +378,7 @@ void Game::loadAssets()
 	title.setFont(blackcastle);
 	title.setString("Wraithkeeper's Tomb");
 	title.setCharacterSize(150);
-	title.setColor(sf::Color::White);
+	title.setColor(sf::Color::Red);
 	title.setPosition(60, 25);
 
 	//Menu buttons
@@ -433,6 +433,12 @@ void Game::loadAssets()
     returnToTitle.setCharacterSize(48);
     returnToTitle.setColor(sf::Color::White);
     returnToTitle.setPosition(325, 470);
+
+	loading.setFont(blackcastle);
+	loading.setString("Loading...");
+	loading.setCharacterSize(64);
+	loading.setColor(sf::Color::Red);
+	loading.setPosition(1000, 610);
 }
 
 void Game::titleUpdate()
@@ -640,6 +646,7 @@ void Game::gameUpdate()
 void Game::enterDoorUpdate()
 {
 	deltaTime = clock.restart();
+	window.setView(window.getDefaultView());
 	stageLoadingTime -= deltaTime.asSeconds();
 
 	if (stageLoadingTime <= 0)
@@ -748,7 +755,10 @@ void Game::render()
 	{
 		window.draw(victoryText);
 	}
-
+	else if (gameState_ == GameState::enterDoor)
+	{
+		window.draw(loading);
+	}
 	// Display window
 	window.display();
 }
