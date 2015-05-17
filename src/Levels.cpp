@@ -24,7 +24,7 @@ void Levels::roomGenerater()
 	l = rand() % 5 + 1;
 	createBackground();
 	door.setTexture(0); //close door
-	door.setPosition(2000, 1220);
+	door.setPosition(2000, 1210);
 	//platformSets();
 	entitiesSets();
 }
@@ -188,7 +188,6 @@ void Levels::platformSets()
 		createPlatform(1, 2284.f, 0.f, 32.f, 1440.f);
 		// Ground Platform
 		createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
-		createPlatform(0, 0.f, GROUND_HEIGHT, 2560.f, 64.f);
 		break;
 	case 3:
 		createPlatform(0, 1200.f, 850.f, 200.f, 32.f);
