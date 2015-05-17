@@ -14,7 +14,7 @@ class Game
 {
 private:
 	enum class GameState {
-		titleScreen, inGame, pause, victory, gameOver, openDoor
+		titleScreen, inGame, pause, victory, gameOver, enterDoor
 	} gameState_;
 
 	enum class MenuSwitch {
@@ -26,6 +26,7 @@ private:
 	sf::Clock clock;	//Starts the clock
 	sf::Time deltaTime;	//Difference in time
 	sf::Clock knockBackTime;
+	float stageLoadingTime;
 
 	//Camera
 	sf::View camera;
@@ -66,6 +67,7 @@ private:
 	void collision(Entity *, Platform&);
 	void titleUpdate();
 	void gameUpdate();
+	void enterDoorUpdate();
 	void pauseUpdate();
 	void victoryUpdate();
 	void gameOverUpdate();
