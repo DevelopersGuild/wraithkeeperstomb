@@ -19,6 +19,8 @@ private:
 	sf::RectangleShape back;
 
 	void createPlatform(int, float, float, float, float);
+	void createGround(int, float, float, float, float);
+
 
 	bool isBoss;
 	int l; //level

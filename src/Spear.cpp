@@ -24,9 +24,9 @@ Spear::Spear(Hero *hero)
 
 void Spear::stabAnim()
 {
-	if (atkTime > 34)
+	if (atkTime > 30)
 		anim.y = 1;
-	else if (atkTime > 13)
+	else if (atkTime > 10)
 		anim.y = 2;
 	else
 		anim.y = 1;
@@ -43,7 +43,7 @@ bool Spear::attack()
 {
 	if (cooldown.getElapsedTime().asSeconds() > SPEAR_COOLDOWN)
 	{
-		atkTime = 50;
+		atkTime = 40;
 		cooldown.restart().asSeconds();
 		return true;
 	}
