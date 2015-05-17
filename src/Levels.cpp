@@ -16,10 +16,8 @@ Levels::Levels()
 
 void Levels::incrBossFightChance()
 {
-	if (bossFightChance == 0)
-		bossFightChance = 1;
-	else if (bossFightChance < 90)
-		bossFightChance = bossFightChance * 18;
+	if (bossFightChance < 90)
+		bossFightChance = bossFightChance + 18;
 	else
 		bossFightChance = 90;
 }
