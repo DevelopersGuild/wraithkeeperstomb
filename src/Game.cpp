@@ -62,7 +62,7 @@ void Game::mainLoop()
 		case GameState::titleScreen: titleUpdate(); break;
 		case GameState::inGame: gameUpdate(); break;
 		case GameState::pause: pauseUpdate(); break;
-		case GameState::openDoor: gameUpdate(); break;
+		case GameState::enterDoor: enterDoorUpdate(); break;
 		case GameState::victory: victoryUpdate(); break;
 		case GameState::gameOver: gameOverUpdate(); break;
 		default: break;
@@ -89,7 +89,7 @@ void Game::handleEvent(sf::Event &event)
 		
 	}
 
-	if (gameState_ == GameState::inGame || gameState_ == GameState::openDoor)
+	if (gameState_ == GameState::inGame)
 	{
 		// Keys being pressed during gameplay
 		if (sf::Event::KeyPressed)
@@ -108,7 +108,10 @@ void Game::handleEvent(sf::Event &event)
 			}
 		}
 	}
-
+	/*if (gameState_ == GameState::enterDoor)
+	{
+		// options to save or quit?
+	}*/
 	if (gameState_ == GameState::pause)
 	{
 		// Keys being pressed during pause screen
@@ -327,9 +330,7 @@ void Game::enterDoor(Entity *hero)
 		doorOpen = false;
 		cleanupAll();
 		levels.cleanup();
-		entityRegistry.push_back(theHero);
-		levels.roomGenerater();	
-		gameState_ = GameState::inGame;
+		gameState_ = GameState::enterDoor;
 	}
 }
 
@@ -458,7 +459,7 @@ int Game::cleanupEntities()
 	}
 
 	if (countEnemies == 0)
-		gameState_ = GameState::openDoor;
+		doorOpen = levels.setDoor(1);;
 
 	return countEnemies;
 }
@@ -508,10 +509,10 @@ void Game::gameUpdate()
 
 	levels.update();
 
-	if (gameState_ == GameState::openDoor)
-		doorOpen = levels.setDoor(1);
-
 	float time = deltaTime.asSeconds();
+
+	if (stageLoadingTime != 10.0)
+		stageLoadingTime = 10.0;
 
 	for (size_t i = 0; i < entityRegistry.size(); i++)
 	{
@@ -633,6 +634,18 @@ void Game::gameUpdate()
 	MPbar.setPosition(camera.getCenter().x - 380, camera.getCenter().y - 200);
 }
 
+void Game::enterDoorUpdate()
+{
+	deltaTime = clock.restart();
+	stageLoadingTime -= deltaTime.asSeconds();
+
+	if (stageLoadingTime <= 0)
+	{
+		entityRegistry.push_back(theHero);
+		levels.roomGenerater();
+		gameState_ = GameState::inGame;
+	}
+}
 
 void Game::victoryUpdate()
 {
@@ -684,7 +697,7 @@ void Game::render()
 		}
 
 	}
-	else if (gameState_ == GameState::inGame || gameState_ == GameState::openDoor)
+	else if (gameState_ == GameState::inGame)
 	{
 		camera.setViewport(sf::FloatRect(0, 0, 1, 1));
 		minimap.setViewport(sf::FloatRect(0.75f, 0, 0.25f, 0.25f));
@@ -713,6 +726,11 @@ void Game::render()
 		window.draw(HPbar);
 		window.draw(MPbar);
 	}
+	/*else if (gameState_ == GameState::enterDoor)
+	{
+			tips/hints?
+			options to save/quit?
+	}*/
 	else if (gameState_ == GameState::pause)
 	{
 		window.draw(pauseText);
