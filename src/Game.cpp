@@ -11,7 +11,7 @@ std::vector<Entity *> Game::entityRegistry;
 Game::Game()
 {
 	// Create game render window
-	window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Chamber's Labyrinth");
+	window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Wraithkeeper's Tomb");
 	window.setMouseCursorVisible(true);
 	window.setKeyRepeatEnabled(false);
 	
@@ -325,7 +325,9 @@ void Game::enterDoor(Entity *hero)
 	if (hero->getCollisionRect().intersects(levels.getDoor().getDoorRect()))
 	{
 		doorOpen = false;
-		levels.cleanup(theHero);
+		cleanupAll();
+		levels.cleanup();
+		entityRegistry.push_back(theHero);
 		levels.roomGenerater();	
 		gameState_ = GameState::inGame;
 	}
@@ -370,10 +372,10 @@ void Game::loadAssets()
 	MPbar.setPosition(camera.getCenter().x - 300, camera.getCenter().y - 570);
 
 	title.setFont(blackcastle);
-	title.setString("Chamber's Labyrinth");
+	title.setString("Wraithkeeper's Tomb");
 	title.setCharacterSize(150);
 	title.setColor(sf::Color::White);
-	title.setPosition(75, 25);
+	title.setPosition(60, 25);
 
 	//Menu buttons
 
@@ -395,6 +397,8 @@ void Game::loadAssets()
 	loadTextLineHL(continueButtonHL, "CONTINUE", 310);
 
 	loadTextLineHL(continueButtonHLDisabled, "CONTINUE", 310);
+	continueButtonHLDisabled.setColor(sf::Color::Color(100, 100, 100, 255));
+
 	continueButtonDisabled.setColor(sf::Color::Color(100, 100, 100, 255));
 
 	loadTextLineHL(newGameButtonHL, "NEW GAME", 360);
@@ -475,6 +479,21 @@ void Game::cleanupProjectiles()
 			++iter;
 		}
 	}
+}
+
+void Game::cleanupAll()
+{//delete all entities and projectiles (except hero), empty containers
+	for (auto &proj : projectiles)
+		delete proj;
+
+	for (auto entity = entityRegistry.begin() + 1; entity != entityRegistry.end();)
+	{
+		delete *entity;
+		entity = entityRegistry.erase(entity);
+	}
+	
+	projectiles.clear();
+	entityRegistry.clear();
 }
 
 void Game::gameUpdate()
@@ -771,5 +790,11 @@ Game::~Game()
 	{
 		delete proj;
 	}
+	for (auto &ent : entityRegistry)
+	{
+		delete ent;
+	}
+	
 	projectiles.clear();
+	entityRegistry.clear();
 }

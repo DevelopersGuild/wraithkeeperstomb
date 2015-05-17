@@ -32,7 +32,7 @@ public:
 
 public:
 	Levels();
-	void createEntities();
+	//void createEntities();
 	void update();
 	void render(sf::RenderWindow &);
 	void renderPlats(sf::RenderWindow &);
@@ -45,7 +45,7 @@ public:
 	void createBackground();
 
 	void roomGenerater();
-	void cleanup(Entity *hero);
+	void cleanup();
 
 //	const sf::FloatRect getGroundRect()
 //	{ return ground_.rectangle.getGlobalBounds(); }

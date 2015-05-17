@@ -14,12 +14,9 @@ Levels::Levels()
 	srand(time(0));
 }
 
-void Levels::cleanup(Entity *hero)
+void Levels::cleanup()
 {
 	platforms.clear();
-	Entity *tempHero = hero;
-	Game::entityRegistry.clear();
-	Game::entityRegistry.push_back(tempHero);
 }
 
 void Levels::roomGenerater()
@@ -137,26 +134,26 @@ void Levels::powerup(int t, float x, float y)
 }
 
 
-void Levels::createEntities()
-{
-	Entity * e = new EnemyMage;
-	e->setPosition(1280.f, 1360.f);
-	dynamic_cast<EnemyMage*> (e)->set_patrol_origin(1280.f);
-	Game::entityRegistry.push_back(e);
-
-	e = new EnemyReaper;
-	e->setPosition(1000.f, 1360.f);
-	dynamic_cast<EnemyReaper*> (e)->set_patrol_origin(1000.f);
-	Game::entityRegistry.push_back(e);
-
-	e = new PowerupCookie;
-	e->setPosition(500.f, 800.f);
-	Game::entityRegistry.push_back(e);
-
-	e = new PowerupSpear;
-	e->setPosition(800.f, 800.f);
-	Game::entityRegistry.push_back(e);
-}
+//void Levels::createEntities()
+//{
+//	Entity * e = new EnemyMage;
+//	e->setPosition(1280.f, 1360.f);
+//	dynamic_cast<EnemyMage*> (e)->set_patrol_origin(1280.f);
+//	Game::entityRegistry.push_back(e);
+//
+//	e = new EnemyReaper;
+//	e->setPosition(1000.f, 1360.f);
+//	dynamic_cast<EnemyReaper*> (e)->set_patrol_origin(1000.f);
+//	Game::entityRegistry.push_back(e);
+//
+//	e = new PowerupCookie;
+//	e->setPosition(500.f, 800.f);
+//	Game::entityRegistry.push_back(e);
+//
+//	e = new PowerupSpear;
+//	e->setPosition(800.f, 800.f);
+//	Game::entityRegistry.push_back(e);
+//}
 
 void Levels::createPlatform(int type, float posX, float posY, float sizeX, float sizeY)
 {
@@ -175,49 +172,55 @@ void Levels::platformSets()
 		createPlatform(0, 500.f, 900.f, 350.f, 32.f);
 		createPlatform(0, 1000.f, 910.f, 50.f, 32.f);
 		createPlatform(0, 1230.f, 890.f, 50.f, 32.f);
-		//createPlatform(0, 1400.f, 920.f, 50.f, 32.f);
+		createPlatform(0, 1400.f, 920.f, 50.f, 32.f);
 		createPlatform(0, 700.f, 1100.f, 350.f, 32.f);
-		createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
 		createPlatform(1, 275.f, 0.f, 32.f, 1440.f);
 		createPlatform(1, 2284.f, 0.f, 32.f, 1440.f);
+		// Ground Platform
+		createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
 		break;
 	case 2:
 		createPlatform(0, 700.f, 1100.f, 350.f, 32.f);
 		createPlatform(0, 1550.f, 1100.f, 100.f, 32.f);
 		createPlatform(0, 1550.f, 800.f, 100.f, 32.f);
 		createPlatform(0, 1550.f, 600.f, 100.f, 32.f);
-		createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
 		createPlatform(1, 275.f, 0.f, 32.f, 1440.f);
 		createPlatform(1, 2284.f, 0.f, 32.f, 1440.f);
+		// Ground Platform
+		createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
+		createPlatform(0, 0.f, GROUND_HEIGHT, 2560.f, 64.f);
 		break;
 	case 3:
 		createPlatform(0, 1200.f, 850.f, 200.f, 32.f);
 		createPlatform(0, 1000.f, 1000.f, 600.f, 32.f);
 		createPlatform(0, 800.f, 850.f, 200.f, 32.f);
 		createPlatform(0, 600.f, 1100.f, 200.f, 32.f);
-		createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
 		createPlatform(1, 275.f, 0.f, 32.f, 1440.f);
 		createPlatform(1, 2284.f, 0.f, 32.f, 1440.f);
+		// Ground Platform
+		createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
 		break;
 	case 4:
 		createPlatform(0, 1200.f, 1100.f, 200.f, 32.f);
 		createPlatform(0, 1000.f, 900.f, 200.f, 32.f);
 		createPlatform(0, 800.f, 1200.f, 200.f, 32.f);
 		createPlatform(0, 600.f, 1100.f, 200.f, 32.f);
-		//createPlatform(0, 1400.f, 800.f, 200.f, 32.f);
-		createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
+		createPlatform(0, 1400.f, 800.f, 200.f, 32.f);
 		createPlatform(1, 275.f, 0.f, 32.f, 1440.f);
 		createPlatform(1, 2284.f, 0.f, 32.f, 1440.f);
+		// Ground Platform
+		createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
 		break;
 	case 5:
-		//createPlatform(0, 1400.f, 1100.f, 300.f, 32.f);
+		createPlatform(0, 1400.f, 1100.f, 300.f, 32.f);
 		createPlatform(0, 1400.f, 750.f, 300.f, 32.f);
 		createPlatform(0, 600.f, 1100.f, 300.f, 32.f);
 		createPlatform(0, 600.f, 750.f, 300.f, 32.f);
 		createPlatform(0, 1000.f, 900.f, 300.f, 32.f);
-		createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
 		createPlatform(1, 275.f, 0.f, 32.f, 1440.f);
 		createPlatform(1, 2284.f, 0.f, 32.f, 1440.f);
+		// Ground Platform
+		createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
 		break;
 	}
 }

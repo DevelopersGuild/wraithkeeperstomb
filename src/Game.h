@@ -83,8 +83,9 @@ private:
 
 	void LoadStats();
 	void SaveStatsToFile();
-	int cleanupEntities();
-	void cleanupProjectiles();
+	int cleanupEntities(); //delete dead entities
+	void cleanupProjectiles(); //delete overrange projectiles
+	void cleanupAll(); //delete all entities and projectiles except hero
 	void loadTextLineHL(sf::Text &text, std::string line, int yPos);
 	void loadTextLine(sf::Text &text, std::string line, int yPos);
 
