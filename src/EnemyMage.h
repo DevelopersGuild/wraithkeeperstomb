@@ -12,6 +12,7 @@ public:
 	void update(float time);
 	bool projectileShoot();
 	void jump();
+	const sf::FloatRect getCollisionRect();
 	void setProjectileCooldown(float cd) { projectileCooldown = cd; }
 	float getProjectileCooldown() { return projectileCooldown; }
 	//void onHeroDetected(Hero* hero); // if it responds differently

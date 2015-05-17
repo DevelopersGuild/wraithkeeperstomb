@@ -4,7 +4,7 @@
 #include "Weapons.h"
 #include "Paths.h"
 
-class Projectile: public Weapons
+class Projectile : public Weapons
 {
 protected:
 	void flightAnim();
@@ -20,12 +20,10 @@ public:
 	//accessors
 	const float getCooldownDuration() { return cooldownDuration; }
 	const sf::Sprite getSprite()
-	{
-		return Sprite;
-	}
-	const sf::FloatRect getCollisionRect();
+	{ return Sprite; }
+	virtual const sf::FloatRect getCollisionRect();
 	bool is_shot_by_hero() { return shot_by_hero; }
-	const sf::FloatRect getAttackRect();
+	virtual const sf::FloatRect getAttackRect();
 	virtual float getManaCost() { return 0; }
 
 	void update();
@@ -75,6 +73,7 @@ public:
 	{
 		Texture.loadFromFile(resourcePath() + "assets/sprites/fireball.png");
 		Sprite.setTexture(Texture);
+		Sprite.setOrigin(0, 0);
 
 		cooldownDuration = FIREBALL_COOLDOWN;
 		damage = FIREBALL_DAMAGE;
@@ -83,7 +82,6 @@ public:
 		crit_multiplier = FIREBALL_CRIT_MULTIPLIER;
 		damage_fluctuation = FIREBALL_DMG_FLUCTUATION_RATE * FIREBALL_DAMAGE;
 		damage = dmgRandomizer(damage_fluctuation) * critical(crit_multiplier);
-
 		if (faceRight)
 			speed = FIREBALL_SPEED;
 		else
@@ -92,6 +90,8 @@ public:
 			speed = -FIREBALL_SPEED;
 		}
 	}
+	const sf::FloatRect getCollisionRect();
+	const sf::FloatRect getAttackRect();
 	~FireBall(){}
 };
 
