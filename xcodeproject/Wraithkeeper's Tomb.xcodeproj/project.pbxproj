@@ -24,6 +24,7 @@
 		106BC8CA1B080DF3000AF483 /* Projectile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8B41B080DF3000AF483 /* Projectile.cpp */; };
 		106BC8CB1B080DF3000AF483 /* Spear.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8B61B080DF3000AF483 /* Spear.cpp */; };
 		106BC8CC1B080DF3000AF483 /* Weapons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8B81B080DF3000AF483 /* Weapons.cpp */; };
+		5F352EB31B0B29F200CABD07 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F352EB21B0B29F200CABD07 /* Images.xcassets */; };
 		5FC7638E1AF8ED7500504B24 /* .. in Resources */ = {isa = PBXBuildFile; fileRef = 5FC7638D1AF8ED7500504B24 /* .. */; };
 		5FE148BD1AFBE546007C20CA /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 5FE148BC1AFBE546007C20CA /* assets */; };
 /* End PBXBuildFile section */
@@ -63,6 +64,7 @@
 		106BC8B71B080DF3000AF483 /* Spear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spear.h; path = ../src/Spear.h; sourceTree = "<group>"; };
 		106BC8B81B080DF3000AF483 /* Weapons.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Weapons.cpp; path = ../src/Weapons.cpp; sourceTree = "<group>"; };
 		106BC8B91B080DF3000AF483 /* Weapons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Weapons.h; path = ../src/Weapons.h; sourceTree = "<group>"; };
+		5F352EB21B0B29F200CABD07 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Images.xcassets"; path = "Wraithkeeper's Tomb/Images.xcassets"; sourceTree = SOURCE_ROOT; };
 		5F3E87031AF8E65600FAC432 /* Wraithkeeper's Tomb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wraithkeeper's Tomb.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F3E87071AF8E65600FAC432 /* Wraithkeeper's Tomb-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Wraithkeeper's Tomb-Info.plist"; sourceTree = "<group>"; };
 		5FC7638D1AF8ED7500504B24 /* .. */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ..; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			children = (
 				5F3E870D1AF8E65600FAC432 /* Resources */,
 				5FC7638D1AF8ED7500504B24 /* .. */,
+				5F352EB21B0B29F200CABD07 /* Images.xcassets */,
 				5F3E87061AF8E65600FAC432 /* Supporting Files */,
 			);
 			name = "Wraithkeeper's Tomb";
@@ -215,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F352EB31B0B29F200CABD07 /* Images.xcassets in Resources */,
 				5FC7638E1AF8ED7500504B24 /* .. in Resources */,
 				5FE148BD1AFBE546007C20CA /* assets in Resources */,
 			);
