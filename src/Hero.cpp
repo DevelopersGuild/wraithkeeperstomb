@@ -37,6 +37,8 @@ Hero::Hero()
 	projectileCooldown = 0.0;
 	collisionNum = 0;
 
+	walkingSounds.loadFile(resourcePath() + "assets/sounds/footsteps.wav");
+
 	//effects_.push_back(new Buff(10, 7.0F, "Speed Buff"));
 	// effects_.push_back(new Debuff(10, 10.0F, "Poison"));
 
@@ -267,6 +269,7 @@ void Hero::update(float seconds)
 	unfreezeHero(freezeClock);
 	{
 		// Handle movement
+		walkingSounds.playSound();
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !isFrozen)
 		{
 			faceRight = false;
@@ -279,6 +282,7 @@ void Hero::update(float seconds)
 		}
 		else
 		{
+			walkingSounds.stopSound();
 			action = stands;
 		}
 

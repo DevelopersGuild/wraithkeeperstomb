@@ -6,6 +6,7 @@
 #include "Projectile.h"
 #include "Entity.h"
 #include "Effect.h"
+#include "SoundSystem.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -52,6 +53,9 @@ private:
 	void walkAnim();		//Animation sequence for walking
 	void jumpAnim();		//Animation sequence for jumping
 	void attackAnim();		//Animation sequence for attacking
+
+	SoundSystem walkingSounds;
+
 public:
 	Hero();
 	~Hero();
