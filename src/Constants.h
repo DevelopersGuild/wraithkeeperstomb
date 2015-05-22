@@ -7,7 +7,7 @@ static const int WINDOW_HEIGHT = 720;
 const float GROUND_HEIGHT = 1360.0f;
 
 //Hero
-const float HERO_BASE_HP = 100.f;
+const float HERO_BASE_HP = 300.f;
 const float HERO_BASE_MP = 100.f;
 const float HERO_BASE_SPEED = 5.f;
 const float HERO_JUMP_VELOCITY = 27.5f; //for testing purpose

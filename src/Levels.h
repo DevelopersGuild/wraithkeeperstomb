@@ -21,13 +21,13 @@ private:
 	void createPlatform(int, float, float, float, float);
 	void createGround(int, float, float, float, float);
 
-
+	int level;
 	bool isBoss;
-	int l; //level
+	int set_num;
 	int platformType; //0 = horizontal, 1 = vertical (wall)
 	Door door;
 
-	int bossFightChance;
+	float bossFightChance;
 
 public:
 	std::vector<Platform> platforms;
@@ -49,6 +49,7 @@ public:
 
 	void roomGenerater();
 	void cleanup();
+	void levelup();
 
 	void bossAppearance();
 	void incrBossFightChance();
@@ -57,6 +58,10 @@ public:
 //	{ return ground_.rectangle.getGlobalBounds(); }
 	Door getDoor()
 	{ return door; }
+	int getLevel()
+	{ return level; }
+	bool getIsBoss()
+	{ return isBoss; }
 	bool setDoor(bool status);
 };
 

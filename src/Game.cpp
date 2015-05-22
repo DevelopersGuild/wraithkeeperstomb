@@ -468,7 +468,14 @@ int Game::cleanupEntities()
 	}
 
 	if (countEnemies == 0)
-		doorOpen = levels.setDoor(1);;
+	{
+		if (levels.getIsBoss())
+		{
+			levels.levelup();
+		}
+		doorOpen = levels.setDoor(1);
+	}
+		
 
 	return countEnemies;
 }

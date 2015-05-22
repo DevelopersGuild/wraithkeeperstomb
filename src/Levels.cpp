@@ -6,18 +6,27 @@
 #include "Paths.h"
 
 #include <vector>
+#include <iostream>
 
 Levels::Levels()
 {
 	isBoss = false;
 	bossFightChance = 0;
+	level = 1;
 	srand(time(0));
+}
+
+void Levels::levelup()
+{
+	level++;
+	bossFightChance = 0;
+	isBoss = false;
 }
 
 void Levels::incrBossFightChance()
 {
 	if (bossFightChance < 90)
-		bossFightChance = bossFightChance + 18;
+		bossFightChance = bossFightChance + 18.f - (level - 1) * 6.75;
 	else
 		bossFightChance = 90;
 }
@@ -25,9 +34,7 @@ void Levels::incrBossFightChance()
 void Levels::bossAppearance()
 {
 	if (rand() % 100 < bossFightChance)
-	{
 		isBoss = true;
-	}
 }
 
 void Levels::cleanup()
@@ -37,7 +44,7 @@ void Levels::cleanup()
 
 void Levels::roomGenerater()
 {
-	l = rand() % 5 + 1;
+	set_num = rand() % 5 + 1;
 	createBackground();
 	//platformSets();
 	entitiesSets();
@@ -76,7 +83,7 @@ void Levels::doorSets()
 {
 	if (!isBoss)
 	{
-		switch (l)
+		switch (set_num)
 		{
 		case 1:	door.setPosition(1000.f, 1205.f);
 		case 2:	door.setPosition(1200.f, 1205.f);
@@ -86,15 +93,23 @@ void Levels::doorSets()
 	}
 	else
 	{
-		door.setPosition(2000.f, 1205.f);
+		switch (level)
+		{
+		case 1:
+			door.setPosition(2000.f, 1205.f);
+			break;
+		default:
+			door.setPosition(2000.f, 1205.f);
+			break;
+		}
 	}
 }
 
 void Levels::entitiesSets()
 {
 	if (!isBoss)
-		switch (l)
-	{
+		switch (set_num)
+		{
 		case 1:
 			createEnemy(1, 1700.f, 1360.f);
 			createEnemy(1, 1800.f, 1360.f);
@@ -118,13 +133,20 @@ void Levels::entitiesSets()
 			createEnemy(2, 1700.f, 1340.f);
 			createEnemy(1, 1000.f, 1360.f);
 			break;
-	}
+		}
 	else
 	{
-		createEnemy(0, 1500.f, 1360.f);
-		powerup(1, 1200.f, 1100.f);
-		isBoss = false;
-		bossFightChance = 0;
+		switch (level)
+		{
+		case 1:
+			createEnemy(0, 1500.f, 1360.f);
+			powerup(1, 1200.f, 1100.f);
+			break;
+		default:
+			createEnemy(0, 1500.f, 1360.f);
+			powerup(1, 1200.f, 1100.f);
+			break;
+		}
 	}
 }
 
@@ -151,9 +173,19 @@ void Levels::createEnemy(int t/*enemy type*/, float x, float y)
 		}
 	else
 	{
-		e = new FirstBoss;
-		e->setPosition(x, y);
-		Game::entityRegistry.push_back(e);
+		switch (level)
+		{
+		case 1:
+			e = new FirstBoss;
+			e->setPosition(x, y);
+			Game::entityRegistry.push_back(e);
+			break;
+		default:
+			e = new FirstBoss;
+			e->setPosition(x, y);
+			Game::entityRegistry.push_back(e);
+			break;
+		}
 	}
 }
 
@@ -211,7 +243,7 @@ void Levels::createPlatform(int type, float posX, float posY, float sizeX, float
 void Levels::platformSets()
 {
 	if (!isBoss)
-		switch (l)
+		switch (set_num)
 		{
 		case 1:
 			createPlatform(0, 500.f, 900.f, 350.f, 32.f);
@@ -269,11 +301,23 @@ void Levels::platformSets()
 		}
 	else
 	{
-		createPlatform(0, 1000.f, 1100.f, 700.f, 32.f);
-		createPlatform(2, 275.f, 0.f, 32.f, 1440.f);
-		createPlatform(2, 2284.f, 0.f, 32.f, 1440.f);
-		// Ground Platform
-		createPlatform(2, 0.f, GROUND_HEIGHT, 2560.f, 64.f);
+		switch (level)
+		{
+		case 1:
+			createPlatform(0, 1000.f, 1100.f, 700.f, 32.f);
+			createPlatform(2, 275.f, 0.f, 32.f, 1440.f);
+			createPlatform(2, 2284.f, 0.f, 32.f, 1440.f);
+			// Ground Platform
+			createPlatform(2, 0.f, GROUND_HEIGHT, 2560.f, 64.f);
+			break;
+		default:
+			createPlatform(0, 1000.f, 1100.f, 700.f, 32.f);
+			createPlatform(2, 275.f, 0.f, 32.f, 1440.f);
+			createPlatform(2, 2284.f, 0.f, 32.f, 1440.f);
+			// Ground Platform
+			createPlatform(2, 0.f, GROUND_HEIGHT, 2560.f, 64.f);
+			break;
+		}
 	}
 }
 
@@ -281,7 +325,7 @@ void Levels::backGroundSets()
 {
 	if (!isBoss)
 		switch (2)
-	{
+		{
 		case 1:
 			BackgroundGenerator::instance().LoadTextureForLevelOrDie(1);
 			break;
@@ -300,16 +344,24 @@ void Levels::backGroundSets()
 		default:
 			BackgroundGenerator::instance().LoadTextureForLevelOrDie(1);
 			break;
-	}
+		}
 	else
 	{
-		BackgroundGenerator::instance().LoadTextureForLevelOrDie(6);
+		switch (level)
+		{
+		case 1:
+			BackgroundGenerator::instance().LoadTextureForLevelOrDie(6);
+			break;
+		default:
+			BackgroundGenerator::instance().LoadTextureForLevelOrDie(6);
+			break;
+		}	
 	}
 }
 
 void Levels::update()
 {
-	// nothing yet
+	
 }
 
 void Levels::render(sf::RenderWindow &window)
