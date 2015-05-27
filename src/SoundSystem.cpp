@@ -8,6 +8,10 @@ SoundSystem::SoundSystem()
 
 SoundSystem::~SoundSystem()
 {
+	if (sound_.getStatus() == sf::SoundSource::Status::Playing || sound_.getStatus() == sf::SoundSource::Status::Paused)
+		stopSound();
+
+	sound_.resetBuffer();
 }
 
 
