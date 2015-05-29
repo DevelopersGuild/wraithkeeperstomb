@@ -210,9 +210,9 @@ void Hero::freezeHero(sf::Clock &freezeClock)
 	freezeClock.restart().asSeconds();
 }
 
-void Hero::unfreezeHero(sf::Clock freezeClock)
+void Hero::unfreezeHero(sf::Clock freezeClock, float time)
 {
-	if (freezeClock.getElapsedTime().asSeconds() >= 0.5f)
+	if (freezeClock.getElapsedTime().asSeconds() >= time)
 		isFrozen = false;
 }
 
@@ -249,10 +249,6 @@ void Hero::jump(float seconds)
 
 void Hero::update(float seconds)
 {
-	std::cout << "Y Vel: " << velocity.y << std::endl;
-	std::cout << "X Vel: " << velocity.x << std::endl;
-	std::cout << "Hero Y: " << getY() << std::endl;
-	std::cout << "Hero X: " << getX() << std::endl;
 	//prevent bonuses from increasing over time
 	stats_.speed = HERO_BASE_SPEED * stats_.speedMultiplier;
 	for (auto iter = effects_.begin(); iter != effects_.end();) { //iterate through all buffs/debuffs 
@@ -270,7 +266,7 @@ void Hero::update(float seconds)
 			++iter;
 		}
 	}
-	unfreezeHero(freezeClock);
+	unfreezeHero(freezeClock, 0.5);
 	{
 		// Handle movement
 		walkingSounds.playSound();
