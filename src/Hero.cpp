@@ -12,7 +12,7 @@ Hero::Hero()
 	Texture.loadFromFile(resourcePath() + "assets/sprites/hero.png");
 	Sprite.setTexture(Texture);
 	Sprite.setOrigin(32, 128);
-	Sprite.setPosition(720, 1430);
+	Sprite.setPosition(720, 1472);
 	sf::Vector2f velocity(sf::Vector2f(0, 0));
 	sf::Vector2i anim(sf::Vector2i(0, 1));
 	invincibilityCD.restart();

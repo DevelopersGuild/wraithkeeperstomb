@@ -23,7 +23,7 @@ const float GRAVITY = 11.f;
 const float ENEMY_DETECTION_RADIUS = 200.f;
 const float PATROL_RADIUS = 200.f;
 
-const float ENEMY1_BASE_HP = 200.f;
+const float ENEMY1_BASE_HP = 100.f;
 const float ENEMY1_BASE_SPEED = 3.f;
 const float ENEMY1_DAMAGE = 35.f;
 const float ENEMY1_ARMOR = 15.f;
