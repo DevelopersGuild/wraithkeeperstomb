@@ -50,12 +50,15 @@ void Game::CreateEntities()
 void Game::mainLoop()
 {
 	sf::Event event;
+	// Start dTime out as zero. It will increase until it is time to move 1 frame forward
 	dTime = sf::Time::Zero;
 	// Main loop
 	while (window.isOpen())
 	{
-		sf::Time elapsedTime = gClock.restart();
-		dTime += elapsedTime;
+		sf::Time elapsedTime = gClock.restart(); // Time elapsed according to system time not per cylcle through the loop
+		dTime += elapsedTime; // Add system time to dTime.
+
+		// If dTime becomes greater than 1/60 of a second, the game updates
 		while (dTime > TimePerFrame) {
 			// Reset deltaTime
 			dTime -= TimePerFrame;
