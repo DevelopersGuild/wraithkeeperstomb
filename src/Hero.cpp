@@ -138,24 +138,24 @@ void Hero::attackAnim()
 		yFrame = -1;
 	}
 	//Move frame forward
-	if (frameTimer < 4)
+	if (frameTimer < 2)
 	{
 		xFrame = 0;
 		weapon->setPosition(getX() + 17 * yFrame, getY() - 14);
 	}
-	else if (frameTimer < 6)
+	else if (frameTimer < 3)
 	{
 		xFrame = 1;
 		Sprite.move(velocity.x * .5f, 0.f);
 		weapon->setPosition(getX() + 23 * yFrame, getY() - 10);
 	}
-	else if (frameTimer < 12)
+	else if (frameTimer < 6)
 	{
 		xFrame = 2;
 		Sprite.move(velocity.x * .7f, 0.f);
 		weapon->setPosition(getX() + 28 * yFrame, getY() - 8);
 	}
-	else if (frameTimer < 28)
+	else if (frameTimer < 14)
 	{
 		xFrame = 3;
 		weapon->setPosition(getX() + 39 * yFrame, getY() - 8);
@@ -197,7 +197,7 @@ bool Hero::attack()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && velocity.y == 0 && collisionNum == 0)
 		if (weapon->attack())
 		{
-			atkTime = 35;
+			atkTime = 18;
 			freezeHero(freezeClock);
 			return true;
 		}

@@ -17,10 +17,10 @@ SoundSystem::~SoundSystem()
 
 bool SoundSystem::loadFile(std::string fname)
 {
+	if (sound_.getBuffer() == NULL) 
+		sound_.setBuffer(buffer_);
 	if (!buffer_.loadFromFile(fname))
 		return false;
-
-	if (sound_.getBuffer() == NULL) sound_.setBuffer(buffer_);
 
 	return true;
 }
