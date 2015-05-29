@@ -249,6 +249,10 @@ void Hero::jump(float seconds)
 
 void Hero::update(float seconds)
 {
+	std::cout << "Y Vel: " << velocity.y << std::endl;
+	std::cout << "X Vel: " << velocity.x << std::endl;
+	std::cout << "Hero Y: " << getY() << std::endl;
+	std::cout << "Hero X: " << getX() << std::endl;
 	//prevent bonuses from increasing over time
 	stats_.speed = HERO_BASE_SPEED * stats_.speedMultiplier;
 	for (auto iter = effects_.begin(); iter != effects_.end();) { //iterate through all buffs/debuffs 
@@ -310,6 +314,9 @@ void Hero::update(float seconds)
 
 	if (projectileCooldown > 0)
 		projectileCooldown -= seconds;
+
+	if (getY() > 1372.f)
+		setPosition(getX(), GROUND_HEIGHT + 12.f);
 }
 
 void Hero::render(sf::RenderWindow &window)

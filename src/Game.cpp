@@ -28,7 +28,7 @@ Game::Game()
 
 	loadAssets();
 	gameState_ = GameState::titleScreen;
-	menuSwitch_ = MenuSwitch::continueGame;
+	menuSwitch_ = MenuSwitch::play;
 	CreateEntities();
 	LoadStats();
 	minimap.setSize(1280, 720);
@@ -154,95 +154,26 @@ void Game::handleEvent(sf::Event &event)
 
 	switch (menuSwitch_)
 	{
-	case MenuSwitch::continueGame: 
+	case MenuSwitch::play: 
 		// Keys being pressed in menu
 		if (event.type == sf::Event::KeyPressed)
 		{
 			// Specifically if down is pressed
-			if (event.key.code == sf::Keyboard::Down)
-			{
-				// Move to newGame
-				menuSwitch_ = MenuSwitch::newGame;
-			}
-			// Specifically if up is pressed
-			else if (event.key.code == sf::Keyboard::Up)
-			{
-				// Move to exitGame
-				menuSwitch_ = MenuSwitch::exitGame;
-			}
-		}
-		break;
-	case MenuSwitch::newGame: 
-		// Keys being pressed in menu
-		if (event.type == sf::Event::KeyPressed)
-		{
-			// Specifically if down is pressed
-			if (event.key.code == sf::Keyboard::Down)
-			{
-				menuSwitch_ = MenuSwitch::loadGame;
-			}
-			// Specifically if up is pressed
-			else if (event.key.code == sf::Keyboard::Up)
-			{
-				menuSwitch_ = MenuSwitch::continueGame;
-			}
-			if (event.key.code == sf::Keyboard::Return)
-			{
-				// Move to inGame (start playing)
-				gameState_ = GameState::inGame;
-			}
-		}
-		break;
-	case MenuSwitch::loadGame: 
-		// Keys being pressed in menu
-		if (event.type == sf::Event::KeyPressed)
-		{
-			// Specifically if down is pressed
-			if (event.key.code == sf::Keyboard::Down)
-			{
-				menuSwitch_ = MenuSwitch::options;
-			}
-			// Specifically if up is pressed
-			else if (event.key.code == sf::Keyboard::Up)
-			{
-				menuSwitch_ = MenuSwitch::newGame;
-			}
-		}
-		break;
-	case MenuSwitch::options: 
-		// Keys being pressed in menu
-		if (event.type == sf::Event::KeyPressed)
-		{
-			// Specifically if down is pressed
-			if (event.key.code == sf::Keyboard::Down)
-			{
-				menuSwitch_ = MenuSwitch::exitGame;
-			}
-			// Specifically if up is pressed
-			else if (event.key.code == sf::Keyboard::Up)
-			{
-				menuSwitch_ = MenuSwitch::loadGame;
-			}
-		}
-		break;
-	case MenuSwitch::exitGame:
-		// Keys being pressed in menu
-		if (event.type == sf::Event::KeyPressed)
-		{
-			// Specifically if down is pressed
-			if (event.key.code == sf::Keyboard::Down)
-			{
-				menuSwitch_ = MenuSwitch::continueGame;
-			}
-			// Specifically if up is pressed
-			else if (event.key.code == sf::Keyboard::Up)
-			{
-				menuSwitch_ = MenuSwitch::options;
-			}
+			if (event.key.code == sf::Keyboard::Down || event.key.code == sf::Keyboard::Up)
+				menuSwitch_ = MenuSwitch::exit;
 			else if (event.key.code == sf::Keyboard::Return)
-			{
+				gameState_ = GameState::inGame;
+		}
+		break;
+	case MenuSwitch::exit:
+		// Keys being pressed in menu
+		if (event.type == sf::Event::KeyPressed)
+		{
+			// Specifically if down is pressed
+			if (event.key.code == sf::Keyboard::Down || event.key.code == sf::Keyboard::Up)
+				menuSwitch_ = MenuSwitch::play;
+			else if (event.key.code == sf::Keyboard::Return)
 				window.close();
-			}
 		}
 		break;
 	default:
@@ -343,8 +274,7 @@ void Game::loadTextLineHL(sf::Text &text, std::string line, int yPos)
 	text.setString(line);
 	text.setCharacterSize(48);
 	text.setColor(sf::Color::Yellow);
-	text.setStyle(sf::Text::StrikeThrough);
-	text.setPosition(510, yPos);
+	text.setPosition(30.f, yPos);
 }
 
 void Game::loadTextLine(sf::Text &text, std::string line, int yPos)
@@ -353,13 +283,18 @@ void Game::loadTextLine(sf::Text &text, std::string line, int yPos)
 	text.setString(line);
 	text.setCharacterSize(48);
 	text.setColor(sf::Color::White);
-	text.setPosition(510.f, yPos);
+	text.setPosition(30.f, yPos);
 }
 
 void Game::loadAssets()
 {
 	gothicbold.loadFromFile(resourcePath() + "assets/fonts/gothicb.ttf");
 	blackcastle.loadFromFile(resourcePath() + "assets/fonts/blackcastle.ttf");
+	lato.loadFromFile(resourcePath() + "assets/fonts/lato.ttf");
+
+	menuTexture.loadFromFile(resourcePath() + "assets/sprites/dungeonmenu.png");
+	menuSprite.setTexture(menuTexture);
+	menuSprite.scale(2.f, 1.5f);
 
 	HPbar.setSize(sf::Vector2f(150, 6));
 	HPbar.setOutlineColor(sf::Color::White);
@@ -375,45 +310,23 @@ void Game::loadAssets()
 	MPbar.setOrigin(0, 6);
 	MPbar.setPosition(camera.getCenter().x - 300, camera.getCenter().y - 570);
 
-	title.setFont(blackcastle);
-	title.setString("Wraithkeeper's Tomb");
-	title.setCharacterSize(150);
-	title.setColor(sf::Color::Red);
-	title.setPosition(60, 25);
+	title.setFont(lato);
+	title.setString("WRAITHKEEPER'S TOMB");
+	title.setCharacterSize(56);
+	title.setColor(sf::Color::White);
+	title.setPosition(620, 620);
 
 	//Menu buttons
-
-	loadTextLine(continueButton, "CONTINUE", 310);
-
-	loadTextLine(continueButtonDisabled, "CONTINUE", 310);
-	continueButtonDisabled.setColor(sf::Color::Color(100, 100, 100, 255));
-
-	loadTextLine(newGameButton, "NEW GAME", 360);
-
-	loadTextLine(loadGameButton, "LOAD GAME", 410);
-
-	loadTextLine(optionsButton, "OPTIONS", 460);
-
-	loadTextLine(exitGameButton, "EXIT GAME", 510);
+	loadTextLine(playButton, "PLAY", 30.f);
+	playButton.setFont(lato);
+	loadTextLine(exitButton, "EXIT", 75.f);
+	exitButton.setFont(lato);
 
 	//Highlighted
-
-	loadTextLineHL(continueButtonHL, "CONTINUE", 310);
-
-	loadTextLineHL(continueButtonHLDisabled, "CONTINUE", 310);
-	continueButtonHLDisabled.setColor(sf::Color::Color(100, 100, 100, 255));
-
-	continueButtonDisabled.setColor(sf::Color::Color(100, 100, 100, 255));
-
-	loadTextLineHL(newGameButtonHL, "NEW GAME", 360);
-
-	loadTextLineHL(loadGameButtonHL, "LOAD GAME", 410);
-
-	loadTextLineHL(optionsButtonHL, "OPTIONS", 460);
-
-	loadTextLineHL(exitGameButtonHL, "EXIT GAME", 510);
-
-
+	loadTextLineHL(playButtonHL, "PLAY", 30.f);
+	playButtonHL.setFont(lato);
+	loadTextLineHL(exitButtonHL, "EXIT", 75.f);
+	exitButtonHL.setFont(lato);
 
 	loadTextLine(victoryText, "Victory!", 225);
 	victoryText.setPosition(480, 225);
@@ -425,7 +338,8 @@ void Game::loadAssets()
 	pressResume.setPosition(420, 425);
     
 	loadTextLine(youDied, "YOU DIED", 425);
-    youDied.setCharacterSize((200));
+	youDied.setFont(gothicbold);
+	youDied.setCharacterSize((200));
     youDied.setPosition(130, 190);
     
     returnToTitle.setFont(blackcastle);
@@ -687,27 +601,14 @@ void Game::render()
 	// Render objects
 	if (gameState_ == GameState::titleScreen)
 	{
+		window.draw(menuSprite);
 		window.draw(title);
-		// if (current session save file found)
-		//		window.draw(continueButton);
-		// else
-				window.draw(continueButtonDisabled);
-		window.draw(newGameButton);
-		window.draw(loadGameButton);
-		window.draw(optionsButton);
-		window.draw(exitGameButton);
+		window.draw(playButton);
+		window.draw(exitButton);
 		switch (menuSwitch_)
 		{
-		case MenuSwitch::continueGame:
-			// if (current session save file found)
-			//		window.draw(continueButtonHL);
-			// else
-					window.draw(continueButtonHLDisabled); 
-			break;
-		case MenuSwitch::newGame: window.draw(newGameButtonHL); break;
-		case MenuSwitch::loadGame: window.draw(loadGameButtonHL); break;
-		case MenuSwitch::options: window.draw(optionsButtonHL); break;
-		case MenuSwitch::exitGame: window.draw(exitGameButtonHL); break;
+		case MenuSwitch::play: window.draw(playButtonHL); break;
+		case MenuSwitch::exit: window.draw(exitButtonHL); break;
 
 		default:
 			break;

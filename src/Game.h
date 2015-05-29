@@ -5,7 +5,6 @@
 #include <cstdlib>
 #include <ctime>
 #include <string>
-
 #include "Levels.h"
 #include "Hero.h"
 #include "Entity.h"
@@ -18,7 +17,7 @@ private:
 	} gameState_;
 
 	enum class MenuSwitch {
-		continueGame, newGame, loadGame, options, exitGame
+		play, exit
 	} menuSwitch_;
 
 	sf::RenderWindow window;
@@ -32,22 +31,19 @@ private:
 	sf::View camera;
 	sf::View minimap;
 
+	sf::Texture menuTexture;
+	sf::Sprite menuSprite;
+
 	sf::Font blackcastle;
 	sf::Font gothicbold;
+	sf::Font lato;
+
 	sf::Text title;
 	sf::Text victoryText;
-	sf::Text continueButton;
-	sf::Text continueButtonDisabled;
-	sf::Text newGameButton;
-	sf::Text loadGameButton;
-	sf::Text optionsButton;
-	sf::Text exitGameButton;
-	sf::Text continueButtonHL;
-	sf::Text continueButtonHLDisabled;
-	sf::Text newGameButtonHL;
-	sf::Text loadGameButtonHL;
-	sf::Text optionsButtonHL;
-	sf::Text exitGameButtonHL;
+	sf::Text playButton;
+	sf::Text playButtonHL;
+	sf::Text exitButton;
+	sf::Text exitButtonHL;
 	sf::Text pauseText;
 	sf::Text pressResume;
     sf::Text youDied;
