@@ -314,18 +314,18 @@ void Game::loadAssets()
 	title.setString("WRAITHKEEPER'S TOMB");
 	title.setCharacterSize(56);
 	title.setColor(sf::Color::White);
-	title.setPosition(620, 620);
+	title.setPosition(600, 620);
 
 	//Menu buttons
 	loadTextLine(playButton, "PLAY", 30.f);
 	playButton.setFont(lato);
-	loadTextLine(exitButton, "EXIT", 75.f);
+	loadTextLine(exitButton, "EXIT", 80.f);
 	exitButton.setFont(lato);
 
 	//Highlighted
 	loadTextLineHL(playButtonHL, "PLAY", 30.f);
 	playButtonHL.setFont(lato);
-	loadTextLineHL(exitButtonHL, "EXIT", 75.f);
+	loadTextLineHL(exitButtonHL, "EXIT", 80.f);
 	exitButtonHL.setFont(lato);
 
 	loadTextLine(victoryText, "Victory!", 225);

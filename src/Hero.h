@@ -80,7 +80,7 @@ public:
 
 	void freeze() {};
 	void freezeHero(sf::Clock &);
-	void unfreezeHero(sf::Clock);
+	void unfreezeHero(sf::Clock, float);
 	void knockBack(float, float);
 
 	void setPosition(float x, float y);
