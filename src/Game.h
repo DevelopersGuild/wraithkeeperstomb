@@ -24,6 +24,8 @@ private:
 
 	sf::Clock clock;	//Starts the clock
 	sf::Time deltaTime;	//Difference in time
+	sf::Clock gClock;	//Starts the clock
+	sf::Time dTime;	//Difference in time
 	sf::Clock knockBackTime;
 	float stageLoadingTime;
 

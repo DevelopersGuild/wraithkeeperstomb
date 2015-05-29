@@ -50,22 +50,29 @@ void Game::CreateEntities()
 void Game::mainLoop()
 {
 	sf::Event event;
+	dTime = sf::Time::Zero;
 	// Main loop
 	while (window.isOpen())
 	{
-		// Event loop
-		while (window.pollEvent(event))
-			handleEvent(event);
-		/*std::cout << theHero->getY() << '\n';*/
-		switch (gameState_)
-		{
-		case GameState::titleScreen: titleUpdate(); break;
-		case GameState::inGame: gameUpdate(); break;
-		case GameState::pause: pauseUpdate(); break;
-		case GameState::enterDoor: enterDoorUpdate(); break;
-		case GameState::victory: victoryUpdate(); break;
-		case GameState::gameOver: gameOverUpdate(); break;
-		default: break;
+		sf::Time elapsedTime = gClock.restart();
+		dTime += elapsedTime;
+		while (dTime > TimePerFrame) {
+			// Reset deltaTime
+			dTime -= TimePerFrame;
+			// Event loop
+			while (window.pollEvent(event))
+				handleEvent(event);
+			/*std::cout << theHero->getY() << '\n';*/
+			switch (gameState_)
+			{
+			case GameState::titleScreen: titleUpdate(); break;
+			case GameState::inGame: gameUpdate(); break;
+			case GameState::pause: pauseUpdate(); break;
+			case GameState::enterDoor: enterDoorUpdate(); break;
+			case GameState::victory: victoryUpdate(); break;
+			case GameState::gameOver: gameOverUpdate(); break;
+			default: break;
+			}
 		}
 		render();
 	}
