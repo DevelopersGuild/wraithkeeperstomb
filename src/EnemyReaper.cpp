@@ -26,7 +26,7 @@ EnemyReaper::EnemyReaper()
 
 void EnemyReaper::update(float time)
 {
-	if (Freeze.getElapsedTime().asSeconds() < 1)
+	if (Freeze.getElapsedTime().asSeconds() < 1.4)
 		isFrozen = true;
 	else
 		isFrozen = false;
@@ -58,6 +58,7 @@ void EnemyReaper::update(float time)
 	if (collisionNum == 2 || collisionNum == 0)
 		velocity.y = 0;
 
+	knockBack(time);
 	doPhysics(.1*time);
 }
 

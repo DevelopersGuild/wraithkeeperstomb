@@ -53,6 +53,8 @@ void FirstBoss::update(float time)
 		Sprite.setScale(-1.f, 1.f); //until animation is available
 	else
 		Sprite.setScale(1.f, 1.f);
+
+	knockBack(time);
 	doPhysics(.2*time);
 }
 

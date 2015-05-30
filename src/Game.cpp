@@ -237,12 +237,7 @@ void Game::hitCollision(Entity *getsHit, Entity *hitter)
 	if ((dynamic_cast<Enemy*>(hitter) || dynamic_cast<Hero*>(hitter)) && getsHit->getCollisionRect().intersects(hitter->getDamagingRect()))
 	{
 		getsHit->onHit(hitter->getDamage());
-		if (knockBackTime.getElapsedTime().asMilliseconds() > 300)
-		{
-			getsHit->knockBack(hitter->getX(), hitter->getY());
-			
-			knockBackTime.restart(); //warning: knockbackTime is shared between hero and enemy
-		}
+		getsHit->backDirection(hitter->getX(), hitter->getY());
 		hitter->freeze();
 	}
 
@@ -253,12 +248,7 @@ bool Game::projectileCollide(Entity *getsHit, Projectile *proj)
 	if ((dynamic_cast<Enemy*>(getsHit) || dynamic_cast<Hero*>(getsHit)) && getsHit->getCollisionRect().intersects(proj->getAttackRect()))
 	{
 		getsHit->onHit(proj->getDamage());
-		if (knockBackTime.getElapsedTime().asMilliseconds() > 300)
-		{
-			getsHit->knockBack(proj->getX(), proj->getY());
-
-			knockBackTime.restart(); //warning: knockbackTime is shared between hero and enemy
-		}
+		getsHit->backDirection(proj->getX(), proj->getY());
 		return true;
 	}
 	else

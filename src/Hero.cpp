@@ -36,6 +36,8 @@ Hero::Hero()
 	isFrozen = false;
 	projectileCooldown = 0.0;
 	collisionNum = 0;
+	backing = 0;
+	knockBackDuration = 0.1;
 
 	walkingSounds.loadFile(resourcePath() + "assets/sounds/footsteps.wav");
 
@@ -294,6 +296,7 @@ void Hero::update(float seconds)
 		if (stats_.HP <= 0)
 			is_alive_ = false;
 
+		knockBack(seconds);
 		doPhysics(seconds);
 
 		if (velocity.y != 0)
@@ -361,17 +364,35 @@ void Hero::giveWeapon(Weapons * newWeapon)
 	weapon = newWeapon;
 }
 
-void Hero::knockBack(float hitter_x, float hitter_y)
+void Hero::knockBack(float seconds)
 {
-	if ((getX() - hitter_x) <= 1)
+	std::cout << seconds << std::endl;
+	if (backing != 0)
 	{
-		velocity.x = -stats_.speed;
-		Sprite.move((3 * velocity.x), 0.f);
+		if (backing == 'l')
+		{
+			velocity.x = -stats_.speed * seconds * seconds * 1000;
+			Sprite.move((4 * velocity.x), 0.f);
+		}
+		else if (backing == 'r')
+		{
+			velocity.x = stats_.speed * seconds * seconds * 1000;
+			Sprite.move((4 * velocity.x), 0.f);
+		}
+		else
+		{
+			velocity.x = -stats_.speed * seconds * seconds * 1000;
+			Sprite.move((4 * velocity.x), 0.f);
+		}
+		knockBackDuration -= seconds;
 	}
 	else
 	{
-		velocity.x = stats_.speed;
-		Sprite.move((3 * velocity.x), 0.f);
+	}
+	if (knockBackDuration < 0)
+	{
+		backing = 0;
+		knockBackDuration = 0.1;
 	}
 }
 
