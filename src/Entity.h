@@ -10,6 +10,7 @@ protected:
 	sf::Texture Texture;
 	sf::Sprite Sprite;
 	bool is_alive_;
+	char backing;
 
 	sf::Vector2f velocity;
 
@@ -23,7 +24,9 @@ public:
 	virtual void render(sf::RenderWindow& window);
 	virtual void update(float time);
 	virtual void freeze() = 0;
-	virtual void knockBack(float, float) = 0;
+	virtual void knockBack(float) = 0;
+
+	void backDirection(float, float);
 
 	void doPhysics(float seconds);
 

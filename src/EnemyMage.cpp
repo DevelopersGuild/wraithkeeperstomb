@@ -28,7 +28,7 @@ EnemyMage::EnemyMage()
 
 void EnemyMage::update(float time)
 {
-	if (Freeze.getElapsedTime().asSeconds() < 1)
+	if (Freeze.getElapsedTime().asSeconds() < 1.4)
 		isFrozen = true;
 	else
 		isFrozen = false;
@@ -36,7 +36,7 @@ void EnemyMage::update(float time)
 
 	chaseHero(); //check hero detection
 
-	if (projectileCooldown > 0)
+	if (projectileCooldown > 0 && !isFrozen)
 		projectileCooldown -= time;
 	
 	if (!heroDetected)
@@ -61,6 +61,7 @@ void EnemyMage::update(float time)
 	else
 		Sprite.setScale(1.f, 1.f);
 
+	knockBack(time);
 	doPhysics(time);
 }
 

@@ -62,3 +62,11 @@ void Entity::doPhysics(float seconds)
 	Sprite.move(velocity);
 
 }
+
+void Entity::backDirection(float hitter_x, float hitter_y)
+{
+	if ((getX() - hitter_x) <= 1)
+		backing = 'l'; //knock back to the left
+	else
+		backing = 'r'; //knock back to the right
+}
