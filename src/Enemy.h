@@ -34,7 +34,7 @@ public:
 		
 	}
 	virtual void onHeroDetected(Hero* hero);
-	void onHit(float dmg);
+	float onHit(float dmg);
 	void freeze();
 	void knockBack(float, float);
 	void areaPatrol(float);

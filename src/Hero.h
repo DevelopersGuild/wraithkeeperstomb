@@ -61,7 +61,7 @@ public:
 	~Hero();
 	void update(float seconds);
 	void render(sf::RenderWindow &window);
-	void onHit(float dmg);
+	float onHit(float dmg);
 	bool attack();
 	bool projectileShoot();
 	void jump(float seconds);
