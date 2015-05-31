@@ -18,7 +18,8 @@ public:
 	virtual void apply(Hero * hero) = 0;
 
 	void freeze(){};
-	void knockBack(float, float){};
+	void backDirection(float, float){};
+	void knockBack(float){};
 };
 
 class PowerupCookie : public Powerup

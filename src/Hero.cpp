@@ -36,6 +36,8 @@ Hero::Hero()
 	isFrozen = false;
 	projectileCooldown = 0.0;
 	collisionNum = 0;
+	backing = 0;
+	knockBackDuration = 0.1;
 
 	walkingSounds.loadFile(resourcePath() + "assets/sounds/footsteps.wav");
 
@@ -138,24 +140,24 @@ void Hero::attackAnim()
 		yFrame = -1;
 	}
 	//Move frame forward
-	if (frameTimer < 4)
+	if (frameTimer < 2)
 	{
 		xFrame = 0;
 		weapon->setPosition(getX() + 17 * yFrame, getY() - 14);
 	}
-	else if (frameTimer < 6)
+	else if (frameTimer < 3)
 	{
 		xFrame = 1;
 		Sprite.move(velocity.x * .5f, 0.f);
 		weapon->setPosition(getX() + 23 * yFrame, getY() - 10);
 	}
-	else if (frameTimer < 12)
+	else if (frameTimer < 6)
 	{
 		xFrame = 2;
 		Sprite.move(velocity.x * .7f, 0.f);
 		weapon->setPosition(getX() + 28 * yFrame, getY() - 8);
 	}
-	else if (frameTimer < 28)
+	else if (frameTimer < 14)
 	{
 		xFrame = 3;
 		weapon->setPosition(getX() + 39 * yFrame, getY() - 8);
@@ -197,7 +199,7 @@ bool Hero::attack()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && velocity.y == 0 && collisionNum == 0)
 		if (weapon->attack())
 		{
-			atkTime = 35;
+			atkTime = 18;
 			freezeHero(freezeClock);
 			return true;
 		}
@@ -210,9 +212,9 @@ void Hero::freezeHero(sf::Clock &freezeClock)
 	freezeClock.restart().asSeconds();
 }
 
-void Hero::unfreezeHero(sf::Clock freezeClock)
+void Hero::unfreezeHero(sf::Clock freezeClock, float time)
 {
-	if (freezeClock.getElapsedTime().asSeconds() >= 0.5f)
+	if (freezeClock.getElapsedTime().asSeconds() >= time)
 		isFrozen = false;
 }
 
@@ -249,10 +251,6 @@ void Hero::jump(float seconds)
 
 void Hero::update(float seconds)
 {
-	std::cout << "Y Vel: " << velocity.y << std::endl;
-	std::cout << "X Vel: " << velocity.x << std::endl;
-	std::cout << "Hero Y: " << getY() << std::endl;
-	std::cout << "Hero X: " << getX() << std::endl;
 	//prevent bonuses from increasing over time
 	stats_.speed = HERO_BASE_SPEED * stats_.speedMultiplier;
 	for (auto iter = effects_.begin(); iter != effects_.end();) { //iterate through all buffs/debuffs 
@@ -270,7 +268,7 @@ void Hero::update(float seconds)
 			++iter;
 		}
 	}
-	unfreezeHero(freezeClock);
+	unfreezeHero(freezeClock, 0.15f);
 	{
 		// Handle movement
 		walkingSounds.playSound();
@@ -298,6 +296,7 @@ void Hero::update(float seconds)
 		if (stats_.HP <= 0)
 			is_alive_ = false;
 
+		knockBack(seconds);
 		doPhysics(seconds);
 
 		if (velocity.y != 0)
@@ -371,17 +370,35 @@ void Hero::giveWeapon(Weapons * newWeapon)
 	weapon = newWeapon;
 }
 
-void Hero::knockBack(float hitter_x, float hitter_y)
+void Hero::knockBack(float seconds)
 {
-	if ((getX() - hitter_x) <= 1)
+	std::cout << seconds << std::endl;
+	if (backing != 0)
 	{
-		velocity.x = -stats_.speed;
-		Sprite.move((3 * velocity.x), 0.f);
+		if (backing == 'l')
+		{
+			velocity.x = -stats_.speed * seconds * seconds * 1000;
+			Sprite.move((4 * velocity.x), 0.f);
+		}
+		else if (backing == 'r')
+		{
+			velocity.x = stats_.speed * seconds * seconds * 1000;
+			Sprite.move((4 * velocity.x), 0.f);
+		}
+		else
+		{
+			velocity.x = -stats_.speed * seconds * seconds * 1000;
+			Sprite.move((4 * velocity.x), 0.f);
+		}
+		knockBackDuration -= seconds;
 	}
 	else
 	{
-		velocity.x = stats_.speed;
-		Sprite.move((3 * velocity.x), 0.f);
+	}
+	if (knockBackDuration < 0)
+	{
+		backing = 0;
+		knockBackDuration = 0.1;
 	}
 }
 

@@ -46,6 +46,8 @@ private:
 	bool faceRight;				//Boolean for determining direction hero is facing at rest
 	bool isFrozen;
 	float projectileCooldown;
+	//char backing;
+	float knockBackDuration;
 
 	std::list<Effect*> effects_;
 
@@ -80,8 +82,9 @@ public:
 
 	void freeze() {};
 	void freezeHero(sf::Clock &);
-	void unfreezeHero(sf::Clock);
-	void knockBack(float, float);
+	void unfreezeHero(sf::Clock, float);
+	void knockBack(float);
+	//void backDirection(float, float);
 
 	void setPosition(float x, float y);
 

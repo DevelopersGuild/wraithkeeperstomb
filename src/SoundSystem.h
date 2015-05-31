@@ -1,7 +1,7 @@
 #ifndef __H_SOUND_SYSTEM
 #define __H_SOUND_SYSTEM
 
-#include <SFML\Audio.hpp>
+#include <SFML/Audio.hpp>
 
 class SoundSystem
 {

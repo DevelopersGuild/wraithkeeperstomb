@@ -15,6 +15,8 @@ Enemy::Enemy()
 	collisionNum = 0;
 	if (faceRight)
 		Sprite.setScale(-1.f, 1.f);
+	knockBackDuration = 0.1;
+	backing = 0;
 }
 
 void Enemy::chaseHero()
@@ -86,15 +88,34 @@ void Enemy::freeze()
 		isFrozen = true;
 }
 
-void Enemy::knockBack(float hitter_x, float hitter_y)
+void Enemy::knockBack(float seconds)
 {
-	if ((getX() - hitter_x) <= 1)
+	if (backing != 0)
 	{
-		Sprite.move((15 * -speed), 0.f);
+		if (backing == 'l')
+		{
+			velocity.x = -speed * seconds * seconds * 1000;
+			Sprite.move(8 * velocity.x, 0.f);
+		}
+		else if (backing == 'r')
+		{
+			velocity.x = speed * seconds * seconds * 1000;
+			Sprite.move(8 * velocity.x, 0.f);
+		}
+		else
+		{
+			velocity.x = speed * seconds * seconds * 1000;
+			Sprite.move(8 * velocity.x, 0.f);
+		}
+		knockBackDuration -= seconds;
 	}
 	else
 	{
-		Sprite.move((15 * speed), 0.f);
+	}
+	if (knockBackDuration < 0)
+	{
+		backing = 0;
+		knockBackDuration = 0.1;
 	}
 }
 

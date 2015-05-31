@@ -5,6 +5,7 @@ static const int WINDOW_WIDTH = 1280;
 static const int WINDOW_HEIGHT = 720;
 
 const float GROUND_HEIGHT = 1360.0f;
+const sf::Time TimePerFrame = sf::seconds(1.f / 60.f); // Time per frame (1 sixtieth times 60 = 60 fps)
 
 //Hero
 const float HERO_BASE_HP = 300.f;

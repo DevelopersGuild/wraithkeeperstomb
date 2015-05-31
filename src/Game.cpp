@@ -50,22 +50,32 @@ void Game::CreateEntities()
 void Game::mainLoop()
 {
 	sf::Event event;
+	// Start dTime out as zero. It will increase until it is time to move 1 frame forward
+	dTime = sf::Time::Zero;
 	// Main loop
 	while (window.isOpen())
 	{
-		// Event loop
-		while (window.pollEvent(event))
-			handleEvent(event);
-		/*std::cout << theHero->getY() << '\n';*/
-		switch (gameState_)
-		{
-		case GameState::titleScreen: titleUpdate(); break;
-		case GameState::inGame: gameUpdate(); break;
-		case GameState::pause: pauseUpdate(); break;
-		case GameState::enterDoor: enterDoorUpdate(); break;
-		case GameState::victory: victoryUpdate(); break;
-		case GameState::gameOver: gameOverUpdate(); break;
-		default: break;
+		sf::Time elapsedTime = gClock.restart(); // Time elapsed according to system time not per cylcle through the loop
+		dTime += elapsedTime; // Add system time to dTime.
+
+		// If dTime becomes greater than 1/60 of a second, the game updates
+		while (dTime > TimePerFrame) {
+			// Reset deltaTime
+			dTime -= TimePerFrame;
+			// Event loop
+			while (window.pollEvent(event))
+				handleEvent(event);
+			/*std::cout << theHero->getY() << '\n';*/
+			switch (gameState_)
+			{
+			case GameState::titleScreen: titleUpdate(); break;
+			case GameState::inGame: gameUpdate(); break;
+			case GameState::pause: pauseUpdate(); break;
+			case GameState::enterDoor: enterDoorUpdate(); break;
+			case GameState::victory: victoryUpdate(); break;
+			case GameState::gameOver: gameOverUpdate(); break;
+			default: break;
+			}
 		}
 		render();
 	}
@@ -227,12 +237,7 @@ void Game::hitCollision(Entity *getsHit, Entity *hitter)
 	if ((dynamic_cast<Enemy*>(hitter) || dynamic_cast<Hero*>(hitter)) && getsHit->getCollisionRect().intersects(hitter->getDamagingRect()))
 	{
 		float dmgDealt = getsHit->onHit(hitter->getDamage());
-		if (knockBackTime.getElapsedTime().asMilliseconds() > 300)
-		{
-			getsHit->knockBack(hitter->getX(), hitter->getY());
-			
-			knockBackTime.restart(); //warning: knockbackTime is shared between hero and enemy
-		}
+		getsHit->backDirection(hitter->getX(), hitter->getY());
 		hitter->freeze();
 		dmgTextAppears(dynamic_cast<Enemy*>(getsHit), getsHit->getX(), getsHit->getY(), static_cast<int>(dmgDealt));
 	}
@@ -243,12 +248,7 @@ bool Game::projectileCollide(Entity *getsHit, Projectile *proj)
 	if ((dynamic_cast<Enemy*>(getsHit) || dynamic_cast<Hero*>(getsHit)) && getsHit->getCollisionRect().intersects(proj->getAttackRect()))
 	{
 		float dmgDealt = getsHit->onHit(proj->getDamage());
-		if (knockBackTime.getElapsedTime().asMilliseconds() > 300)
-		{
-			getsHit->knockBack(proj->getX(), proj->getY());
-
-			knockBackTime.restart(); //warning: knockbackTime is shared between hero and enemy
-		}
+		getsHit->backDirection(proj->getX(), proj->getY());
 		dmgTextAppears(dynamic_cast<Enemy*>(getsHit), getsHit->getX(), getsHit->getY(), static_cast<int>(dmgDealt));
 		return true;
 	}
@@ -315,18 +315,18 @@ void Game::loadAssets()
 	title.setString("WRAITHKEEPER'S TOMB");
 	title.setCharacterSize(56);
 	title.setColor(sf::Color::White);
-	title.setPosition(620, 620);
+	title.setPosition(600, 620);
 
 	//Menu buttons
 	loadTextLine(playButton, "PLAY", 30.f);
 	playButton.setFont(lato);
-	loadTextLine(exitButton, "EXIT", 75.f);
+	loadTextLine(exitButton, "EXIT", 80.f);
 	exitButton.setFont(lato);
 
 	//Highlighted
 	loadTextLineHL(playButtonHL, "PLAY", 30.f);
 	playButtonHL.setFont(lato);
-	loadTextLineHL(exitButtonHL, "EXIT", 75.f);
+	loadTextLineHL(exitButtonHL, "EXIT", 80.f);
 	exitButtonHL.setFont(lato);
 
 	loadTextLine(victoryText, "Victory!", 225);

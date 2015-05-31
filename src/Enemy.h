@@ -22,6 +22,8 @@ protected:
 	float patrol_origin; //x-value only for now
 	bool patrol_right;
 	float patrol_pause;
+	//char backing;
+	float knockBackDuration;
 
 public:
 	Enemy();
@@ -36,7 +38,7 @@ public:
 	virtual void onHeroDetected(Hero* hero);
 	float onHit(float dmg);
 	void freeze();
-	void knockBack(float, float);
+	void knockBack(float);
 	void areaPatrol(float);
 
 	// Accessor(s)
@@ -68,6 +70,7 @@ public:
 	}
 
 	void onHit(int dmg);
+	//void backDirection(float, float);
 };
 
 #endif
