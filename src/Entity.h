@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Platform.h"
+#include <string>
 
 class Entity
 {
@@ -10,6 +11,8 @@ protected:
 	sf::Texture Texture;
 	sf::Sprite Sprite;
 	bool is_alive_;
+	sf::Font lato;
+	sf::Text dmgText;
 	char backing;
 
 	sf::Vector2f velocity;
@@ -34,8 +37,8 @@ public:
 
 	void setGround(Platform*);
 
-	virtual void onHit(float dmg)
-	{ return; }
+	virtual float onHit(float dmg)
+	{ return 0; }
 
 	virtual void setPosition(float, float);
 

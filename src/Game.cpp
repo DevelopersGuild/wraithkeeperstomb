@@ -35,7 +35,7 @@ Game::Game()
 	minimap.setCenter(1280, 720);
 	camera.setCenter(710, theHero->getY() - 100);
 	knockBackTime.restart();
-
+	dmgTextRegistry.clear();
 	doorOpen = false;
 }
 
@@ -236,19 +236,20 @@ void Game::hitCollision(Entity *getsHit, Entity *hitter)
 {
 	if ((dynamic_cast<Enemy*>(hitter) || dynamic_cast<Hero*>(hitter)) && getsHit->getCollisionRect().intersects(hitter->getDamagingRect()))
 	{
-		getsHit->onHit(hitter->getDamage());
+		float dmgDealt = getsHit->onHit(hitter->getDamage());
 		getsHit->backDirection(hitter->getX(), hitter->getY());
 		hitter->freeze();
+		dmgTextAppears(dynamic_cast<Enemy*>(getsHit), getsHit->getX(), getsHit->getY(), static_cast<int>(dmgDealt));
 	}
-
 }
 
 bool Game::projectileCollide(Entity *getsHit, Projectile *proj)
 {
 	if ((dynamic_cast<Enemy*>(getsHit) || dynamic_cast<Hero*>(getsHit)) && getsHit->getCollisionRect().intersects(proj->getAttackRect()))
 	{
-		getsHit->onHit(proj->getDamage());
+		float dmgDealt = getsHit->onHit(proj->getDamage());
 		getsHit->backDirection(proj->getX(), proj->getY());
+		dmgTextAppears(dynamic_cast<Enemy*>(getsHit), getsHit->getX(), getsHit->getY(), static_cast<int>(dmgDealt));
 		return true;
 	}
 	else
@@ -353,6 +354,26 @@ void Game::loadAssets()
 	loading.setCharacterSize(64);
 	loading.setColor(sf::Color::Red);
 	loading.setPosition(1000, 610);
+
+	//damage text
+	dmgText.setFont(lato);
+	dmgText.setCharacterSize(19);
+}
+
+void Game::dmgTextAppears(bool isEnemy, float x_pos, float y_pos, int dmg)
+{
+	if (dmg == 0)
+		return;
+
+	dmgText.setPosition(x_pos, y_pos-128);
+	dmgText.setString(std::to_string(dmg));
+
+	if (isEnemy) //the one who gets hit
+		dmgText.setColor(sf::Color::White);
+	else
+		dmgText.setColor(sf::Color::Red);
+
+	dmgTextRegistry.push_back(dmgText);
 }
 
 void Game::titleUpdate()
@@ -422,9 +443,10 @@ void Game::cleanupAll()
 		delete *entity;
 		entity = entityRegistry.erase(entity);
 	}
-	
+
 	projectiles.clear();
 	entityRegistry.clear();
+	dmgTextRegistry.clear();
 }
 
 void Game::gameUpdate()
@@ -529,6 +551,22 @@ void Game::gameUpdate()
 	}
 
 	cleanupProjectiles(); 
+
+	//Check if dmg texts expire
+	for (auto txt = dmgTextRegistry.begin(); txt != dmgTextRegistry.end();)
+	{
+		if ((*txt).getColor().a <= 10)
+			txt = dmgTextRegistry.erase(txt);
+		else
+		{
+			int r = (*txt).getColor().r;
+			int g = (*txt).getColor().g;
+			int b = (*txt).getColor().b;
+			int a = (*txt).getColor().a;
+			(*txt).setColor(sf::Color(r, g, b, a - 3));
+			txt++;
+		}
+	}
 
 	// Camera
 	camera.setSize(sf::Vector2f(1280, 720));
@@ -641,6 +679,9 @@ void Game::render()
 			++iter;
 		}
 		
+		for (size_t i = 0; i < dmgTextRegistry.size(); i++)
+			window.draw(dmgTextRegistry[i]);
+
 		window.draw(HPbar);
 		window.draw(MPbar);
 	}
@@ -736,4 +777,5 @@ Game::~Game()
 	
 	projectiles.clear();
 	entityRegistry.clear();
+	dmgTextRegistry.clear();
 }

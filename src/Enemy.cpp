@@ -67,13 +67,18 @@ void Enemy::onHeroDetected(Hero* hero)
 	}
 }
 
-void Enemy::onHit(float dmg)
+float Enemy::onHit(float dmg)
 {
 	//std::cout << "attacked";
+	float dmgDealt = 0;
+
 	if (dmg > armor)
-		HP = HP - (dmg - armor / 4);
+		dmgDealt = (dmg - armor / 4);
 	else
-		HP = HP - rand() % 10;
+		dmgDealt = rand() % 10;
+
+	HP = HP - dmgDealt;
+	return dmgDealt;
 }
 
 void Enemy::freeze()

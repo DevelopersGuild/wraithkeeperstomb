@@ -335,16 +335,22 @@ void Hero::render(sf::RenderWindow &window)
 	}
 }
 
-void Hero::onHit(float dmg)
+float Hero::onHit(float dmg)
 {
 	if (invincibilityCD.getElapsedTime().asSeconds() > 1)
 	{
+		float dmgDealt = 0;
 		invincibilityCD.restart();
 		if (dmg > stats_.armor)
-			stats_.HP = stats_.HP - (dmg - stats_.armor / 3 + rand() % 3);
+			dmgDealt = dmg - stats_.armor / 3 + rand() % 3;
 		else
-			stats_.HP = stats_.HP - rand() % 5;
+			dmgDealt = rand() % 5;
+
+		stats_.HP = stats_.HP - dmgDealt;
+		return dmgDealt;
 	}
+	else
+		return 0;
 }
 
 void Hero::setExperience(int add_exp)

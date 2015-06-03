@@ -51,6 +51,7 @@ private:
     sf::Text youDied;
     sf::Text returnToTitle;
 	sf::Text loading;
+	sf::Text dmgText;
 
 	sf::RectangleShape HPbar;
 	sf::RectangleShape MPbar;
@@ -89,6 +90,7 @@ private:
 	void cleanupAll(); //delete all entities and projectiles except hero
 	void loadTextLineHL(sf::Text &text, std::string line, int yPos);
 	void loadTextLine(sf::Text &text, std::string line, int yPos);
+	void dmgTextAppears(bool isEnemy, float x, float y, int dmg);
 
 public:
 	Game();
@@ -98,6 +100,7 @@ public:
 	static Hero * getHero();
 
 	static std::vector<Entity *> entityRegistry;
+	std::vector<sf::Text> dmgTextRegistry;
 };
 
 #endif

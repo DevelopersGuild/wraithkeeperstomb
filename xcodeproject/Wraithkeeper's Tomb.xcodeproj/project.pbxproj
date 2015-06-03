@@ -25,6 +25,7 @@
 		106BC8CB1B080DF3000AF483 /* Spear.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8B61B080DF3000AF483 /* Spear.cpp */; };
 		106BC8CC1B080DF3000AF483 /* Weapons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 106BC8B81B080DF3000AF483 /* Weapons.cpp */; };
 		5F352EB31B0B29F200CABD07 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F352EB21B0B29F200CABD07 /* Images.xcassets */; };
+		5F7951351B1A9D0D00402D87 /* SoundSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F7951331B1A9D0D00402D87 /* SoundSystem.cpp */; };
 		5FC7638E1AF8ED7500504B24 /* .. in Resources */ = {isa = PBXBuildFile; fileRef = 5FC7638D1AF8ED7500504B24 /* .. */; };
 		5FE148BD1AFBE546007C20CA /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 5FE148BC1AFBE546007C20CA /* assets */; };
 /* End PBXBuildFile section */
@@ -64,9 +65,11 @@
 		106BC8B71B080DF3000AF483 /* Spear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spear.h; path = ../src/Spear.h; sourceTree = "<group>"; };
 		106BC8B81B080DF3000AF483 /* Weapons.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Weapons.cpp; path = ../src/Weapons.cpp; sourceTree = "<group>"; };
 		106BC8B91B080DF3000AF483 /* Weapons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Weapons.h; path = ../src/Weapons.h; sourceTree = "<group>"; };
-		5F352EB21B0B29F200CABD07 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Images.xcassets"; path = "Wraithkeeper's Tomb/Images.xcassets"; sourceTree = SOURCE_ROOT; };
+		5F352EB21B0B29F200CABD07 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Wraithkeeper's Tomb/Images.xcassets"; sourceTree = SOURCE_ROOT; };
 		5F3E87031AF8E65600FAC432 /* Wraithkeeper's Tomb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wraithkeeper's Tomb.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F3E87071AF8E65600FAC432 /* Wraithkeeper's Tomb-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Wraithkeeper's Tomb-Info.plist"; sourceTree = "<group>"; };
+		5F7951331B1A9D0D00402D87 /* SoundSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SoundSystem.cpp; path = ../src/SoundSystem.cpp; sourceTree = "<group>"; };
+		5F7951341B1A9D0D00402D87 /* SoundSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundSystem.h; path = ../src/SoundSystem.h; sourceTree = "<group>"; };
 		5FC7638D1AF8ED7500504B24 /* .. */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ..; sourceTree = "<group>"; };
 		5FE148BC1AFBE546007C20CA /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../../assets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,6 +118,8 @@
 				106BC8B31B080DF3000AF483 /* Powerup.h */,
 				106BC8B41B080DF3000AF483 /* Projectile.cpp */,
 				106BC8B51B080DF3000AF483 /* Projectile.h */,
+				5F7951331B1A9D0D00402D87 /* SoundSystem.cpp */,
+				5F7951341B1A9D0D00402D87 /* SoundSystem.h */,
 				106BC8B61B080DF3000AF483 /* Spear.cpp */,
 				106BC8B71B080DF3000AF483 /* Spear.h */,
 				106BC8B81B080DF3000AF483 /* Weapons.cpp */,
@@ -247,6 +252,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F7951351B1A9D0D00402D87 /* SoundSystem.cpp in Sources */,
 				106BC8C21B080DF3000AF483 /* Hero.cpp in Sources */,
 				106BC8BE1B080DF3000AF483 /* EnemyReaper.cpp in Sources */,
 				106BC8C51B080DF3000AF483 /* Paths-Mac.mm in Sources */,
