@@ -282,7 +282,7 @@ void Levels::platformSets()
 			createPlatform(0, 800.f, 1200.f, 200.f, 32.f);
 			createPlatform(0, 600.f, 1100.f, 200.f, 32.f);
 			createPlatform(0, 1400.f, 800.f, 200.f, 32.f);
-			createPlatform(2, 275.f, 0.f, 32.f, 1440.f);
+			createPlatform(2, 275.f, 0.f, 32.5f, 1440.f);
 			createPlatform(2, 2284.f, 0.f, 32.f, 1440.f);
 			// Ground Platform
 			createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);

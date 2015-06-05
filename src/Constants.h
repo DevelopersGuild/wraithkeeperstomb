@@ -43,8 +43,8 @@ const float BOSS_ARMOR = 16.75f;
 const float BOSS_DETECTION_RADIUS = 350.f; //not yet applied
 //Weapons
 const float SPEAR_RANGE = 125.f;
-const float SPEAR_COOLDOWN = 1.f;
-const float SPEAR_DAMAGE = 200.f;
+const float SPEAR_COOLDOWN = 0.4f;
+const float SPEAR_DAMAGE = 35.f;
 const float SPEAR_CRIT_CHANCE = 15.f;
 const float SPEAR_CRIT_MULTIPLIER = 1.5f;
 const float SPEAR_DMG_FLUCTUATION_RATE = 0.1f;

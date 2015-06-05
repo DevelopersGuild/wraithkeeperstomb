@@ -268,7 +268,7 @@ void Hero::update(float seconds)
 			++iter;
 		}
 	}
-	unfreezeHero(freezeClock, 0.15f);
+	unfreezeHero(freezeClock, 0.3f);
 	{
 		// Handle movement
 		walkingSounds.playSound();
