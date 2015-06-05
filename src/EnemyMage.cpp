@@ -28,7 +28,7 @@ EnemyMage::EnemyMage()
 
 void EnemyMage::update(float time)
 {
-	if (Freeze.getElapsedTime().asSeconds() < 1.4)
+	if (Freeze.getElapsedTime().asSeconds() < 2)
 		isFrozen = true;
 	else
 		isFrozen = false;

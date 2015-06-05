@@ -686,7 +686,7 @@ void Game::render()
 	else if (gameState_ == GameState::inGame)
 	{
 		camera.setViewport(sf::FloatRect(0, 0, 1, 1));
-		minimap.setViewport(sf::FloatRect(0.75f, 0, 0.25f, 0.25f));
+		minimap.setViewport(sf::FloatRect(0.f, 0.f, 0.f, 0.f));
 		minimap.setCenter(1180, 1020);
 		levels.render(window);
 		window.setView(minimap);
@@ -695,10 +695,6 @@ void Game::render()
 
 		for (size_t i = 0; i < entityRegistry.size(); i++)
 		{
-			
-			window.setView(minimap);
-			entityRegistry[i]->render(window);
-			
 			window.setView(camera);
 			entityRegistry[i]->render(window);
 		}
