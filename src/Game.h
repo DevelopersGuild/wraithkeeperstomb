@@ -36,6 +36,9 @@ private:
 	sf::Texture menuTexture;
 	sf::Sprite menuSprite;
 
+	sf::Texture soulTexture;
+	sf::Sprite soulSprite;
+
 	sf::Font blackcastle;
 	sf::Font gothicbold;
 	sf::Font lato;
@@ -59,6 +62,10 @@ private:
 	Levels levels;
 
 	bool doorOpen;
+	bool soulRelease;
+	int soulCount;
+	int soulFrame;
+	float soulX, soulY;
 
 	void update();
 	void render();
@@ -74,6 +81,8 @@ private:
 	void hitCollision(Entity *, Entity *);
 	bool projectileCollide(Entity *, Projectile *);
 	void enterDoor(Entity *);
+	void soulAnim();
+
 
 	static Hero *theHero;
 
@@ -101,6 +110,7 @@ public:
 
 	static std::vector<Entity *> entityRegistry;
 	std::vector<sf::Text> dmgTextRegistry;
+	std::vector<sf::Sprite> dmgSpriteRegistry;
 };
 
 #endif
