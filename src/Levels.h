@@ -28,6 +28,7 @@ private:
 	Door door;
 
 	float bossFightChance;
+	int maps_passed;
 
 public:
 	std::vector<Platform> platforms;

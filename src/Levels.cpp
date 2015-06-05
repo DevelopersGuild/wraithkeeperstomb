@@ -13,6 +13,7 @@ Levels::Levels()
 	isBoss = false;
 	bossFightChance = 0;
 	level = 1;
+	maps_passed = 0;
 	srand(time(0));
 }
 
@@ -25,15 +26,16 @@ void Levels::levelup()
 
 void Levels::incrBossFightChance()
 {
+	int incr = (level - 1) * 2.7;
 	if (bossFightChance < 90)
-		bossFightChance = bossFightChance + 18.f - (level - 1) * 6.75;
+		bossFightChance = bossFightChance + 18.f - incr;
 	else
 		bossFightChance = 90;
 }
 
 void Levels::bossAppearance()
 {
-	if (rand() % 100 < bossFightChance)
+	if (rand() % 100 < bossFightChance && maps_passed > level * 2)
 		isBoss = true;
 }
 
@@ -48,6 +50,7 @@ void Levels::roomGenerater()
 	createBackground();
 	//platformSets();
 	entitiesSets();
+	maps_passed++;
 }
 
 void Levels::createBackground()
@@ -85,10 +88,10 @@ void Levels::doorSets()
 	{
 		switch (set_num)
 		{
-		case 1:	door.setPosition(1000.f, 1205.f);
-		case 2:	door.setPosition(1200.f, 1205.f);
-		case 3: door.setPosition(100.f, 1205.f);
-		default: door.setPosition(2000.f, 1205.f);
+		case 1:	door.setPosition(1000.f, 1205.f); break;
+		case 2:	door.setPosition(1200.f, 1205.f); break;
+		case 3: door.setPosition(100.f, 1205.f); break;
+		default: door.setPosition(2000.f, 1205.f); break;
 		}
 	}
 	else

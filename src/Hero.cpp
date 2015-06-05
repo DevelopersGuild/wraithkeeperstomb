@@ -372,7 +372,6 @@ void Hero::giveWeapon(Weapons * newWeapon)
 
 void Hero::knockBack(float seconds)
 {
-	std::cout << seconds << std::endl;
 	if (backing != 0)
 	{
 		if (backing == 'l')
