@@ -11,6 +11,7 @@ protected:
 	sf::Texture Texture;
 	sf::Sprite Sprite;
 	bool is_alive_;
+	bool is_creature_ = false;
 	sf::Font lato;
 	sf::Text dmgText;
 	char backing;
@@ -63,6 +64,9 @@ public:
 
 	virtual bool IsAlive() const
 	{ return is_alive_; }
+
+	virtual bool IsCreature() const
+	{ return is_creature_; }
 
 };
 

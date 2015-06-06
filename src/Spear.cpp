@@ -43,7 +43,7 @@ bool Spear::attack()
 {
 	if (cooldown.getElapsedTime().asSeconds() > SPEAR_COOLDOWN)
 	{
-		atkTime = 18;
+		atkTime = 25; // Determines the time for spear animation only. Not attack. Keep at 35 for now
 		cooldown.restart().asSeconds();
 		return true;
 	}

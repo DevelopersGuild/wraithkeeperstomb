@@ -298,9 +298,9 @@ void Game::loadAssets()
 	menuSprite.setTexture(menuTexture);
 	menuSprite.scale(2.f, 1.5f);
 
-	soulTexture.loadFromFile(resourcePath() + "assets/sprites/soulrelease.png");
+	soulTexture.loadFromFile(resourcePath() + "assets/sprites/redsoul.png");
 	soulSprite.setTexture(soulTexture);
-	soulSprite.setTextureRect(sf::IntRect(0, 0, 76, 159));
+	soulSprite.setTextureRect(sf::IntRect(0, 0, 76, 115));
 
 	HPbar.setSize(sf::Vector2f(150, 6));
 	HPbar.setOutlineColor(sf::Color::White);
@@ -480,11 +480,11 @@ void Game::gameUpdate()
 		e->setCollisionState(1);
 		e->setGround(0);
 
-		if (!(e->IsAlive()))
+		if (!(e->IsAlive()) && e->IsCreature())
 		{
 			soulRelease = true;
 			soulCount = 120;
-			soulSprite.setPosition(e->getX() - 50, e->getY() -200);
+			soulSprite.setPosition(e->getX() - 50, e->getY() -150);
 		}
 		if (soulRelease)
 			soulAnim();
@@ -619,16 +619,17 @@ void Game::gameUpdate()
 }
 
 void Game::soulAnim() {
-	if (soulCount > 112)
+	if (soulCount > 113)
 		soulFrame = 0;
-	else if (soulCount > 104)
+	else if (soulCount > 106)
 		soulFrame = 1;
 	else if (soulCount > 96)
 		soulFrame = 2;
 	else
 		soulFrame = 3;
 	soulSprite.setTextureRect(sf::IntRect(soulFrame * 76, 0, 76, 159));
-	soulSprite.move(0, soulFrame * -.3);
+	soulSprite.move(0, soulFrame * -.35);
+	soulSprite.setColor(sf::Color(255, 100, 100, 128 + soulCount));
 	soulCount--;
 }
 

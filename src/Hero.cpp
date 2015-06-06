@@ -196,7 +196,7 @@ void Hero::right()
 
 bool Hero::attack()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && velocity.y == 0 && collisionNum == 0)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && velocity.y == 0 && collisionNum == 0 && atkTime < 5)
 		if (weapon->attack())
 		{
 			atkTime = 18;
@@ -204,7 +204,7 @@ bool Hero::attack()
 			return true;
 		}
 	return false;
-}
+} 
 
 void Hero::freezeHero(sf::Clock &freezeClock)
 {
