@@ -36,6 +36,7 @@ Game::Game()
 	camera.setCenter(710, theHero->getY() - 100);
 	knockBackTime.restart();
 	dmgTextRegistry.clear();
+	dmgSpriteRegistry.clear();
 	doorOpen = false;
 }
 
@@ -329,6 +330,10 @@ void Game::loadAssets()
 	menuSprite.setTexture(menuTexture);
 	menuSprite.scale(2.f, 1.5f);
 
+	soulTexture.loadFromFile(resourcePath() + "assets/sprites/redsoul.png");
+	soulSprite.setTexture(soulTexture);
+	soulSprite.setTextureRect(sf::IntRect(0, 0, 76, 115));
+
 	HPbar.setSize(sf::Vector2f(150, 6));
 	HPbar.setOutlineColor(sf::Color::White);
 	HPbar.setFillColor(sf::Color::Green);
@@ -406,6 +411,7 @@ void Game::dmgTextAppears(bool isEnemy, float x_pos, float y_pos, int dmg)
 		dmgText.setColor(sf::Color::Red);
 
 	dmgTextRegistry.push_back(dmgText);
+	//dmgSpriteRegistry.push_back(soulSprite);
 }
 
 void Game::titleUpdate()
@@ -426,6 +432,7 @@ int Game::cleanupEntities()
 
 		if (!(*entity)->IsAlive())
 		{
+			
 			delete *entity;
 			entity = entityRegistry.erase(entity);
 		}
@@ -504,6 +511,15 @@ void Game::gameUpdate()
 		e->update(time);
 		e->setCollisionState(1);
 		e->setGround(0);
+
+		if (!(e->IsAlive()) && e->IsCreature())
+		{
+			soulRelease = true;
+			soulCount = 120;
+			soulSprite.setPosition(e->getX() - 50, e->getY() -150);
+		}
+		if (soulRelease)
+			soulAnim();
 
 		for (size_t i = 0; i < levels.platforms.size(); i++)
 		{
@@ -634,6 +650,21 @@ void Game::gameUpdate()
 	MPbar.setPosition(camera.getCenter().x - 380, camera.getCenter().y - 200);
 }
 
+void Game::soulAnim() {
+	if (soulCount > 113)
+		soulFrame = 0;
+	else if (soulCount > 106)
+		soulFrame = 1;
+	else if (soulCount > 96)
+		soulFrame = 2;
+	else
+		soulFrame = 3;
+	soulSprite.setTextureRect(sf::IntRect(soulFrame * 76, 0, 76, 159));
+	soulSprite.move(0, soulFrame * -.35);
+	soulSprite.setColor(sf::Color(255, 100, 100, 128 + soulCount));
+	soulCount--;
+}
+
 void Game::enterDoorUpdate()
 {
 	deltaTime = clock.restart();
@@ -721,7 +752,7 @@ void Game::render()
 	else if (gameState_ == GameState::inGame)
 	{
 		camera.setViewport(sf::FloatRect(0, 0, 1, 1));
-		minimap.setViewport(sf::FloatRect(0.75f, 0, 0.25f, 0.25f));
+		minimap.setViewport(sf::FloatRect(0.f, 0.f, 0.f, 0.f));
 		minimap.setCenter(1180, 1020);
 		levels.render(window);
 		window.setView(minimap);
@@ -730,10 +761,6 @@ void Game::render()
 
 		for (size_t i = 0; i < entityRegistry.size(); i++)
 		{
-			
-			window.setView(minimap);
-			entityRegistry[i]->render(window);
-			
 			window.setView(camera);
 			entityRegistry[i]->render(window);
 		}
@@ -746,6 +773,9 @@ void Game::render()
 		
 		for (size_t i = 0; i < dmgTextRegistry.size(); i++)
 			window.draw(dmgTextRegistry[i]);
+
+		if (soulCount > 0)
+			window.draw(soulSprite);
 
 		window.draw(HPbar);
 		window.draw(MPbar);

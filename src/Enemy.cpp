@@ -7,6 +7,7 @@ Enemy::Enemy()
 {
 	Freeze.restart().asSeconds();
 	is_alive_ = true;
+	is_creature_ = true;
 	heroDetected = false;
 	patrol_right = true;
 	isFrozen = false;

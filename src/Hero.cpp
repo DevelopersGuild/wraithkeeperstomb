@@ -12,7 +12,7 @@ Hero::Hero()
 	Texture.loadFromFile(resourcePath() + "assets/sprites/hero.png");
 	Sprite.setTexture(Texture);
 	Sprite.setOrigin(32, 128);
-	Sprite.setPosition(720, 1430);
+	Sprite.setPosition(720, 1472);
 	sf::Vector2f velocity(sf::Vector2f(0, 0));
 	sf::Vector2i anim(sf::Vector2i(0, 1));
 	invincibilityCD.restart();
@@ -196,7 +196,7 @@ void Hero::right()
 
 bool Hero::attack()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && velocity.y == 0 && collisionNum == 0)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && velocity.y == 0 && collisionNum == 0 && atkTime < 5)
 		if (weapon->attack())
 		{
 			atkTime = 18;
@@ -204,7 +204,7 @@ bool Hero::attack()
 			return true;
 		}
 	return false;
-}
+} 
 
 void Hero::freezeHero(sf::Clock &freezeClock)
 {
@@ -268,7 +268,7 @@ void Hero::update(float seconds)
 			++iter;
 		}
 	}
-	unfreezeHero(freezeClock, 0.15f);
+	unfreezeHero(freezeClock, 0.3f);
 	{
 		// Handle movement
 		walkingSounds.playSound();
@@ -372,7 +372,6 @@ void Hero::giveWeapon(Weapons * newWeapon)
 
 void Hero::knockBack(float seconds)
 {
-	std::cout << seconds << std::endl;
 	if (backing != 0)
 	{
 		if (backing == 'l')
