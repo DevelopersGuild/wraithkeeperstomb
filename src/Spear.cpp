@@ -10,12 +10,11 @@ Spear::Spear(Hero *hero)
 	Sprite.setPosition(hero->getX(), hero->getY());
 
 	cooldown.restart().asSeconds();
-	damage = SPEAR_DAMAGE;
+	base_damage = SPEAR_DAMAGE;
 	range = SPEAR_RANGE;
 	crit_chance = SPEAR_CRIT_CHANCE;
 	crit_multiplier = SPEAR_CRIT_MULTIPLIER;
 	damage_fluctuation = SPEAR_DMG_FLUCTUATION_RATE * SPEAR_DAMAGE;
-	damage = dmgRandomizer(damage_fluctuation) * critical(crit_multiplier);
 
 	sf::Vector2i anim(sf::Vector2i(0, 0));
 
@@ -62,6 +61,8 @@ void Spear::update(bool faceRight)
 	else
 		Sprite.setScale(-1, 1);
 	Sprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 64, 64, 64));
+
+	damage = dmgRandomizer(damage_fluctuation) * critical(crit_multiplier);
 }
 
 Spear::~Spear()

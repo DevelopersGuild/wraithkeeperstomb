@@ -14,6 +14,7 @@ protected:
 	int frameTimer;
 	int xFrame;
 	int yFrame;
+	float base_damage;
 	float damage;
 	float range;
 	float crit_chance;

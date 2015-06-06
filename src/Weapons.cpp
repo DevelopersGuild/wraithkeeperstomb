@@ -20,7 +20,7 @@ void Weapons::setPosition(float xPos, float yPos)
 float Weapons::dmgRandomizer(float fluctuation)
 {
 	//returns damage +- fluctuation
-	return damage - fluctuation + rand() % (2 * (int)fluctuation + 1);
+	return base_damage - fluctuation + rand() % (2 * (int)fluctuation + 1);
 }
 
 float Weapons::critical(float multiplier)

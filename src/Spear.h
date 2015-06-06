@@ -35,8 +35,9 @@ public:
 		Sprite.setPosition(280, 1360);
 		Sprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 64, 64, 64));
 
-		damage = SPEAR2_DAMAGE;
+		base_damage = SPEAR2_DAMAGE;
 		crit_chance = SPEAR2_CRIT_CHANCE;
+		damage_fluctuation = SPEAR_DMG_FLUCTUATION_RATE * SPEAR2_DAMAGE;
 	}
 };
 

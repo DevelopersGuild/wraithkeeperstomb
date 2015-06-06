@@ -74,6 +74,7 @@ void Game::mainLoop()
 			case GameState::enterDoor: enterDoorUpdate(); break;
 			case GameState::victory: victoryUpdate(); break;
 			case GameState::gameOver: gameOverUpdate(); break;
+			case GameState::dialogueState: textUpdate(); break;
 			default: break;
 			}
 		}
@@ -115,6 +116,25 @@ void Game::handleEvent(sf::Event &event)
 				//enable hero to enter door when up is pressed
 				if (doorOpen)
 					enterDoor(theHero);
+			}
+		}
+	}
+	if (gameState_ == GameState::titleScreen)
+	{
+
+	}
+
+	if (gameState_ == GameState::dialogueState)
+	{
+		// Keys being pressed during gameplay
+		if (sf::Event::KeyPressed)
+		{
+			// space = next line of text
+			if (event.key.code == sf::Keyboard::Space)
+			{
+				dialogueRegistry.pop();
+				if (dialogueRegistry.empty())
+					gameState_ = GameState::inGame;
 			}
 		}
 	}
@@ -285,6 +305,18 @@ void Game::loadTextLine(sf::Text &text, std::string line, int yPos)
 	text.setCharacterSize(48);
 	text.setColor(sf::Color::White);
 	text.setPosition(30.f, yPos);
+}
+
+void Game::loadDialogueBoxAndFont(sf::Text &text)
+{
+	textBox.setFillColor(sf::Color(0, 0, 0, 125));
+	textBox.setPosition(1500.f, 1375.f);
+	textBox.setSize(sf::Vector2f(800.f, 200.f));
+
+	text.setFont(blackcastle);
+	text.setCharacterSize(24);
+	text.setColor(sf::Color::White);
+	text.setPosition(1600.f, 1400.f);
 }
 
 void Game::loadAssets()
@@ -612,8 +644,41 @@ void Game::enterDoorUpdate()
 	{
 		entityRegistry.push_back(theHero);
 		levels.roomGenerater();
-		gameState_ = GameState::inGame;
+
+		if (levels.getIsBoss()) //To do: specify which boss cinematic is shown
+		{
+			gameState_ = GameState::dialogueState;
+			insertDialogue(1); //first boss encounter
+		}
+		else
+			gameState_ = GameState::inGame;
 	}
+}
+
+void Game::textUpdate()
+{
+	deltaTime = clock.restart();
+	levels.update();
+
+	float time = deltaTime.asSeconds();
+
+	// Camera
+	camera.setSize(sf::Vector2f(1280, 720));
+	// If player is within the boundaries of the screen
+	if (theHero->getX() > 710 && theHero->getX() < 1900)
+	{
+		// Set x and y position
+		camera.setCenter(theHero->getX(), theHero->getY() - 100);
+	}
+	// If the player is near the edge
+	else
+	{
+		// Set only y position
+		camera.setCenter(camera.getCenter().x, theHero->getY() - 100);
+	}
+
+	camera.zoom(.6);
+	window.setView(camera);
 }
 
 void Game::victoryUpdate()
@@ -685,6 +750,23 @@ void Game::render()
 		window.draw(HPbar);
 		window.draw(MPbar);
 	}
+	else if (gameState_ == GameState::dialogueState)
+	{
+		camera.setViewport(sf::FloatRect(0, 0, 1, 1));
+		levels.render(window);
+		window.setView(camera);
+
+		for (size_t i = 0; i < entityRegistry.size(); i++)
+		{
+			window.setView(camera);
+			entityRegistry[i]->render(window);
+		}
+		if (!dialogueRegistry.empty())
+		{
+			window.draw(textBox);
+			window.draw(dialogueRegistry.front());
+		}
+	}
 	/*else if (gameState_ == GameState::enterDoor)
 	{
 			tips/hints?
@@ -710,6 +792,29 @@ void Game::render()
 	}
 	// Display window
 	window.display();
+}
+
+void Game::insertDialogue(int scriptNum)
+{
+	switch (scriptNum)
+	{
+	case 1: //Encounter with the first boss
+		loadDialogueBoxAndFont(dialogue);
+
+		dialogue.setString("???: \"You... You are one of us. Why are you trying to escape?\"");
+		dialogueRegistry.push(dialogue);
+		dialogue.setString("Player: \"I look nothing like you, demon!\"");
+		dialogueRegistry.push(dialogue);
+		dialogue.setString("???: \"How pitiful... You have not realized it yet, have you?\"");
+		dialogueRegistry.push(dialogue);
+		dialogue.setString("???: \"But it does not matter. You will not go any further than this.\"");
+		dialogueRegistry.push(dialogue);
+		break;
+	case 2:
+		break;
+	default:
+		break;
+	}
 }
 
 void Game::SaveStatsToFile()
@@ -778,4 +883,6 @@ Game::~Game()
 	projectiles.clear();
 	entityRegistry.clear();
 	dmgTextRegistry.clear();
+	while (!dialogueRegistry.empty())
+		dialogueRegistry.pop();
 }
