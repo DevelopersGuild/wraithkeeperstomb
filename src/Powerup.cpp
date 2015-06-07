@@ -15,13 +15,12 @@ void Powerup::update(float time)
 	{
 		is_alive_ = false;
 		apply(hero);
+		effectTextAppears();
 	}
-	
 }
 
 void Powerup::render(sf::RenderWindow &window)
 {
-	if (is_alive_){
+	if (is_alive_)
 		window.draw(Sprite);
-	}
 }

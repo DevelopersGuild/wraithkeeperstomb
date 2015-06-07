@@ -44,7 +44,7 @@ public:
 
 		cooldownDuration = HOLYORB_COOLDOWN;
 		mana_cost = HOLYORB_MANA_COST;
-		damage = HOLYORB_DAMAGE;
+		base_damage = HOLYORB_DAMAGE;
 		range = HOLYORB_RANGE; //actually is distance left
 		crit_chance = HOLYORB_CRIT_CHANCE;
 		crit_multiplier = HOLYORB_CRIT_MULTIPLIER;
@@ -76,7 +76,7 @@ public:
 		Sprite.setOrigin(0, 0);
 
 		cooldownDuration = FIREBALL_COOLDOWN;
-		damage = FIREBALL_DAMAGE;
+		base_damage = FIREBALL_DAMAGE;
 		range = FIREBALL_RANGE; //actually is distance left
 		crit_chance = FIREBALL_CRIT_CHANCE;
 		crit_multiplier = FIREBALL_CRIT_MULTIPLIER;

@@ -8,7 +8,7 @@ const float GROUND_HEIGHT = 1360.0f;
 const sf::Time TimePerFrame = sf::seconds(1.f / 60.f); // Time per frame (1 sixtieth times 60 = 60 fps)
 
 //Hero
-const float HERO_BASE_HP = 300.f;
+const float HERO_BASE_HP = 200.f;
 const float HERO_BASE_MP = 100.f;
 const float HERO_BASE_SPEED = 5.f;
 const float HERO_JUMP_VELOCITY = 27.5f; //for testing purpose
@@ -37,7 +37,7 @@ const float ENEMY2_ARMOR = 15.f;
 //Bosses
 const float BOSS_BASE_HP = 500.f;
 const float BOSS_BASE_SPEED = 2.9f;
-const float BOSS_DAMAGE = 45.2f;
+const float BOSS_DAMAGE = 50.0f;
 const float BOSS_ARMOR = 16.75f;
 
 const float BOSS_DETECTION_RADIUS = 350.f; //not yet applied
@@ -49,14 +49,14 @@ const float SPEAR_CRIT_CHANCE = 15.f;
 const float SPEAR_CRIT_MULTIPLIER = 1.5f;
 const float SPEAR_DMG_FLUCTUATION_RATE = 0.1f;
 
-const float SPEAR2_DAMAGE = 200.f;
+const float SPEAR2_DAMAGE = 70.f;
 const float SPEAR2_CRIT_CHANCE = 25.f;
 
 //Projectiles
 const float HOLYORB_SPEED = 10.f;
 const float HOLYORB_RANGE = 500.f;
 const float HOLYORB_COOLDOWN = 2.f;
-const float HOLYORB_DAMAGE = 20.f;
+const float HOLYORB_DAMAGE = 50.f;
 const float HOLYORB_CRIT_CHANCE = 10.f;
 const float HOLYORB_CRIT_MULTIPLIER = 1.5f;
 const float HOLYORB_DMG_FLUCTUATION_RATE = 0.3f;
@@ -65,7 +65,7 @@ const float HOLYORB_MANA_COST = 30.f;
 const float FIREBALL_SPEED = 5.f;
 const float FIREBALL_RANGE = 500.f;
 const float FIREBALL_COOLDOWN = 3.f;
-const float FIREBALL_DAMAGE = 30.f;
+const float FIREBALL_DAMAGE = 40.f;
 const float FIREBALL_CRIT_CHANCE = 10.f;
 const float FIREBALL_CRIT_MULTIPLIER = 1.5f;
 const float FIREBALL_DMG_FLUCTUATION_RATE = 0.2f;

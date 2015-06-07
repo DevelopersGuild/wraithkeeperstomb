@@ -26,7 +26,10 @@ float Weapons::dmgRandomizer(float fluctuation)
 float Weapons::critical(float multiplier)
 {
 	if (rand() % 100 < crit_chance)
+	{
+		isCrit = true;
 		return multiplier;
+	}
 	else
 		return 1.0;
 }

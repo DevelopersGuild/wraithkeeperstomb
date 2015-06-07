@@ -1,5 +1,3 @@
-#include <fstream>
-#include <iostream>
 #include "Game.h"
 #include "Constants.h"
 #include "Enemy.h"
@@ -311,13 +309,13 @@ void Game::loadTextLine(sf::Text &text, std::string line, int yPos)
 void Game::loadDialogueBoxAndFont(sf::Text &text)
 {
 	textBox.setFillColor(sf::Color(0, 0, 0, 125));
-	textBox.setPosition(1500.f, 1375.f);
-	textBox.setSize(sf::Vector2f(800.f, 200.f));
+	textBox.setPosition(theHero->getX()-500, 1375.f);
+	textBox.setSize(sf::Vector2f(1000.f, 200.f));
 
 	text.setFont(blackcastle);
 	text.setCharacterSize(24);
 	text.setColor(sf::Color::White);
-	text.setPosition(1600.f, 1400.f);
+	text.setPosition(theHero->getX()-300, 1400.f);
 }
 
 void Game::loadAssets()
@@ -406,7 +404,12 @@ void Game::dmgTextAppears(bool isEnemy, float x_pos, float y_pos, int dmg)
 	dmgText.setString(std::to_string(dmg));
 
 	if (isEnemy) //the one who gets hit
-		dmgText.setColor(sf::Color::White);
+	{
+		if (theHero->getCritStatus())
+			dmgText.setColor(sf::Color::Yellow);
+		else
+			dmgText.setColor(sf::Color::White);
+	}
 	else
 		dmgText.setColor(sf::Color::Red);
 
@@ -432,7 +435,10 @@ int Game::cleanupEntities()
 
 		if (!(*entity)->IsAlive())
 		{
-			
+			if (!dynamic_cast<Hero*>(*entity) && !dynamic_cast<Enemy*>(*entity))
+			{
+				dmgTextRegistry.push_back((*entity)->getEffectText());
+			}
 			delete *entity;
 			entity = entityRegistry.erase(entity);
 		}
@@ -772,7 +778,10 @@ void Game::render()
 		}
 		
 		for (size_t i = 0; i < dmgTextRegistry.size(); i++)
+		{
+			dmgTextRegistry[i].setFont(lato);
 			window.draw(dmgTextRegistry[i]);
+		}
 
 		if (soulCount > 0)
 			window.draw(soulSprite);

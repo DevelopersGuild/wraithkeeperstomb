@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
+#include <fstream>
+#include <iostream>
 #include <ctime>
 #include <string>
 #include <queue>

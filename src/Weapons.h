@@ -14,6 +14,7 @@ protected:
 	int frameTimer;
 	int xFrame;
 	int yFrame;
+	bool isCrit;
 	float base_damage;
 	float damage;
 	float range;
@@ -38,6 +39,7 @@ public:
 	const float getY()
 	{ return Sprite.getPosition().y; }
 	const float getDamage() { return damage; }
+	const float getCritStatus() { return isCrit; }
 	virtual const sf::FloatRect getAttackRect(bool);
 	const sf::Clock getCooldown() { return cooldown; }
 };

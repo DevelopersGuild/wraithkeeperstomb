@@ -21,7 +21,8 @@ Hero::Hero()
 	stats_.level_ = HERO_BASE_LEVEL;
 	stats_.experience_ = 0;
 	stats_.armor = HERO_BASE_ARMOR;
-	stats_.HP = HERO_BASE_HP;
+	stats_.max_HP = HERO_BASE_HP; // Change after Save/Load is implemented
+	stats_.HP = stats_.max_HP;
 	stats_.MP = HERO_BASE_MP;
 	is_alive_ = true;
 	stats_.speedMultiplier = 1;
@@ -38,6 +39,7 @@ Hero::Hero()
 	collisionNum = 0;
 	backing = 0;
 	knockBackDuration = 0.1;
+	atk_crit = false;
 
 	walkingSounds.loadFile(resourcePath() + "assets/sounds/footsteps.wav");
 
@@ -199,6 +201,7 @@ bool Hero::attack()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && velocity.y == 0 && collisionNum == 0 && atkTime < 5)
 		if (weapon->attack())
 		{
+			atk_crit = weapon->getCritStatus();
 			atkTime = 18;
 			freezeHero(freezeClock);
 			return true;
@@ -337,6 +340,8 @@ void Hero::render(sf::RenderWindow &window)
 
 float Hero::onHit(float dmg)
 {
+	if (dmg < 0)
+		return dmg;
 	if (invincibilityCD.getElapsedTime().asSeconds() > 1)
 	{
 		float dmgDealt = 0;
@@ -412,6 +417,13 @@ void Hero::setPosition(float x, float y)
 	Sprite.setPosition(x, y);
 
 	if (weapon) weapon->setPosition(x, y - 26);
+}
+
+void Hero::heal(float healAmt)
+{
+	stats_.HP += healAmt;
+	if (stats_.HP > stats_.max_HP)
+		stats_.HP = stats_.max_HP;
 }
 
 Hero::~Hero()
