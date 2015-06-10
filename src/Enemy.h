@@ -24,6 +24,8 @@ protected:
 	float patrol_pause;
 	//char backing;
 	float knockBackDuration;
+	float left_bound;
+	float right_bound;
 
 public:
 	Enemy();
@@ -40,6 +42,7 @@ public:
 	void freeze();
 	void knockBack(float);
 	void areaPatrol(float);
+	void setPatrolBoundary(float, float);
 
 	// Accessor(s)
 	const float getDamage()
