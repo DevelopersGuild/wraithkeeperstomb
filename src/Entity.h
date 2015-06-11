@@ -12,8 +12,6 @@ protected:
 	sf::Sprite Sprite;
 	bool is_alive_;
 	bool is_creature_ = false;
-	sf::Font lato;
-	sf::Text dmgText;
 	char backing;
 
 	sf::Vector2f velocity;
@@ -22,6 +20,8 @@ protected:
 
 	int collisionNum;
 
+	sf::Font lato;
+	sf::Text effectText;
 public:
 	Entity();
 	virtual ~Entity() { }
@@ -37,6 +37,9 @@ public:
 	void setCollisionState(int state);
 
 	void setGround(Platform*);
+
+	void setTextFont(sf::Font font)
+	{ effectText.setFont(font); }
 
 	virtual float onHit(float dmg)
 	{ return 0; }
@@ -62,12 +65,14 @@ public:
 	virtual const sf::FloatRect getDamagingRect()
 	{ return Sprite.getGlobalBounds(); }
 
+	sf::Text getEffectText()
+	{ return effectText; }
+
 	virtual bool IsAlive() const
 	{ return is_alive_; }
 
 	virtual bool IsCreature() const
 	{ return is_creature_; }
-
 };
 
 #endif

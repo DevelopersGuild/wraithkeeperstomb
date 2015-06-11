@@ -112,68 +112,71 @@ void Levels::entitiesSets()
 {
 	if (!isBoss)
 		switch (set_num)
-		{
+	{
 		case 1:
-			createEnemy(1, 1700.f, 1360.f);
-			createEnemy(1, 1800.f, 1360.f);
+			createEnemy(1, 700.f, 1100.f, 700.f, 700.f + 50.f);
+			createEnemy(1, 1000.f, 910.f, 1000.f, 1000.f + 50.f);
+			createEnemy(1, 1800.f, 1360.f, 0.f, 2560.f);
 			powerup(1, 500.f, 1200.f);
 			powerup(2, 800.f, 800.f);
 			break;
 		case 2:
-			createEnemy(1, 1700.f, 1360.f);
-			createEnemy(2, 1800.f, 1340.f);
+			createEnemy(1, 1700.f, 1360.f, 0.f, 2560.f);
+			createEnemy(2, 1800.f, 1340.f, 0.f, 2560.f);
 			powerup(1, 500.f, 1200.f);
 			powerup(2, 700.f, 1100.f);
 			break;
 		case 3:
-			createEnemy(2, 1600.f, 1340.f);
-			createEnemy(2, 1779.f, 1340.f);
+			createEnemy(2, 1600.f, 1340.f, 0.f, 2560.f);
+			createEnemy(2, 1779.f, 1340.f, 0.f, 2560.f);
 			powerup(1, 800.f, 850.f);
 			powerup(2, 1000.f, 1000.f);
 			break;
 		default:
-			createEnemy(2, 1600.f, 1340.f);
-			createEnemy(2, 1700.f, 1340.f);
-			createEnemy(1, 1000.f, 1360.f);
+			createEnemy(2, 1600.f, 1340.f, 0.f, 2560.f);
+			createEnemy(2, 1700.f, 1340.f, 0.f, 2560.f);
+			createEnemy(1, 1000.f, 1360.f, 0.f, 2560.f);
 			break;
-		}
+	}
 	else
 	{
 		switch (level)
 		{
 		case 1:
-			createEnemy(0, 1500.f, 1360.f);
+			createEnemy(0, 1500.f, 1360.f, 0.f, 2560.f);
 			powerup(1, 1200.f, 1100.f);
 			break;
 		default:
-			createEnemy(0, 1500.f, 1360.f);
+			createEnemy(0, 1500.f, 1360.f, 0.f, 2560.f);
 			powerup(1, 1200.f, 1100.f);
 			break;
 		}
 	}
 }
 
-void Levels::createEnemy(int t/*enemy type*/, float x, float y)
+void Levels::createEnemy(int t/*enemy type*/, float x, float y, float left_bound, float right_bound)
 {
 	Entity *e;
 	if (!isBoss)
 		switch (t)
-		{
+	{
 		case 1:
 			e = new EnemyMage;
 			e->setPosition(x, y);
 			dynamic_cast<EnemyMage*> (e)->set_patrol_origin(x);
+			dynamic_cast<EnemyMage*> (e)->setPatrolBoundary(left_bound + 10.f, right_bound - 10.f);
 			Game::entityRegistry.push_back(e);
 			break;
 		case 2:
 			e = new EnemyReaper;
 			e->setPosition(x, y);
 			dynamic_cast<EnemyReaper*> (e)->set_patrol_origin(x);
+			dynamic_cast<EnemyReaper*> (e)->setPatrolBoundary(left_bound + 10.f, right_bound - 10.f);
 			Game::entityRegistry.push_back(e);
 			break;
 		default:
 			return;
-		}
+	}
 	else
 	{
 		switch (level)

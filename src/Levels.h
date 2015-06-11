@@ -41,7 +41,7 @@ public:
 	void renderPlats(sf::RenderWindow &);
 	void platformSets();
 
-	void createEnemy(int/*enemy type*/, float, float);
+	void createEnemy(int/*enemy type*/, float, float, float, float);
 	void powerup(int/*power up type*/, float, float);
 	void backGroundSets();
 	void entitiesSets();

@@ -3,8 +3,11 @@
 
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
+#include <fstream>
+#include <iostream>
 #include <ctime>
 #include <string>
+#include <queue>
 #include "Levels.h"
 #include "Hero.h"
 #include "Entity.h"
@@ -13,7 +16,7 @@ class Game
 {
 private:
 	enum class GameState {
-		titleScreen, inGame, pause, victory, gameOver, enterDoor
+		titleScreen, inGame, pause, victory, gameOver, enterDoor, dialogueState
 	} gameState_;
 
 	enum class MenuSwitch {
@@ -55,9 +58,11 @@ private:
     sf::Text returnToTitle;
 	sf::Text loading;
 	sf::Text dmgText;
+	sf::Text dialogue;
 
 	sf::RectangleShape HPbar;
 	sf::RectangleShape MPbar;
+	sf::RectangleShape textBox;
 
 	Levels levels;
 
@@ -75,6 +80,7 @@ private:
 	void titleUpdate();
 	void gameUpdate();
 	void enterDoorUpdate();
+	void textUpdate();
 	void pauseUpdate();
 	void victoryUpdate();
 	void gameOverUpdate();
@@ -99,7 +105,9 @@ private:
 	void cleanupAll(); //delete all entities and projectiles except hero
 	void loadTextLineHL(sf::Text &text, std::string line, int yPos);
 	void loadTextLine(sf::Text &text, std::string line, int yPos);
+	void loadDialogueBoxAndFont(sf::Text &text);
 	void dmgTextAppears(bool isEnemy, float x, float y, int dmg);
+	void insertDialogue(int scriptNum);
 
 public:
 	Game();
@@ -110,6 +118,7 @@ public:
 
 	static std::vector<Entity *> entityRegistry;
 	std::vector<sf::Text> dmgTextRegistry;
+	std::queue<sf::Text> dialogueRegistry;
 	std::vector<sf::Sprite> dmgSpriteRegistry;
 };
 

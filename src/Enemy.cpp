@@ -18,6 +18,8 @@ Enemy::Enemy()
 		Sprite.setScale(-1.f, 1.f);
 	knockBackDuration = 0.1;
 	backing = 0;
+	left_bound = 0.f;
+	right_bound = 2560.f;
 }
 
 void Enemy::chaseHero()
@@ -93,12 +95,12 @@ void Enemy::knockBack(float seconds)
 {
 	if (backing != 0)
 	{
-		if (backing == 'l')
+		if (backing == 'l' && getX() > left_bound + 3.f)
 		{
 			velocity.x = -speed * seconds * seconds * 1000;
 			Sprite.move(8 * velocity.x, 0.f);
 		}
-		else if (backing == 'r')
+		else if (backing == 'r' && getX() < right_bound - 3.f)
 		{
 			velocity.x = speed * seconds * seconds * 1000;
 			Sprite.move(8 * velocity.x, 0.f);
@@ -120,26 +122,41 @@ void Enemy::knockBack(float seconds)
 	}
 }
 
+void Enemy::setPatrolBoundary(float left, float right)
+{
+	left_bound = left;
+	right_bound = right;
+	if (left_bound > 0.f && right_bound < 2560.f)
+		patrol_origin = (left_bound + right_bound) / 2.f;
+}
+
 void Enemy::areaPatrol(float deltaTime)
 {
 	if (speedMultiplier != 1)
 		speedMultiplier = 1;
+
+	int npr; //new patrol radius
+	if (patrol_origin + PATROL_RADIUS > right_bound)
+		npr = right_bound - patrol_origin - 1.f;
+	else
+		npr = PATROL_RADIUS;
+
 	if (patrol_pause > 0)
 	{
-		if (getX() >= patrol_origin + PATROL_RADIUS)
+		if (getX() >= patrol_origin + npr)
 		{
 			if (patrol_right)//on the right edge of patrol boundary
 				patrol_right = false;
 		}
 
-		else if (getX() <= patrol_origin - PATROL_RADIUS)
+		else if (getX() <= patrol_origin - npr)
 		{
 			if (!patrol_right)//on the left edge of patrol boundary
 				patrol_right = true;
 		}
 		patrol_pause -= deltaTime;
 	}
-	else if (getX() <= patrol_origin + PATROL_RADIUS && getX() >= patrol_origin - PATROL_RADIUS)
+	else if (getX() <= patrol_origin + npr && getX() >= patrol_origin - npr)
 	{//within patrol boundary
 		if (patrol_right)
 			right();
@@ -154,7 +171,7 @@ void Enemy::areaPatrol(float deltaTime)
 			patrol_pause = 3.0;
 			wasPaused = true;
 		}
-		if (getX() >= patrol_origin + PATROL_RADIUS)
+		if (getX() >= patrol_origin + npr)
 		{
 			if (patrol_right)
 				patrol_right = false;

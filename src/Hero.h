@@ -23,6 +23,7 @@ private:
 		float speedMultiplier;
 		float armor;
 		float HP;
+		float max_HP; //when level is implemented
 		float MP;
 		float heroJumpSpeed;
 		int level_;
@@ -45,6 +46,7 @@ private:
 	float jumpTimer;				//Counter for jump duration
 	bool faceRight;				//Boolean for determining direction hero is facing at rest
 	bool isFrozen;
+	bool atk_crit;
 	float projectileCooldown;
 	//char backing;
 	float knockBackDuration;
@@ -121,6 +123,11 @@ public:
 
 	const float getDamage()
 	{ return weapon->getDamage(); }
+
+	bool getCritStatus()
+	{ return atk_crit; }
+
+	void heal(float healAmt);
 
 	void update();
 };
