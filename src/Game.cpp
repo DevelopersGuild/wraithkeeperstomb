@@ -736,6 +736,7 @@ void Game::render()
 	}
 	else if (gameState_ == GameState::enterDoor)
 	{
+		soulCount = 0;
 		window.draw(loading);
 	}
 	// Display window

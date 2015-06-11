@@ -89,7 +89,7 @@ void Levels::doorSets()
 		switch (set_num)
 		{
 		case 1:	door.setPosition(1050.f, 1205.f); break;
-		case 2:	door.setPosition(1200.f, 1205.f); break;
+		case 2:	door.setPosition(1250.f, 1205.f); break;
 		case 3: door.setPosition(650.f, 1205.f); break;
 		default: door.setPosition(2000.f, 1205.f); break;
 		}

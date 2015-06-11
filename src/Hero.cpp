@@ -332,6 +332,7 @@ void Hero::render(sf::RenderWindow &window)
 		{
 			weapon->render(window);
 		}
+
 	}
 }
 
