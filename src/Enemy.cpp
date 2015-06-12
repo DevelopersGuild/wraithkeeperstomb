@@ -107,8 +107,8 @@ void Enemy::knockBack(float seconds)
 		}
 		else
 		{
-			velocity.x = speed * seconds * seconds * 1000;
-			Sprite.move(8 * velocity.x, 0.f);
+			/*velocity.x = speed * seconds * seconds * 1000;
+			Sprite.move(8 * velocity.x, 0.f);*/
 		}
 		knockBackDuration -= seconds;
 	}
