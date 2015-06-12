@@ -309,8 +309,14 @@ void Hero::update(float seconds)
 	}
 	if (weapon != 0)
 	{
-		if (atkTime == 0)
-			weapon->setPosition(getX(), getY() - 26);
+		if (atkTime == 0 && faceRight)
+		{
+			weapon->setPosition(getX() + 26, getY() - 54);
+		}
+		else if (atkTime == 0 && !faceRight)
+		{
+			weapon->setPosition(getX() - 26, getY() - 54);
+		}
 		weapon->update(faceRight);
 	}
 
@@ -332,8 +338,23 @@ void Hero::render(sf::RenderWindow &window)
 		Sprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 128, 64, 128));
 
 		window.draw(Sprite);
-		if (weapon != 0) { weapon->render(window);}
-
+		weapon->render(window);
+		if (weapon != 0 && atkTime == 0)
+		{
+			window.draw(Sprite);
+			if (!faceRight)
+			{
+				weapon->rotateWeapon(70);
+			}
+			else
+			{
+				weapon->rotateWeapon(-70);
+			}
+		}
+		else
+		{
+			weapon->rotateWeapon(0);
+		}
 	}
 }
 
@@ -415,7 +436,10 @@ void Hero::setPosition(float x, float y)
 {
 	Sprite.setPosition(x, y);
 
-	if (weapon) weapon->setPosition(x, y - 26);
+	if (weapon && faceRight && atkTime == 0)
+		weapon->setPosition(x + 26, y - 54);
+	else if (weapon && !faceRight && atkTime == 0)
+		weapon->setPosition(x - 26, y - 54);
 }
 
 void Hero::heal(float healAmt)

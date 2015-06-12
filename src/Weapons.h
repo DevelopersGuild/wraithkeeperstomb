@@ -32,6 +32,7 @@ public:
 	float dmgRandomizer(float fluctuation);
 	float critical(float multiplier);
 	void setPosition(float, float);
+	void rotateWeapon(int);
 	virtual bool attack();
 	//Accessors
 	const float getX()

@@ -12,6 +12,11 @@ Weapons::~Weapons()
 
 }
 
+void Weapons::rotateWeapon(int degrees)
+{
+	Sprite.setRotation(degrees);
+}
+
 void Weapons::setPosition(float xPos, float yPos)
 {
 	Sprite.setPosition(sf::Vector2f(xPos, yPos));
