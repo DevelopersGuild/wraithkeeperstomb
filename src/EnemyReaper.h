@@ -11,6 +11,7 @@ private:
 public:
 	EnemyReaper();
 
+	void animate();
 	void update(float time);
 	void onHeroDetected(Hero* hero);
 	void jump();

@@ -330,11 +330,9 @@ void Hero::render(sf::RenderWindow &window)
 		else
 			animate(action);
 		Sprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 128, 64, 128));
+
 		window.draw(Sprite);
-		if (weapon != 0)
-		{
-			weapon->render(window);
-		}
+		if (weapon != 0) { weapon->render(window);}
 
 	}
 }
