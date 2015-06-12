@@ -16,7 +16,7 @@ Enemy::Enemy()
 	collisionNum = 0;
 	if (faceRight)
 		Sprite.setScale(-1.f, 1.f);
-	knockBackDuration = 0.1;
+	knockBackDuration = 0.1f;
 	backing = 0;
 	left_bound = 0.f;
 	right_bound = 2560.f;
@@ -107,8 +107,8 @@ void Enemy::knockBack(float seconds)
 		}
 		else
 		{
-			velocity.x = speed * seconds * seconds * 1000;
-			Sprite.move(8 * velocity.x, 0.f);
+			/*velocity.x = speed * seconds * seconds * 1000;
+			Sprite.move(8 * velocity.x, 0.f);*/
 		}
 		knockBackDuration -= seconds;
 	}
@@ -135,7 +135,7 @@ void Enemy::areaPatrol(float deltaTime)
 	if (speedMultiplier != 1)
 		speedMultiplier = 1;
 
-	int npr; //new patrol radius
+	float npr; //new patrol radius
 	if (patrol_origin + PATROL_RADIUS > right_bound)
 		npr = right_bound - patrol_origin - 1.f;
 	else
