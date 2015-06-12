@@ -294,7 +294,7 @@ void Game::loadTextLineHL(sf::Text &text, std::string line, int yPos)
 	text.setString(line);
 	text.setCharacterSize(48);
 	text.setColor(sf::Color::Yellow);
-	text.setPosition(30.f, yPos);
+	text.setPosition(30.f, float(yPos));
 }
 
 void Game::loadTextLine(sf::Text &text, std::string line, int yPos)
@@ -303,7 +303,7 @@ void Game::loadTextLine(sf::Text &text, std::string line, int yPos)
 	text.setString(line);
 	text.setCharacterSize(48);
 	text.setColor(sf::Color::White);
-	text.setPosition(30.f, yPos);
+	text.setPosition(30.f, float(yPos));
 }
 
 void Game::loadDialogueBoxAndFont(sf::Text &text)
@@ -353,15 +353,15 @@ void Game::loadAssets()
 	title.setPosition(600, 620);
 
 	//Menu buttons
-	loadTextLine(playButton, "PLAY", 30.f);
+	loadTextLine(playButton, "PLAY", 30);
 	playButton.setFont(lato);
-	loadTextLine(exitButton, "EXIT", 80.f);
+	loadTextLine(exitButton, "EXIT", 80);
 	exitButton.setFont(lato);
 
 	//Highlighted
-	loadTextLineHL(playButtonHL, "PLAY", 30.f);
+	loadTextLineHL(playButtonHL, "PLAY", 30);
 	playButtonHL.setFont(lato);
-	loadTextLineHL(exitButtonHL, "EXIT", 80.f);
+	loadTextLineHL(exitButtonHL, "EXIT", 80);
 	exitButtonHL.setFont(lato);
 
 	loadTextLine(victoryText, "Victory!", 225);
@@ -637,7 +637,7 @@ void Game::gameUpdate()
 		camera.setCenter(camera.getCenter().x, theHero->getY() - 100);
 	}
 
-	camera.zoom(.6);
+	camera.zoom(.6f);
 	window.setView(camera);
 	//HP
 	if (theHero->getHP() / HERO_BASE_HP > 0)
@@ -666,9 +666,11 @@ void Game::soulAnim() {
 	else
 		soulFrame = 3;
 	soulSprite.setTextureRect(sf::IntRect(soulFrame * 76, 0, 76, 159));
-	soulSprite.move(0, soulFrame * -.35);
-	soulSprite.setColor(sf::Color(255, 100, 100, 128 + soulCount));
+	soulSprite.move(0, soulFrame * -.35f);
+	soulSprite.setColor(sf::Color(255, 100, 100, sf::Uint8(70 + soulCount * 1.5)));
 	soulCount--;
+	if (soulCount == 0)
+		soulRelease = false;
 }
 
 void Game::enterDoorUpdate()
@@ -714,7 +716,7 @@ void Game::textUpdate()
 		camera.setCenter(camera.getCenter().x, theHero->getY() - 100);
 	}
 
-	camera.zoom(.6);
+	camera.zoom(.6f);
 	window.setView(camera);
 }
 
