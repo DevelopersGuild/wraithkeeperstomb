@@ -329,6 +329,8 @@ void Hero::update(float seconds)
 
 void Hero::render(sf::RenderWindow &window)
 {
+
+	
 	if (is_alive_)
 	{
 		if (atkTime > 0)
@@ -338,7 +340,6 @@ void Hero::render(sf::RenderWindow &window)
 		Sprite.setTextureRect(sf::IntRect(anim.x * 64, anim.y * 128, 64, 128));
 
 		window.draw(Sprite);
-		weapon->render(window);
 		if (weapon != 0 && atkTime == 0)
 		{
 			window.draw(Sprite);
@@ -350,10 +351,15 @@ void Hero::render(sf::RenderWindow &window)
 			{
 				weapon->rotateWeapon(-70);
 			}
+			weapon->render(window);
+			window.draw(Sprite);
 		}
 		else
 		{
 			weapon->rotateWeapon(0);
+			weapon->render(window);
+			window.draw(Sprite);
+
 		}
 	}
 }
