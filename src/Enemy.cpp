@@ -20,6 +20,10 @@ Enemy::Enemy()
 	backing = 0;
 	left_bound = 0.f;
 	right_bound = 2560.f;
+
+	xFrame = 0;
+	yFrame = 0;
+	frameTimer = 0;
 }
 
 void Enemy::chaseHero()
