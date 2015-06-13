@@ -2,6 +2,7 @@
 #include "Constants.h"
 #include "Enemy.h"
 #include "EnemyMage.h"
+#include "FirstBoss.h"
 #include "Paths.h"
 
 std::vector<Entity *> Game::entityRegistry;
@@ -36,6 +37,7 @@ Game::Game()
 	dmgTextRegistry.clear();
 	dmgSpriteRegistry.clear();
 	doorOpen = false;
+	bossFirstEncounter = true;
 }
 
 void Game::CreateEntities()
@@ -126,15 +128,11 @@ void Game::handleEvent(sf::Event &event)
 	if (gameState_ == GameState::dialogueState)
 	{
 		// Keys being pressed during gameplay
-		if (sf::Event::KeyPressed)
+		if (event.type == sf::Event::KeyPressed && (event.key.code == sf::Keyboard::Space))
 		{
-			// space = next line of text
-			if (event.key.code == sf::Keyboard::Space)
-			{
-				dialogueRegistry.pop();
-				if (dialogueRegistry.empty())
-					gameState_ = GameState::inGame;
-			}
+			dialogueRegistry.pop();
+			if (dialogueRegistry.empty())
+				gameState_ = GameState::inGame;
 		}
 	}
 	/*if (gameState_ == GameState::enterDoor)
@@ -280,6 +278,7 @@ void Game::enterDoor(Entity *hero)
 	if (hero->getCollisionRect().intersects(levels.getDoor().getDoorRect()))
 	{
 		doorOpen = false;
+		bossFirstEncounter = true;
 		levels.incrBossFightChance();
 		levels.bossAppearance();
 		cleanupAll();
@@ -309,13 +308,13 @@ void Game::loadTextLine(sf::Text &text, std::string line, int yPos)
 void Game::loadDialogueBoxAndFont(sf::Text &text)
 {
 	textBox.setFillColor(sf::Color(0, 0, 0, 125));
-	textBox.setPosition(theHero->getX()-500, 1375.f);
+	textBox.setPosition(camera.getCenter().x - 500, camera.getCenter().y + 75);
 	textBox.setSize(sf::Vector2f(1000.f, 200.f));
 
 	text.setFont(blackcastle);
 	text.setCharacterSize(24);
 	text.setColor(sf::Color::White);
-	text.setPosition(theHero->getX()-300, 1400.f);
+	text.setPosition(camera.getCenter().x - 300, camera.getCenter().y + 100);
 }
 
 void Game::loadAssets()
@@ -497,20 +496,35 @@ void Game::cleanupAll()
 void Game::gameUpdate()
 {
 	deltaTime = clock.restart();
-    
-    if (!theHero->IsAlive())
-    {
-		gameState_ = GameState::gameOver;
-		return;
-    }
-
-	levels.update();
 
 	float time = deltaTime.asSeconds();
 
+	if (!theHero->IsAlive())
+	{
+		gameState_ = GameState::gameOver;
+		return;
+	}
+
+	levels.update();
+
+	//Dialogue appears upon boss first encounter in boss stage
+	if (levels.getIsBoss() && bossFirstEncounter)
+	{
+		for (size_t i = 0; i < entityRegistry.size(); i++)
+			if (dynamic_cast<FirstBoss*>(entityRegistry[i])) //check if it's the first encounter
+				if (dialogueRegistry.empty() && !static_cast<FirstBoss*>(entityRegistry[i])->getFirstEncounter())
+				{//upon the first encounter
+					bossFirstEncounter = false;
+					gameState_ = GameState::dialogueState;
+					insertDialogue(levels.getLevel()); //dialogue based on level
+				}
+	}
+
+	//Loading time when changing stage
 	if (stageLoadingTime != 1.0)
 		stageLoadingTime = 1.0;
 
+	//Platform collision and souls
 	for (size_t i = 0; i < entityRegistry.size(); i++)
 	{
 		Entity * e = entityRegistry[i];
@@ -681,14 +695,7 @@ void Game::enterDoorUpdate()
 	{
 		entityRegistry.push_back(theHero);
 		levels.roomGenerater();
-
-		if (levels.getIsBoss()) //To do: specify which boss cinematic is shown
-		{
-			gameState_ = GameState::dialogueState;
-			insertDialogue(1); //first boss encounter
-		}
-		else
-			gameState_ = GameState::inGame;
+		gameState_ = GameState::inGame;
 	}
 }
 
@@ -836,11 +843,11 @@ void Game::render()
 
 void Game::insertDialogue(int scriptNum)
 {
+	loadDialogueBoxAndFont(dialogue);
+
 	switch (scriptNum)
 	{
 	case 1: //Encounter with the first boss
-		loadDialogueBoxAndFont(dialogue);
-
 		dialogue.setString("???: \"You... You are one of us. Why are you trying to escape?\"");
 		dialogueRegistry.push(dialogue);
 		dialogue.setString("Player: \"I look nothing like you, demon!\"");
@@ -850,7 +857,25 @@ void Game::insertDialogue(int scriptNum)
 		dialogue.setString("???: \"But it does not matter. You will not go any further than this.\"");
 		dialogueRegistry.push(dialogue);
 		break;
-	case 2:
+	case 2: //Encounter with the second boss
+		dialogue.setString("???: \"...\"");
+		dialogueRegistry.push(dialogue);
+		dialogue.setString("Player: \"...\"");
+		dialogueRegistry.push(dialogue);
+		dialogue.setString("???: \"...\"");
+		dialogueRegistry.push(dialogue);
+		dialogue.setString("???: \"...\"");
+		dialogueRegistry.push(dialogue);
+		break;
+	case 3: //Encounter with the final boss
+		dialogue.setString("???: \"...\"");
+		dialogueRegistry.push(dialogue);
+		dialogue.setString("Player: \"...\"");
+		dialogueRegistry.push(dialogue);
+		dialogue.setString("???: \"...\"");
+		dialogueRegistry.push(dialogue);
+		dialogue.setString("???: \"...\"");
+		dialogueRegistry.push(dialogue);
 		break;
 	default:
 		break;

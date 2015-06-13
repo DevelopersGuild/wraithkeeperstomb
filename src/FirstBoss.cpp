@@ -18,6 +18,7 @@ FirstBoss::FirstBoss() {
 	isShooter = false;
 	armor = BOSS_ARMOR;
 	faceRight = true;
+	first_encounter = true;
 	Enemy();
 
 	srand((unsigned int)time(NULL));
@@ -68,8 +69,23 @@ void FirstBoss::jump()
 	}
 }
 
+bool FirstBoss::heroDetection(Hero* hero)
+{
+	if ((getX() - hero->getX()) <= BOSS_DETECTION_RADIUS && (hero->getX() - getX()) <= BOSS_DETECTION_RADIUS && (getY() - hero->getY()) <= ENEMY_DETECTION_RADIUS)
+	{
+		heroDetected = true;
+		return true;
+	}
+	else
+	{
+		heroDetected = false;
+		return false;
+	}
+}
+
 void FirstBoss::onHeroDetected(Hero* hero)
 {
+	first_encounter = false;
 	/*if (getY() < hero->getY())
 		jump();
 	else */if ((getX() - hero->getX()) > 10)

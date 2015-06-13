@@ -18,8 +18,8 @@ Enemy::Enemy()
 		Sprite.setScale(-1.f, 1.f);
 	knockBackDuration = 0.1;
 	backing = 0;
-	left_bound = 0.f;
-	right_bound = 2560.f;
+	left_bound = getX() - PATROL_RADIUS; //default
+	right_bound = getX() + PATROL_RADIUS;
 }
 
 void Enemy::chaseHero()

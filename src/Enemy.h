@@ -30,7 +30,7 @@ protected:
 public:
 	Enemy();
 	virtual ~Enemy() { }
-	bool heroDetection(Hero* hero);
+	virtual bool heroDetection(Hero* hero);
 	void chaseHero();
 	void left();
 	void right();
@@ -56,6 +56,9 @@ public:
 
 	const bool getFaceRight()
 	{ return faceRight; }
+
+	const bool getHeroDetected()
+	{ return heroDetected; }
 
 	virtual const sf::FloatRect getDamagingRect()
 	{// shrink the bounding box
