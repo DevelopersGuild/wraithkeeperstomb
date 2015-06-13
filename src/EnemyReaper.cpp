@@ -9,6 +9,7 @@ EnemyReaper::EnemyReaper()
 	// Load Enemies texture, assign to sprite, set starting sprite dimensions
 	Texture.loadFromFile(resourcePath() + "assets/sprites/reaper.png");
 	Sprite.setTexture(Texture);
+	Sprite.setTextureRect(sf::IntRect(0, 0, 128, 128));
 	Sprite.setOrigin(64, 128);
 	Sprite.setPosition(1000, 1424);
 
@@ -23,6 +24,16 @@ EnemyReaper::EnemyReaper()
 	Enemy();
 
 	srand((unsigned int)time(NULL));
+}
+
+void EnemyReaper::animate() {
+	if (frameTimer > 8)
+		xFrame++;
+	if (xFrame > 2)
+		xFrame = 0;
+	if (frameTimer > 8)
+		frameTimer = 0;
+	frameTimer++;
 }
 
 void EnemyReaper::update(float time)
@@ -60,6 +71,9 @@ void EnemyReaper::update(float time)
 
 	if (collisionNum == 2 || collisionNum == 0)
 		velocity.y = 0;
+
+	animate();
+	Sprite.setTextureRect(sf::IntRect(xFrame * 128, yFrame * 128, 128, 128));
 
 	knockBack(time);
 	doPhysics(.1*time);

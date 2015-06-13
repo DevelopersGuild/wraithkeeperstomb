@@ -26,6 +26,9 @@ protected:
 	float knockBackDuration;
 	float left_bound;
 	float right_bound;
+	int xFrame;
+	int yFrame;
+	int frameTimer;
 
 public:
 	Enemy();
