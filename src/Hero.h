@@ -51,6 +51,8 @@ private:
 	//char backing;
 	float knockBackDuration;
 
+	int atkframeTimer;
+
 	std::list<Effect*> effects_;
 
 	void animate(int);		//Function for handling animations

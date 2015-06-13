@@ -47,6 +47,7 @@ void Levels::cleanup()
 void Levels::roomGenerater()
 {
 	set_num = rand() % 5 + 1;
+	set_num = 1;
 	createBackground();
 	//platformSets();
 	entitiesSets();

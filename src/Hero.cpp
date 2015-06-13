@@ -41,6 +41,8 @@ Hero::Hero()
 	knockBackDuration = 0.1;
 	atk_crit = false;
 
+	atkframeTimer = 0;
+
 	walkingSounds.loadFile(resourcePath() + "assets/sounds/footsteps.wav");
 
 	//effects_.push_back(new Buff(10, 7.0F, "Speed Buff"));
@@ -52,8 +54,10 @@ Hero::Hero()
 
 void Hero::animate(int action)
 {
-	if (velocity.y != 0)
+	if (velocity.y != 0 && action != attacks)
 		action = jumps;
+	if (atkframeTimer > 17)
+		atkframeTimer = 0;
 	switch (action)
 	{
 	case stands:
@@ -61,7 +65,7 @@ void Hero::animate(int action)
 		xFrame = 0;
 		anim.y = 0;
 		if (frameTimer != 0 && action != attacks)
-			frameTimer = 0;
+			frameTimer = 0;		
 		if (faceRight)
 			anim.x = 0;
 		else
@@ -142,24 +146,24 @@ void Hero::attackAnim()
 		yFrame = -1;
 	}
 	//Move frame forward
-	if (frameTimer < 2)
+	if (atkframeTimer < 2)
 	{
 		xFrame = 0;
 		weapon->setPosition(getX() + 17 * yFrame, getY() - 14);
 	}
-	else if (frameTimer < 3)
+	else if (atkframeTimer < 3)
 	{
 		xFrame = 1;
 		Sprite.move(velocity.x * .5f, 0.f);
 		weapon->setPosition(getX() + 23 * yFrame, getY() - 10);
 	}
-	else if (frameTimer < 6)
+	else if (atkframeTimer < 6)
 	{
 		xFrame = 2;
 		Sprite.move(velocity.x * .7f, 0.f);
 		weapon->setPosition(getX() + 28 * yFrame, getY() - 8);
 	}
-	else if (frameTimer < 14)
+	else if (atkframeTimer < 14)
 	{
 		xFrame = 3;
 		weapon->setPosition(getX() + 39 * yFrame, getY() - 8);
@@ -171,7 +175,7 @@ void Hero::attackAnim()
 		weapon->setPosition(getX() + 12 * yFrame , getY() - 14);
 	}
 	anim.x = xFrame;
-	frameTimer++;
+	atkframeTimer++;
 	if (weapon != 0)
 		weapon->update(faceRight);
 	atkTime--;
@@ -198,7 +202,7 @@ void Hero::right()
 
 bool Hero::attack()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && velocity.y == 0 && collisionNum == 0 && atkTime < 5)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) /*&& velocity.y == 0 && collisionNum == 0*/ && atkTime < 5)
 		if (weapon->attack())
 		{
 			atk_crit = weapon->getCritStatus();
@@ -224,7 +228,7 @@ void Hero::unfreezeHero(sf::Clock freezeClock, float time)
 bool Hero::projectileShoot()
 {
 	if (stats_.MP <= 0) return false;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && velocity.y == 0)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))// && velocity.y == 0)
 		if (projectileCooldown <= 0.0)
 		{
 			//magic cast animation
@@ -240,15 +244,18 @@ void Hero::consumeMP(float cost)
 
 void Hero::jump(float seconds)
 {
-	collisionNum = 1;
-	velocity.y = -HERO_JUMP_VELOCITY;
+	if (action != attacks)
+	{
+		collisionNum = 1;
+		velocity.y = -HERO_JUMP_VELOCITY;
 
-	if (collisionNum == 2){
-		velocity.y = 0;
-	}
-	if (velocity.y < 0 && !isFrozen){
-		velocity.y += GRAVITY;
-		Sprite.move(velocity);
+		if (collisionNum == 2){
+			velocity.y = 0;
+		}
+		if (velocity.y < 0 && !isFrozen){
+			velocity.y += GRAVITY;
+			Sprite.move(velocity);
+		}
 	}
 }
 
