@@ -81,6 +81,9 @@ void Hero::animate(int action)
 	case attacks:
 		attackAnim();
 		break;
+	case knockback:
+		knockbackAnim();
+		break;
 	default:
 		break;
 	}
@@ -180,6 +183,15 @@ void Hero::attackAnim()
 		weapon->update(faceRight);
 	atkTime--;
 
+}
+
+void Hero::knockbackAnim()
+{
+	if (faceRight)
+		anim.y = 3;
+	else
+		anim.y = 4;
+	xFrame = 2;
 }
 
 void Hero::left()
@@ -292,6 +304,8 @@ void Hero::update(float seconds)
 			faceRight = true;
 			right();
 		}
+		else if (backing != 0)
+			action = knockback;
 		else
 		{
 			walkingSounds.stopSound();
@@ -415,19 +429,20 @@ void Hero::knockBack(float seconds)
 		if (backing == 'l')
 		{
 			velocity.x = -stats_.speed * seconds * seconds * 1000;
-			Sprite.move((4 * velocity.x), 0.f);
+			Sprite.move((4.5 * velocity.x), 0.f);
 		}
 		else if (backing == 'r')
 		{
 			velocity.x = stats_.speed * seconds * seconds * 1000;
-			Sprite.move((4 * velocity.x), 0.f);
+			Sprite.move((4.5 * velocity.x), 0.f);
 		}
 		else
 		{
 			velocity.x = -stats_.speed * seconds * seconds * 1000;
-			Sprite.move((4 * velocity.x), 0.f);
+			Sprite.move((4.5 * velocity.x), 0.f);
 		}
 		knockBackDuration -= seconds;
+		isFrozen = true;
 	}
 	else
 	{
@@ -436,6 +451,7 @@ void Hero::knockBack(float seconds)
 	{
 		backing = 0;
 		knockBackDuration = 0.1;
+		isFrozen = false;
 	}
 }
 
