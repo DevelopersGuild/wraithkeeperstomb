@@ -10,7 +10,7 @@
 
 Levels::Levels()
 {
-	isBoss = true;
+	isBoss = false;
 	bossFightChance = 0;
 	level = 1;
 	maps_passed = 0;
@@ -47,7 +47,6 @@ void Levels::cleanup()
 void Levels::roomGenerater()
 {
 	set_num = rand() % 5 + 1;
-	set_num = 1;
 	createBackground();
 	//platformSets();
 	entitiesSets();
