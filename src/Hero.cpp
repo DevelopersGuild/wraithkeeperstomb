@@ -346,6 +346,9 @@ void Hero::update(float seconds)
 
 	if (getY() > 1372.f)
 		setPosition(getX(), GROUND_HEIGHT + 12.f);
+
+	if (stats_.MP < 100)
+		stats_.MP += seconds;
 }
 
 void Hero::render(sf::RenderWindow &window)

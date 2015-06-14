@@ -114,7 +114,7 @@ void Levels::entitiesSets()
 		switch (set_num)
 	{
 		case 1:
-			createEnemy(1, 700.f, 1100.f, 700.f, 700.f + 50.f);
+			createEnemy(1, 700.f, 1100.f, 700.f, 700.f + 300.f);
 			createEnemy(1, 1000.f, 910.f, 1000.f, 1000.f + 50.f);
 			createEnemy(1, 1800.f, 1360.f, 0.f, 2560.f);
 			powerup(1, 500.f, 1200.f);
@@ -214,28 +214,6 @@ void Levels::powerup(int t, float x, float y)
 		return;
 	}
 }
-
-
-//void Levels::createEntities()
-//{
-//	Entity * e = new EnemyMage;
-//	e->setPosition(1280.f, 1360.f);
-//	dynamic_cast<EnemyMage*> (e)->set_patrol_origin(1280.f);
-//	Game::entityRegistry.push_back(e);
-//
-//	e = new EnemyReaper;
-//	e->setPosition(1000.f, 1360.f);
-//	dynamic_cast<EnemyReaper*> (e)->set_patrol_origin(1000.f);
-//	Game::entityRegistry.push_back(e);
-//
-//	e = new PowerupCookie;
-//	e->setPosition(500.f, 800.f);
-//	Game::entityRegistry.push_back(e);
-//
-//	e = new PowerupSpear;
-//	e->setPosition(800.f, 800.f);
-//	Game::entityRegistry.push_back(e);
-//}
 
 void Levels::createPlatform(int type, float posX, float posY, float sizeX, float sizeY)
 {
