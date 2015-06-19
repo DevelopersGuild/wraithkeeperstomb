@@ -31,8 +31,9 @@ void FirstBoss::update(float time)
 	else
 		isFrozen = false;
 	velocity.x = velocity.x / 2;
-
-	chaseHero(); //check hero detection
+	
+	if (!backing)
+		chaseHero(); //check hero detection
 
 	if (!heroDetected)
 	{
@@ -43,7 +44,7 @@ void FirstBoss::update(float time)
 	else
 	{
 		if (speedMultiplier == 1)
-			speedMultiplier = 2; //chasing speed
+			speedMultiplier = 1.5; //chasing speed
 	}
 	if (isFrozen)
 		velocity.x = 0.f;

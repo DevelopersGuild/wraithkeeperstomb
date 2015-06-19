@@ -40,6 +40,7 @@ Hero::Hero()
 	backing = 0;
 	knockBackDuration = 0.1;
 	atk_crit = false;
+	isAttacking = false;
 
 	atkframeTimer = 0;
 
@@ -180,6 +181,8 @@ void Hero::attackAnim()
 		weapon->update(faceRight);
 	atkTime--;
 
+	if (atkTime == 0)
+		isAttacking = false;
 }
 
 void Hero::knockbackAnim()
@@ -211,14 +214,13 @@ void Hero::right()
 
 bool Hero::attack()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) /*&& velocity.y == 0 && collisionNum == 0*/ && atkTime < 5)
-		if (weapon->attack())
-		{
-			atk_crit = weapon->getCritStatus();
-			atkTime = 18;
-			freezeHero(freezeClock);
-			return true;
-		}
+	if (weapon->attack())
+	{
+		atk_crit = weapon->getCritStatus();
+		atkTime = 18;
+		freezeHero(freezeClock);
+		return true;
+	}
 	return false;
 } 
 
@@ -265,6 +267,14 @@ void Hero::jump(float seconds)
 			velocity.y += GRAVITY;
 			Sprite.move(velocity);
 		}
+	}
+}
+
+void Hero::handleEvent(sf::Event & event) {
+	if (event.type == sf::Event::KeyPressed && (event.key.code == sf::Keyboard::Q))
+	{
+		if (attack() && isAttacking == false)
+			isAttacking = true;
 	}
 }
 
@@ -343,6 +353,9 @@ void Hero::update(float seconds)
 
 	if (getY() > 1372.f)
 		setPosition(getX(), GROUND_HEIGHT + 12.f);
+
+	if (stats_.MP < 100)
+		stats_.MP += seconds;
 }
 
 void Hero::render(sf::RenderWindow &window)

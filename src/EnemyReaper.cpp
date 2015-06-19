@@ -46,7 +46,8 @@ void EnemyReaper::update(float time)
 		isFrozen = false;
 	velocity.x = velocity.x / 2;
 
-	chaseHero(); //check hero detection
+	if (!backing)
+		chaseHero(); //check hero detection
 
 	if (!heroDetected)
 	{
@@ -71,8 +72,10 @@ void EnemyReaper::update(float time)
 
 	if (collisionNum == 2 || collisionNum == 0)
 		velocity.y = 0;
-
-	animate();
+	if (velocity.x < .5 && velocity.x > -.5)
+		xFrame = 0;
+	else
+		animate();
 	Sprite.setTextureRect(sf::IntRect(xFrame * 128, yFrame * 128, 128, 128));
 
 	knockBack(time);
