@@ -88,8 +88,8 @@ void Levels::doorSets()
 	{
 		switch (set_num)
 		{
-		case 1:	door.setPosition(1050.f, 1205.f); break;
-		case 2:	door.setPosition(1250.f, 1205.f); break;
+		case 1:	door.setPosition(1100.f, 600.f - 155.f); break;
+		case 2:	door.setPosition(2000.f, 1205.f); break;
 		case 3: door.setPosition(650.f, 1205.f); break;
 		default: door.setPosition(2000.f, 1205.f); break;
 		}
@@ -114,17 +114,21 @@ void Levels::entitiesSets()
 		switch (set_num)
 	{
 		case 1:
-			createEnemy(1, 700.f, 1100.f, 700.f, 700.f + 300.f);
-			createEnemy(1, 1000.f, 910.f, 1000.f, 1000.f + 50.f);
-			createEnemy(1, 1800.f, 1360.f, 0.f, 2560.f);
-			powerup(1, 500.f, 1200.f);
-			powerup(2, 800.f, 800.f);
+			createEnemy(1, 300.f, 749.f, 300.f, 300.f + 450.f);
+			createEnemy(1, 300.f, 949.f, 300.f, 300.f + 500.f);
+			createEnemy(1, 1200.f, 1150.f, 1300.f, 1300.f + 500.f);
+			createEnemy(1, 1800.f, GROUND_HEIGHT, 0.f, 2560.f);
+			powerup(1, 1000.f, GROUND_HEIGHT - 50.f);
+			powerup(2, 800.f, 850.f);
 			break;
 		case 2:
-			createEnemy(1, 1700.f, 1360.f, 0.f, 2560.f);
-			createEnemy(2, 1800.f, 1340.f, 0.f, 2560.f);
-			powerup(1, 500.f, 1200.f);
-			powerup(2, 700.f, 1100.f);
+			createEnemy(1, 1850.f, GROUND_HEIGHT - 200.f, 1850.f, 1900.f);
+			createEnemy(1, 500.f, 1160.f, 500.f, 500.f + 1000.f);
+			createEnemy(1, 500.f, 1160.f, 500.f, 500.f + 1000.f);
+			createEnemy(2, 900.f, 955.f, 900.f, 900.f + 800.f);
+			createEnemy(2, 1850.f, 955.f, 1850.f, 710.f);
+			powerup(1, 2100.f, 760.f);
+			powerup(2, 2200.f, 760.f);
 			break;
 		case 3:
 			createEnemy(2, 1600.f, 1340.f, 0.f, 2560.f);
@@ -230,21 +234,22 @@ void Levels::platformSets()
 		switch (set_num)
 		{
 		case 1:
-			createPlatform(0, 500.f, 900.f, 350.f, 32.f);
-			createPlatform(0, 1000.f, 910.f, 50.f, 32.f);
-			createPlatform(0, 1230.f, 890.f, 50.f, 32.f);
-			createPlatform(0, 1400.f, 920.f, 50.f, 32.f);
-			createPlatform(0, 700.f, 1100.f, 350.f, 32.f);
+			//createPlatform(0, 500.f, 900.f, 350.f, 32.f);
+			createPlatform(0, 1100.f, 600.f, 125.f, 32.f);
+			createPlatform(0, 0.f, 750.f, 1000.f, 32.f);
+			createPlatform(0, 0.f, 950.f, 1400.f, 32.f);
+			createPlatform(0, 900.f, 1150.f, 1660.f, 32.f);
 			createPlatform(2, 275.f, 0.f, 32.f, 1440.f);
 			createPlatform(2, 2284.f, 0.f, 32.f, 1440.f);
 			// Ground Platform
 			createPlatform(3, 0.f, GROUND_HEIGHT, 2560.f, 89.f);
 			break;
 		case 2:
-			createPlatform(0, 700.f, 1100.f, 350.f, 32.f);
-			createPlatform(0, 1550.f, 1100.f, 100.f, 32.f);
-			createPlatform(0, 1550.f, 800.f, 100.f, 32.f);
-			createPlatform(0, 1550.f, 600.f, 100.f, 32.f);
+			createPlatform(0, 1850.f, GROUND_HEIGHT - 200.f, 50.f, 160.f);
+			createPlatform(0, 0.f, 1160.f, 1500.f, 32.f);
+			createPlatform(0, 900.f, 960.f, 800.f, 32.f);
+			createPlatform(0, 1850.f, 960.f, 710.f, 32.f);
+			createPlatform(0, 2000.f, 760.f, 660.f, 32.f);
 			createPlatform(2, 275.f, 0.f, 32.f, 1440.f);
 			createPlatform(2, 2284.f, 0.f, 32.f, 1440.f);
 			// Ground Platform
