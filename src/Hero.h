@@ -47,13 +47,13 @@ private:
 	bool faceRight;				//Boolean for determining direction hero is facing at rest
 	bool isFrozen;
 	bool atk_crit;
+	bool isAttacking;
 	float projectileCooldown;
-	//char backing;
 	float knockBackDuration;
 
 	int atkframeTimer;
 
-	std::list<Effect*> effects_;
+	std::list<Effect *> effects_;
 
 	void animate(int);		//Function for handling animations
 	void walkAnim();		//Animation sequence for walking
@@ -75,9 +75,9 @@ public:
 	void left();
 	void right();
 	void setExperience(int add_exp);
-
 	void setLevel(int level) { stats_.level_ = level; }
 	void setHP(float hp) { stats_.HP = hp; }
+	void setAction(int arg) { action = arg; }
 	void setProjectileCooldown(float cd) { projectileCooldown = cd; }
 	float getProjectileCooldown() { return projectileCooldown; }
 
@@ -115,6 +115,8 @@ public:
 	int getExperience() const
 	{ return stats_.experience_; }
 
+	bool getAttacking() const 
+	{ return atkTime == 17; }
 
 	sf::Sprite getHeroSprite()
 	{ return Sprite; }
@@ -131,6 +133,8 @@ public:
 	{ return atk_crit; }
 
 	void heal(float healAmt);
+
+	void handleEvent(sf::Event&);
 
 	void update();
 };
