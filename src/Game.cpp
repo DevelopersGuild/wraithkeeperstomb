@@ -705,7 +705,7 @@ void Game::textUpdate()
 {
 	deltaTime = clock.restart();
 	levels.update();
-
+	theHero->setAction(0);
 	float time = deltaTime.asSeconds();
 
 	// Camera

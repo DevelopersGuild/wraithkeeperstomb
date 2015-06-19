@@ -48,12 +48,11 @@ private:
 	bool isFrozen;
 	bool atk_crit;
 	float projectileCooldown;
-	//char backing;
 	float knockBackDuration;
 
 	int atkframeTimer;
 
-	std::list<Effect*> effects_;
+	std::list<Effect *> effects_;
 
 	void animate(int);		//Function for handling animations
 	void walkAnim();		//Animation sequence for walking
@@ -75,9 +74,9 @@ public:
 	void left();
 	void right();
 	void setExperience(int add_exp);
-
 	void setLevel(int level) { stats_.level_ = level; }
 	void setHP(float hp) { stats_.HP = hp; }
+	void setAction(int arg) { action = arg; }
 	void setProjectileCooldown(float cd) { projectileCooldown = cd; }
 	float getProjectileCooldown() { return projectileCooldown; }
 

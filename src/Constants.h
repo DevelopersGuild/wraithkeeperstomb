@@ -8,7 +8,7 @@ const float GROUND_HEIGHT = 1360.0f;
 const sf::Time TimePerFrame = sf::seconds(1.f / 60.f); // Time per frame (1 sixtieth times 60 = 60 fps)
 
 //Hero
-const float HERO_BASE_HP = 200.f;
+const float HERO_BASE_HP = 100.f;
 const float HERO_BASE_MP = 100.f;
 const float HERO_BASE_SPEED = 5.f;
 const float HERO_JUMP_VELOCITY = 27.5f; //for testing purpose
@@ -24,7 +24,7 @@ const float GRAVITY = 11.f;
 const float ENEMY_DETECTION_RADIUS = 200.f;
 const float PATROL_RADIUS = 200.f;
 
-const float ENEMY1_BASE_HP = 100.f;
+const float ENEMY1_BASE_HP = 150.f;
 const float ENEMY1_BASE_SPEED = 3.f;
 const float ENEMY1_DAMAGE = 35.f;
 const float ENEMY1_ARMOR = 15.f;
@@ -35,7 +35,7 @@ const float ENEMY2_DAMAGE = 35.f;
 const float ENEMY2_ARMOR = 15.f;
 
 //Bosses
-const float BOSS_BASE_HP = 500.f;
+const float BOSS_BASE_HP = 350.f;
 const float BOSS_BASE_SPEED = 2.9f;
 const float BOSS_DAMAGE = 50.0f;
 const float BOSS_ARMOR = 16.75f;

@@ -45,9 +45,6 @@ Hero::Hero()
 
 	walkingSounds.loadFile(resourcePath() + "assets/sounds/footsteps.wav");
 
-	//effects_.push_back(new Buff(10, 7.0F, "Speed Buff"));
-	// effects_.push_back(new Debuff(10, 10.0F, "Poison"));
-
 	srand((unsigned int)time(NULL));
 	giveWeapon(new Spear(this));
 }
