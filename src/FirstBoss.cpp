@@ -18,6 +18,7 @@ FirstBoss::FirstBoss() {
 	isShooter = false;
 	armor = BOSS_ARMOR;
 	faceRight = true;
+	first_encounter = true;
 	Enemy();
 
 	srand((unsigned int)time(NULL));
@@ -30,8 +31,9 @@ void FirstBoss::update(float time)
 	else
 		isFrozen = false;
 	velocity.x = velocity.x / 2;
-
-	chaseHero(); //check hero detection
+	
+	if (!backing)
+		chaseHero(); //check hero detection
 
 	if (!heroDetected)
 	{
@@ -42,7 +44,7 @@ void FirstBoss::update(float time)
 	else
 	{
 		if (speedMultiplier == 1)
-			speedMultiplier = 2; //chasing speed
+			speedMultiplier = 1.5; //chasing speed
 	}
 	if (isFrozen)
 		velocity.x = 0.f;
@@ -68,8 +70,23 @@ void FirstBoss::jump()
 	}
 }
 
+bool FirstBoss::heroDetection(Hero* hero)
+{
+	if ((getX() - hero->getX()) <= BOSS_DETECTION_RADIUS && (hero->getX() - getX()) <= BOSS_DETECTION_RADIUS && (getY() - hero->getY()) <= ENEMY_DETECTION_RADIUS)
+	{
+		heroDetected = true;
+		return true;
+	}
+	else
+	{
+		heroDetected = false;
+		return false;
+	}
+}
+
 void FirstBoss::onHeroDetected(Hero* hero)
 {
+	first_encounter = false;
 	/*if (getY() < hero->getY())
 		jump();
 	else */if ((getX() - hero->getX()) > 10)

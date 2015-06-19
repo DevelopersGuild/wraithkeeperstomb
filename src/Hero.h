@@ -35,7 +35,7 @@ private:
 	sf::Clock jumpClock;
 	sf::Clock freezeClock;
 
-	enum {stands, walks, jumps, attacks};
+	enum {stands, walks, jumps, attacks, knockback};
 	int action;
 
 	int xFrame;					//Current frame in the x grid
@@ -51,12 +51,15 @@ private:
 	//char backing;
 	float knockBackDuration;
 
+	int atkframeTimer;
+
 	std::list<Effect*> effects_;
 
 	void animate(int);		//Function for handling animations
 	void walkAnim();		//Animation sequence for walking
 	void jumpAnim();		//Animation sequence for jumping
 	void attackAnim();		//Animation sequence for attacking
+	void knockbackAnim();	//Animation sequence for knockback
 
 	SoundSystem walkingSounds;
 

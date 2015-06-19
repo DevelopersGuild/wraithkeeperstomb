@@ -34,7 +34,8 @@ void EnemyMage::update(float time)
 		isFrozen = false;
 	velocity.x = velocity.x / 2;
 
-	chaseHero(); //check hero detection
+	if (!backing)
+		chaseHero(); //check hero detection
 
 	if (projectileCooldown > 0 && !isFrozen)
 		projectileCooldown -= time;

@@ -66,6 +66,7 @@ private:
 
 	Levels levels;
 
+	bool bossFirstEncounter;
 	bool doorOpen;
 	bool soulRelease;
 	int soulCount;

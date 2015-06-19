@@ -18,8 +18,9 @@ Enemy::Enemy()
 		Sprite.setScale(-1.f, 1.f);
 	knockBackDuration = 0.1f;
 	backing = 0;
-	left_bound = 0.f;
-	right_bound = 2560.f;
+
+	left_bound = getX() - PATROL_RADIUS; //default
+	right_bound = getX() + PATROL_RADIUS;
 
 	xFrame = 0;
 	yFrame = 0;
