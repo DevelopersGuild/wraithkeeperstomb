@@ -38,6 +38,7 @@ Game::Game()
 	dmgSpriteRegistry.clear();
 	doorOpen = false;
 	bossFirstEncounter = true;
+	current_level = 1;
 }
 
 void Game::CreateEntities()
@@ -364,7 +365,7 @@ void Game::loadAssets()
 	exitButtonHL.setFont(lato);
 
 	loadTextLine(victoryText, "Victory!", 225);
-	victoryText.setPosition(480, 225);
+	victoryText.setPosition(550, 225);
 
 	loadTextLine(pauseText, "Game Paused", 225);
 	pauseText.setPosition(280, 225);
@@ -506,6 +507,9 @@ void Game::gameUpdate()
 	}
 
 	levels.update();
+	current_level = levels.getLevel();
+	if (current_level == 2)
+		gameState_ = GameState::victory;
 
 	//Dialogue appears upon boss first encounter in boss stage
 	if (levels.getIsBoss() && bossFirstEncounter)
@@ -516,7 +520,7 @@ void Game::gameUpdate()
 				{//upon the first encounter
 					bossFirstEncounter = false;
 					gameState_ = GameState::dialogueState;
-					insertDialogue(levels.getLevel()); //dialogue based on level
+					insertDialogue(current_level); //dialogue based on level
 				}
 	}
 
@@ -860,23 +864,33 @@ void Game::insertDialogue(int scriptNum)
 		dialogueRegistry.push(dialogue);
 		break;
 	case 2: //Encounter with the second boss
-		dialogue.setString("???: \"...\"");
+		dialogue.setString("???: \"Why are you desperately trying to escape?\nDo you not realize what awaits you?\"");
 		dialogueRegistry.push(dialogue);
-		dialogue.setString("Player: \"...\"");
+		dialogue.setString("Player: \"There... is someone I must save.\"");
 		dialogueRegistry.push(dialogue);
-		dialogue.setString("???: \"...\"");
+		dialogue.setString("Player: \"Get out of my way, demon!\"");
 		dialogueRegistry.push(dialogue);
-		dialogue.setString("???: \"...\"");
+		dialogue.setString("???: \"Ah, I see... how pitiful.\"");
+		dialogueRegistry.push(dialogue);
+		dialogue.setString("???: \"But this is as far as you go. Turn back or face eternal torment!\"");
 		dialogueRegistry.push(dialogue);
 		break;
 	case 3: //Encounter with the final boss
-		dialogue.setString("???: \"...\"");
+		dialogue.setString("Player \"Why are you trying to halt my advance, demon?\"");
 		dialogueRegistry.push(dialogue);
-		dialogue.setString("Player: \"...\"");
+		dialogue.setString("???: \"There is nothing beyond this point. Only suffering awaits you.\"");
 		dialogueRegistry.push(dialogue);
-		dialogue.setString("???: \"...\"");
+		dialogue.setString("Player: \"Then I will face it! I must save my son!\"");
 		dialogueRegistry.push(dialogue);
-		dialogue.setString("???: \"...\"");
+		dialogue.setString("???: \"You still do not get it, do you?\"");
+		dialogueRegistry.push(dialogue);
+		dialogue.setString("Player: \"I... am dead, aren't I?\"");
+		dialogueRegistry.push(dialogue);
+		dialogue.setString("???: \"Yes, little wraith. You are one of us now\"");
+		dialogueRegistry.push(dialogue);
+		dialogue.setString("Wraithkeeper: \"I am the Wraithkeeper. I shall give you power you seek\"");
+		dialogueRegistry.push(dialogue);
+		dialogue.setString("Wraithkeeper: \"...but only if you worthy enough to obtain it!\"");
 		dialogueRegistry.push(dialogue);
 		break;
 	default:

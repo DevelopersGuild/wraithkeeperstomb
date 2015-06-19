@@ -69,6 +69,7 @@ private:
 	bool bossFirstEncounter;
 	bool doorOpen;
 	bool soulRelease;
+	int current_level;
 	int soulCount;
 	int soulFrame;
 	float soulX, soulY;
