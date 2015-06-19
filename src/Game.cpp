@@ -106,6 +106,8 @@ void Game::handleEvent(sf::Event &event)
 		// Keys being pressed during gameplay
 		if (sf::Event::KeyPressed)
 		{
+			// Input for Hero actions
+			theHero->handleEvent(event);
 			// Specifically if P is pressed
 			if (event.key.code == sf::Keyboard::P)
 			{
@@ -118,6 +120,7 @@ void Game::handleEvent(sf::Event &event)
 				if (doorOpen)
 					enterDoor(theHero);
 			}
+
 		}
 	}
 	if (gameState_ == GameState::titleScreen)
@@ -552,7 +555,7 @@ void Game::gameUpdate()
 		hitCollision(theHero, entityRegistry[i]);
 
 	//weapon collision against enemy(ies)
-	if (theHero->attack())
+	if (theHero->getAttacking())
 		for (size_t i = 1; i < entityRegistry.size(); i++)
 			hitCollision(entityRegistry[i], theHero);
 

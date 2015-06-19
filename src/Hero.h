@@ -47,6 +47,7 @@ private:
 	bool faceRight;				//Boolean for determining direction hero is facing at rest
 	bool isFrozen;
 	bool atk_crit;
+	bool isAttacking;
 	float projectileCooldown;
 	//char backing;
 	float knockBackDuration;
@@ -115,6 +116,8 @@ public:
 	int getExperience() const
 	{ return stats_.experience_; }
 
+	bool getAttacking() const 
+	{ return atkTime == 17; }
 
 	sf::Sprite getHeroSprite()
 	{ return Sprite; }
@@ -131,6 +134,8 @@ public:
 	{ return atk_crit; }
 
 	void heal(float healAmt);
+
+	void handleEvent(sf::Event&);
 
 	void update();
 };
