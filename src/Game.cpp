@@ -509,7 +509,7 @@ void Game::gameUpdate()
 
 	levels.update();
 	current_level = levels.getLevel();
-	if (current_level == 2)
+	if (current_level == 4)
 		gameState_ = GameState::victory;
 
 	//Dialogue appears upon boss first encounter in boss stage

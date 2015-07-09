@@ -10,7 +10,7 @@
 
 Levels::Levels()
 {
-	isBoss = true;
+	isBoss = false;
 	bossFightChance = 0;
 	level = 1;
 	maps_passed = 0;
