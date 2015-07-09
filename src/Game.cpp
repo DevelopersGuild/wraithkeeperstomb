@@ -126,7 +126,33 @@ void Game::handleEvent(sf::Event &event)
 	}
 	if (gameState_ == GameState::titleScreen)
 	{
-
+		switch (menuSwitch_)
+		{
+		case MenuSwitch::play:
+			// Keys being pressed in menu
+			if (event.type == sf::Event::KeyPressed)
+			{
+				// Specifically if down is pressed
+				if (event.key.code == sf::Keyboard::Down || event.key.code == sf::Keyboard::Up)
+					menuSwitch_ = MenuSwitch::exit;
+				else if (event.key.code == sf::Keyboard::Return)
+					gameState_ = GameState::inGame;
+			}
+			break;
+		case MenuSwitch::exit:
+			// Keys being pressed in menu
+			if (event.type == sf::Event::KeyPressed)
+			{
+				// Specifically if down is pressed
+				if (event.key.code == sf::Keyboard::Down || event.key.code == sf::Keyboard::Up)
+					menuSwitch_ = MenuSwitch::play;
+				else if (event.key.code == sf::Keyboard::Return)
+					window.close();
+			}
+			break;
+		default:
+			break;
+		}
 	}
 
 	if (gameState_ == GameState::dialogueState)
@@ -181,34 +207,6 @@ void Game::handleEvent(sf::Event &event)
 				//camera.setCenter(theHero->getX(), theHero->getY());
 			}
 		}
-	}
-
-	switch (menuSwitch_)
-	{
-	case MenuSwitch::play: 
-		// Keys being pressed in menu
-		if (event.type == sf::Event::KeyPressed)
-		{
-			// Specifically if down is pressed
-			if (event.key.code == sf::Keyboard::Down || event.key.code == sf::Keyboard::Up)
-				menuSwitch_ = MenuSwitch::exit;
-			else if (event.key.code == sf::Keyboard::Return)
-				gameState_ = GameState::inGame;
-		}
-		break;
-	case MenuSwitch::exit:
-		// Keys being pressed in menu
-		if (event.type == sf::Event::KeyPressed)
-		{
-			// Specifically if down is pressed
-			if (event.key.code == sf::Keyboard::Down || event.key.code == sf::Keyboard::Up)
-				menuSwitch_ = MenuSwitch::play;
-			else if (event.key.code == sf::Keyboard::Return)
-				window.close();
-		}
-		break;
-	default:
-		break;
 	}
 }
 
